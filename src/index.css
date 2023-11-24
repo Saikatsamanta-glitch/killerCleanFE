@@ -18,8 +18,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative !important;
-  background-color: #F3FAFC !important;
+  /* position: relative !important; */
+  background-color: #F3FAFC;
   font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
@@ -37,13 +37,9 @@ code {
 .nav-header{
   font-family: 'Figtree', sans-serif !important; 
 }
-
 nav{
+  background-color: #F3FAFC !important;
   padding: 0 80px !important;
-  position: sticky !important;
-  top: 0 !important;
-  left: 0 !important;
-  z-index: 10 !important;
 }
 nav ul li a{
   padding: 10px 15px !important;
