@@ -7,10 +7,10 @@ const ImageCard = () => {
     <div className="bg-[#f3fafc] px-32">
       <h1 className="text-[50px] text-center text-[#014584] font-semibold ">Our Services</h1>
       <p className="text-center text-lg mb-4 text-[#014584]">See our cleaning services below or view our complete <span className="underline text-[#046bd2]">cleaning checklist.</span></p>
-      <div className=" bg-white h-[1100px] shadow-lg border-none">
+      <div className="flex flex-col items-center bg-white h-[1100px] shadow-lg ">
         <div className="flex flex-wrap justify-center">
         {servicesInfo.map((service) => (
-          <Card key={service.id} className="max-w-sm border-none">
+          <Card key={service.id} className="max-w-[420px]">
             <img src={service.img} alt="" />
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {service.title}
@@ -23,7 +23,7 @@ const ImageCard = () => {
           
         ))}
         </div>
-        <Button className="w-36" as={Link} to={'/book'}>Book Online</Button>
+        <Button className="w-36 " as={Link} to={'/book'}>Book Online</Button>
       </div>
     </div>
   );
