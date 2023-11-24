@@ -5,6 +5,7 @@
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css");
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css");
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap');
 
 * {
   margin: 0px ;
@@ -109,4 +110,8 @@ footer{
 footer li{
   margin-right: 10px !important;
   
+}
+[data-testid="flowbite-card"] {
+  border:none !important;
+  box-shadow: none !important;
 }
