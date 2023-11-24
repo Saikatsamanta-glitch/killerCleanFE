@@ -41,7 +41,7 @@ export default function Nav() {
           <Link className='no-underline text-white'><i className="fa-brands fa-instagram hover:animate-pulse"></i></Link>
         </div>
       </div>
-    <Navbar fluid className="px-20">
+    <Navbar fluid className="px-20 bg-[#F3FAFC] sticky top-0 z-10 w-full">
       <Navbar.Brand href="/">
         <img src={logo} className="h-6 sm:h-36" alt="Killer CLean Logo" />
       </Navbar.Brand>
