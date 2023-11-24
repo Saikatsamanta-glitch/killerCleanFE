@@ -19,6 +19,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative !important;
+  background-color: #F3FAFC !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
 code {
@@ -37,7 +40,11 @@ code {
 }
 
 nav{
-  margin: 0 80px!important;
+  padding: 0 80px !important;
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 10 !important;
 }
 nav ul li a{
   padding: 10px 15px !important;
@@ -55,7 +62,7 @@ nav ul li a:hover {
 }
 
 .group{
-  background: #61B1D6 !important;
+  background: #3a9dcc !important;
   border-radius: 0 !important;
   padding: 6px 15px !important;
   text-decoration: none !important;
@@ -74,7 +81,8 @@ nav ul li a:hover {
 
 /* Footer Stylings */
 [data-testid="flowbite-footer-brand"] img {
-  height: 150px !important;
+  height: 170px !important;
+  margin-left: -20px !important;
 }
 [data-testid="flowbite-footer-brand"] a {
   margin-top: 16px !important;
@@ -84,11 +92,9 @@ nav ul li a:hover {
   text-transform: capitalize !important;
   color: white !important;
   font-weight: 600 !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
 }
 [data-testid="flowbite-footer-icon"] a svg{
- 
-  text-transform: capitalize !important;
   color: white !important;
   font-weight: 600 !important;
   font-size: 20px !important;
@@ -97,7 +103,7 @@ nav ul li a:hover {
 footer li a{
   color: white;
   font-weight: 400 !important;
-  font-size: 16px !important;
+  font-size: 15px !important;
 }
 footer li a:hover{
   text-decoration: none !important;
