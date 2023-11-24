@@ -70,3 +70,43 @@ nav ul li a:hover {
   line-height: 28px !important;
   padding: 2px !important;
 }
+
+/* Footer Stylings */
+[data-testid="flowbite-footer-brand"] img {
+  height: 150px !important;
+}
+[data-testid="flowbite-footer-brand"] a {
+  margin-top: 16px !important;
+}
+[data-testid="flowbite-footer-title"]{
+  
+  text-transform: capitalize !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+}
+[data-testid="flowbite-footer-icon"] a svg{
+ 
+  text-transform: capitalize !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  margin-left: 15px !important;
+}
+footer li a{
+  color: white;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+}
+footer li a:hover{
+  text-decoration: none !important;
+}
+footer{
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: white !important;
+  border-radius: 0 !important;
+}
+footer li{
+  margin-right: 10px !important;
+  
+}
