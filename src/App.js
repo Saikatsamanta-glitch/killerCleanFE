@@ -7,6 +7,7 @@ import Services from './Pages/Services'
 import CleaningChecklist from './Pages/CleaningChecklist'
 import ApplyNow from './Pages/ApplyNow'
 import CustomerLogin from './Pages/CustomerLogin'
+import Contact from './Pages/Contact'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Route path='/services' element={<Services />} />
       <Route path='/cleaningchecklist' element={<CleaningChecklist />} />
       <Route path='/customerlogin' element={<CustomerLogin />} />
+      <Route path='/contact' element={<Contact />} />
       <Route path='/applynow' element={<ApplyNow />} />
     </Routes>
     <CustomFooter/>
