@@ -70,7 +70,7 @@ export default function Tired() {
             ultrices mi tempus imperdiet nulla. Vulputate odio ut enim blandit
             volutpat. Lacus luctus accumsan tortor posuere ac ut.
           </p>
-          <Button as={Link} to={"/book"}>
+          <Button as={Link} to={"/book"} className='book'>
             Schedule A Cleaning
           </Button>
         </div>

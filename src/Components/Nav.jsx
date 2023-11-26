@@ -2,6 +2,15 @@ import { Button, Navbar } from "flowbite-react";
 import logo from "../Images/logo.png";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+const navbar={
+  link: {
+    base: "block py-2 pr-4 pl-3 md:p-0",
+    active: {
+      on: "bg-cyan-700 text-white dark:text-white md:bg-transparent md:text-[#014584] md:hover:text-[#014584] md:hover:border-b-none",
+      off: "border-gray-100  text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-cyan-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+    },
+}
+}
 export default function Nav() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTablet, setTablet] = useState(window.innerWidth < 1024);
@@ -46,13 +55,13 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className="px-20  bg-[#F3FAFC]  w-full">
+      <Navbar fluid className="px-20  bg-[#F3FAFC]  w-full" theme={navbar}>
         <Navbar.Brand href="/">
           <img src={logo} className="h-6 sm:h-36" alt="Killer CLean Logo" />
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link as={Link} to={'/'}>Home</Navbar.Link>
+          <Navbar.Link as={Link}  to={'/'}>Home</Navbar.Link>
           <Navbar.Link as={Link} to={'/services'}>Services</Navbar.Link>
           <Navbar.Link href="/cleaningchecklist">
             Cleaning Checklist
@@ -63,7 +72,7 @@ export default function Nav() {
           {isMobile || isTablet ? (
             <Navbar.Link href="/book">Book Online</Navbar.Link>
           ) : (
-            <Button as={Link} to={"/book"}>
+            <Button as={Link} to={"/book"} className='book active:bg-none active:border-none active:outline-none focus:outline-none'>
               Book Online
             </Button>
           )}

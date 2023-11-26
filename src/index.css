@@ -50,25 +50,27 @@ nav ul li a{
   line-height: 28px !important;
 }
 nav ul li{
-  margin-left: 10px !important;
+  margin-left: 4px !important;
 }
 nav ul li a:hover {
   color: #61B1D6 !important;
-  border-bottom: #61B1D6 2px solid !important;
+  border-bottom: #61B1D6 1.5px solid;
 }
 
-.group{
+.book{
   background: #3a9dcc !important;
   border-radius: 0 !important;
   padding: 6px 15px !important;
   text-decoration: none !important;
   transition: all 0.3s ease-in-out;
   outline: none !important;
+  color: white !important;
+  border: none !important;
 }
-.group:hover{
+.book:hover{
   transform: scale(0.8);
 }
-.group span{
+.book span{
   color: white;
   font-size: 18px !important;
   line-height: 28px !important;
@@ -117,3 +119,21 @@ footer li{
   border:none !important;
   box-shadow: none !important;
 }
+
+/* Carousel Stylings */
+
+[data-testid="carousel-right-control"],[data-testid="carousel-left-control"]{
+  background: none !important;
+}
+[data-testid="carousel-right-control"] svg,[data-testid="carousel-left-control"] svg{
+  color: #3a9dcc !important;
+  height: 30px !important;
+  width: 30px !important;
+  stroke-width: 3 !important;
+}
+[data-testid="carousel-right-control"] span,[data-testid="carousel-left-control"] span{
+  background: none !important;
+  outline: none !important;
+}
+
+

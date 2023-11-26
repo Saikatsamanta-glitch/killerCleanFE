@@ -23,7 +23,7 @@ const ImageCard = () => {
           
         ))}
         </div>
-        <Button className="w-36 " as={Link} to={'/book'}>Book Online</Button>
+        <Button className="w-36 book" as={Link} to={'/book'}>Book Online</Button>
       </div>
     </div>
   );

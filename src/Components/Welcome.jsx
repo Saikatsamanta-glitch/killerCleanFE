@@ -15,7 +15,7 @@ export default function Welcome() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit
             sed ullamcorper morbi tincidunt ornare massa.
           </p>
-          <Button as={Link} to={"/book"}>
+          <Button as={Link} to={"/book"} className='book'>
             Book Online <BsArrowRight className="ml-3 " />{" "}
           </Button>
         </div>
