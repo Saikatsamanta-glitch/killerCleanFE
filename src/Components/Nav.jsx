@@ -63,14 +63,14 @@ export default function Nav() {
         <Navbar.Collapse>
           <Navbar.Link as={Link}  to={'/'}>Home</Navbar.Link>
           <Navbar.Link as={Link} to={'/services'}>Services</Navbar.Link>
-          <Navbar.Link href="/cleaningchecklist">
+          <Navbar.Link as={Link} to={"/cleaningchecklist"}>
             Cleaning Checklist
           </Navbar.Link>
-          <Navbar.Link href="/customerlogin">Customer Login</Navbar.Link>
-          <Navbar.Link href="/contact">Contact</Navbar.Link>
-          <Navbar.Link href="/applynow">Apply Now</Navbar.Link>
+          <Navbar.Link as={Link} to={"/customerlogin"}>Customer Login</Navbar.Link>
+          <Navbar.Link as={Link} to={"/contact"}>Contact</Navbar.Link>
+          <Navbar.Link as={Link} to={"/applynow"}>Apply Now</Navbar.Link>
           {isMobile || isTablet ? (
-            <Navbar.Link href="/book">Book Online</Navbar.Link>
+            <Navbar.Link as={Link} to={"/book"}>Book Online</Navbar.Link>
           ) : (
             <Button as={Link} to={"/book"} className='book active:bg-none active:border-none active:outline-none focus:outline-none'>
               Book Online

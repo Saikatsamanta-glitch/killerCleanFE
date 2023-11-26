@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Tired from "../Components/Tired";
 import Welcome from "../Components/Welcome";
 import Testimonials from "../Components/Testimonials";
+import Work from "../Components/Work";
 export default function Home() {
   return (
     <div className="w-screen">
@@ -27,6 +28,7 @@ export default function Home() {
         </div>
       </section>
       <Testimonials />
+      <Work />
     </div>
   );
 }
