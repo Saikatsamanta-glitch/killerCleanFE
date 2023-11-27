@@ -163,3 +163,64 @@ export const bookservices=[
     desc:'Fast email response & friendly customer service.'
   }
 ]
+
+export const selectExtras=[
+  {
+    id:1,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/broom.png',
+    label:'Deep Cleaning',
+  },
+  {
+    id:2,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/box.png',
+    label:'Move In Out',
+  },
+  {
+    id:3,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/bathroom-cabinet.png',
+    label:'Interior Cabinets',
+  },
+  {
+    id:4,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/window.png',
+    label:'Interior Windows',
+  },
+  {
+    id:5,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/jalousie.png',
+    label:'Wet Wipe Window Blinds',
+  },
+  {
+    id:6,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/refrigerator.png',
+    label:'Inside Fridge',
+  },
+  {
+    id:7,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/oven.png',
+    label:'Inside Oven',
+  },
+  {
+    id:8,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/green.png',
+    label:'Green Cleaning',
+  },
+  {
+    id:9,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/closet.png',
+    label:'Organization',
+    tooltip:'If you wish a certain area organized, like your drawers or closet, please select this option. For $30 you get 30 minutes of organization. This can always be adjusted after the cleaning is over.'
+  },
+  {
+    id:10,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/fashion.png',
+    label:'Laundry & Folding',
+    tooltip:'Select this option if you wish to have a load of laundry done and folded. The laundry equipment must be inside the unit.'
+  },
+  {
+    id:11,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/washing-plate.png',
+    label:'Dishes',
+    tooltip:'Do a load of dishes.'
+  },
+]
