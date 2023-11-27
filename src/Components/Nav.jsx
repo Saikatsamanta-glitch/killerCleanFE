@@ -55,7 +55,7 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className="px-20  bg-[#F3FAFC]  w-full" theme={navbar}>
+      <Navbar fluid className="px-20 sticky top-0 bg-[#F3FAFC]  w-full" theme={navbar}>
         <Navbar.Brand href="/">
           <img src={logo} className="h-6 sm:h-36" alt="Killer CLean Logo" />
         </Navbar.Brand>

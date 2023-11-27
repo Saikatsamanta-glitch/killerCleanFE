@@ -68,7 +68,7 @@ export const work=[
     id:1,
     img:'https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/monthly-calendar.png',
     title:'Book',
-    desc:'Visit our booking page for instant online quotes and booking. Or give us a call and we’ll be more than happy to assist!'
+    desc:"Visit our booking page for instant online quotes and booking. Or give us a call and we'll be more than happy to assist!"
   },
   {
     id:2,
@@ -140,3 +140,26 @@ export const BedroomAndCommonAreaCleaningData = [
   { id: 14, task: 'Dust & wipe blinds', standardClean: false, deepClean: false, moveInOut: true },
   
 ];
+
+export const bookservices=[
+  {
+    id:1,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/bk-form-online-payment.png',
+    desc:'Edit & manage your booking online.'
+  },
+  {
+    id:2,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/bk-form-return.png',
+    desc:"Not happy? We'll make it right."
+  },
+  {
+    id:3,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/bk-form-like-it.png',
+    desc:'Providers are friendly and background checked.'
+  },
+  {
+    id:4,
+    img:'https://dp3d2hb4975es.cloudfront.net/assets/images/bk-form-chat.png',
+    desc:'Fast email response & friendly customer service.'
+  }
+]

@@ -4,61 +4,61 @@
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css");
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css");
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css");
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap');
-@import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css');
-@import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-straight/css/uicons-bold-straight.css');
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap");
+@import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css");
+@import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-straight/css/uicons-bold-straight.css");
 * {
-  margin: 0px ;
-  padding: 0px ;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* position: relative !important; */
-  background-color: #F3FAFC;
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background-color: #f3fafc;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 /* Navbar Stylings */
 
-.fa-brands:hover{
+.fa-brands:hover {
   transform: scale(0.8);
-  color: #61B1D6;
+  color: #61b1d6;
 }
 
-.nav-header{
-  font-family: 'Figtree', sans-serif !important; 
+.nav-header {
+  font-family: "Figtree", sans-serif !important;
 }
-nav{
-  background-color: #F3FAFC !important;
+nav {
+  background-color: #f3fafc !important;
   padding: 0 80px !important;
 }
-nav ul li a{
+nav ul li a {
   padding: 10px 15px !important;
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #014584 !important;
   font-size: 18px !important;
   line-height: 28px !important;
 }
-nav ul li{
+nav ul li {
   margin-left: 4px !important;
 }
 nav ul li a:hover {
-  color: #61B1D6 !important;
-  border-bottom: #61B1D6 1.5px solid;
+  color: #61b1d6 !important;
+  border-bottom: #61b1d6 1.5px solid;
 }
 
-.book{
+.book {
   background: #3a9dcc !important;
   border-radius: 0 !important;
   padding: 6px 15px !important;
@@ -68,10 +68,10 @@ nav ul li a:hover {
   color: white !important;
   border: none !important;
 }
-.book:hover{
+.book:hover {
   transform: scale(0.8);
 }
-.book span{
+.book span {
   color: white;
   font-size: 18px !important;
   line-height: 28px !important;
@@ -86,63 +86,88 @@ nav ul li a:hover {
 [data-testid="flowbite-footer-brand"] a {
   margin-top: 16px !important;
 }
-[data-testid="flowbite-footer-title"]{
-  
+[data-testid="flowbite-footer-title"] {
   text-transform: capitalize !important;
   color: white !important;
   font-weight: 600 !important;
   font-size: 18px !important;
 }
-[data-testid="flowbite-footer-icon"] a svg{
+[data-testid="flowbite-footer-icon"] a svg {
   color: white !important;
   font-weight: 600 !important;
   font-size: 20px !important;
   margin-left: 15px !important;
 }
-footer li a{
+footer li a {
   color: white;
   font-weight: 400 !important;
   font-size: 15px !important;
 }
-footer li a:hover{
+footer li a:hover {
   text-decoration: none !important;
 }
-footer{
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+footer {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: white !important;
   border-radius: 0 !important;
 }
-footer li{
+footer li {
   margin-right: 10px !important;
-  
 }
 [data-testid="flowbite-card"] {
-  border:none !important;
+  border: none !important;
   box-shadow: none !important;
 }
-.fi-bs-check{
-  color:  #00d100 !important;
-  font-size: medium  !important; 
+.fi-bs-check {
+  color: #00d100 !important;
+  font-size: medium !important;
 }
-.fi-br-cross-small{
+.fi-br-cross-small {
   color: red !important;
   font-size: large !important;
 }
 
 /* Carousel Stylings */
 
-[data-testid="carousel-right-control"],[data-testid="carousel-left-control"]{
+[data-testid="carousel-right-control"],
+[data-testid="carousel-left-control"] {
   background: none !important;
 }
-[data-testid="carousel-right-control"] svg,[data-testid="carousel-left-control"] svg{
+[data-testid="carousel-right-control"] svg,
+[data-testid="carousel-left-control"] svg {
   color: #3a9dcc !important;
   height: 30px !important;
   width: 30px !important;
   stroke-width: 3 !important;
 }
-[data-testid="carousel-right-control"] span,[data-testid="carousel-left-control"] span{
+[data-testid="carousel-right-control"] span,
+[data-testid="carousel-left-control"] span {
   background: none !important;
   outline: none !important;
 }
 
+.book-page {
+  font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
 
+.btn-secondary {
+  --bs-btn-color: #11263c !important;
+  --bs-btn-bg: #e5ecf2;
+  --bs-btn-border-color: #e5ecf2;
+  --bs-btn-hover-color: #11263c;
+  --bs-btn-hover-bg: #e5ecf2;
+  --bs-btn-hover-border-color: #e5ecf2;
+  --bs-btn-focus-shadow-rgb: 130, 138, 145;
+  --bs-btn-active-color: #11263c;
+  --bs-btn-active-bg: #ced5d8;
+  --bs-btn-active-border-color: #ced5d8;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-padding-x: 12px;
+  --bs-btn-padding-y: 8px;
+  --bs-btn-font-family: ;
+  --bs-btn-font-size: 14px;
+  --bs-btn-font-weight: 400;
+  --bs-btn-line-height: 1.5;
+}

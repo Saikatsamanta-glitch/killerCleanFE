@@ -6,9 +6,11 @@ import Tired from "../Components/Tired";
 import Welcome from "../Components/Welcome";
 import Testimonials from "../Components/Testimonials";
 import Work from "../Components/Work";
+import Ready from "../Components/Ready";
 export default function Home() {
   return (
-    <div className="w-screen">
+    <div className="w-screen relative">
+      
       <Welcome />
       <Tired />
       <OurServices />
@@ -29,6 +31,7 @@ export default function Home() {
       </section>
       <Testimonials />
       <Work />
+      <Ready />
     </div>
   );
 }

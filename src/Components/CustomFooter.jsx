@@ -22,7 +22,7 @@ export default function CustomFooter() {
                 <BsInstagram className="text-white text-lg" />
               </Footer.Link>
             </div>
-            <p className="text-[15px] leading-[26px]">
+            <p className="text-[15.5px] leading-[26px]">
               Killer Clean is not the employer of the house cleaner referred to
               you. We refer highly vetted cleaners in the area to our customers.
             </p>
