@@ -7,8 +7,8 @@ import { Carousel, Rating } from "flowbite-react";
 const carousel= {
   root: {
     base: 'relative h-full w-full',
-    leftControl: 'absolute top-0 left-0 flex h-full items-center justify-center px-4 focus:outline-none',
-    rightControl: 'absolute top-0 right-0 flex h-full items-center justify-center px-4 focus:outline-none',
+    leftControl: 'absolute top-0 left-0 flex h-full items-center justify-center sm:px-4 px-0 focus:outline-none',
+    rightControl: 'absolute top-0 right-0 flex h-full items-center justify-center sm:px-4 px-0 focus:outline-none',
 },
 indicators: {
     active: {
@@ -34,7 +34,7 @@ export default function Testimonials() {
           }}
           className="bg-contain bg-repeat w-full opacity-[10%] bg-[400px auto] p-20"
         ></div>
-        <h1 className="absolute top-0 text-[#014584] text-5xl font-semibold p-20">
+        <h1 className="absolute top-0 text-[#014584] text-5xl font-semibold sm:p-20 py-6 mt-4 px-4">
           Testimonials
         </h1>
         <div
@@ -58,16 +58,16 @@ export default function Testimonials() {
           }}
           className="bg-contain bg-repeat w-full  opacity-[8%] bg-[400px auto] p-20"
         ></div>
-        <div className=" absolute top-40 w-full p-20 left-0">
-          <div className="max-h-[300px] w-[90%] mx-10">
+        <div className=" absolute top-40 w-full sm:p-20 p-2 left-0">
+          <div className="sm:h-[300px] h-[370px] w-full sm:w-[90%] sm:mx-10">
             <Carousel theme={carousel}>
               {testimonials.map((review) => (
                 <div
                   key={review.id}
-                  className="flex justify-center h-full items-center px-10"
+                  className="flex justify-center h-full items-center px-3 sm:px-10" 
                 >
-                  <div className="text-left p-10 flex flex-col justify-evenly items-start w-[90%] h-[300px] border bg-white">
-                    <h1 className="text-xl font-semibold text-[#015d9c]">
+                  <div className="text-left sm:p-10 p-2 flex flex-col justify-evenly items-center sm:items-start max-w-[90%] sm:h-[300px] h-[350px] border bg-white">  
+                    <h1 className="text-xl text-center font-semibold text-[#015d9c]">
                       {review.name}
                       <Rating>
                         <Rating.Star />
@@ -77,7 +77,7 @@ export default function Testimonials() {
                         <Rating.Star />
                       </Rating>
                     </h1>
-                    <p className="text-[#015d9c] text-base font-medium md:line-clamp-6">
+                    <p className="text-[#015d9c] text-base text-center font-medium md:line-clamp-6">
                       {review.desc}
                     </p>
                   </div>
