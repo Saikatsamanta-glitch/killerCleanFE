@@ -14,7 +14,7 @@ export default function Home() {
       <Tired />
       <OurServices />
       <section
-        className=" bg-cover relative bg-center bg-fixed bg-no-repeat w-full h-[450px]"
+        className=" bg-cover relative bg-center sm:bg-fixed bg-no-repeat w-full  h-[450px]"
         style={{
           backgroundImage:
             'url("https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/southern_sparkle_cleaning.png")',
@@ -28,11 +28,11 @@ export default function Home() {
           }}
         ></div>
 
-        <div className="flex flex-col items-center justify-center absolute left-0 top-0 right-0 bottom-0 m-auto px-80 py-10">
-          <h1 className="text-5xl font-medium text-white z-50 mb-4">
+        <div className="flex flex-col items-center justify-center absolute left-0 top-0 right-0 bottom-0 m-auto sm:px-80 sm:py-10 px-4 py-10">
+          <h1 className="text-[40px] sm:text-[44px] font-medium text-center text-white z-50 mb-4">
             Reclaim your Saturdays!
           </h1>
-          <p className="text-[17px] leading-7 mb-4 z-50 text-center text-white">
+          <p className="text-base sm:text-[17px] leading-7 mb-4 z-50 text-center text-white">
             Let's make your space shine together! Schedule with Sparkling Clean
             today and let the magic happen!
           </p>

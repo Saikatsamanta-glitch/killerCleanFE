@@ -3,7 +3,7 @@ import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 export default function Tired() {
   return (
-    <div className="bg-white sm:mt-24 px-2 py-4 sm:px-20 sm:pt-20 w-full ">
+    <div className="bg-white sm:mt-24 px-2 py-10 sm:px-20 sm:pt-20 w-full ">
       <h1 className="text-center text-[#014584] text-[40px] sm:text-[45px] mb-3 font-semibold">
         Tired Of Cleaning By Yourself?
       </h1>
@@ -15,7 +15,7 @@ export default function Tired() {
       </p>
       <div className="flex flex-col sm:flex-row items-center w-full">
         <div className="sm:w-[50%] flex flex-col p-2 items-center sm:items-start sm:p-8">
-          <h1 className="text-3xl sm:text-4xl text-[#014584] mb-4 font-semibold">
+          <h1 className="text-3xl sm:text-4xl text-center text-[#014584] mb-4 font-semibold">
             Consistent Quality
           </h1>
           <p className="text-[17px] text-[#014584] text-center leading-8 sm:text-left">
@@ -35,10 +35,10 @@ export default function Tired() {
       </div>
       <div className="flex w-full flex-col sm:flex-row-reverse items-center relative">
         <div className="sm:w-[50%] flex flex-col p-2 items-center sm:items-start sm:p-8">
-          <h1 className="text-3xl sm:text-4xl text-[#014584] mb-4 font-semibold">
+          <h1 className="text-3xl text-center sm:text-4xl text-[#014584] mb-4 font-semibold">
             Experienced and Background Checked Cleaners
           </h1>
-          <p className="text-[#014584] text-[17px] text-left leading-8">
+          <p className="text-[17px] text-[#014584] text-center leading-8 sm:text-left">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit
             sed ullamcorper morbi tincidunt ornare massa. Cursus risus at
@@ -46,10 +46,10 @@ export default function Tired() {
             volutpat. Lacus luctus accumsan tortor posuere ac ut.
           </p>
         </div>
-        <div className="sm:w-[50%] flex justify-start">
+        <div className="sm:w-[50%] flex justify-center sm:justify-end">
           <img
             src="https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/Untitled-740-%C3%97-800-px-7-1.png"
-            alt="" className="w-[90%] p-7"
+            alt="" className="w-[90%] p-2 sm:p-7"
           />
         </div>
         <img
@@ -59,22 +59,22 @@ export default function Tired() {
         />
       </div>
       <div className=" flex items-center w-full">
-        <div className="sm:w-[50%] flex flex-col items-start p-8">
-          <h1 className="text-3xl sm:text-4xl text-[#014584] mb-4 font-semibold">
+        <div className="sm:w-[50%] flex flex-col p-2  items-center sm:items-start sm:p-8">
+          <h1 className="text-3xl text-center sm:text-4xl text-[#014584] mb-4 font-semibold">
             Online Booking & Payment and Responsive Customer Support
           </h1>
-          <p className="text-[#014584] text-[17px] text-left mb-4 leading-8">
+          <p className="text-[17px] text-[#014584] text-center mb-4 leading-8 sm:text-left">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit
             sed ullamcorper morbi tincidunt ornare massa. Cursus risus at
             ultrices mi tempus imperdiet nulla. Vulputate odio ut enim blandit
             volutpat. Lacus luctus accumsan tortor posuere ac ut.
           </p>
-          <Button as={Link} to={"/book"} className='book'>
+          <Button as={Link} to={"/book"} className='book mb-4'>
             Schedule A Cleaning
           </Button>
         </div>
-        <div className="sm:w-[50%] flex justify-end">
+        <div className="sm:w-[50%] hidden sm:flex justify-end">
           <img
             src="https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/Untitled-740-%C3%97-800-px-11-1.png"
             alt="" className="w-[90%] p-7"
