@@ -6,35 +6,37 @@ export default function CustomFooter() {
   return (
     <Footer container className="bg-[#014584] px-0 w-screen">
       <div className="w-full">
-        <div className="grid w-full justify-between mt-4 px-[80px] grid-cols-2 -gap-x-9">
-          <div className="flex flex-col items-start">
+        <div className=" w-full px-2 flex flex-col items-center
+        sm:mt-4 sm:px-[80px] sm:grid sm:grid-cols-2 sm:-gap-x-9">
+          <div className="flex flex-col items-center justify-center sm:items-start">
             <Footer.Brand
               href="/"
               src={logo}
               alt="Killer CLean Logo"
-              className="-mt-4"
+              className="sm:-mt-4"
             />
-            <div className="flex items-center list-none mb-3">
+            <div className="flex items-center justify-center list-none mb-3">
               <Footer.Link>
-                <BsFacebook className="text-white text-lg mr-5" />
+                <BsFacebook className="text-white text-lg sm:mr-5 mr-3" />
               </Footer.Link>
               <Footer.Link>
                 <BsInstagram className="text-white text-lg" />
               </Footer.Link>
             </div>
-            <p className="text-[15.5px] leading-[26px]">
+            <p className="text-xs text-center leading-7
+            sm:text-[15.5px] sm:leading-[26px]">
               Killer Clean is not the employer of the house cleaner referred to
               you. We refer highly vetted cleaners in the area to our customers.
             </p>
           </div>
 
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-1 gap-y-6 mt-6 text-center sm:grid-cols-2">
           <div>
-            <Footer.Title title="Quick Links:" />
-            <Footer.LinkGroup col>
-              <Footer.Link href="#">Home</Footer.Link>
-              <Footer.Link href="#">Contact</Footer.Link>
-              <Footer.Link href="#">Book Now!</Footer.Link>
+            <Footer.Title title="Quick Links:"  />
+            <Footer.LinkGroup col className="space-y-2 ">
+              <Footer.Link href="/">Home</Footer.Link>
+              <Footer.Link href="/contact">Contact</Footer.Link>
+              <Footer.Link href="/book">Book Now!</Footer.Link>
             </Footer.LinkGroup>
           </div>
           <div>
@@ -50,16 +52,16 @@ export default function CustomFooter() {
           </div>
         </div>
         <Footer.Divider />
-        <div className="w-full sm:flex sm:items-center m-0 px-4 sm:justify-between">
+        <div className="w-full flex flex-col items-center justify-center sm:flex sm:items-center m-0 px-4 sm:justify-between">
           <Footer.Copyright
             href="#"
             by="|&nbsp; Killer Clean"
-            className="text-white"
+            className="text-white text-xs"
             year={2023}
           />
-          <div className="flex items-center list-none">
-            <Footer.Link href="#">Privacy Policy</Footer.Link> |&nbsp;
-            <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
+          <div className="flex items-center list-none ">
+            <Footer.Link href="#" className="footer-text">Privacy Policy&nbsp;</Footer.Link> |&nbsp;
+            <Footer.Link href="#" className="footer-text">Terms &amp; Conditions</Footer.Link>
           </div>
         </div>
       </div>
