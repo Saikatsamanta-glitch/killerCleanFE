@@ -33,9 +33,9 @@ export default function Tired() {
           />
         </div>
       </div>
-      <div className="flex w-full flex-row-reverse items-center relative">
-        <div className="sm:w-[50%] flex flex-col items-start p-8">
-          <h1 className="text-4xl text-[#014584] font-semibold mb-4">
+      <div className="flex w-full flex-col sm:flex-row-reverse items-center relative">
+        <div className="sm:w-[50%] flex flex-col p-2 items-center sm:items-start sm:p-8">
+          <h1 className="text-3xl sm:text-4xl text-[#014584] mb-4 font-semibold">
             Experienced and Background Checked Cleaners
           </h1>
           <p className="text-[#014584] text-[17px] text-left leading-8">
@@ -60,7 +60,7 @@ export default function Tired() {
       </div>
       <div className=" flex items-center w-full">
         <div className="sm:w-[50%] flex flex-col items-start p-8">
-          <h1 className="text-4xl text-[#014584] font-semibold mb-4">
+          <h1 className="text-3xl sm:text-4xl text-[#014584] mb-4 font-semibold">
             Online Booking & Payment and Responsive Customer Support
           </h1>
           <p className="text-[#014584] text-[17px] text-left mb-4 leading-8">
