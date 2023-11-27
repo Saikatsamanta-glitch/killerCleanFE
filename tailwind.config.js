@@ -5,7 +5,13 @@ module.exports = {
     'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
   theme: {
-    
+    screens: {
+      sm: '426px',
+      md:'769px',
+      lg:'1025px',
+      xl:'1441px',
+      xxl:'2560px',
+    },
     extend: {
       keyframes: {
         pulse :{
