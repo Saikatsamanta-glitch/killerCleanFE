@@ -19,10 +19,10 @@ export default function OurServices() {
         {ourservices.map((card) => (
           <div
             key={card.id}
-            className="max-h-[400px] bg-white max-w-[380px] mb-6 flex flex-col items-center sm:items-start p-4 sm:p-8 shadow-xl"
+            className="sm:h-[400px] min-h-[400px] bg-white max-w-[400px] mb-6 flex flex-col items-center justify-evenly sm:items-start p-4  sm:p-8 shadow-xl"
           >
-            <img src={card.icon} alt="" className="h-14 w-14 mb-4"/>
-            <h5 className="text-2xl  tracking-tight font-medium text-[#014584] dark:text-white mb-4">
+            <img src={card.icon} alt="" className="h-14 w-14 sm:mb-4"/>
+            <h5 className="text-2xl text-center tracking-tight font-medium text-[#014584] dark:text-white sm:mb-4">
               {card.title}
             </h5>
             <p className="text-[17px] leading-7 text-center text-[#014584] dark:text-gray-400">
