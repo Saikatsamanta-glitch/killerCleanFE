@@ -6,6 +6,25 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTablet, setTablet] = useState(window.innerWidth < 1024);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the user has scrolled past the first div
+      const scrollPosition = window.scrollY;
+      const firstDivHeight = document.querySelector(".nav-header").clientHeight;
+
+      setIsSticky(scrollPosition > firstDivHeight);
+    };
+
+    // Attach the event listener when the component mounts
+    window.addEventListener("scroll", handleScroll);
+
+    // Detach the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   useEffect(() => {
     // Update isMobile when the window is resized
     const handleResize = () => {
@@ -47,7 +66,7 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className="sm:lg:px-0 px-20 max-sm:px-4 bg-[#F3FAFC] w-full">
+      <Navbar fluid className={`sm:lg:px-0  px-20 top-0 max-sm:px-4 z-50 ${isSticky ? "fixed bg-white/50" : "bg-[#F3FAFC]"}  w-full`}>
         <Navbar.Brand href="/">
           <img src={logo} className="h-40 sm:h-36 max-lg:mt-0 " alt="Killer CLean Logo" />
         </Navbar.Brand>

@@ -26,7 +26,7 @@ export default function Welcome() {
             Book Now <BsArrowRight className="ml-3 " strokeWidth={1} />
           </Button>
         </div>
-        <div className="md:w-[50%] max-sm:px-8 max-sm:py-3 sm:max-md:p-8 md:p-8 relative z-50">
+        <div className="md:w-[50%] max-sm:px-8 max-sm:py-3 sm:max-md:p-8 md:p-8 relative z-20">
           <div className="-rotate-12 absolute  -top-6 -left-6 ">
             <img
               src="https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/Untitled-design-2023-08-01T175312.201.png"

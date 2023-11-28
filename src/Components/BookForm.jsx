@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { CFormCheck } from "@coreui/react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+
+import { Accordion, AccordionTab } from "primereact/accordion";
+
 import {
   Label,
   Select,
@@ -9,7 +12,7 @@ import {
   Checkbox,
   Textarea,
 } from "flowbite-react";
-import { selectExtras } from "../data";
+import { popularQuestions, selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 export default function BookForm() {
   const [firstName, setFirstName] = useState("");
@@ -35,7 +38,7 @@ export default function BookForm() {
     return touchedFields[field] && isFieldEmpty(value);
   };
   return (
-    <div className="flex items-center ">
+    <div className="flex items-start justify-evenly px-10 ">
       {/* Booking form container */}
       <div className=" w-[800px] rounded-lg p-4 z-0 bg-white border">
         {/* Frequency section */}
@@ -340,7 +343,7 @@ export default function BookForm() {
               </Label>
             </div>
           </div>
-          <div className="grid grid-cols-2 my-4">
+          <div className="grid grid-cols-2 gap-4 my-4">
             <div>
               <div className="mb-2 block -ml-6">
                 <Label
@@ -382,7 +385,9 @@ export default function BookForm() {
           <h1 className="text-[#11263c] text-2xl mb-3 font-semibold">
             Key Information & Job Notes
           </h1>
-          <p className="text-sm text-[#52616b] mb-4">You can turn this description off or modify it at anytime.</p>
+          <p className="text-sm text-[#52616b] mb-4">
+            You can turn this description off or modify it at anytime.
+          </p>
           <div className="grid grid-cols-2 gap-4">
             <CFormCheck
               button={{ color: "secondary" }}
@@ -430,7 +435,7 @@ export default function BookForm() {
           <h1 className="text-[#11263c] text-2xl font-semibold mb-4">
             Special Notes Or Instructions
           </h1>
-          
+
           <div className="my-4">
             <div className="w-full">
               <div className="mb-2 block -ml-6">
@@ -451,13 +456,73 @@ export default function BookForm() {
         </div>
       </div>
       {/* Booking Summary and Questions */}
-      <div>
-        <div>
-
+      <div className="flex flex-col items-center">
+        <div className="card w-[350px] px-2 py-2 mb-16">
+          <Accordion activeIndex={0}>
+            <AccordionTab
+              header="Booking Summary"
+              className="mb-6 font-bold text-lg text-[#11263c]"
+            >
+              <div className="border-y">
+                <table className="text-base border-spacing-4 border-separate">
+                  <tbody>
+                    <tr>
+                      <td className="text-sm text-[#6c757d]">Industry</td>
+                      <td>:</td>
+                      <td className="text-[#11263c]">Home Cleaning</td>
+                    </tr>
+                    <tr>
+                      <td className="text-sm text-[#6c757d]">Service</td>
+                      <td>:</td>
+                      <td className="text-[#11263c]">Flat Rate Service</td>
+                    </tr>
+                    <tr>
+                      <td className="text-sm text-[#6c757d]">Frequency</td>
+                      <td>:</td>
+                      <td className="text-[#11263c]">Weekly</td>
+                    </tr>
+                    <tr>
+                      <td className="text-sm text-[#6c757d]">Bedrooms</td>
+                      <td>:</td>
+                      <td className="text-[#11263c]">0</td>
+                    </tr>
+                    <tr>
+                      <td className="text-sm text-[#6c757d]">Bathrooms</td>
+                      <td>:</td>
+                      <td className="text-[#11263c]">1</td>
+                    </tr>
+                    <tr>
+                      <td className="text-sm text-[#6c757d]">Sq Ft</td>
+                      <td>:</td>
+                      <td className="text-[#11263c]">1 - 999 Sq Ft</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="p-2 mt-2 -mb-2">
+                <div className="flex justify-between items-center">
+                  <h1 className="text-lg text-[#6c757d]">Total Before Tax</h1>
+                  <h1 className="text-lg text-[#6c757d]">$87.20</h1>
+                </div>
+                <div className="flex justify-between items-center">
+                  <h1 className="text-2xl text-orange-500">TOTAL</h1>
+                  <h1 className="text-2xl text-orange-500">$87.20</h1>
+                </div>
+              </div>
+            </AccordionTab>
+          </Accordion>
+        </div>
+        <div className="card w-[350px] px-2 py-2">
+          <h1 className="mb-6 font-bold text-lg text-[#11263c]">Popular Questions</h1>
+          <Accordion multiple>
+            {popularQuestions.map((q) => (
+              <AccordionTab key={q.id} header={q.ques} className="mb-4">
+                <p className="m-0">{q.ans}</p>
+              </AccordionTab>
+            ))}
+          </Accordion>
         </div>
       </div>
     </div>
   );
 }
-//
-//In this code, I have added comments to explain the purpose of each section. The comments are conc

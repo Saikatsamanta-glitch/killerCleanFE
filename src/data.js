@@ -225,3 +225,35 @@ export const selectExtras=[
   },
 ]
 
+export const popularQuestions=[
+  {
+    id:1,
+    ques:'How to schedule online?',
+    ans:'To schedule online, all you have to do is fill out some details about what you need, who you are, pick a date/time and wait for a confirmation to arrive.'
+  },
+  {
+    id:2,
+    ques:'When will I get a confirmation?',
+    ans:'You will get a confirmation as soon as we find a provider for your job via email and SMS.'
+  },
+  {
+    id:3,
+    ques:'Do you have a phone number?',
+    ans:'Yes, you can reach us as (800)-032-1123 during our business hours.'
+  },
+  {
+    id:4,
+    ques:'How do I select a date and time?',
+    ans:'During the 2nd step of the booking form, you can select from available dates/times.'
+  },
+  {
+    id:5,
+    ques:'Can I later schedule my booking online?',
+    ans:'Yes of course. After you book for the first time, an account will be made for you where you can login and modify your bookings at anytime.'
+  },
+  {
+    id:6,
+    ques:'Why do I have to enter a zipcode?',
+    ans:'You must enter a zip code in order for us to determine the pricing based on your area.'
+  },
+]

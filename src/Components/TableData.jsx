@@ -3,9 +3,9 @@ import Table from "react-bootstrap/Table";
 // import { BathroomCleaningData } from "../data";
 const TableData = (props) => {
   return (
-    <div className="flex justify-center mt-10 mb-20 shadow-lg">
-      <Table striped bordered className="mx-10 text-center mb-20">
-        <thead className="items-center">
+    <div className="flex justify-center  shadow-lg">
+      <Table striped bordered className=" max-sm:w-[400px] sm:max-md:w-[400px] md:max-lg:w-[700px] lg:w-[900px] text-center ">
+        <thead className="items-center text-sm lg:text-base">
           <tr>
             <th></th>
             <th>Standard Clean</th>
@@ -13,7 +13,7 @@ const TableData = (props) => {
             <th>Move In/Move Out</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="items-center text-sm lg:text-base">
           {props.data.map((taskData, index) => (
             <tr key={taskData.id}>
               <td>{taskData.task}</td>
