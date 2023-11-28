@@ -224,13 +224,18 @@ label{
   background-color: rgba(82,97,107,0.6) !important;
 }
 
-input[type='text'],input[type='email'],input[type='tel']{
-  padding: 10px !important;
+input[type='text'],input[type='email'],input[type='tel'],input[type='password']{
+  width: 350px !important;
+  padding: 15px !important;
+  border: 1px solid #BAC0C4 !important;
   border-radius: 4px !important;
-  padding-left: 20px !important;
+  padding-left: 40px !important;
+ 
 }
 input::placeholder{
   font-size: small !important;
+  color: #676f748b !important ;
+  font-weight: bold;
 }
 
 
