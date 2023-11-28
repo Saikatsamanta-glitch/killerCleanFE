@@ -17,14 +17,14 @@ export default function CustomFooter() {
             />
             <div className="flex items-center justify-center list-none mb-3">
               <Footer.Link>
-                <BsFacebook className="text-white text-lg sm:mr-5 mr-3" />
+                <BsFacebook className="text-white text-lg xxl:text-2xl sm:mr-5 mr-3" />
               </Footer.Link>
               <Footer.Link>
-                <BsInstagram className="text-white text-lg" />
+                <BsInstagram className="text-white text-lg xxl:text-2xl" />
               </Footer.Link>
             </div>
             <p className="text-xs md:text-sm max-sm:text-center leading-7
-            lg:text-[15.5px]  lg:leading-[26px] xxl:text-xl">
+            lg:text-[15.5px]  lg:leading-[26px] xxl:text-2xl">
               Killer Clean is not the employer of the house cleaner referred to
               you. We refer highly vetted cleaners in the area to our customers.
             </p>
@@ -56,7 +56,7 @@ export default function CustomFooter() {
           <Footer.Copyright
             href="#"
             by="|&nbsp; Killer Clean"
-            className="text-white text-xs lg:text-base xxl:text-lg"
+            className="text-white text-xs lg:text-base xxl:text-xl"
             year={2023}
           />
           <div className="flex items-center list-none ">

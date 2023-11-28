@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CFormCheck } from "@coreui/react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 
-import { Accordion, AccordionTab } from "primereact/accordion";
+import { Accordion } from "flowbite-react";
 
 import {
   Label,
@@ -12,8 +12,10 @@ import {
   Checkbox,
   Textarea,
 } from "flowbite-react";
-import { popularQuestions, selectExtras } from "../data";
+import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
+import PopularQuestions from "./PopularQuestions";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
 export default function BookForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -38,13 +40,13 @@ export default function BookForm() {
     return touchedFields[field] && isFieldEmpty(value);
   };
   return (
-    <div className="flex items-start justify-evenly px-10 ">
+    <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
-      <div className=" w-[800px] rounded-lg p-4 z-0 bg-white border">
+      <div className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full rounded-lg p-4 z-0 bg-white border mb-5 ">
         {/* Frequency section */}
-        <div className="border-b w-full p-4">
-          <h1 className="text-[#11263c] text-base mb-4">Frequency </h1>
-          <div className="space-x-3 -ml-3">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">Frequency </h1>
+          <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:max-lg:flex md:max-lg:flex-col space-y-3">
             {/* Radio buttons for frequency */}
             <CFormCheck
               button={{ color: "secondary" }}
@@ -82,21 +84,21 @@ export default function BookForm() {
           </div>
         </div>
         {/* Service Type section */}
-        <div className="border-b w-full p-8">
-          <h1 className="text-[#11263c] text-2xl font-semibold mb-4">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
             Service Type
           </h1>
-          <div className="grid grid-cols-2 gap-y-8">
+          <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
             {/* Bedrooms dropdown */}
             <div className="flex flex-col justify-center">
               <div className="mb-2 block">
                 <Label
                   htmlFor="bedrooms"
                   value="Bedrooms"
-                  className="text-base font-semibold -ml-6"
+                  className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
                 />
               </div>
-              <Select id="bedrooms" required className="w-[320px]">
+              <Select id="bedrooms" required className="max-md:w-full xl:w-[320px] xxl:w-full">
                 <option>0</option>
                 <option>1</option>
                 <option>2</option>
@@ -110,10 +112,10 @@ export default function BookForm() {
                 <Label
                   htmlFor="bathrooms"
                   value="Bathrooms"
-                  className="text-base font-semibold -ml-6"
+                  className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
                 />
               </div>
-              <Select id="bathrooms" required className="w-[320px]">
+              <Select id="bathrooms" required className="w-full xl:w-[320px] xxl:w-full">
                 <option>1</option>
                 <option>1.5</option>
                 <option>2</option>
@@ -136,10 +138,10 @@ export default function BookForm() {
                 <Label
                   htmlFor="sqft"
                   value="Sq Ft"
-                  className="text-base font-semibold -ml-6"
+                  className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
                 />
               </div>
-              <Select id="sqft" required className="w-[320px]">
+              <Select id="sqft" required className="w-full xl:w-[320px] xxl:w-full">
                 <option>1 - 999 Sq Ft</option>
                 <option>1000 - 1499 Sq Ft</option>
                 <option>1500 - 1999 Sq Ft</option>
@@ -156,11 +158,11 @@ export default function BookForm() {
           </div>
         </div>
         {/* Extras section */}
-        <div className="border-b w-full p-4">
-          <h1 className="text-[#11263c] text-2xl font-semibold mb-4">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
             Select Extras{" "}
           </h1>
-          <div className="grid grid-cols-5 gap-3">
+          <div className="grid xxl:grid-cols-6 xl:max-xxl:grid-cols-5 lg:max-xl:grid-cols-4 md:max-lg:grid-cols-3 grid-cols-2 xxl:gap-10 lg:max-xxl:gap-3 max-lg:gap-2">
             {/* Checkboxes for extras */}
             {selectExtras.map((v, index) => (
               <div className="flex flex-col items-center">
@@ -169,13 +171,13 @@ export default function BookForm() {
                   button={{ color: "light" }}
                   id={v.label}
                   autoComplete="off"
-                  label={<img src={v.img} alt="" className=" h-12 w-12 " />}
+                  label={<img src={v.img} alt="" className=" h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 " />}
                 />
                 <div className="flex items-center ">
                   <Label
                     htmlFor={v.label}
                     value={v.label}
-                    className="text-xs text-center px-0 pt-2 font-medium"
+                    className="text-xs text-center px-0 pt-2 xxl:text-2xl font-medium"
                   />
                   {v.tooltip ? (
                     <Tooltip
@@ -183,7 +185,7 @@ export default function BookForm() {
                       arrow={false}
                       className="w-48 border bg-white  text-black font-normal text-center "
                     >
-                      <IoMdInformationCircleOutline className="mt-2 ml-1" />
+                      <IoMdInformationCircleOutline className="mt-2 ml-1 xxl:text-xl" />
                     </Tooltip>
                   ) : (
                     ""
@@ -194,8 +196,8 @@ export default function BookForm() {
           </div>
         </div>
         {/* Service Provider */}
-        <div className="border-b w-full p-4">
-          <h1 className="text-[#11263c] text-2xl font-semibold mb-4">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
             Select Service Provider
           </h1>
           <div className="">
@@ -203,17 +205,17 @@ export default function BookForm() {
           </div>
         </div>
         {/* Customer Details */}
-        <div className="border-b w-full p-4">
-          <h1 className="text-[#11263c] text-2xl font-semibold mb-4">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
             Customer Details{" "}
           </h1>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
             <div>
               <div className="mb-2 block -ml-6">
                 <Label
                   htmlFor="firstName"
                   value="First Name"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
@@ -221,7 +223,7 @@ export default function BookForm() {
                 type="text"
                 sizing="md"
                 required
-                className="w-[320px]"
+                className=""
                 placeholder="Ex: James"
                 value={firstName}
                 onChange={(e) => handleInputChange(e, setFirstName)}
@@ -235,7 +237,7 @@ export default function BookForm() {
                 <Label
                   htmlFor="lastName"
                   value="Last Name"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
@@ -243,7 +245,7 @@ export default function BookForm() {
                 type="text"
                 sizing="md"
                 required
-                className="w-[320px]"
+                className=""
                 placeholder="Ex: Lee"
                 value={lastName}
                 onChange={(e) => handleInputChange(e, setLastName)}
@@ -258,7 +260,7 @@ export default function BookForm() {
                 <Label
                   htmlFor="email"
                   value="Email Address"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
@@ -266,7 +268,7 @@ export default function BookForm() {
                 type="email"
                 sizing="md"
                 required
-                className="w-[320px]"
+                className=""
                 placeholder="Ex: example@xyz.com"
                 value={email}
                 onChange={(e) => handleInputChange(e, setEmail)}
@@ -280,14 +282,14 @@ export default function BookForm() {
                 <Label
                   htmlFor="base"
                   value="Secondary Email Address"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
                 id="base"
                 type="email"
                 sizing="md"
-                className="w-[320px]"
+                className=""
                 placeholder="Ex: example@xyz.com"
               />
             </div>
@@ -296,7 +298,7 @@ export default function BookForm() {
                 <Label
                   htmlFor="tel"
                   value="Phone No"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
@@ -304,7 +306,7 @@ export default function BookForm() {
                 type="tel"
                 sizing="md"
                 required
-                className="w-[320px]"
+                className=""
                 placeholder="Phone No."
                 value={tel}
                 onChange={(e) => handleInputChange(e, setTel)}
@@ -318,38 +320,39 @@ export default function BookForm() {
                 <Label
                   htmlFor="base"
                   value="Secondary Phone No"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
                 id="base"
                 type="tel"
                 sizing="md"
-                className="w-[320px]"
+                className=""
                 placeholder="Phone No."
               />
             </div>
             <div className="flex items-center">
               <Checkbox
                 id="check"
+                className="h-6 w-6"
                 value={check}
                 onChange={(e) => handleInputChange(e, setCheck)}
               />
               {isFieldRequired("check", check) && (
                 <div className="text-red-600">This field is required</div>
               )}
-              <Label htmlFor="check" className="-ml-5">
+              <Label htmlFor="check" className="-ml-5 xxl:text-3xl  max-lg:text-lg">
                 Send me reminders about my booking via text message
               </Label>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 my-4">
+          <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 my-4">
             <div>
               <div className="mb-2 block -ml-6">
                 <Label
                   htmlFor="base"
                   value="Address"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
@@ -357,7 +360,7 @@ export default function BookForm() {
                 type="text"
                 sizing="md"
                 required
-                className="w-[320px]"
+                className=""
                 placeholder="Type Address"
               />
             </div>
@@ -366,7 +369,7 @@ export default function BookForm() {
                 <Label
                   htmlFor="base"
                   value="Apt No"
-                  className="text-[17px] font-semibold"
+                  className="text-[17px] xxl:text-3xl font-semibold"
                 />
               </div>
               <TextInput
@@ -374,21 +377,21 @@ export default function BookForm() {
                 type="text"
                 sizing="md"
                 required
-                className="w-[320px]"
+                className=""
                 placeholder="#"
               />
             </div>
           </div>
         </div>
         {/* Key Info */}
-        <div className="border-b w-full p-4">
-          <h1 className="text-[#11263c] text-2xl mb-3 font-semibold">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-3xl xxl:text-3xl mb-3 font-semibold">
             Key Information & Job Notes
           </h1>
-          <p className="text-sm text-[#52616b] mb-4">
+          <p className="text-sm xxl:text-2xl text-[#52616b] mb-4">
             You can turn this description off or modify it at anytime.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-4">
             <CFormCheck
               button={{ color: "secondary" }}
               type="radio"
@@ -405,10 +408,11 @@ export default function BookForm() {
               id="hidekeys"
               autoComplete="off"
               label="I Will Hide The Keys"
+              
             />
             <div className="flex items-center">
-              <Checkbox id="provider" />
-              <Label htmlFor="provider" className="-ml-5">
+              <Checkbox id="provider" className="h-6 w-6"/>
+              <Label htmlFor="provider" className="-ml-5 xxl:text-3xl max-lg:text-lg">
                 Keep Key With Provider
               </Label>
             </div>
@@ -419,7 +423,7 @@ export default function BookForm() {
                 <Label
                   htmlFor="note"
                   value="Customer Note For Provider"
-                  className="text-[17px] font-semibold"
+                  className="lg:text-[17px] max-lg:text-lg xxl:text-2xl font-semibold"
                 />
               </div>
               <Textarea
@@ -431,8 +435,8 @@ export default function BookForm() {
             </div>
           </div>
         </div>
-        <div className="border-b w-full p-4">
-          <h1 className="text-[#11263c] text-2xl font-semibold mb-4">
+        <div className="border-b w-full py-4 lg:p-4">
+          <h1 className="text-[#11263c] text-2xl xxl:text-3xl font-semibold mb-4">
             Special Notes Or Instructions
           </h1>
 
@@ -442,7 +446,7 @@ export default function BookForm() {
                 <Label
                   htmlFor="note"
                   value="Would You Like To Add Any Notes?"
-                  className="text-[17px] font-semibold"
+                  className="lg:text-[17px] max-lg:text-lg xxl:text-2xl font-semibold"
                 />
               </div>
               <Textarea
@@ -457,71 +461,62 @@ export default function BookForm() {
       </div>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
-        <div className="card w-[350px] px-2 py-2 mb-16">
-          <Accordion activeIndex={0}>
-            <AccordionTab
-              header="Booking Summary"
-              className="mb-6 font-bold text-lg text-[#11263c]"
-            >
-              <div className="border-y">
-                <table className="text-base border-spacing-4 border-separate">
+        <div className="card w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16 hidden lg:block">
+          <Accordion activeIndex={0} className="p-5 xxl:p-10">
+            <Accordion.Panel>
+              <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">Booking Summary</Accordion.Title>
+              <Accordion.Content>
+              <div className="border-y hidden sm:block">
+                <table className="text-base max-xxl:border-spacing-4 xxl:border-spacing-8 border-separate">
                   <tbody>
                     <tr>
-                      <td className="text-sm text-[#6c757d]">Industry</td>
+                      <td className="text-sm xxl:text-xl text-[#6c757d]">Industry</td>
                       <td>:</td>
-                      <td className="text-[#11263c]">Home Cleaning</td>
+                      <td className="text-[#11263c] xxl:text-xl">Home Cleaning</td>
                     </tr>
                     <tr>
-                      <td className="text-sm text-[#6c757d]">Service</td>
+                      <td className="text-sm xxl:text-xl text-[#6c757d]">Service</td>
                       <td>:</td>
-                      <td className="text-[#11263c]">Flat Rate Service</td>
+                      <td className="text-[#11263c] xxl:text-xl">Flat Rate Service</td>
                     </tr>
                     <tr>
-                      <td className="text-sm text-[#6c757d]">Frequency</td>
+                      <td className="text-sm xxl:text-xl text-[#6c757d]">Frequency</td>
                       <td>:</td>
-                      <td className="text-[#11263c]">Weekly</td>
+                      <td className="text-[#11263c] xxl:text-xl">Weekly</td>
                     </tr>
                     <tr>
-                      <td className="text-sm text-[#6c757d]">Bedrooms</td>
+                      <td className="text-sm xxl:text-xl text-[#6c757d]">Bedrooms</td>
                       <td>:</td>
-                      <td className="text-[#11263c]">0</td>
+                      <td className="text-[#11263c] xxl:text-xl">0</td>
                     </tr>
                     <tr>
-                      <td className="text-sm text-[#6c757d]">Bathrooms</td>
+                      <td className="text-sm xxl:text-xl text-[#6c757d]">Bathrooms</td>
                       <td>:</td>
-                      <td className="text-[#11263c]">1</td>
+                      <td className="text-[#11263c] xxl:text-xl">1</td>
                     </tr>
                     <tr>
-                      <td className="text-sm text-[#6c757d]">Sq Ft</td>
+                      <td className="text-sm xxl:text-xl text-[#6c757d]">Sq Ft</td>
                       <td>:</td>
-                      <td className="text-[#11263c]">1 - 999 Sq Ft</td>
+                      <td className="text-[#11263c] xxl:text-xl">1 - 999 Sq Ft</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div className="p-2 mt-2 -mb-2">
+              <div className="p-2 mt-2 mb-2">
                 <div className="flex justify-between items-center">
-                  <h1 className="text-lg text-[#6c757d]">Total Before Tax</h1>
-                  <h1 className="text-lg text-[#6c757d]">$87.20</h1>
+                  <h1 className="text-lg xxl:text-xl text-[#6c757d]">Total Before Tax</h1>
+                  <h1 className="text-lg xxl:text-xl text-[#6c757d]">$87.20</h1>
                 </div>
                 <div className="flex justify-between items-center">
-                  <h1 className="text-2xl text-orange-500">TOTAL</h1>
-                  <h1 className="text-2xl text-orange-500">$87.20</h1>
+                  <h1 className="text-2xl xxl:text-4xl text-orange-500">TOTAL</h1>
+                  <h1 className="text-2xl xxl:text-4xl text-orange-500">$87.20</h1>
                 </div>
               </div>
-            </AccordionTab>
+              </Accordion.Content>
+            </Accordion.Panel>
           </Accordion>
         </div>
-        <div className="card w-[350px] px-2 py-2">
-          <h1 className="mb-6 font-bold text-lg text-[#11263c]">Popular Questions</h1>
-          <Accordion multiple>
-            {popularQuestions.map((q) => (
-              <AccordionTab key={q.id} header={q.ques} className="mb-4">
-                <p className="m-0">{q.ans}</p>
-              </AccordionTab>
-            ))}
-          </Accordion>
-        </div>
+    <PopularQuestions />
       </div>
     </div>
   );
