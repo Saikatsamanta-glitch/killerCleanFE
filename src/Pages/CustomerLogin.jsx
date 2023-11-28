@@ -38,7 +38,7 @@ const CustomerLogin = () => {
         <p className="text-center mb-5 text-sm">
           Sign in to track your bookings, reschedule, edit and more.
         </p>
-        <form>
+        <form className="loginForm">
           <div className="form-group mb-4 ml-6">
             <Label className="mb-3 text-gray-600" for="exampleInputEmail1">
               Sign In Through Your Email
