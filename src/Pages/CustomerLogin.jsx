@@ -33,14 +33,14 @@ const CustomerLogin = () => {
           "url('https://dp3d2hb4975es.cloudfront.net/assets/images/login-signup-bg.jpg')",
       }}
     >
-      <div className="h-[400px] ">
-        <h1 className="text-center lg:max-xxl:text-3xl text-[24px] font-semibold mb-3">Sign In</h1>
-        <p className="text-center mb-5 text-sm">
+      <div className="min-h-[450px] ">
+        <h1 className="text-center lg:max-xxl:text-3xl text-[24px] xxl:text-5xl font-semibold mb-3">Sign In</h1>
+        <p className="text-center mb-5 text-sm xxl:text-xl">
           Sign in to track your bookings, reschedule, edit and more.
         </p>
         <form className="loginForm">
           <div className="form-group mb-4 ml-6">
-            <Label className="mb-3 text-gray-600" for="exampleInputEmail1">
+            <Label className="mb-3 text-gray-600 xxl:text-2xl" for="exampleInputEmail1">
               Sign In Through Your Email
             </Label>
             <TextInput
@@ -75,18 +75,18 @@ const CustomerLogin = () => {
             <button
               type="submit"
               onClick={validateForm}
-              className={`btn w-28 h-12 font-bold ${
+              className={`btn w-28 h-12 font-bold xxl:text-xl ${
                 isFormValid ? 'bg-[#ced5d8] text-white' : 'bg-gray-400 text-gray-700'
               } mb-4 ml-6`}
               disabled={!isFormValid}
             >
               Sign In
             </button>
-            <Link href="" className="mr-6 text-gray-500">
+            <Link href="" className="mr-6 text-gray-500 xxl:text-xl">
               Forget Passward ?
             </Link>
           </div>
-          <p className="ml-6 text-gray-500">
+          <p className="ml-6 text-gray-500 xxl:text-xl">
             New? <Link className="text-[#00D0FF]">Sign Up</Link>
           </p>
         </form>

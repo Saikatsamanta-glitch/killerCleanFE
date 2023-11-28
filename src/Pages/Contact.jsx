@@ -28,7 +28,7 @@ const Contact = () => {
 
       <div className="flex flex-col md:max-xxl:flex-row justify-center mt-16 lg:max-xxl:gap-10 md:max-lg:mx-5">
         <div>
-          <form className=" md:max-lg:w-[550px] lg:max-xxl:w-[850px] h-[980px] bg-white rounded-lg px-4 md:max-xxl:px-10 py-10 md:max-xxl:flex md:max-xxl:flex-col shadow-md mx-4 ">
+          <form className=" md:max-lg:w-[550px] lg:max-xxl:w-[850px] h-[980px] bg-white rounded-lg max-sm:px-4 md:max-xxl:px-10 py-10 md:max-xxl:flex md:max-xxl:flex-col shadow-md mx-4 ">
             <h2 className="text-[25px] mb-4">What Is Your Request?</h2>
             <div>
               <h3 className="font-bold">Name</h3>

@@ -224,7 +224,7 @@ label{
   background-color: rgba(82,97,107,0.6) !important;
 }
 
-input[type='text'],input[type='email'],input[type='tel'],input[type='password']{
+#firstName,#lastName,#email,#tel,#base,input[type='password']{
   width: 350px !important;
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
@@ -239,8 +239,19 @@ input::placeholder{
 }
 
 
+[aria-label='Pills'] button{
+  padding: 6px !important;
+  background: #3a9dcc !important;
+  color: white !important;
+}
 /* Responsive */
-@media (min-width:426px) and (max-width:2560px) {
+@media (min-width:426px) and (max-width:1024px) {
+
+  [aria-label='Pills'] button{
+    padding: 12px !important;
+    background: #3a9dcc !important;
+    color: white !important;
+  }
   [data-testid="flowbite-footer-brand"] img {
     height: 170px !important;
     margin-left: -20px !important;
@@ -326,4 +337,117 @@ footer {
   line-height: 28px !important;
   padding: 2px !important;
 }
+}
+@media (min-width:1024px) {
+ 
+  nav {
+    background-color: #f3fafc !important;
+    padding: 0!important;
+  }
+  nav ul li a {
+    padding: 4px 8px !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: #014584 !important;
+    font-size: 16px !important;
+    line-height: 28px !important;
+  }
+  nav ul li {
+    margin-left: 4px !important;
+  }
+  nav ul li a:hover {
+    color: #61b1d6 !important;
+    border-bottom: #61b1d6 1.5px solid;
+  }
+  
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 8px 10px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+    margin-left: 4px !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    padding: 2px !important;
+  }
+  [data-testid="footer-groupLink"] li a{
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+  }
+  footer li a {
+    color: white;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+  }
+}
+@media (min-width:1025px) and (max-width:2560px) {
+  [aria-label='Pills'] button{
+    padding: 12px !important;
+    background: #3a9dcc !important;
+    color: white !important;
+  }
+  .nav-header {
+    font-family: "Figtree", sans-serif !important;
+  }
+  nav {
+    background-color: #f3fafc !important;
+    padding: 0 80px !important;
+  }
+  nav ul li a {
+    padding: 10px 15px !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: #014584 !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
+  nav ul li {
+    margin-left: 4px !important;
+  }
+  nav ul li a:hover {
+    color: #61b1d6 !important;
+    border-bottom: #61b1d6 1.5px solid;
+  }
+  
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 10px 14px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    padding: 2px !important;
+  }
+  [data-testid="footer-groupLink"] li a{
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width:2560px) {
+  [aria-label='Pills'] button{
+    padding: 20px !important;
+    background: #3a9dcc !important;
+    color: white !important;
+  }
 }
