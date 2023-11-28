@@ -8,27 +8,27 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-screen ">
+    <div className="w-screen  ">
       <div
-        className="w-full h-[270px] bg-cover bg-center flex flex-col text-center justify-center"
+        className=" h-[270px] bg-cover bg-center flex flex-col text-center px-9 justify-center "
         style={{
           backgroundImage:
             "url('https://dp3d2hb4975es.cloudfront.net/assets/images/banner-bg.jpg')",
         }}
       >
-        <p className="text-[40px] font-bold mb-10">
+        <p className="text-[26px] md:max-xxl:text-[38px] font-semibold mb-3 md:max-xxl:mb-10">
           We Will Be In Touch Within 24 Hours
         </p>
-        <p className="">
+        <p className="text-[14px] text-[#52616b] md:max-xxl:px-20">
           You can fill out this form and we will give you a custom quote with
           more detailed information. If you need to call us please reach out to
           us at 123-456-7890.
         </p>
       </div>
 
-      <div className="flex justify-center mt-16 gap-10">
+      <div className="flex flex-col md:max-xxl:flex-row justify-center mt-16 lg:max-xxl:gap-10 md:max-lg:mx-5">
         <div>
-          <form className="w-[850px] h-[980px] bg-white rounded-lg px-10 py-10 flex flex-col shadow-md">
+          <form className=" md:max-lg:w-[550px] lg:max-xxl:w-[850px] h-[980px] bg-white rounded-lg px-4 md:max-xxl:px-10 py-10 md:max-xxl:flex md:max-xxl:flex-col shadow-md mx-4 ">
             <h2 className="text-[25px] mb-4">What Is Your Request?</h2>
             <div>
               <h3 className="font-bold">Name</h3>
@@ -68,9 +68,9 @@ const Contact = () => {
               <h3 className="font-bold">
                 Have you tried our services before ?
               </h3>
-              <label className="mt-2 mb-4 ">
+              <label className="mt-2 mb-4  ">
                 <input
-                  className="ml-2 mr-2 h-6 w-6 border-gray-300"
+                  className="-ml-7 md:max-xxl:ml-2 mr-2 h-6 w-6 border-gray-300"
                   type="radio"
                   name="contactMethod"
                   value="email"
@@ -99,10 +99,10 @@ const Contact = () => {
             <div className="mb-4">
               <h1 className="text-2xl mb-4">Help Our Company</h1>
               <h3 className="font-bold">How Did You Hear About Us?</h3>
-              <div>
-                <label className="mt-3 mb-4">
+              <div className="">
+                <label className="mt-3 mb-4 ">
                   <input
-                    className=" mr-2 h-6 w-6 border-gray-300 rounded-md"
+                    className=" -ml-6 mr-2 h-6 w-6 border-gray-300 rounded-md"
                     type="checkbox"
                     name="additionalInfo"
                   />
@@ -135,22 +135,22 @@ const Contact = () => {
               </div>
             </div>
           </form>
-          <div className="mt-2 mb-10">
+          <div className=" mx-4 mt-2 mb-10 text-[#52616b] text-sm">
             <h2>
               By entering any information, you affirm you have read and agree to
               the Terms of Service and Privacy Policy.
             </h2>
             <button
-              className="h-14 w-full rounded-lg bg-gray-300 mt-4"
+              className="h-14 w-full rounded-md bg-gray-300 mt-4  text-white font-semibold md:max-xxl:text-lg"
               type="submit"
             >
               Submit
             </button>
           </div>
         </div>
-        <div className="w-[400px] h-[250px] bg-white rounded-lg flex flex-col px-4 py-4 shadow-md">
+        <div className="md:max-xxl:w-[400px] h-[250px] bg-white rounded-lg flex flex-col mx-4 px-4 py-4 mb-28 shadow-md">
           <h2 className="mb-4 font-bold">Popular Questions</h2>
-          <div>
+          <div className="flex flex-col">
             {[
               "How do I use this form?",
               "Where can I find pricing?",

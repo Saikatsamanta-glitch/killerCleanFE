@@ -33,9 +33,9 @@ const CustomerLogin = () => {
           "url('https://dp3d2hb4975es.cloudfront.net/assets/images/login-signup-bg.jpg')",
       }}
     >
-      <div className="h-[400px] w-[600px]">
-        <h1 className="text-center text-3xl font-semibold mb-3">Sign In</h1>
-        <p className="text-center mb-5">
+      <div className="h-[400px] ">
+        <h1 className="text-center lg:max-xxl:text-3xl text-[24px] font-semibold mb-3">Sign In</h1>
+        <p className="text-center mb-5 text-sm">
           Sign in to track your bookings, reschedule, edit and more.
         </p>
         <form>
@@ -45,7 +45,7 @@ const CustomerLogin = () => {
             </Label>
             <TextInput
               type="email"
-              //   className="form-control h-12 w-[550px] rounded-[4px] border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
+                // className="form-control h-12 w-[550px] rounded-[4px] border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
               id="email4"
               icon={HiMail}
               placeholder="Ex:example@xyz.com"
