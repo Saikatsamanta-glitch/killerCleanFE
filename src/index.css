@@ -41,7 +41,7 @@ code {
 }
 nav {
   background-color: #f3fafc !important;
-  padding: 0 !important;
+  padding: 0 80px !important;
 }
 nav ul li a {
   padding: 10px 15px !important;
@@ -256,13 +256,10 @@ input::placeholder{
     height: 170px !important;
     margin-left: -20px !important;
   }
-  .footer-text{
-    font-size: 10px !important;
-  }
   footer li a {
     color: white;
     font-weight: 400 !important;
-    font-size: 13px !important;
+    font-size: 15px !important;
   }
   footer li a:hover {
     text-decoration: none !important;
@@ -289,12 +286,6 @@ footer {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   color: white !important;
   border-radius: 0 !important;
-}
-
-[data-testid="footer-groupLink"] li a{
-  color: white !important;
-  font-weight: 400 !important;
-  font-size: 14px !important;
 }
 
 [data-testid="flowbite-card"] {
