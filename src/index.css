@@ -261,6 +261,8 @@ input::placeholder{
   background: #3a9dcc !important;
   color: white !important;
 }
+
+
 /* Responsive */
 @media (max-width:426px) {
   .btn-secondary {

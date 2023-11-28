@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { CFormCheck } from "@coreui/react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-
+import { Tabs } from "flowbite-react";
 import { Accordion } from "flowbite-react";
-
+import { ToggleButton } from "primereact/togglebutton";
 import {
   Label,
   Select,
@@ -11,17 +11,20 @@ import {
   TextInput,
   Checkbox,
   Textarea,
+  Button,
+  Radio,
 } from "flowbite-react";
-import { selectExtras } from "../data";
+import { Link } from "react-router-dom";
+import { cards, selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
-import AccordionBody from "react-bootstrap/esm/AccordionBody";
 export default function BookForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
   const [check, setCheck] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const [touchedFields, setTouchedFields] = useState({});
   const handleInputChange = (event, setStateFunction) => {
@@ -45,7 +48,9 @@ export default function BookForm() {
       <div className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full rounded-lg p-4 z-0 bg-white border mb-5 ">
         {/* Frequency section */}
         <div className="border-b w-full py-4 lg:p-4">
-          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">Frequency </h1>
+          <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
+            Frequency{" "}
+          </h1>
           <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:max-lg:flex md:max-lg:flex-col space-y-3">
             {/* Radio buttons for frequency */}
             <CFormCheck
@@ -98,7 +103,11 @@ export default function BookForm() {
                   className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
                 />
               </div>
-              <Select id="bedrooms" required className="max-md:w-full xl:w-[320px] xxl:w-full">
+              <Select
+                id="bedrooms"
+                required
+                className="max-md:w-full xl:w-[320px] xxl:w-full"
+              >
                 <option>0</option>
                 <option>1</option>
                 <option>2</option>
@@ -115,7 +124,11 @@ export default function BookForm() {
                   className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
                 />
               </div>
-              <Select id="bathrooms" required className="w-full xl:w-[320px] xxl:w-full">
+              <Select
+                id="bathrooms"
+                required
+                className="w-full xl:w-[320px] xxl:w-full"
+              >
                 <option>1</option>
                 <option>1.5</option>
                 <option>2</option>
@@ -141,7 +154,11 @@ export default function BookForm() {
                   className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
                 />
               </div>
-              <Select id="sqft" required className="w-full xl:w-[320px] xxl:w-full">
+              <Select
+                id="sqft"
+                required
+                className="w-full xl:w-[320px] xxl:w-full"
+              >
                 <option>1 - 999 Sq Ft</option>
                 <option>1000 - 1499 Sq Ft</option>
                 <option>1500 - 1999 Sq Ft</option>
@@ -171,7 +188,13 @@ export default function BookForm() {
                   button={{ color: "light" }}
                   id={v.label}
                   autoComplete="off"
-                  label={<img src={v.img} alt="" className=" h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 " />}
+                  label={
+                    <img
+                      src={v.img}
+                      alt=""
+                      className=" h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 "
+                    />
+                  }
                 />
                 <div className="flex items-center ">
                   <Label
@@ -341,7 +364,10 @@ export default function BookForm() {
               {isFieldRequired("check", check) && (
                 <div className="text-red-600">This field is required</div>
               )}
-              <Label htmlFor="check" className="-ml-5 xxl:text-3xl  max-lg:text-lg">
+              <Label
+                htmlFor="check"
+                className="-ml-5 xxl:text-3xl  max-lg:text-lg"
+              >
                 Send me reminders about my booking via text message
               </Label>
             </div>
@@ -408,11 +434,13 @@ export default function BookForm() {
               id="hidekeys"
               autoComplete="off"
               label="I Will Hide The Keys"
-              
             />
             <div className="flex items-center">
-              <Checkbox id="provider" className="h-6 w-6"/>
-              <Label htmlFor="provider" className="-ml-5 xxl:text-3xl max-lg:text-lg">
+              <Checkbox id="provider" className="h-6 w-6" />
+              <Label
+                htmlFor="provider"
+                className="-ml-5 xxl:text-3xl max-lg:text-lg"
+              >
                 Keep Key With Provider
               </Label>
             </div>
@@ -458,65 +486,167 @@ export default function BookForm() {
             </div>
           </div>
         </div>
+        {/* Coupon Code */}
+        <div className="border-b w-full py-4 lg:p-4">
+          <Tabs aria-label="Default Tabs" style="default">
+            <Tabs.Item active title="Coupon Code">
+              <form className="grid grid-cols-1 gap-4">
+                <div>
+                  <div className="mb-2 flex items-center">
+                    <Label
+                      htmlFor="email1"
+                      value="Enter Coupon Code"
+                      className="text-lg -ml-6"
+                    />
+                    <Tooltip
+                      content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
+                      arrow={false}
+                      className="w-48 border bg-white  text-black font-normal text-center "
+                    >
+                      <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
+                    </Tooltip>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <TextInput
+                      id="base"
+                      type="text"
+                      placeholder="Enter Coupon Code"
+                      required
+                    />
+                    <Button>Apply</Button>
+                  </div>
+                </div>
+              </form>
+            </Tabs.Item>
+          </Tabs>
+        </div>
+        {/* Payment */}
+        <div className="border-b w-full py-4 lg:p-4">
+          <Tabs style="underline" >
+            <Tabs.Item
+              active
+              title={
+                <div className="flex items-center gap-2">
+                  <Radio
+                    id="credit"
+                    name="payment"
+                    value="card"
+                    defaultChecked
+                  />
+                  <Label htmlFor="credit">New Credit Card</Label>
+                </div>
+              }
+            >
+              <h1 className="text-xl font-semibold">Add new card</h1>
+              <p>
+                Your payment processor has not yet been connected. Please
+                connect it to allow bookings via credit/debit cards{" "}
+                <Link> Click here </Link> .to learn more.
+              </p>
+              <div>
+                <img
+                  src="https://dp3d2hb4975es.cloudfront.net/assets/images/secure-card.png"
+                  alt=""
+                />
+              </div>
+            </Tabs.Item>
+            <Tabs.Item
+              title={
+                <div className="flex items-center gap-2">
+                  <Radio id="cash" name="payment" value="cash"/>
+                  <Label htmlFor="cash">Cash/Check</Label>
+                </div>
+              }
+            ></Tabs.Item>
+          </Tabs>
+        </div>
       </div>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
         <div className="card w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16 hidden lg:block">
           <Accordion activeIndex={0} className="p-5 xxl:p-10">
             <Accordion.Panel>
-              <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">Booking Summary</Accordion.Title>
+              <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
+                Booking Summary
+              </Accordion.Title>
               <Accordion.Content>
-              <div className="border-y hidden sm:block">
-                <table className="text-base max-xxl:border-spacing-4 xxl:border-spacing-8 border-separate">
-                  <tbody>
-                    <tr>
-                      <td className="text-sm xxl:text-xl text-[#6c757d]">Industry</td>
-                      <td>:</td>
-                      <td className="text-[#11263c] xxl:text-xl">Home Cleaning</td>
-                    </tr>
-                    <tr>
-                      <td className="text-sm xxl:text-xl text-[#6c757d]">Service</td>
-                      <td>:</td>
-                      <td className="text-[#11263c] xxl:text-xl">Flat Rate Service</td>
-                    </tr>
-                    <tr>
-                      <td className="text-sm xxl:text-xl text-[#6c757d]">Frequency</td>
-                      <td>:</td>
-                      <td className="text-[#11263c] xxl:text-xl">Weekly</td>
-                    </tr>
-                    <tr>
-                      <td className="text-sm xxl:text-xl text-[#6c757d]">Bedrooms</td>
-                      <td>:</td>
-                      <td className="text-[#11263c] xxl:text-xl">0</td>
-                    </tr>
-                    <tr>
-                      <td className="text-sm xxl:text-xl text-[#6c757d]">Bathrooms</td>
-                      <td>:</td>
-                      <td className="text-[#11263c] xxl:text-xl">1</td>
-                    </tr>
-                    <tr>
-                      <td className="text-sm xxl:text-xl text-[#6c757d]">Sq Ft</td>
-                      <td>:</td>
-                      <td className="text-[#11263c] xxl:text-xl">1 - 999 Sq Ft</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="p-2 mt-2 mb-2">
-                <div className="flex justify-between items-center">
-                  <h1 className="text-lg xxl:text-xl text-[#6c757d]">Total Before Tax</h1>
-                  <h1 className="text-lg xxl:text-xl text-[#6c757d]">$87.20</h1>
+                <div className="border-y hidden sm:block">
+                  <table className="text-base max-xxl:border-spacing-4 xxl:border-spacing-8 border-separate">
+                    <tbody>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Industry
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          Home Cleaning
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Service
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          Flat Rate Service
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Frequency
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">Weekly</td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Bedrooms
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">0</td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Bathrooms
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">1</td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Sq Ft
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          1 - 999 Sq Ft
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div className="flex justify-between items-center">
-                  <h1 className="text-2xl xxl:text-4xl text-orange-500">TOTAL</h1>
-                  <h1 className="text-2xl xxl:text-4xl text-orange-500">$87.20</h1>
+                <div className="p-2 mt-2 mb-2">
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-lg xxl:text-xl text-[#6c757d]">
+                      Total Before Tax
+                    </h1>
+                    <h1 className="text-lg xxl:text-xl text-[#6c757d]">
+                      $87.20
+                    </h1>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                      TOTAL
+                    </h1>
+                    <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                      $87.20
+                    </h1>
+                  </div>
                 </div>
-              </div>
               </Accordion.Content>
             </Accordion.Panel>
           </Accordion>
         </div>
-    <PopularQuestions />
+        <PopularQuestions />
       </div>
     </div>
   );
