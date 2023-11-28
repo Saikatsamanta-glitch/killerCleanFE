@@ -22,7 +22,7 @@ export default function Nav() {
   }, []);
   return (
     <div className="w-screen">
-      <div className="nav-header h-[55px] hidden bg-[#014584] sm:max-xxl:flex items-center w-full lg:max-xxl:px-24 px-10 justify-between ">
+      <div className="nav-header h-[55px] hidden bg-[#014584]  md:flex  items-center w-full lg:px-24 px-10 justify-between ">
         <div className="flex items-center">
           <Link to={"tel:1234567890"} className="no-underline">
             <i className="fa-solid fa-phone text-[#61B1D6] mr-3"></i>
@@ -47,9 +47,9 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className="lg:max-xxl:px-20 sm:max-lg:px-0 max-sm:px-4 bg-[#F3FAFC] w-full">
+      <Navbar fluid className="sm:lg:px-0 px-20 max-sm:px-4 bg-[#F3FAFC] w-full">
         <Navbar.Brand href="/">
-          <img src={logo} className="h-40 sm:h-36" alt="Killer CLean Logo" />
+          <img src={logo} className="h-40 sm:h-36 max-lg:mt-0 " alt="Killer CLean Logo" />
         </Navbar.Brand>
         <Navbar.Toggle/>
         <Navbar.Collapse>

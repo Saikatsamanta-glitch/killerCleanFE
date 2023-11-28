@@ -41,7 +41,7 @@ code {
 }
 nav {
   background-color: #f3fafc !important;
-  padding: 0 80px !important;
+  padding: 0 !important;
 }
 nav ul li a {
   padding: 10px 15px !important;
@@ -235,15 +235,18 @@ input::placeholder{
 
 
 /* Responsive */
-@media (min-width:426px) and (max-width:2560px) {
+@media (min-width:426px) and (max-width:1024px) {
   [data-testid="flowbite-footer-brand"] img {
     height: 170px !important;
     margin-left: -20px !important;
   }
+  .footer-text{
+    font-size: 10px !important;
+  }
   footer li a {
     color: white;
     font-weight: 400 !important;
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
   footer li a:hover {
     text-decoration: none !important;
@@ -270,6 +273,12 @@ footer {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   color: white !important;
   border-radius: 0 !important;
+}
+
+[data-testid="footer-groupLink"] li a{
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
 }
 
 [data-testid="flowbite-card"] {
@@ -321,4 +330,104 @@ footer {
   line-height: 28px !important;
   padding: 2px !important;
 }
+}
+@media (min-width:1024px) {
+ 
+  nav {
+    background-color: #f3fafc !important;
+    padding: 0!important;
+  }
+  nav ul li a {
+    padding: 4px 8px !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: #014584 !important;
+    font-size: 16px !important;
+    line-height: 28px !important;
+  }
+  nav ul li {
+    margin-left: 4px !important;
+  }
+  nav ul li a:hover {
+    color: #61b1d6 !important;
+    border-bottom: #61b1d6 1.5px solid;
+  }
+  
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 8px 10px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+    margin-left: 4px !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    padding: 2px !important;
+  }
+  [data-testid="footer-groupLink"] li a{
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+  }
+  footer li a {
+    color: white;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+  }
+}
+@media (min-width:1025px) and (max-width:2561px) {
+  .nav-header {
+    font-family: "Figtree", sans-serif !important;
+  }
+  nav {
+    background-color: #f3fafc !important;
+    padding: 0 80px !important;
+  }
+  nav ul li a {
+    padding: 10px 15px !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: #014584 !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
+  nav ul li {
+    margin-left: 4px !important;
+  }
+  nav ul li a:hover {
+    color: #61b1d6 !important;
+    border-bottom: #61b1d6 1.5px solid;
+  }
+  
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 10px 14px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    padding: 2px !important;
+  }
+  [data-testid="footer-groupLink"] li a{
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+  }
 }
