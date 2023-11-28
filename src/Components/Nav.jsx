@@ -2,15 +2,7 @@ import { Button, Navbar } from "flowbite-react";
 import logo from "../Images/logo.png";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const navbar={
-  link: {
-    base: "block py-2 pr-4 pl-3 md:p-0",
-    active: {
-      on: "bg-cyan-700 text-white dark:text-white md:bg-transparent md:text-[#014584] md:hover:text-[#014584] md:hover:border-b-none",
-      off: "border-gray-100  text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-cyan-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-    },
-}
-}
+
 export default function Nav() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTablet, setTablet] = useState(window.innerWidth < 1024);
@@ -29,8 +21,8 @@ export default function Nav() {
     };
   }, []);
   return (
-    <div className="w-screen ">
-      <div className="nav-header h-[55px] hidden bg-[#014584]  sm:flex items-center w-full px-24  justify-between ">
+    <div className="w-screen">
+      <div className="nav-header h-[55px] hidden bg-[#014584] sm:max-xxl:flex items-center w-full lg:max-xxl:px-24 px-10 justify-between ">
         <div className="flex items-center">
           <Link to={"tel:1234567890"} className="no-underline">
             <i className="fa-solid fa-phone text-[#61B1D6] mr-3"></i>
@@ -55,11 +47,11 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className="sm:px-20 px-4 bg-[#F3FAFC] w-full" theme={navbar}>
+      <Navbar fluid className="lg:max-xxl:px-20 sm:max-lg:px-0 max-sm:px-4 bg-[#F3FAFC] w-full">
         <Navbar.Brand href="/">
           <img src={logo} className="h-40 sm:h-36" alt="Killer CLean Logo" />
         </Navbar.Brand>
-        <Navbar.Toggle />
+        <Navbar.Toggle/>
         <Navbar.Collapse>
           <Navbar.Link as={Link}  to={'/'}>Home</Navbar.Link>
           <Navbar.Link as={Link} to={'/services'}>Services</Navbar.Link>
