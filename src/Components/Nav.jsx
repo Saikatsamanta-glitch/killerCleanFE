@@ -66,7 +66,7 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className={`sm:lg:px-0  px-20 top-0 max-sm:px-4 z-50 ${isSticky ? "fixed bg-white/50" : "bg-[#F3FAFC]"}  w-full`}>
+      <Navbar fluid style={{}} className={`sm:lg:px-0  px-20 top-0 max-sm:px-4 z-50 ${isSticky ? "fixed bg-white/50" : "bg-[#F3FAFC]"}  w-full`}>
         <Navbar.Brand href="/">
           <img src={logo} className="h-40 sm:h-36 max-lg:mt-0 " alt="Killer CLean Logo" />
         </Navbar.Brand>
