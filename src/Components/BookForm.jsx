@@ -14,6 +14,7 @@ import {
   Radio,
 } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { FaRegCalendarDays } from "react-icons/fa6";
 import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
@@ -44,48 +45,54 @@ export default function BookForm() {
     // Replace this with your actual pricing logic based on selected options
     const basePrice = 50; // Replace with your base price
     let freqPrice;
-    if(selectedFrequency=='One-time'){
+    if (selectedFrequency == "One-time") {
       freqPrice = 40;
-    }else if(selectedFrequency=='Weekly'){
+    } else if (selectedFrequency == "Weekly") {
       freqPrice = 30;
-    }else if(selectedFrequency=='Every other week'){
+    } else if (selectedFrequency == "Every other week") {
       freqPrice = 25;
-    } else if(selectedFrequency=='Every 4 weeks'){
+    } else if (selectedFrequency == "Every 4 weeks") {
       freqPrice = 20;
-    }else{
+    } else {
       freqPrice = 0;
     }
     const bedroomsPrice = selectedBedrooms * 10; // Replace with your bedrooms pricing logic
     const bathroomsPrice = selectedBathrooms * 5; // Replace with your bathrooms pricing logic
     let sqftPrice;
-  if (selectedSqft === '1 - 999 Sq Ft') {
-    sqftPrice = 8;
-  } else if (selectedSqft === '1000 - 1499 Sq Ft') {
-    sqftPrice = 16;
-  }else if (selectedSqft === '1500 - 1999 Sq Ft') {
-    sqftPrice = 24;
-  }else if (selectedSqft === '2000 - 2499 Sq Ft') {
-    sqftPrice = 32;
-  }else if (selectedSqft === '2500 - 2999 Sq Ft') {
-    sqftPrice = 40;
-  }else if (selectedSqft === '3000 - 3499 Sq Ft') {
-    sqftPrice = 48;
-  }else if (selectedSqft === '3500 - 3999 Sq Ft') {
-    sqftPrice = 56;
-  }else if (selectedSqft === '4000 - 4499 Sq Ft') {
-    sqftPrice = 72;
-  }else if (selectedSqft === '4500 - 4999 Sq Ft') {
-    sqftPrice = 80;
-  }else if (selectedSqft === '5000 - 5499 Sq Ft') {
-    sqftPrice = 88;
-  }else if (selectedSqft === '5500 - 5999 Sq Ft') {
-    sqftPrice = 96;
-  } else {
-    sqftPrice = 0;
-  } // Replace with your sqft pricing logic
+    if (selectedSqft === "1 - 999 Sq Ft") {
+      sqftPrice = 8;
+    } else if (selectedSqft === "1000 - 1499 Sq Ft") {
+      sqftPrice = 16;
+    } else if (selectedSqft === "1500 - 1999 Sq Ft") {
+      sqftPrice = 24;
+    } else if (selectedSqft === "2000 - 2499 Sq Ft") {
+      sqftPrice = 32;
+    } else if (selectedSqft === "2500 - 2999 Sq Ft") {
+      sqftPrice = 40;
+    } else if (selectedSqft === "3000 - 3499 Sq Ft") {
+      sqftPrice = 48;
+    } else if (selectedSqft === "3500 - 3999 Sq Ft") {
+      sqftPrice = 56;
+    } else if (selectedSqft === "4000 - 4499 Sq Ft") {
+      sqftPrice = 72;
+    } else if (selectedSqft === "4500 - 4999 Sq Ft") {
+      sqftPrice = 80;
+    } else if (selectedSqft === "5000 - 5499 Sq Ft") {
+      sqftPrice = 88;
+    } else if (selectedSqft === "5500 - 5999 Sq Ft") {
+      sqftPrice = 96;
+    } else {
+      sqftPrice = 0;
+    } // Replace with your sqft pricing logic
     const extrasPrice = selectedExtras.length * 5; // Replace with your extras pricing logic
 
-    const totalPrice = basePrice + freqPrice+ bedroomsPrice + bathroomsPrice + sqftPrice + extrasPrice;
+    const totalPrice =
+      basePrice +
+      freqPrice +
+      bedroomsPrice +
+      bathroomsPrice +
+      sqftPrice +
+      extrasPrice;
 
     setPrice(totalPrice);
   };
@@ -93,7 +100,13 @@ export default function BookForm() {
   // Update the price whenever the selected options change
   useEffect(() => {
     calculatePrice();
-  }, [selectedFrequency, selectedBedrooms, selectedBathrooms, selectedSqft, selectedExtras]);
+  }, [
+    selectedFrequency,
+    selectedBedrooms,
+    selectedBathrooms,
+    selectedSqft,
+    selectedExtras,
+  ]);
 
   // Update the state when user makes selections
   const handleFrequencyChange = (event) => {
@@ -171,8 +184,11 @@ export default function BookForm() {
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
-      <div className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full rounded-lg p-4 z-0 bg-white border mb-5 ">
-        <form action="">
+      <form
+        action=""
+        className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full z-0 "
+      >
+        <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
           {/* Frequency section */}
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
@@ -674,9 +690,42 @@ export default function BookForm() {
               </Tabs.Item>
             </Tabs>
           </div>
-          {/* Payment */}
-        </form>
-      </div>
+        </div>
+        {/* Payment */}
+        <div className="flex flex-col items-start mb-4">
+          <div className="flex items-center mb-4">
+            <Checkbox
+              id="agree"
+              className="h-6 w-6"
+              value={check}
+              onChange={(e) => handleInputChange(e, setCheck)}
+            />
+            <Label
+              htmlFor="agree"
+              className="-ml-5 xxl:text-5xl text-[#52616b] font-normal max-xxl:text-lg"
+            >
+              I affirm that I have read and agree to the Terms of Service and
+              Privacy Policy.
+            </Label>
+          </div>
+          <p className="mb-4 text-[#52616b]">
+            By entering any information, you affirm you have read and agree to
+            the Terms of Service and Privacy Policy.
+          </p>
+          <div className="flex items-center mb-4">
+          <span className="text-[#52616b]">Your card is charged AFTER the appointment is completed.</span>
+          <span><Tooltip
+            content=" By clicking 'Save Booking' you agree to our terms of service and privacy policy."
+            arrow={false}
+            className="w-48 border bg-white  text-black font-normal text-center "
+          >
+            <span><IoMdInformationCircleOutline className=" ml-1 text-[#52616b] xxl:text-xl" /></span>
+          </Tooltip></span>
+          
+          </div>
+          <Button type="submit" className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"> <FaRegCalendarDays className="mr-2"/> Save Booking </Button>
+        </div>
+      </form>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
         {isMobile || isTablet ? (
@@ -690,10 +739,10 @@ export default function BookForm() {
                     </h1>
                     <div className="flex flex-col justify-between items-center">
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price}
+                        ${price}
                       </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price}
+                        ${price}
                       </h1>
                     </div>
                   </div>
@@ -725,21 +774,27 @@ export default function BookForm() {
                             Frequency
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">{selectedFrequency}</td>
+                          <td className="text-[#11263c] xxl:text-xl">
+                            {selectedFrequency}
+                          </td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bedrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">{selectedBedrooms}</td>
+                          <td className="text-[#11263c] xxl:text-xl">
+                            {selectedBedrooms}
+                          </td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bathrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">{selectedBathrooms}</td>
+                          <td className="text-[#11263c] xxl:text-xl">
+                            {selectedBathrooms}
+                          </td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
@@ -747,7 +802,7 @@ export default function BookForm() {
                           </td>
                           <td>:</td>
                           <td className="text-[#11263c] xxl:text-xl">
-                           {selectedSqft}
+                            {selectedSqft}
                           </td>
                         </tr>
                         {selectedExtras.length > 0 && (
@@ -770,7 +825,7 @@ export default function BookForm() {
                         Total Before Tax
                       </h1>
                       <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                      ${price}
+                        ${price}
                       </h1>
                     </div>
                     <div className="flex justify-between items-center">
@@ -778,7 +833,7 @@ export default function BookForm() {
                         TOTAL
                       </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price}
+                        ${price}
                       </h1>
                     </div>
                   </div>
@@ -820,21 +875,27 @@ export default function BookForm() {
                             Frequency
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">{selectedFrequency}</td>
+                          <td className="text-[#11263c] xxl:text-xl">
+                            {selectedFrequency}
+                          </td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bedrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">{selectedBedrooms}</td>
+                          <td className="text-[#11263c] xxl:text-xl">
+                            {selectedBedrooms}
+                          </td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bathrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">{selectedBathrooms}</td>
+                          <td className="text-[#11263c] xxl:text-xl">
+                            {selectedBathrooms}
+                          </td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
@@ -865,7 +926,7 @@ export default function BookForm() {
                         Total Before Tax
                       </h1>
                       <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                      ${price}
+                        ${price}
                       </h1>
                     </div>
                     <div className="flex justify-between items-center">
@@ -873,7 +934,7 @@ export default function BookForm() {
                         TOTAL
                       </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price}
+                        ${price}
                       </h1>
                     </div>
                   </div>
