@@ -35,7 +35,6 @@ code {
   transform: scale(0.8);
   color: #61b1d6;
 }
-
 .nav-header {
   font-family: "Figtree", sans-serif !important;
 }
@@ -297,7 +296,7 @@ input::placeholder{
     padding: 0 12px !important;
   }
 }
-@media (min-width:426px) and (max-width:1024px) {
+@media (min-width:426px) and (max-width:1025px) {
 
   [aria-label='Pills'] button{
     padding: 12px !important;
@@ -389,6 +388,9 @@ footer {
   line-height: 28px !important;
   padding: 2px !important;
 }
+nav{
+  padding: 0 12px !important;
+}
 }
 @media (min-width:1024px) and (max-width:1441px) {
   #firstName,#lastName,#email,#tel,#base{
@@ -397,6 +399,45 @@ footer {
     border: 1px solid #BAC0C4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
+  }
+  /* nav {
+    background-color: #f3fafc !important;
+    padding: 0 !important;
+  } */
+  nav ul li a {
+    padding: 4px 8px !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: #014584 !important;
+    font-size: 16px !important;
+    line-height: 28px !important;
+  }
+  nav ul li {
+    margin-left: 4px !important;
+  }
+  nav ul li a:hover {
+    color: #61b1d6 !important;
+    border-bottom: #61b1d6 1.5px solid;
+  }
+  
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 8px 10px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+    margin-left: 4px !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    padding: 2px !important;
   }
 }
 @media (min-width:1024px) {
@@ -409,10 +450,10 @@ footer {
     padding-left: 40px !important;
   }
  
-  nav {
+  /* nav {
     background-color: #f3fafc !important;
-    padding: 0!important;
-  }
+    padding: 0 !important;
+  } */
   nav ul li a {
     padding: 4px 8px !important;
     font-family: "Plus Jakarta Sans", sans-serif !important;
@@ -626,9 +667,6 @@ select{
   font-size: 24px !important;
 }
 }
-
-
-
 @media (min-width:768px) and (max-width:1025px) {
   .btn-secondary {
     --bs-btn-color: #11263c !important;

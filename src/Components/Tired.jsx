@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Tired() {
   return (
     <div className="bg-white xl:mt-24 md:py-4 sm:max-md:-mt-2 px-2 py-10 lg:px-20 lg:pt-20 w-full ">
-      <h1 className="text-center text-[#014584] xxl:text-7xl text-[36px] md:text-[40px] lg:text-[45px] mt-4 mb-3 font-semibold">
+      <h1 className="text-center text-[#014584] xxl:text-7xl text-[32px] sm:text-[36px] md:text-[40px] lg:text-[45px] mt-4 mb-3 font-semibold">
         Tired Of Cleaning By Yourself?
       </h1>
       <p className="text-center max-sm:px-2 md:px-10 mb-5 text-[17px] xxl:text-3xl leading-8 sm:text-lg lg:mx-56 text-[#014584]"> 

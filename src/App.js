@@ -10,10 +10,12 @@ import CustomerLogin from './Pages/CustomerLogin'
 import Contact from './Pages/Contact'
 import Book from './Pages/Book'
 
+// import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
   return (
     <BrowserRouter>
     <Nav />
+     {/* <CustomNavbar/> */}
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/services' element={<Services />} />

@@ -57,7 +57,7 @@ const Contact = () => {
             <div>
               <h3 className="font-bold">What Are You Looking For?</h3>
               <div className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
-                <select>
+                <select >
                   <option value="option1">Option 1</option>
                   <option value="option2">Option 2</option>
                   <option value="option3">Option 3</option>

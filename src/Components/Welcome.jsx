@@ -10,12 +10,12 @@ export default function Welcome() {
                          sm:p-14 md:items-start md:w-[50%] sm:justify-evenly">
 
 
-          <h1 className=" max-sm:text-center sm:text-center md:text-left text-[36px] text-[#014584] font-semibold
+          <h1 className=" max-sm:text-center sm:text-center md:text-left text-[32px] mm:text-[36px] sm:text-[38px] text-[#014584] font-semibold
                        md:text-[46px] lg:text-6xl xxl:text-8xl
           max-sm:mb-2 sm:max-md:mb-6 md:mb-6">
             Welcome to Killer Clean
           </h1>
-          <p className="text-[#014584] max-sm:mb-10 max-sm:text-center sm:text-center md:text-left
+          <p className="text-[#014584] max-sm:mb-10 max-sm:text-center text-lg sm:text-center md:text-left
           md:max-lg:text-base lg:text-lg xxl:text-4xl
           sm:max-md:mb-6 md:mb-6">
             Dirts Worst Nightmare

@@ -3,7 +3,6 @@ import { CFormCheck } from "@coreui/react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Tabs } from "flowbite-react";
 import { Accordion } from "flowbite-react";
-import { ToggleButton } from "primereact/togglebutton";
 import {
   Label,
   Select,
@@ -15,7 +14,7 @@ import {
   Radio,
 } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { cards, selectExtras } from "../data";
+import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
 export default function BookForm() {
@@ -24,7 +23,7 @@ export default function BookForm() {
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
   const [check, setCheck] = useState("");
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
 
   const [touchedFields, setTouchedFields] = useState({});
   const handleInputChange = (event, setStateFunction) => {
@@ -521,45 +520,6 @@ export default function BookForm() {
           </Tabs>
         </div>
         {/* Payment */}
-        <div className="border-b w-full py-4 lg:p-4">
-          <Tabs style="underline" >
-            <Tabs.Item
-              active
-              title={
-                <div className="flex items-center gap-2">
-                  <Radio
-                    id="credit"
-                    name="payment"
-                    value="card"
-                    defaultChecked
-                  />
-                  <Label htmlFor="credit">New Credit Card</Label>
-                </div>
-              }
-            >
-              <h1 className="text-xl font-semibold">Add new card</h1>
-              <p>
-                Your payment processor has not yet been connected. Please
-                connect it to allow bookings via credit/debit cards{" "}
-                <Link> Click here </Link> .to learn more.
-              </p>
-              <div>
-                <img
-                  src="https://dp3d2hb4975es.cloudfront.net/assets/images/secure-card.png"
-                  alt=""
-                />
-              </div>
-            </Tabs.Item>
-            <Tabs.Item
-              title={
-                <div className="flex items-center gap-2">
-                  <Radio id="cash" name="payment" value="cash"/>
-                  <Label htmlFor="cash">Cash/Check</Label>
-                </div>
-              }
-            ></Tabs.Item>
-          </Tabs>
-        </div>
       </div>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
