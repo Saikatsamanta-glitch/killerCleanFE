@@ -163,7 +163,24 @@ export const bookservices=[
     desc:'Fast email response & friendly customer service.'
   }
 ]
-
+export const frequency=[
+  {
+    id:1,
+    label:'One-Time'
+  },
+  {
+    id:2,
+    label:'Weekly'
+  },
+  {
+    id:3,
+    label:''
+  },
+  {
+    id:4,
+    label:''
+  }
+]
 export const selectExtras=[
   {
     id:1,

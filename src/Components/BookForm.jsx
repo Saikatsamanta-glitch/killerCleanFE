@@ -31,50 +31,94 @@ export default function BookForm() {
   const [scheduleErr, setScheduleErr] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTablet, setTablet] = useState(window.innerWidth < 1024);
-
-  const [selectedOptions, setSelectedOptions] = useState({
-    frequency: "Weekly",
-    bedrooms: 0,
-    bathrooms: 1,
-    sqft: "1 - 999 Sq Ft",
-  });
-
+  // Add these state variables at the beginning of your functional component
+  const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
+  const [selectedBedrooms, setSelectedBedrooms] = useState(0);
+  const [selectedBathrooms, setSelectedBathrooms] = useState(1);
+  const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
+  const [price, setPrice] = useState(0);
 
-  // Function to handle changes in selected options
-  const handleOptionChange = (event) => {
-    const { name, value } = event.target;
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      [name]: value,
-    }));
+  // Define your pricing logic
+  const calculatePrice = () => {
+    // Replace this with your actual pricing logic based on selected options
+    const basePrice = 50; // Replace with your base price
+    let freqPrice;
+    if(selectedFrequency=='One-time'){
+      freqPrice = 40;
+    }else if(selectedFrequency=='Weekly'){
+      freqPrice = 30;
+    }else if(selectedFrequency=='Every other week'){
+      freqPrice = 25;
+    } else if(selectedFrequency=='Every 4 weeks'){
+      freqPrice = 20;
+    }else{
+      freqPrice = 0;
+    }
+    const bedroomsPrice = selectedBedrooms * 10; // Replace with your bedrooms pricing logic
+    const bathroomsPrice = selectedBathrooms * 5; // Replace with your bathrooms pricing logic
+    let sqftPrice;
+  if (selectedSqft === '1 - 999 Sq Ft') {
+    sqftPrice = 8;
+  } else if (selectedSqft === '1000 - 1499 Sq Ft') {
+    sqftPrice = 16;
+  }else if (selectedSqft === '1500 - 1999 Sq Ft') {
+    sqftPrice = 24;
+  }else if (selectedSqft === '2000 - 2499 Sq Ft') {
+    sqftPrice = 32;
+  }else if (selectedSqft === '2500 - 2999 Sq Ft') {
+    sqftPrice = 40;
+  }else if (selectedSqft === '3000 - 3499 Sq Ft') {
+    sqftPrice = 48;
+  }else if (selectedSqft === '3500 - 3999 Sq Ft') {
+    sqftPrice = 56;
+  }else if (selectedSqft === '4000 - 4499 Sq Ft') {
+    sqftPrice = 72;
+  }else if (selectedSqft === '4500 - 4999 Sq Ft') {
+    sqftPrice = 80;
+  }else if (selectedSqft === '5000 - 5499 Sq Ft') {
+    sqftPrice = 88;
+  }else if (selectedSqft === '5500 - 5999 Sq Ft') {
+    sqftPrice = 96;
+  } else {
+    sqftPrice = 0;
+  } // Replace with your sqft pricing logic
+    const extrasPrice = selectedExtras.length * 5; // Replace with your extras pricing logic
+
+    const totalPrice = basePrice + freqPrice+ bedroomsPrice + bathroomsPrice + sqftPrice + extrasPrice;
+
+    setPrice(totalPrice);
   };
 
-  // Function to handle changes in selected extras
-  const handleExtrasChange = (extraId) => {
-    // Toggle the selected state of the extra
-    setSelectedExtras((prevExtras) => {
-      if (prevExtras.includes(extraId)) {
-        return prevExtras.filter((id) => id !== extraId);
-      } else {
-        return [...prevExtras, extraId];
-      }
-    });
+  // Update the price whenever the selected options change
+  useEffect(() => {
+    calculatePrice();
+  }, [selectedFrequency, selectedBedrooms, selectedBathrooms, selectedSqft, selectedExtras]);
+
+  // Update the state when user makes selections
+  const handleFrequencyChange = (event) => {
+    setSelectedFrequency(event.target.value);
   };
 
-  // Function to calculate the booking summary dynamically
-  const calculateBookingSummary = () => {
-    // Calculate the total based on selected options and extras
-    // You can customize this based on your pricing logic
-    const basePrice = 87.2;
-    const extrasPrice = selectedExtras.length * 10; // Assuming each extra costs $10
-    const totalPrice = basePrice + extrasPrice;
+  const handleBedroomsChange = (event) => {
+    setSelectedBedrooms(parseInt(event.target.value));
+  };
 
-    return {
-      basePrice,
-      extrasPrice,
-      totalPrice,
-    };
+  const handleBathroomsChange = (event) => {
+    setSelectedBathrooms(parseInt(event.target.value));
+  };
+
+  const handleSqftChange = (event) => {
+    setSelectedSqft(event.target.value);
+  };
+
+  const handleExtrasChange = (event) => {
+    const extra = event.target.value;
+    setSelectedExtras((prevExtras) =>
+      prevExtras.includes(extra)
+        ? prevExtras.filter((item) => item !== extra)
+        : [...prevExtras, extra]
+    );
   };
 
   useEffect(() => {
@@ -143,6 +187,9 @@ export default function BookForm() {
                 id="option1"
                 autoComplete="off"
                 label="One-time"
+                value="One-time"
+                checked={selectedFrequency === "One-time"}
+                onChange={handleFrequencyChange}
               />
               <CFormCheck
                 button={{ color: "secondary" }}
@@ -151,6 +198,9 @@ export default function BookForm() {
                 id="option2"
                 autoComplete="off"
                 label="Weekly"
+                value="Weekly"
+                checked={selectedFrequency === "Weekly"}
+                onChange={handleFrequencyChange}
                 defaultChecked
               />
               <CFormCheck
@@ -160,6 +210,9 @@ export default function BookForm() {
                 id="option3"
                 autoComplete="off"
                 label="Every other week"
+                value="Every other week"
+                checked={selectedFrequency === "Every other week"}
+                onChange={handleFrequencyChange}
               />
               <CFormCheck
                 button={{ color: "secondary" }}
@@ -168,6 +221,9 @@ export default function BookForm() {
                 id="option4"
                 autoComplete="off"
                 label="Every 4 weeks"
+                value="Every 4 weeks"
+                checked={selectedFrequency === "Every 4 weeks"}
+                onChange={handleFrequencyChange}
               />
             </div>
           </div>
@@ -190,6 +246,8 @@ export default function BookForm() {
                   id="bedrooms"
                   required
                   className="max-md:w-full xl:w-[320px] xxl:w-full"
+                  value={selectedBedrooms}
+                  onChange={handleBedroomsChange}
                 >
                   <option>0</option>
                   <option>1</option>
@@ -211,6 +269,8 @@ export default function BookForm() {
                   id="bathrooms"
                   required
                   className="w-full xl:w-[320px] xxl:w-full"
+                  value={selectedBathrooms}
+                  onChange={handleBathroomsChange}
                 >
                   <option>1</option>
                   <option>1.5</option>
@@ -241,6 +301,8 @@ export default function BookForm() {
                   id="sqft"
                   required
                   className="w-full xl:w-[320px] xxl:w-full"
+                  value={selectedSqft}
+                  onChange={handleSqftChange}
                 >
                   <option>1 - 999 Sq Ft</option>
                   <option>1000 - 1499 Sq Ft</option>
@@ -278,6 +340,9 @@ export default function BookForm() {
                         className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 "
                       />
                     }
+                    value={v.label}
+                    onChange={handleExtrasChange}
+                    checked={selectedExtras.includes(v.label)}
                   />
                   <div className="flex items-center ">
                     <Label
@@ -616,7 +681,7 @@ export default function BookForm() {
       <div className="flex flex-col items-center">
         {isMobile || isTablet ? (
           <div className="fixed bottom-2 box-content  w-[94%] m-auto left-3 right-3 z-20">
-            <Accordion className=" shadow-lg border rounded-none">
+            <Accordion collapseAll className=" shadow-lg border rounded-none">
               <Accordion.Panel>
                 <Accordion.Title className="w-full">
                   <div className="grid grid-cols-2 items-center gap-x-6 md:gap-x-[350px] px-2 w-full">
@@ -625,10 +690,10 @@ export default function BookForm() {
                     </h1>
                     <div className="flex flex-col justify-between items-center">
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        $87.20
+                      ${price}
                       </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        $87.20
+                      ${price}
                       </h1>
                     </div>
                   </div>
@@ -660,21 +725,21 @@ export default function BookForm() {
                             Frequency
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">Weekly</td>
+                          <td className="text-[#11263c] xxl:text-xl">{selectedFrequency}</td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bedrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">0</td>
+                          <td className="text-[#11263c] xxl:text-xl">{selectedBedrooms}</td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bathrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">1</td>
+                          <td className="text-[#11263c] xxl:text-xl">{selectedBathrooms}</td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
@@ -682,9 +747,20 @@ export default function BookForm() {
                           </td>
                           <td>:</td>
                           <td className="text-[#11263c] xxl:text-xl">
-                            1-999 Sq Ft
+                           {selectedSqft}
                           </td>
                         </tr>
+                        {selectedExtras.length > 0 && (
+                          <tr>
+                            <td className="text-sm xxl:text-xl text-[#6c757d]">
+                              Extras
+                            </td>
+                            <td>:</td>
+                            <td className="text-[#11263c] xxl:text-xl">
+                              {selectedExtras.join(", ")}
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -694,7 +770,7 @@ export default function BookForm() {
                         Total Before Tax
                       </h1>
                       <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                        $87.20
+                      ${price}
                       </h1>
                     </div>
                     <div className="flex justify-between items-center">
@@ -702,7 +778,7 @@ export default function BookForm() {
                         TOTAL
                       </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        $87.20
+                      ${price}
                       </h1>
                     </div>
                   </div>
@@ -744,21 +820,21 @@ export default function BookForm() {
                             Frequency
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">Weekly</td>
+                          <td className="text-[#11263c] xxl:text-xl">{selectedFrequency}</td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bedrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">0</td>
+                          <td className="text-[#11263c] xxl:text-xl">{selectedBedrooms}</td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
                             Bathrooms
                           </td>
                           <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">1</td>
+                          <td className="text-[#11263c] xxl:text-xl">{selectedBathrooms}</td>
                         </tr>
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
@@ -766,9 +842,20 @@ export default function BookForm() {
                           </td>
                           <td>:</td>
                           <td className="text-[#11263c] xxl:text-xl">
-                            1 - 999 Sq Ft
+                            {selectedSqft}
                           </td>
                         </tr>
+                        {selectedExtras.length > 0 && (
+                          <tr>
+                            <td className="text-sm xxl:text-xl text-[#6c757d]">
+                              Extras
+                            </td>
+                            <td>:</td>
+                            <td className="text-[#11263c] xxl:text-xl">
+                              {selectedExtras.join(", ")}
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -778,7 +865,7 @@ export default function BookForm() {
                         Total Before Tax
                       </h1>
                       <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                        $87.20
+                      ${price}
                       </h1>
                     </div>
                     <div className="flex justify-between items-center">
@@ -786,7 +873,7 @@ export default function BookForm() {
                         TOTAL
                       </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        $87.20
+                      ${price}
                       </h1>
                     </div>
                   </div>
