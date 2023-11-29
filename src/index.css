@@ -107,6 +107,7 @@ footer {
 font-family: "Plus Jakarta Sans", sans-serif !important;
 color: white !important;
 border-radius: 0 !important;
+z-index: 40 !important;
 }
 
 [data-testid="flowbite-card"] {
@@ -142,11 +143,7 @@ box-shadow: none !important;
 [data-testid='flowbite-accordion-content']{
   padding: 0 !important;
 }
-[data-testid='flowbite-accordion'] button{
-  padding: 12px !important;
-  background-color: white !important;
-  margin-bottom: 10px !important;
-}
+
 [data-testid='flowbite-accordion-heading']{
   color: #11263c !important;
 }
@@ -252,12 +249,11 @@ label{
 }
 
 #firstName,#lastName,#email,#tel,#base{
-  width: 350px !important;
+  /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
   border-radius: 4px !important;
   padding-left: 40px !important;
- 
 }
 #emailid,#passward{
   width: 350px !important;
@@ -280,8 +276,18 @@ input::placeholder{
   color: white !important;
 }
 
+.fOFptH{
+  color: black !important;
+}
+
+.jQMQWL{
+  width: 100% !important;
+  height: auto !important;
+}
+
 
 /* Responsive */
+
 @media (max-width:426px) {
   .btn-secondary {
     --bs-btn-color: #11263c !important;
@@ -314,9 +320,28 @@ input::placeholder{
   nav{
     padding: 0 12px !important;
   }
+  [data-testid='flowbite-accordion'] button{
+    padding: 4px !important;
+    background-color: white !important;
+    border-radius: 4px !important;
+  }
+  [data-testid='flowbite-accordion']{
+    border: 1px solid black !important;
+    background-color: white !important;
+    border-radius: 4px !important;
+  }
 }
 @media (min-width:426px) and (max-width:1025px) {
 
+  [data-testid="flowbite-accordion"]{
+    border: 1px solid black !important;
+  }
+  [data-testid="flowbite-accordion"] button{
+    border: none !important;
+    background-color: white !important;
+    border-radius: 4px !important;
+    padding: 4px !important;
+  }
   [aria-label='Pills'] button{
     padding: 12px !important;
     background: #3a9dcc !important;
@@ -419,48 +444,18 @@ nav{
     border-radius: 4px !important;
     padding-left: 40px !important;
   }
-  /* nav {
-    background-color: #f3fafc !important;
-    padding: 0 !important;
-  } */
-  nav ul li a {
-    padding: 4px 8px !important;
-    font-family: "Plus Jakarta Sans", sans-serif !important;
-    color: #014584 !important;
-    font-size: 16px !important;
-    line-height: 28px !important;
-  }
-  nav ul li {
-    margin-left: 4px !important;
-  }
-  nav ul li a:hover {
-    color: #61b1d6 !important;
-    border-bottom: #61b1d6 1.5px solid;
-  }
-  
-  .book {
-    background: #3a9dcc !important;
-    border-radius: 0 !important;
-    padding: 8px 10px !important;
-    text-decoration: none !important;
-    transition: all 0.3s ease-in-out;
-    outline: none !important;
-    color: white !important;
-    border: none !important;
-    margin-left: 4px !important;
-  }
-  .book:hover {
-    transform: scale(0.8);
-  }
-  .book span {
-    color: white;
-    font-size: 18px !important;
-    line-height: 28px !important;
-    padding: 2px !important;
+  .btn-light {
+    --bs-btn-padding-x: 22px !important;
+    --bs-btn-padding-y: 16px !important;
+    width: 110px !important;
+    height: 100px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 }
 @media (min-width:1024px) {
-  
+ 
   #firstName,#lastName,#email,#tel,#base{
     /* width: 350px !important; */
     padding: 15px !important;
@@ -469,10 +464,10 @@ nav{
     padding-left: 40px !important;
   }
  
-  /* nav {
+  nav {
     background-color: #f3fafc !important;
-    padding: 0 !important;
-  } */
+    padding: 0 12px !important;
+  }
   nav ul li a {
     padding: 4px 8px !important;
     font-family: "Plus Jakarta Sans", sans-serif !important;
@@ -518,6 +513,11 @@ nav{
     font-weight: 400 !important;
     font-size: 15px !important;
   }
+  [data-testid='flowbite-accordion'] button{
+    padding: 12px !important;
+    background-color: white !important;
+    margin-bottom: 10px !important;
+  }
 }
 @media (min-width:1025px) and (max-width:2560px) {
   [aria-label='Pills'] button{
@@ -527,6 +527,23 @@ nav{
   }
   .nav-header {
     font-family: "Figtree", sans-serif !important;
+  }
+
+  [data-testid="footer-groupLink"] li a{
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+  }
+}
+@media (min-width:1440px) and (max-width:2561px) {
+  .btn-light {
+    --bs-btn-padding-x: 22px !important;
+    --bs-btn-padding-y: 16px !important;
+    width: 130px !important;
+    height: 100px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   nav {
     background-color: #f3fafc !important;
@@ -566,22 +583,11 @@ nav{
     line-height: 28px !important;
     padding: 2px !important;
   }
-  [data-testid="footer-groupLink"] li a{
-    color: white !important;
-    font-weight: 400 !important;
-    font-size: 18px !important;
-  }
-}
-@media (min-width:1440px) and (max-width:2561px) {
-  .btn-light {
-    --bs-btn-padding-x: 22px !important;
-    --bs-btn-padding-y: 16px !important;
-    width: 130px !important;
-    height: 100px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
+  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
+    font-size: 16px !important;
+    color: #676f748b !important ;
+    font-weight: bold;
+  }  
 }
 @media (min-width:2560px) {
 
@@ -641,9 +647,14 @@ nav{
     font-weight: 500 !important;
   
   }
+  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
+    font-size: 20px !important;
+    color: #676f748b !important ;
+    font-weight: bold;
+  }  
 }
 
-@media  (min-width: 769px) and (max-width:1024px) {
+@media  (min-width: 768px) and (max-width:1024px) {
   #emailid,#passward{
     width: 350px !important;
     padding: 15px !important;
@@ -657,6 +668,44 @@ nav{
     color: #676f748b !important ;
     font-weight: 500 !important;
   
+  }
+  nav {
+    background-color: #f3fafc !important;
+    padding: 0 10px !important;
+  }
+  nav ul li a {
+    padding: 4px 4px !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: #014584 !important;
+    font-size: 12px !important;
+    line-height: 28px !important;
+  }
+  nav ul li a{
+    margin-left: 4px !important;
+  }
+  nav ul li a:hover {
+    color: #61b1d6 !important;
+    border-bottom: #61b1d6 1.5px solid;
+  }
+  
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 4px 4px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+    margin-left: 4px !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 12px !important;
+    line-height: 28px !important;
   }
 }
 @media (min-width:1025px) and (max-width:1440px){
@@ -688,9 +737,8 @@ nav{
     font-weight: 500 !important;
     font-size: small !important;
     color: #676f748b !important ;
-   
   }
-}
+
 
 .fi-ss-angle-down,.fi-ss-angle-right{
   font-weight: bold;
@@ -714,6 +762,7 @@ nav{
   margin-bottom: 1rem;
   vertical-align: top;
   border-color: rgb(164, 161, 161) !important;
+}
   footer li a {
     color: white;
     font-weight: 400 !important;
@@ -734,46 +783,8 @@ nav{
     height: 250px !important;
     /* margin-left: -20px !important; */
   }
-  .btn-secondary {
-    --bs-btn-color: #11263c !important;
-    --bs-btn-bg: #e5ecf2;
-    --bs-btn-border-color: #e5ecf2;
-    --bs-btn-hover-color: #11263c;
-    --bs-btn-hover-bg: #e5ecf2;
-    --bs-btn-hover-border-color: #e5ecf2;
-    --bs-btn-focus-shadow-rgb: 130, 138, 145;
-    --bs-btn-active-color: white;
-    --bs-btn-active-bg: #ced5d8;
-    --bs-btn-active-border-color: #ced5d8;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-padding-x: 30px !important;
-    --bs-btn-padding-y: 18px !important;
-    --bs-btn-font-family: ;
-    --bs-btn-font-size: 24px;
-    --bs-btn-font-weight: 500;
-    --bs-btn-line-height: 1.5;
-  }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
-    font-size: 20px !important;
-    color: #676f748b !important ;
-    font-weight: bold;
-  }
-  
-.btn-light {
-  --bs-btn-padding-x: 52px !important;
-  --bs-btn-padding-y: 16px !important;
-  width: 180px !important;
-  height: 100px !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
 }
-
-select{
-  font-size: 24px !important;
-}
-}
-@media (min-width:768px) and (max-width:1025px) {
+@media (min-width:768px) and (max-width:1023px) {
   .btn-secondary {
     --bs-btn-color: #11263c !important;
     --bs-btn-bg: #e5ecf2;

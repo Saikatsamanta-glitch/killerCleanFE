@@ -80,7 +80,7 @@ export default function Nav() {
           <Navbar.Link as={Link} to={"/customerlogin"}>Customer Login</Navbar.Link>
           <Navbar.Link as={Link} to={"/contact"}>Contact</Navbar.Link>
           <Navbar.Link as={Link} to={"/applynow"}>Apply Now</Navbar.Link>
-          {isMobile || isTablet ? (
+          {isMobile ? (
             <Navbar.Link as={Link} to={"/book"}>Book Online</Navbar.Link>
           ) : (
             <Button as={Link} to={"/book"} className='book active:bg-none active:border-none active:outline-none focus:outline-none'>

@@ -53,7 +53,7 @@ export default function Welcome() {
           preserveAspectRatio="none"
           className="absolute max-sm:-bottom-32 md:-bottom-16 lg:max-xxl:-bottom-12 max-sm:h-32 max-md:h-28  w-full -z-20 right-0"
         >
-          <path class="elementor-shape-fill" fill="white" d="M0,6V0h1000v100L0,6z"></path>
+          <path className="elementor-shape-fill" fill="white" d="M0,6V0h1000v100L0,6z"></path>
         </svg>
       </div>
    

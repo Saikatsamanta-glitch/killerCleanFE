@@ -4,7 +4,7 @@ import { Footer } from "flowbite-react";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 export default function CustomFooter() {
   return (
-    <Footer container className="bg-[#014584] px-0 w-screen">
+    <Footer container className="bg-[#014584] px-0 relative  w-screen">
       <div className="w-full">
         <div className=" w-full max-sm:px-2 flex flex-col items-center
         lg:mt-4 sm:px-[30px] lg:px-[80px] sm:grid sm:grid-cols-2 sm:-gap-x-9">
