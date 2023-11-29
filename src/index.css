@@ -29,6 +29,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+button[type='submit'] span{
+  font-size: 24px !important;
+}
+button[type='submit']:hover{
+  background-color: #ced5d8 !important;
+}
 /* Navbar Stylings */
 
 .fa-brands:hover {

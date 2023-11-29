@@ -58,8 +58,8 @@ export default function Testimonials() {
           }}
           className="bg-contain bg-repeat w-full  opacity-[8%] bg-[400px auto] p-20"
         ></div>
-        <div className=" absolute top-40 m-auto w-full sm:p-20 max-sm:p-2 left-0">
-          <div className="sm:h-[300px] h-[400px] xxl:h-[400px] w-full lg:w-[90%] xxl:w-full xl:mx-auto lg:max-xxl:mx-10">
+        <div className=" absolute top-40 m-auto w-full md:p-20 max-sm:p-2 left-0">
+          <div className="md:h-[300px] h-[400px] xxl:h-[400px] w-full lg:w-[90%] xxl:w-full xl:mx-auto lg:max-xxl:mx-10">
             <Carousel theme={carousel}>
               {testimonials.map((review) => (
                 <div

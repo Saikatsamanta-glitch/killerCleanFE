@@ -5,13 +5,13 @@ import { BsArrowRight } from "react-icons/bs";
 export default function Welcome() {
   return (
     <div className="md:mb-5 max-xxl:w-full">
-      <div className="md:flex max-sm:p-2 sm:p-4 lg:p-[50px] home w-full">
+      <div className="md:flex md:items-center max-sm:p-2 sm:p-4 lg:p-[50px] home w-full">
         <div className=" max-sm:py-4 max-sm:px-4 flex flex-col items-center justify-center 
                          sm:p-14 md:items-start md:w-[50%] sm:justify-evenly">
 
 
-          <h1 className=" max-sm:text-center sm:text-center md:text-left text-[32px] mm:text-[36px] sm:text-[38px] text-[#014584] font-semibold
-                       md:text-[46px] lg:text-6xl xxl:text-8xl
+          <h1 className=" max-sm:text-center sm:max-md:text-center md:text-left text-[32px] mm:max-sm:text-[36px] sm:max-lg:text-[38px] text-[#014584] font-semibold
+                        lg:text-6xl xxl:text-8xl
           max-sm:mb-2 sm:max-md:mb-6 md:mb-6">
             Welcome to Killer Clean
           </h1>
@@ -51,7 +51,7 @@ export default function Welcome() {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1000 100"
           preserveAspectRatio="none"
-          className="absolute max-sm:-bottom-32 md:-bottom-16 lg:max-xxl:-bottom-12 max-sm:h-32 max-md:h-28  w-full -z-20 right-0"
+          className="absolute max-sm:-bottom-32 sm:max-md:-bottom-28 md:-bottom-16 lg:max-xxl:-bottom-12 max-sm:h-32 max-md:h-28  w-full -z-20 right-0"
         >
           <path className="elementor-shape-fill" fill="white" d="M0,6V0h1000v100L0,6z"></path>
         </svg>
