@@ -15,13 +15,13 @@ export default function OurServices() {
         {ourservices.map((card) => (
           <div
             key={card.id}
-            className="md:h-[500px] min-h-[400px] bg-white max-md:max-w-[400px]  md:w-[230px] lg:w-[250px] xl:w-[370px] xxl:w-[400px]  mb-6 flex flex-col items-center justify-evenly sm:items-start p-4  lg:p-8 shadow-xl"
+            className="md:h-[500px] min-h-[400px] bg-white max-md:max-w-[400px]  md:w-[230px] lg:w-[250px] xl:w-[370px] xxl:w-[400px]  mb-6 flex flex-col max-md:items-center justify-evenly md:items-start p-4  lg:p-8 shadow-xl"
           >
-            <img src={card.icon} alt="" className="h-14 w-14 sm:mb-4 xxl:h-20 xxl:w-20"/>
-            <h5 className="text-2xl max-sm:text-center tracking-tight font-medium text-[#014584] dark:text-white sm:mb-4 xxl:text-4xl">
+            <img src={card.icon} alt="" className="max-xxl:h-14 max-xxl:w-14 sm:mb-4 xxl:h-20 xxl:w-20"/>
+            <h5 className="text-2xl max-md:text-center tracking-tight font-medium text-[#014584] dark:text-white sm:mb-4 xxl:text-4xl">
               {card.title}
             </h5>
-            <p className="text-[17px] xxl:text-xl leading-7 max-sm:text-center text-[#014584] dark:text-gray-400">
+            <p className="text-[17px] xxl:text-xl leading-7 max-md:text-center text-[#014584] dark:text-gray-400">
               {card.desc}
             </p>
           </div>

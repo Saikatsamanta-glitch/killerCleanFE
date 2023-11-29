@@ -11,22 +11,14 @@ import {
   Checkbox,
   Textarea,
   Button,
-  Radio,
 } from "flowbite-react";
-import { Link } from "react-router-dom";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
 import fakeRequest from "./EmailSender";
+import { useCallback } from "react";
 export default function BookForm() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [tel, setTel] = useState("");
-  const [check, setCheck] = useState("");
-  const [touchedFields, setTouchedFields] = useState({});
-  // const [checked, setChecked] = useState(false);
   const [isScheduling, setIsScheduling] = useState(false);
   const [isScheduled, setIsScheduled] = useState(false);
   const [scheduleErr, setScheduleErr] = useState("");
@@ -40,18 +32,19 @@ export default function BookForm() {
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [price, setPrice] = useState(0);
 
+  
   // Define your pricing logic
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     // Replace this with your actual pricing logic based on selected options
     const basePrice = 50; // Replace with your base price
     let freqPrice;
-    if (selectedFrequency == "One-time") {
+    if (selectedFrequency === "One-time") {
       freqPrice = 40;
-    } else if (selectedFrequency == "Weekly") {
+    } else if (selectedFrequency === "Weekly") {
       freqPrice = 30;
-    } else if (selectedFrequency == "Every other week") {
+    } else if (selectedFrequency === "Every other week") {
       freqPrice = 25;
-    } else if (selectedFrequency == "Every 4 weeks") {
+    } else if (selectedFrequency === "Every 4 weeks") {
       freqPrice = 20;
     } else {
       freqPrice = 0;
@@ -95,11 +88,6 @@ export default function BookForm() {
       extrasPrice;
 
     setPrice(totalPrice);
-  };
-
-  // Update the price whenever the selected options change
-  useEffect(() => {
-    calculatePrice();
   }, [
     selectedFrequency,
     selectedBedrooms,
@@ -107,6 +95,11 @@ export default function BookForm() {
     selectedSqft,
     selectedExtras,
   ]);
+
+  // Update the price whenever the selected options change
+  useEffect(() => {
+    calculatePrice();
+  }, [calculatePrice]);
 
   // Update the state when user makes selections
   const handleFrequencyChange = (event) => {
@@ -133,7 +126,7 @@ export default function BookForm() {
         : [...prevExtras, extra]
     );
   };
-
+// mobile and tablet view
   useEffect(() => {
     // Update isMobile when the window is resized
     const handleResize = () => {
@@ -164,22 +157,6 @@ export default function BookForm() {
       .finally(() => {
         setIsScheduling(false);
       });
-  };
-
-  const handleInputChange = (event, setStateFunction) => {
-    const { value, name } = event.target;
-    setStateFunction(value);
-
-    // Mark the field as touched
-    setTouchedFields((prevTouchedFields) => ({
-      ...prevTouchedFields,
-      [name]: true,
-    }));
-  };
-  const isFieldEmpty = (value) => value.trim() === "";
-
-  const isFieldRequired = (field, value) => {
-    return touchedFields[field] && isFieldEmpty(value);
   };
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
@@ -382,22 +359,7 @@ export default function BookForm() {
               ))}
             </div>
           </div>
-          {/* Service Provider */}
-          <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
-              Select Service Provider
-            </h1>
-            <div className="">
-              <DayTimePicker
-                timeSlotSizeMinutes={60}
-                isLoading={isScheduling}
-                isDone={isScheduled}
-                err={scheduleErr}
-                onConfirm={handleScheduled}
-              />
-            </div>
-          </div>
-          {/* Customer Details */}
+           {/* Customer Details */}
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
               Customer Details{" "}
@@ -418,12 +380,7 @@ export default function BookForm() {
                   required
                   className=""
                   placeholder="Ex: James"
-                  value={firstName}
-                  onChange={(e) => handleInputChange(e, setFirstName)}
                 />
-                {isFieldRequired("firstName", firstName) && (
-                  <div className="text-red-600">This field is required</div>
-                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -440,12 +397,7 @@ export default function BookForm() {
                   required
                   className=""
                   placeholder="Ex: Lee"
-                  value={lastName}
-                  onChange={(e) => handleInputChange(e, setLastName)}
                 />
-                {isFieldRequired("lastName", lastName) && (
-                  <div className="text-red-600">This field is required</div>
-                )}
               </div>
 
               <div>
@@ -463,12 +415,7 @@ export default function BookForm() {
                   required
                   className=""
                   placeholder="Ex: example@xyz.com"
-                  value={email}
-                  onChange={(e) => handleInputChange(e, setEmail)}
                 />
-                {isFieldRequired("email", email) && (
-                  <div className="text-red-600">This field is required</div>
-                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -501,12 +448,7 @@ export default function BookForm() {
                   required
                   className=""
                   placeholder="Phone No."
-                  value={tel}
-                  onChange={(e) => handleInputChange(e, setTel)}
                 />
-                {isFieldRequired("tel", tel) && (
-                  <div className="text-red-600">This field is required</div>
-                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -525,15 +467,7 @@ export default function BookForm() {
                 />
               </div>
               <div className="flex items-center">
-                <Checkbox
-                  id="check"
-                  className="h-6 w-6"
-                  value={check}
-                  onChange={(e) => handleInputChange(e, setCheck)}
-                />
-                {isFieldRequired("check", check) && (
-                  <div className="text-red-600">This field is required</div>
-                )}
+                <Checkbox id="check" className="h-6 w-6" />
                 <Label
                   htmlFor="check"
                   className="-ml-5 xxl:text-3xl  max-lg:text-lg"
@@ -577,6 +511,21 @@ export default function BookForm() {
                   placeholder="#"
                 />
               </div>
+            </div>
+          </div>
+          {/* Service Provider */}
+          <div className="border-b w-full py-4 lg:p-4">
+            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
+              Select Service Provider
+            </h1>
+            <div className="">
+              <DayTimePicker
+                timeSlotSizeMinutes={60}
+                isLoading={isScheduling}
+                isDone={isScheduled}
+                err={scheduleErr}
+                onConfirm={handleScheduled}
+              />
             </div>
           </div>
           {/* Key Info */}
@@ -694,12 +643,7 @@ export default function BookForm() {
         {/* Payment */}
         <div className="flex flex-col items-start mb-4">
           <div className="flex items-center mb-4">
-            <Checkbox
-              id="agree"
-              className="h-6 w-6"
-              value={check}
-              onChange={(e) => handleInputChange(e, setCheck)}
-            />
+            <Checkbox id="agree" className="h-6 w-6" />
             <Label
               htmlFor="agree"
               className="-ml-5 xxl:text-5xl text-[#52616b] font-normal max-xxl:text-lg"
@@ -713,17 +657,28 @@ export default function BookForm() {
             the Terms of Service and Privacy Policy.
           </p>
           <div className="flex items-center mb-4">
-          <span className="text-[#52616b]">Your card is charged AFTER the appointment is completed.</span>
-          <span><Tooltip
-            content=" By clicking 'Save Booking' you agree to our terms of service and privacy policy."
-            arrow={false}
-            className="w-48 border bg-white  text-black font-normal text-center "
-          >
-            <span><IoMdInformationCircleOutline className=" ml-1 text-[#52616b] xxl:text-xl" /></span>
-          </Tooltip></span>
-          
+            <span className="text-[#52616b]">
+              Your card is charged AFTER the appointment is completed.
+            </span>
+            <span>
+              <Tooltip
+                content=" By clicking 'Save Booking' you agree to our terms of service and privacy policy."
+                arrow={false}
+                className="w-48 border bg-white  text-black font-normal text-center "
+              >
+                <span>
+                  <IoMdInformationCircleOutline className=" ml-1 text-[#52616b] xxl:text-xl" />
+                </span>
+              </Tooltip>
+            </span>
           </div>
-          <Button type="submit" className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"> <FaRegCalendarDays className="mr-2"/> Save Booking </Button>
+          <Button
+            type="submit"
+            className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
+          >
+            {" "}
+            <FaRegCalendarDays className="mr-2" /> Save Booking{" "}
+          </Button>
         </div>
       </form>
       {/* Booking Summary and Questions */}

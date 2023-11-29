@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Nav() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isTablet, setTablet] = useState(window.innerWidth < 1024);
   const [isSticky, setIsSticky] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       // Check if the user has scrolled past the first div
@@ -29,7 +27,6 @@ export default function Nav() {
     // Update isMobile when the window is resized
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
-      setTablet(window.innerWidth < 1024);
     };
 
     window.addEventListener("resize", handleResize);
@@ -40,6 +37,7 @@ export default function Nav() {
     };
   }, []);
   return (
+
     <div className="w-screen">
       <div className="nav-header h-[55px] hidden bg-[#014584]  md:flex  items-center w-full lg:px-24 px-10 justify-between ">
         <div className="flex items-center">
@@ -77,9 +75,7 @@ export default function Nav() {
           <Navbar.Link as={Link} to={"/cleaningchecklist"}>
             Cleaning Checklist
           </Navbar.Link>
-          <Navbar.Link as={Link} to={"/customerlogin"}>Customer Login</Navbar.Link>
           <Navbar.Link as={Link} to={"/contact"}>Contact</Navbar.Link>
-          <Navbar.Link as={Link} to={"/applynow"}>Apply Now</Navbar.Link>
           {isMobile ? (
             <Navbar.Link as={Link} to={"/book"}>Book Online</Navbar.Link>
           ) : (
