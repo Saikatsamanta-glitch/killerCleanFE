@@ -22,11 +22,11 @@ const tab = {
 };
 const CleaningChecklist = () => {
   return (
-    <div className="sm:px-32 px-2 mt-10">
-      <h1 className="text-[42px] text-[#014584] font-semibold text-center mb-4">
+    <div className=" sm:px-32 px-2 mt-10 ">
+      <h1 className="md:max-xxl:text-[42px] text-[32px] text-[#014584] font-semibold text-center mb-4">
         Cleaning Checklist
       </h1>
-      <div className="  shadow-lg bg-white">
+      <div className="flex justify-center shadow-lg bg-white">
         <div className="flex flex-row justify-evenly items-center  pt-7">
           <Tabs
             aria-label="Pills"
