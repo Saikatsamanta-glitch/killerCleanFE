@@ -8,11 +8,7 @@ export default function OurServices() {
           Our professional services
         </h1>
         <p className="sm:w-[60%] text-[#014584] xxl:w-[70%] text-[17px] xxl:text-3xl max-sm:text-center sm:text-left leading-7 sm:px-10">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit sed
-          ullamcorper morbi tincidunt ornare massa. Cursus risus at ultrices mi
-          tempus imperdiet nulla. Vulputate odio ut enim blandit volutpat. Lacus
-          luctus accumsan tortor posuere ac ut.
+        We’re proud to provide safe and reliable professional-grade cleaning supplies and products. Each of our teams of Killer Clean has been professionally trained to deliver high quality house cleaning services. We offer multiple cleaning packages that are designed to meet the demands of any home owner. Whether you need your house cleaning services on a regular basis or just one time, we have a cleaning option that's right for you. A comprehensive description of each cleaning package is below.
         </p>
       </div>
       <div className="flex flex-col sm:flex-row sm:my-12 my-3 items-center w-full justify-evenly">

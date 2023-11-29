@@ -7,7 +7,7 @@ export default function Welcome() {
     <div className="md:mb-5 max-xxl:w-full">
       <div className="md:flex max-sm:p-2 sm:p-4 lg:p-[50px] home w-full">
         <div className=" max-sm:py-4 max-sm:px-4 flex flex-col items-center justify-center 
-                         sm:p-2 md:items-start md:w-[50%] sm:justify-evenly">
+                         sm:p-14 md:items-start md:w-[50%] sm:justify-evenly">
 
 
           <h1 className=" max-sm:text-center sm:text-center md:text-left text-[36px] text-[#014584] font-semibold
@@ -18,9 +18,7 @@ export default function Welcome() {
           <p className="text-[#014584] max-sm:mb-10 max-sm:text-center sm:text-center md:text-left
           md:max-lg:text-base lg:text-lg xxl:text-4xl
           sm:max-md:mb-6 md:mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit
-            sed ullamcorper morbi tincidunt ornare massa.
+            Dirts Worst Nightmare
           </p>
           <Button as={Link} to={"/book"} className='book'>
             Book Now <BsArrowRight className="ml-3 " strokeWidth={1} />
