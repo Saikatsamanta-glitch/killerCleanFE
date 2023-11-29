@@ -7,7 +7,7 @@ export default function Work() {
       <h1 className="text-center text-[36px] md:text-[40px] lg:text-[44px] xxl:text-6xl text-[#014584] font-semibold mb-10">
         How It Works
       </h1>
-      <div className="h-full w-full flex flex-col sm:flex-row items-center justify-evenly">
+      <div className="h-full w-full flex flex-col md:flex-row items-center justify-evenly">
         {work.map((v, index) => (
           <>
             <div key={v.id} className="flex flex-col items-center w-[220px] sm:mb-4 mb-10">

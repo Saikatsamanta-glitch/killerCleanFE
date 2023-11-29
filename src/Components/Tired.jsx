@@ -10,24 +10,24 @@ export default function Tired() {
       <p className="text-center max-sm:px-2 md:px-10 mb-5 text-[17px] xxl:text-3xl leading-8 sm:text-lg lg:mx-56 text-[#014584]"> 
       Let Killer Clean do all of the dirty work for you. Focus on everything else you need to get done and schedule a cleaning with us today.
       </p>
-      <div className="flex flex-col sm:flex-row items-center w-full md:mb-12">
-        <div className="sm:w-[50%] flex flex-col max-sm:p-2 items-center   sm:p-14 xxl:p-14">
-          <h1 className="text-3xl text-center lg:text-4xl xxl:text-8xl text-[#014584] max-sm:mb-4 sm:mb-4 font-semibold xxl:mb-20">
+      <div className="flex flex-col md:flex-row items-center w-full md:mb-12">
+        <div className="md:w-[50%] flex flex-col max-sm:p-2 items-center sm:max-md:p-8  md:p-14 xxl:p-14">
+          <h1 className="max-lg:text-3xl text-center lg:text-4xl xxl:text-8xl text-[#014584] max-sm:mb-4 sm:mb-4 font-semibold xxl:mb-20">
             Consistent Quality
           </h1>
           <p className="text-[17px] text-[#014584] xxl:text-3xl text-center leading-8 sm:text-left">
           Killer Clean provides all the cleaning supplies and equipment needed to clean your home.
           </p>
         </div>
-        <div className="sm:w-[50%] flex justify-center sm:justify-end">
+        <div className="md:w-[50%] flex justify-center md:justify-end">
           <img
             src="https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/Untitled-740-%C3%97-800-px-10-1.png"
-            alt="" className="w-[90%] max-sm:p-2 sm:p-14 xxl:p-14"
+            alt="" className="w-[90%] max-sm:p-2 sm:max-md:p-8 md:p-14 xxl:p-14"
           />
         </div>
       </div>
-      <div className="flex w-full flex-col sm:flex-row-reverse items-center relative md:mb-12">
-        <div className="sm:w-[50%] flex flex-col max-sm:p-2 items-center  sm:p-14 xxl:p-14">
+      <div className="flex w-full flex-col md:flex-row-reverse items-center relative md:mb-12">
+        <div className="md:w-[50%] flex flex-col max-sm:p-2 items-center sm:max-md:p-8  md:p-14 xxl:p-14">
           <h1 className="text-3xl text-center lg:text-4xl xxl:text-8xl text-[#014584] max-sm:mb-4 sm:mb-4 font-semibold xxl:mb-20 ">
             Experienced and Background Checked Cleaners
           </h1>
@@ -35,10 +35,10 @@ export default function Tired() {
           Our employees are friendly, professionally trained, background checked, bonded and insured.
           </p>
         </div>
-        <div className="sm:w-[50%] flex justify-center sm:justify-end">
+        <div className="md:w-[50%] flex justify-center md:justify-end">
           <img
             src="https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/Untitled-740-%C3%97-800-px-7-1.png"
-            alt="" className="w-[90%] max-sm:p-2 sm:p-10 xxl:p-14"
+            alt="" className="w-[90%] max-sm:p-2 sm:max-md:p-8 md:p-10 xxl:p-14"
           />
         </div>
         <img
@@ -48,8 +48,8 @@ export default function Tired() {
         />
       </div>
       <div className=" flex items-center w-full md:mb-12">
-        <div className="sm:w-[50%] flex flex-col max-sm:p-2 items-center sm:p-10 xxl:p-14">
-          <h1 className="text-3xl text-center lg:text-4xl xxl:text-8xl text-[#014584] max-sm:mb-4 sm:mb-4 xxl:mb-20 font-semibold">
+        <div className="md:w-[50%] flex flex-col max-sm:p-2 items-center sm:max-md:p-8 md:p-10 xxl:p-14">
+          <h1 className="max-lg:text-3xl text-center lg:text-4xl xxl:text-8xl text-[#014584] max-sm:mb-4 sm:mb-4 xxl:mb-20 font-semibold">
             Online Booking & Payment and Responsive Customer Support
           </h1>
           <p className="text-[17px] text-[#014584] xxl:text-3xl text-center max-sm:mb-4 sm:mb-4 leading-8 sm:text-left xxl:mb-20 ">
@@ -59,7 +59,7 @@ export default function Tired() {
             Schedule A Cleaning
           </Button>
         </div>
-        <div className="sm:w-[50%] hidden sm:flex justify-end">
+        <div className="md:w-[50%] hidden md:flex justify-end">
           <img
             src="https://sparklingclean.siterubix.com/wp-content/uploads/2023/09/Untitled-740-%C3%97-800-px-11-1.png"
             alt="" className="w-[90%] p-7 sm:p-14 xxl:p-14"
