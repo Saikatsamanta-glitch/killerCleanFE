@@ -17,15 +17,35 @@ import { Link } from "react-router-dom";
 import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
+import fakeRequest from "./EmailSender";
 export default function BookForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
   const [check, setCheck] = useState("");
-  // const [checked, setChecked] = useState(false);
-
   const [touchedFields, setTouchedFields] = useState({});
+  // const [checked, setChecked] = useState(false);
+  const [isScheduling, setIsScheduling] = useState(false);
+  const [isScheduled, setIsScheduled] = useState(false);
+  const [scheduleErr, setScheduleErr] = useState("");
+  const handleScheduled = (date) => {
+    setIsScheduling(true);
+    setScheduleErr("");
+    fakeRequest(date)
+      .then((json) => {
+        setScheduleErr("");
+        setIsScheduled(true);
+        console.log("fake response: ", json);
+      })
+      .catch((err) => {
+        setScheduleErr(err);
+      })
+      .finally(() => {
+        setIsScheduling(false);
+      });
+  };
+
   const handleInputChange = (event, setStateFunction) => {
     const { value, name } = event.target;
     setStateFunction(value);
@@ -223,7 +243,13 @@ export default function BookForm() {
             Select Service Provider
           </h1>
           <div className="">
-            <DayTimePicker timeSlotSizeMinutes={60} />
+            <DayTimePicker
+              timeSlotSizeMinutes={60}
+              isLoading={isScheduling}
+              isDone={isScheduled}
+              err={scheduleErr}
+              onConfirm={handleScheduled}
+            />
           </div>
         </div>
         {/* Customer Details */}
