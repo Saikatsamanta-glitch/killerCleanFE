@@ -33,20 +33,20 @@ const CustomerLogin = () => {
           "url('https://dp3d2hb4975es.cloudfront.net/assets/images/login-signup-bg.jpg')",
       }}
     >
-      <div className="min-h-[450px] ">
+      <div className="min-h-[450px] xxl:min-h-[550px] ">
         <h1 className="text-center lg:max-xxl:text-3xl text-[24px] xxl:text-5xl font-semibold mb-3">Sign In</h1>
         <p className="text-center mb-5 text-sm xxl:text-xl">
           Sign in to track your bookings, reschedule, edit and more.
         </p>
         <form className="loginForm">
-          <div className="form-group mb-4 ml-6">
-            <Label className="mb-3 text-gray-600 xxl:text-2xl" for="exampleInputEmail1">
+          <div className="form-group mb-4 ">
+            <Label className="mb-3 text-gray-600 xxl:text-xl" for="exampleInputEmail1">
               Sign In Through Your Email
             </Label>
             <TextInput
               type="email"
                 // className="form-control h-12 w-[550px] rounded-[4px] border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
-              id="email4"
+              id="emailid"
               icon={HiMail}
               placeholder="Ex:example@xyz.com"
               value={email}
@@ -57,7 +57,7 @@ const CustomerLogin = () => {
           <div className="text-red-500 border-red-500" color="failure">This field should not be empty.</div>
         )}
           </div>
-          <div className="form-group mb-4 ml-6">
+          <div className="form-group mb-4 ">
             <TextInput
               type="password"
               //   className="form-control h-12 w-[550px] rounded-[4px] border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
@@ -75,9 +75,9 @@ const CustomerLogin = () => {
             <button
               type="submit"
               onClick={validateForm}
-              className={`btn w-28 h-12 font-bold xxl:text-xl ${
+              className={`btn w-28 h-12 font-bold xxl:text-xl border-[#BAC0C4] ${
                 isFormValid ? 'bg-[#ced5d8] text-white' : 'bg-gray-400 text-gray-700'
-              } mb-4 ml-6`}
+              } mb-4 `}
               disabled={!isFormValid}
             >
               Sign In
@@ -86,7 +86,7 @@ const CustomerLogin = () => {
               Forget Passward ?
             </Link>
           </div>
-          <p className="ml-6 text-gray-500 xxl:text-xl">
+          <p className=" text-gray-500 xxl:text-xl">
             New? <Link className="text-[#00D0FF]">Sign Up</Link>
           </p>
         </form>

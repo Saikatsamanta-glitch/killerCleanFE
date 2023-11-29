@@ -217,6 +217,9 @@ label{
   padding-left: 1.75rem !important;
   padding-right: 1.75rem !important;
 }
+.form-group label{
+  padding-left: 0 !important;
+}
 .btn-light:hover img{
   opacity: 30% !important;
 }
@@ -224,7 +227,15 @@ label{
   background-color: rgba(82,97,107,0.6) !important;
 }
 
-#firstName,#lastName,#email,#tel,#base,input[type='password']{
+#firstName,#lastName,#email,#tel,#base{
+  width: 350px !important;
+  padding: 15px !important;
+  border: 1px solid #BAC0C4 !important;
+  border-radius: 4px !important;
+  padding-left: 40px !important;
+ 
+}
+#emailid,#passward{
   width: 350px !important;
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
@@ -450,4 +461,91 @@ footer {
     background: #3a9dcc !important;
     color: white !important;
   }
+  #emailid,#passward{
+    width: 700px !important;
+    padding: 15px !important;
+    border: 1px solid #BAC0C4 !important;
+    border-radius: 4px !important;
+    padding-left: 40px !important;
+   
+  }
+  input::placeholder{
+    font-size: medium !important;
+    color: #676f748b !important ;
+    font-weight: 500 !important;
+  
+  }
+}
+
+@media  (min-width: 769px) and (max-width:1024px) {
+  #emailid,#passward{
+    width: 350px !important;
+    padding: 15px !important;
+    border: 1px solid #BAC0C4 !important;
+    border-radius: 4px !important;
+    padding-left: 40px !important;
+   
+  }
+  input::placeholder{
+    font-size: medium !important;
+    color: #676f748b !important ;
+    font-weight: 500 !important;
+  
+  }
+}
+@media (min-width:1025px) and (max-width:1440px){
+  #emailid,#passward{
+    width: 500px !important;
+    padding: 15px !important;
+    border: 1px solid #BAC0C4 !important;
+    border-radius: 4px !important;
+    padding-left: 40px !important;
+   
+  }
+  input::placeholder{
+    font-size: medium !important;
+    color: #676f748b !important ;
+    font-weight: 500 !important;
+  
+  }
+}
+@media  (min-width: 1441px) and (max-width:2560px) {
+  #emailid,#passward{
+    width: 500px !important;
+    padding: 15px !important;
+    border: 1px solid #BAC0C4 !important;
+    border-radius: 4px !important;
+    padding-left: 40px !important;
+   
+  }
+  input::placeholder{
+    font-weight: 500 !important;
+    font-size: small !important;
+    color: #676f748b !important ;
+   
+  }
+}
+
+.fi-ss-angle-down,.fi-ss-angle-right{
+  font-weight: bold;
+}
+.table {
+  --bs-table-color-type: initial;
+  --bs-table-bg-type: initial;
+  --bs-table-color-state: initial;
+  --bs-table-bg-state: initial;
+  --bs-table-color: var(--bs-emphasis-color);
+  --bs-table-bg: var(--bs-body-bg);
+  --bs-table-border-color: black!important;
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: black !important;
+  --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05);
+  --bs-table-active-color: var(--bs-emphasis-color);
+  --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
+  --bs-table-hover-color: var(--bs-emphasis-color);
+  --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-color: rgb(164, 161, 161) !important;
 }

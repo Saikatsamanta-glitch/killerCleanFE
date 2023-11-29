@@ -16,20 +16,20 @@ const Contact = () => {
             "url('https://dp3d2hb4975es.cloudfront.net/assets/images/banner-bg.jpg')",
         }}
       >
-        <p className="text-[26px] md:max-xxl:text-[38px] font-semibold mb-3 md:max-xxl:mb-10">
+        <p className="text-[26px] md:max-xxl:text-[38px] font-semibold xl:max-xxl:font-bold mb-3 md:max-xxl:mb-10">
           We Will Be In Touch Within 24 Hours
         </p>
-        <p className="text-[14px] text-[#52616b] md:max-xxl:px-20">
+        <p className="text-[14px] text-[#52616b] md:max-xxl:px-20 xl:max-xxl:text-[15px]">
           You can fill out this form and we will give you a custom quote with
           more detailed information. If you need to call us please reach out to
-          us at 123-456-7890.
+          us at <span className="text-gray-500 font-semibold"> 123-456-7890.</span>
         </p>
       </div>
 
-      <div className="flex flex-col md:max-xxl:flex-row justify-center mt-16 lg:max-xxl:gap-10 md:max-lg:mx-5">
-        <div>
-          <form className=" md:max-lg:w-[550px] lg:max-xxl:w-[850px] h-[980px] bg-white rounded-lg max-sm:px-4 md:max-xxl:px-10 py-10 md:max-xxl:flex md:max-xxl:flex-col shadow-md mx-4 ">
-            <h2 className="text-[25px] mb-4">What Is Your Request?</h2>
+      <div className="flex flex-col sm:max-md:flex-col lg:max-xxl:flex-row justify-center mt-16 lg:max-xxl:gap-1 lg:max-xxl:px-12 md:max-lg:mx-5">
+        <div className="">
+          <form className=" lg:max-xl:w-[550px] lg:max-xxl:w-[850px]  bg-white rounded-lg max-sm:px-5 md:max-xxl:px-10 py-10 md:max-xxl:flex md:max-xxl:flex-col shadow-md mx-4 ">
+            <h2 className="text-[21px] xl:max-xxl:text-[24px] mb-4">What Is Your Request?</h2>
             <div>
               <h3 className="font-bold">Name</h3>
               <input
@@ -57,7 +57,7 @@ const Contact = () => {
             <div>
               <h3 className="font-bold">What Are You Looking For?</h3>
               <div className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
-                <select>
+                <select className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
                   <option value="option1">Option 1</option>
                   <option value="option2">Option 2</option>
                   <option value="option3">Option 3</option>
@@ -70,7 +70,7 @@ const Contact = () => {
               </h3>
               <label className="mt-2 mb-4  ">
                 <input
-                  className="-ml-7 md:max-xxl:ml-2 mr-2 h-6 w-6 border-gray-300"
+                  className="-ml-7 md:max-xxl:-ml-7 mr-2 h-6 w-6 border-gray-300"
                   type="radio"
                   name="contactMethod"
                   value="email"
@@ -79,7 +79,7 @@ const Contact = () => {
                 {/* </label>
               <label> */}
                 <input
-                  className="ml-2 mr-2 h-6 w-6 border-gray-300"
+                  className="ml-2  mr-2 h-6 w-6 border-gray-300"
                   type="radio"
                   name="contactMethod"
                   value="phone"
@@ -95,43 +95,52 @@ const Contact = () => {
                 placeholder="Please provide anything extra here."
               ></textarea>
             </div>
-            <hr className="mt-2 mb-4" />
-            <div className="mb-4">
+            <hr className="my-2" />
+            <div className="py-4">
               <h1 className="text-2xl mb-4">Help Our Company</h1>
-              <h3 className="font-bold">How Did You Hear About Us?</h3>
-              <div className="">
-                <label className="mt-3 mb-4 ">
+              <h3 className="font-bold mb-4">How Did You Hear About Us?</h3>
+              <div className="gap-y-4">
+                
                   <input
-                    className=" -ml-6 mr-2 h-6 w-6 border-gray-300 rounded-md"
+                    className="h-6 w-6 mb-2 border-gray-300 rounded-[4px]"
                     type="checkbox"
                     name="additionalInfo"
+                    id="fb"
                   />
-                  Facebook
+                  <label htmlFor="fb " className="-ml-6 mb-2">Facebook </label>
+                
                   <input
-                    className="ml-2 mr-2 h-6 w-6 border-gray-300 rounded-md"
+                    className="h-6 w-6 mb-2 border-gray-300 rounded-[4px]"
                     type="checkbox"
                     name="additionalInfo"
+                    id="google"
                   />
-                  Google
+                <label htmlFor="google" className="-ml-6 mb-2">Google</label>
+                  
                   <input
-                    className="ml-2 mr-2 h-6 w-6 border-gray-300 rounded-md"
+                    className="h-6 w-6 mb-2 border-gray-300 rounded-[4px]"
                     type="checkbox"
                     name="additionalInfo"
+                    id="yelp"
                   />
-                  Yelp
+                  <label htmlFor="yelp" className="-ml-6 mb-2">Yelp </label>
+                  
                   <input
-                    className="ml-2 mr-2 h-6 w-6 border-gray-300 rounded-md"
+                    className="h-6 w-6 mb-2 border-gray-300 rounded-[4px]"
                     type="checkbox"
                     name="additionalInfo"
+                    id="frnd"
                   />
-                  Friend
+                  <label htmlFor="frnd" className="-ml-6 mb-2"> Friend </label>
+                  
                   <input
-                    className="ml-2 mr-2 h-6 w-6 border-gray-300 rounded-md"
+                    className="h-6 w-6 mb-2 lg:max-xl:ml-[6px] border-gray-300 rounded-[4px]"
                     type="checkbox"
                     name="additionalInfo"
+                    id="thumb"
                   />
-                  Thumbtack
-                </label>
+                  <label htmlFor="thumb" className="-ml-6 lg:max-xl:-ml-6 mb-2"> Thumbtack </label>
+                
               </div>
             </div>
           </form>
