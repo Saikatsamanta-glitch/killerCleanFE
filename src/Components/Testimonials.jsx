@@ -34,7 +34,7 @@ export default function Testimonials() {
           }}
           className="bg-contain bg-repeat w-full opacity-[10%] bg-[400px auto] p-20"
         ></div>
-        <h1 className="absolute top-0 text-[#014584] text-5xl font-semibold lg:max:xl:p-20 xl:py-10 xl:px-20 py-6 mt-4 px-4">
+        <h1 className="absolute top-0 text-[#014584] text-5xl font-semibold lg:max:xl:p-20 xl:py-10 xl:px-20 max-lg:py-6 mt-4 max-lg:px-4">
           Testimonials
         </h1>
         <div

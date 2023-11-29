@@ -175,7 +175,7 @@ export default function BookForm() {
         <form action="">
           {/* Frequency section */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
               Frequency{" "}
             </h1>
             <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:max-lg:flex md:max-lg:flex-col space-y-3">
@@ -229,7 +229,7 @@ export default function BookForm() {
           </div>
           {/* Service Type section */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
               Service Type
             </h1>
             <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
@@ -368,7 +368,7 @@ export default function BookForm() {
           </div>
           {/* Service Provider */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
               Select Service Provider
             </h1>
             <div className="">
@@ -383,7 +383,7 @@ export default function BookForm() {
           </div>
           {/* Customer Details */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
               Customer Details{" "}
             </h1>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
@@ -565,7 +565,7 @@ export default function BookForm() {
           </div>
           {/* Key Info */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] text-3xl xxl:text-3xl mb-3 font-semibold">
+            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-3xl mb-3 font-semibold">
               Key Information & Job Notes
             </h1>
             <p className="text-sm xxl:text-2xl text-[#52616b] mb-4">
@@ -618,7 +618,7 @@ export default function BookForm() {
             </div>
           </div>
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] text-2xl xxl:text-3xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-3xl font-semibold mb-4">
               Special Notes Or Instructions
             </h1>
 

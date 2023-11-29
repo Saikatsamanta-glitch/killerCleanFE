@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../Images/footer-logo.png";
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
+import { Link } from "react-router-dom";
 export default function CustomFooter() {
   return (
     <Footer container className="bg-[#014584] px-0 relative  w-screen">
@@ -34,9 +35,9 @@ export default function CustomFooter() {
           <div>
             <Footer.Title title="Quick Links:"  />
             <Footer.LinkGroup col className="space-y-2 ">
-              <Footer.Link href="/">Home</Footer.Link>
-              <Footer.Link href="/contact">Contact</Footer.Link>
-              <Footer.Link href="/book">Book Now!</Footer.Link>
+              <Footer.Link as={Link} to={"/"}>Home</Footer.Link>
+              <Footer.Link as={Link} to={"/contact"}>Contact</Footer.Link>
+              <Footer.Link as={Link} to={"/book"}>Book Now!</Footer.Link>
             </Footer.LinkGroup>
           </div>
           <div>

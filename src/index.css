@@ -652,6 +652,26 @@ nav{
     color: #676f748b !important ;
     font-weight: bold;
   }  
+  footer li a {
+    color: white;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+  }
+  [data-testid="footer-groupLink"] li a{
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+  }
+  [data-testid="flowbite-footer-title"] {
+    text-transform: capitalize !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 32px !important;
+  }
+  [data-testid="flowbite-footer-brand"] img {
+    height: 250px !important;
+    /* margin-left: -20px !important; */
+  }
 }
 
 @media  (min-width: 768px) and (max-width:1024px) {
@@ -763,26 +783,7 @@ nav{
   vertical-align: top;
   border-color: rgb(164, 161, 161) !important;
 }
-  footer li a {
-    color: white;
-    font-weight: 400 !important;
-    font-size: 24px !important;
-  }
-  [data-testid="footer-groupLink"] li a{
-    color: white !important;
-    font-weight: 400 !important;
-    font-size: 24px !important;
-  }
-  [data-testid="flowbite-footer-title"] {
-    text-transform: capitalize !important;
-    color: white !important;
-    font-weight: 600 !important;
-    font-size: 32px !important;
-  }
-  [data-testid="flowbite-footer-brand"] img {
-    height: 250px !important;
-    /* margin-left: -20px !important; */
-  }
+
 }
 @media (min-width:768px) and (max-width:1023px) {
   .btn-secondary {
