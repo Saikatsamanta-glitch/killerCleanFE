@@ -18,6 +18,8 @@ import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
 import fakeRequest from "./EmailSender";
 import { useCallback } from "react";
+import { useForm, Controller } from "react-hook-form";
+
 export default function BookForm() {
   const [isScheduling, setIsScheduling] = useState(false);
   const [isScheduled, setIsScheduled] = useState(false);
@@ -32,7 +34,19 @@ export default function BookForm() {
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [price, setPrice] = useState(0);
 
-  
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",
+  });
+
+
+
+
+  const onSubmit = (data) => console.log(data);
+
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
     // Replace this with your actual pricing logic based on selected options
@@ -126,7 +140,7 @@ export default function BookForm() {
         : [...prevExtras, extra]
     );
   };
-// mobile and tablet view
+  // mobile and tablet view
   useEffect(() => {
     // Update isMobile when the window is resized
     const handleResize = () => {
@@ -163,6 +177,7 @@ export default function BookForm() {
       {/* Booking form container */}
       <form
         action=""
+        onSubmit={handleSubmit(onSubmit)}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full z-0 "
       >
         <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
@@ -359,63 +374,109 @@ export default function BookForm() {
               ))}
             </div>
           </div>
-           {/* Customer Details */}
+          {/* Customer Details */}
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
               Customer Details{" "}
             </h1>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
               <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="firstName"
-                    value="First Name"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="firstName"
-                  type="text"
-                  sizing="md"
-                  required
-                  className=""
-                  placeholder="Ex: James"
+                <Controller
+                  name="FirstName"
+                  rules={{
+                    required: "First Name is Required",
+                  }}
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <div className="mb-2 block -ml-6">
+                        <Label
+                          htmlFor="firstName"
+                          value="First Name"
+                          className="text-[17px] xxl:text-3xl font-semibold"
+                        />
+                      </div>
+                      <TextInput
+                        id="firstName"
+                        type="text"
+                        required
+                        sizing="md"
+                        {...field}
+                        placeholder="Ex: James"
+                      />
+                    </>
+                  )}
                 />
+               {errors?.FirstName?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.FirstName?.message}</span>
+                )}
               </div>
               <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="lastName"
-                    value="Last Name"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="lastName"
-                  type="text"
-                  sizing="md"
-                  required
-                  className=""
-                  placeholder="Ex: Lee"
+                <Controller
+                  name="LastName"
+                  rules={{
+                    required: "Last Name is Required",
+                  }}
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <div className="mb-2 block -ml-6">
+                        <Label
+                          htmlFor="lastName"
+                          value="Last Name"
+                          className="text-[17px] xxl:text-3xl font-semibold"
+                        />
+                      </div>
+                      <TextInput
+                        id="lastName"
+                        type="text"
+                        sizing="md"
+                        required
+                        {...field}
+                        placeholder="Ex: Lee"
+                      />
+                    </>
+                  )}
                 />
+                {errors?.LastName?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.LastName?.message}</span>
+                )}
               </div>
-
               <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="email"
-                    value="Email Address"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="email"
-                  type="email"
-                  sizing="md"
-                  required
-                  className=""
-                  placeholder="Ex: example@xyz.com"
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{
+                    required: "Email ID is Required",
+                    pattern: {
+                      value:
+                        /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+                      message: "Email ID is invaild",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <>
+                      <div className="mb-2 block -ml-6">
+                        <Label
+                          htmlFor="email"
+                          value="Email Address"
+                          className="text-[17px] xxl:text-3xl font-semibold"
+                        />
+                      </div>
+                      <TextInput
+                        id="email"
+                        type="email"
+                        {...field}
+                        sizing="md"
+                        error={Boolean(errors?.email?.message)}
+                        placeholder="Ex: example@xyz.com"
+                      />
+                    </>
+                  )}
                 />
+                {errors?.email?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.email?.message}</span>
+                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -434,6 +495,18 @@ export default function BookForm() {
                 />
               </div>
               <div>
+              <Controller
+              name="tel"
+              control={control}
+              rules={{
+                required: "Phone No is Required",
+                pattern: {
+                  value: /^([0-9])$/,
+                  message: "Phone No is invaild",
+                },
+              }}
+              render={({ field }) => (
+                <>
                 <div className="mb-2 block -ml-6">
                   <Label
                     htmlFor="tel"
@@ -445,10 +518,16 @@ export default function BookForm() {
                   id="tel"
                   type="tel"
                   sizing="md"
-                  required
-                  className=""
+                  {...field}
+                  error={Boolean(errors?.tel?.message)}
                   placeholder="Phone No."
                 />
+                </>
+                  )}
+                />
+                {errors?.tel?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.tel?.message}</span>
+                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -478,6 +557,14 @@ export default function BookForm() {
             </div>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 my-4">
               <div>
+              <Controller
+              name="address"
+              control={control}
+              rules={{
+                required: "Address is Required",
+              }}
+              render={({ field }) => (
+                <>
                 <div className="mb-2 block -ml-6">
                   <Label
                     htmlFor="base"
@@ -489,10 +576,15 @@ export default function BookForm() {
                   id="base"
                   type="text"
                   sizing="md"
-                  required
-                  className=""
+                  {...field}
                   placeholder="Type Address"
                 />
+                </>
+                  )}
+                />
+                {errors?.address?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.address?.message}</span>
+                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
