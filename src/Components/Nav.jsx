@@ -76,6 +76,7 @@ export default function Nav() {
             Cleaning Checklist
           </Navbar.Link>
           <Navbar.Link as={Link} to={"/contact"}>Contact</Navbar.Link>
+          <Navbar.Link as={Link} to={"/faq"}>FAQ'S</Navbar.Link>
           {isMobile ? (
             <Navbar.Link as={Link} to={"/book"}>Book Online</Navbar.Link>
           ) : (

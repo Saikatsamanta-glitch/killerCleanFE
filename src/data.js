@@ -257,3 +257,51 @@ export const popularQuestions=[
     ans:'You must enter a zip code in order for us to determine the pricing based on your area.'
   },
 ]
+
+export const faqs=[
+  {
+    id:1,
+    que:'Do I need to provide supplies or equipment for my scheduled cleaning service?',
+    ans:"No, you do not need to worry about cleaning supplies and equipment. Our cleaners will bring all that is required to complete the job correctly. Also, the rate quoted typically includes cleaning supplies and equipment. No. You are not required to provide any supplies, cleaning products, or a vacuum. The cleaners have all professional-grade products and supplies needed to complete the jobs required.",
+  },
+  {
+    id:2,
+    que:'What method of payment is accepted, and what are your payment terms?',
+    ans:'We accept all major credit cards, checks, cash, and e-transfers, but payment terms vary depending on the service. For additional information on our payment terms, you can contact our customer service team at 000-000-0000, and we will gladly answer any questions or concerns you may have. We accept credit cards as well as E-transfers. Our system will automatically generate a hold on funds paid via credit card (including Visa debit) the day before your booked services. This is merely a hold and no funds have been removed from your account. The Visa debit cards will look like the money has been removed from your account. We assure you it has not. Your bank is holding it separately for you until the charge is processed after your services have been completed. E-transfers will need to be received by (cleaning company)the day before your appointment.',
+  },
+  {
+    id:3,
+    que:'Do I need to be at home for the cleaning?',
+    ans:'It’s completely up to you. If you’re not going to be home, make sure you let us know how to access your house.No, as long as you have a way to let us in when you are not home there is no reason for you to have to be there. However, if it makes you feel more comfortable we welcome you to stay and watch what we do. All of our house cleaning employees are trustworthy and friendly, they do have a schedule though so make sure to give them enough space to get their work done.',
+  },
+  {
+    id:4,
+    que:'How do I prepare for my cleaning appointment?',
+    ans:'One of the best things you can do is make sure there is as little clutter as possible. The cleaners will need to have access to surfaces to clean and if they are covered up by too much clutter they may be inaccessible. Make sure the floors are clear of items and debris. Communicate with your cleaner when they arrive (if you are home) a plan to make sure the cleaner has space to clean. Children, pets and other adults in the way can really hinder a job from being done in the best way possible. It can also be hazardous. Vacuum cords, cleaning products and supplies will be in the area with the cleaner and to mitigate accidents from happening it is best to give them space. If you have any questions about how to better prepare, feel free to reach out and ask any questions at all!',
+  },
+  {
+    id:5,
+    que:'Are your cleaners bonded/insured?',
+    ans:'Yes, all our cleaners are required to have a clear criminal background check and also be bondable. In addition, all of our cleaners are covered with general liability insurance. Absolutely. The cleaners go through a screening process that includes a police background check, drug screens, reference checks, and in-person interviews. We also require significant experience in residential house cleaning to work with us. Our cleaners also are covered by general liability insurance.',
+  },
+  {
+    id:6,
+    que:'Are you pet friendly?',
+    ans:'We are! However if your pet is unattended when we are entering your home please have them put away or let us know if they are prone to escape or need to be put in a room while bringing in and taking out equipment. Yes, we’re proud to be a pet-friendly company. If your pet is aggressive in any way, we recommend that you leave him or her outside or in a gated area to ensure the safety of our professional housecleaners. If you don’t plan on being home when we arrive, please let us know how to appropriately handle cleaning around your pet.',
+  },
+  {
+    id:7,
+    que:'What is your cancellation/rescheduling policy?',
+    ans:'We require 2 full business days notice if you need to cancel or change any upcoming appointments. When you provide 2 or more full business days notice, there is no cancellation fee. If you provide less than 2 full business days notice, you will be charged a $__ cancellation fee. If you cancel your appointment the day of, or we cannot gain access into your home, you will be charged 100% of your appointment cost. We require 48 hours notice for reschedule or cancellations. There will be a $__ charge for no notice cancellations and lockouts. If you are sick and it’s your cleaning day, please call our office by 7:30 am. We will do our best to reschedule your cleaning that same week. Please do not have us clean if your family is home with the flu. Remember you are home because you are contagious! Thank you.',
+  },
+  {
+    id:8,
+    que:'How many cleaners can I expect?',
+    ans:'We send 1 or 2 cleaners, depending on availability and your needs. Only one cleaner is sent to your home. If you’re on a recurring schedule, we’ll do our best to match you with the same person going forward. Deep Cleanings or larger homes may be scheduled with enough employees to make sure we can do the best job possible in a timely manner.',
+  },
+  {
+    id:9,
+    que:'What do you not clean?/ What do cleaners not do?',
+    ans:'Our professional housecleaning services are designed to keep your home comfortable and clean. We customize services to accommodate your preferences so you never have to worry about paying for a service you don’t need or want.',
+  }
+]
