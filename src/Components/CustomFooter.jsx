@@ -7,7 +7,7 @@ export default function CustomFooter() {
   return (
     <Footer container className="bg-[#014584] px-0 relative  w-screen">
       <div className="w-full">
-        <div className=" w-full max-sm:px-2 flex flex-col items-center
+        <div className=" w-full max-sm:px-2 flex  items-center
         lg:mt-4 md:px-[30px] lg:px-[80px] md:grid md:grid-cols-2 md:-gap-x-9">
           <div className="flex flex-col items-center justify-center md:items-start">
             <Footer.Brand

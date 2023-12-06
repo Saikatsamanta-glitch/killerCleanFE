@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CFormCheck } from "@coreui/react";
 // import { Link } from "react-router-dom";
+import emailjs from '@emailjs/browser';
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Tabs } from "flowbite-react";
 import { Accordion } from "flowbite-react";
@@ -122,9 +123,6 @@ export default function BookForm() {
     setSelectedFrequency(event.target.value);
   };
 
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-  };
   const handleAptChange = (event) => {
     setApt(event.target.value);
   };
@@ -181,6 +179,17 @@ export default function BookForm() {
         setIsScheduling(false);
       });
   };
+//email sending function
+const form = useRef();
+
+  const sendEmail = () => {
+    emailjs.sendForm('service_lrzlb67', 'template_0qic7ra', form.current, 'lO680sw9k9xiPwwsB')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
 
   //payment
   const makePayment = async () => {
@@ -218,10 +227,14 @@ export default function BookForm() {
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
       <form
-      method="POST"
-        action=""
-        onSubmit={handleSubmit(onSubmit)}
-        className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full z-0 "
+        ref={form}
+        onSubmit={
+         ()=>{
+          handleSubmit(onSubmit);
+          sendEmail();
+         }
+        }
+        className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
         <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
           {/* Frequency section */}
@@ -285,6 +298,7 @@ export default function BookForm() {
             </h1>
             <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
               {/* Bedrooms dropdown */}
+
               <div className="flex flex-col justify-center">
                 <div className="mb-2 block">
                   <Label
@@ -368,6 +382,7 @@ export default function BookForm() {
                   <option>5500 - 5999 Sq Ft</option>
                 </Select>
               </div>
+              
             </div>
           </div>
           {/* Extras section */}
@@ -443,6 +458,7 @@ export default function BookForm() {
                         id="firstName"
                         type="text"
                         required
+                        name="to_name"
                         sizing="md"
                         {...field}
                         placeholder="Ex: James"
@@ -515,6 +531,7 @@ export default function BookForm() {
                         type="email"
                         {...field}
                         sizing="md"
+                        name="user_email"
                         error={Boolean(errors?.email?.message)}
                         placeholder="Ex: example@xyz.com"
                       />
@@ -551,7 +568,7 @@ export default function BookForm() {
                     required: "Phone No. is Required",
                     pattern: {
                       value: /^[0-9+ ]+$/,
-                      message: "Phone No is invaild",
+                      message: "Phone No. is invaild",
                     },
                   }}
                   render={({ field }) => (
@@ -623,8 +640,10 @@ export default function BookForm() {
                       <TextInput
                         id="address"
                         type="text"
+                        {...field}
                         sizing="md"
                         placeholder="Type Address"
+                        name="address"
                       />
                     </>
                   )}
@@ -655,12 +674,11 @@ export default function BookForm() {
                   sizing="md"
                   {...field}
                   placeholder="#"
-                  onChange={handleAptChange}
-                  value={apt}
+                 
                 />
                 </>
                   )}
-                  onChange={handleAptChange}
+                 
                 />
               </div>
               </div>
@@ -678,6 +696,7 @@ export default function BookForm() {
                 isDone={isScheduled}
                 err={scheduleErr}
                 onConfirm={handleScheduled}
+
               />
             </div>
           </div>
@@ -834,134 +853,19 @@ export default function BookForm() {
       </form>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
-        {isMobile || isTablet ? (
-          <div className="fixed bottom-2 box-content  w-[94%] m-auto left-3 right-3 z-20">
-            <Accordion collapseAll className=" shadow-lg border rounded-none">
-              <Accordion.Panel>
-                <Accordion.Title className="w-full">
-                  <div className="grid grid-cols-2 items-center gap-x-6 md:gap-x-[350px] px-2 w-full">
-                    <h1 className="font-bold text-lg xxl:text-3xl text-[#11263c]">
-                      Booking Summary
-                    </h1>
-                    <div className="flex flex-col justify-between items-center">
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        ${price}
-                      </h1>
-                    </div>
-                  </div>
-                </Accordion.Title>
-                <Accordion.Content className="bg-white">
-                  <div className="border-y  bg-white ">
-                    <table className="text-base max-xxl:border-spacing-4 xxl:border-spacing-8 border-separate">
-                      <tbody>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Industry
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            Home Cleaning
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Service
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            Flat Rate Service
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Frequency
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedFrequency}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Bedrooms
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedBedrooms}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Bathrooms
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedBathrooms}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Sq Ft
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedSqft}
-                          </td>
-                        </tr>
-                        {selectedExtras.length > 0 && (
-                          <tr>
-                            <td className="text-sm xxl:text-xl text-[#6c757d]">
-                              Extras
-                            </td>
-                            <td>:</td>
-                            <td className="text-[#11263c] xxl:text-xl">
-                              {selectedExtras.join(", ")}
-                            </td>
-                          </tr>
-                        )}
-                        {address && (
-                          <tr>
-                            <td className="text-sm xxl:text-xl text-[#6c757d]">
-                              Location
-                            </td>
-                            <td>:</td>
-                            <td className="text-[#11263c] xxl:text-xl">
-                              {apt} &nbsp;
-                              {address}
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="p-2 mt-2 mb-2">
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                        Total Before Tax
-                      </h1>
-                      <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                        ${price}
-                      </h1>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        TOTAL
-                      </h1>
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        ${price}
-                      </h1>
-                    </div>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Panel>
-            </Accordion>
-          </div>
-        ) : (
-          <div className="card fixed  w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
-            <Accordion activeIndex={0} className="max-xxl:p-5 xxl:p-10">
+        
+          <div className="card max-lg:fixed lg:sticky lg:top-[150px] max-lg:bottom-2 max-lg:left-0 max-lg:right-0 max-lg:mx-auto  z-10 w-[95%] lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
+            <Accordion activeIndex={0} className="max-xxl:p-2 xxl:p-10">
               <Accordion.Panel>
                 <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
+                  <div className="flex items-center justify-between">
                   Booking Summary
+                  <div className="flex flex-col max-lg:block lg:hidden justify-between items-center">
+                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                        ${price}
+                      </h1>
+                    </div>
+                  </div>
                 </Accordion.Title>
                 <Accordion.Content>
                   <div className="border-y">
@@ -1032,20 +936,7 @@ export default function BookForm() {
                             </td>
                           </tr>
                         )}
-                        {address ? (
-                          <tr>
-                            <td className="text-sm xxl:text-xl text-[#6c757d]">
-                              Location
-                            </td>
-                            <td>:</td>
-                            <td className="text-[#11263c] xxl:text-xl">
-                              {apt}
-                              {address}
-                            </td>
-                          </tr>
-                        ) : (
-                          ""
-                        )}
+                       
                       </tbody>
                     </table>
                   </div>
@@ -1071,7 +962,7 @@ export default function BookForm() {
               </Accordion.Panel>
             </Accordion>
           </div>
-        )}
+        
         <PopularQuestions />
       </div>
     </div>

@@ -3,7 +3,7 @@ import { bookservices } from '../data'
 
 export default function BookEdit() {
   return (
-    <div className='bg-white max-sm:p-4 sm:max-xxl:p-12 xxl:p-20'>
+    <div className='bg-white max-sm:p-4 sm:max-xxl:p-12 xxl:p-20 w-full'>
         <div className="h-full w-full flex flex-col md:flex-row md:max-lg:flex-wrap items-center justify-evenly">
         {bookservices.map((v, index) => (
             <div key={v.id} className="flex flex-col items-center justify-center max-xxl:h-[180px] w-[270px] xxl:h-[250px] mb-4">

@@ -44,7 +44,7 @@ export const ourservices = [
     title:'Post Construction Cleanup',
     desc:"We offer professional and reliable Airbnb and vacation rental cleaning service solutions to ensure guests arrive to a sparkling and hygienic space, enhancing their stay and your property's reputation."
   }
-]
+];
 export const testimonials =[
   {
     id:1,
@@ -61,7 +61,7 @@ export const testimonials =[
     name:'Gary T.',
     desc:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia iure, temporibus sapiente quia consequuntur ex ullam cupiditate aliquid. Repellat, error adipisci. '
   },
-]
+];
 
 export const work=[
   {
@@ -82,7 +82,7 @@ export const work=[
     title:'Relax',
     desc:'Enjoy spending time doing what you enjoy most while we take care of the tedious cleaning and chores.'
   },
-]
+];
 export const KitchenCleaningData = [
   { id: 1, task: 'Clean cobwebs from lights, sills', standardClean: true, deepClean: true, moveInOut: true },
   { id: 2, task: 'Clean countertops', standardClean: true, deepClean: true, moveInOut: true },
