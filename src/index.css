@@ -212,7 +212,7 @@ select{
   padding-left: 20px !important;
 }
 
-#firstName,#lastName,#email,#tel,#base{
+#firstName,#lastName,#email,#tel,#address,#apt{
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
@@ -254,7 +254,7 @@ label{
   background-color: rgba(82,97,107,0.6) !important;
 }
 
-#firstName,#lastName,#email,#tel,#base{
+#firstName,#lastName,#email,#tel,#address,#apt{
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
@@ -462,7 +462,7 @@ nav{
 }
 }
 @media (min-width:1024px) and (max-width:1441px) {
-  #firstName,#lastName,#email,#tel,#base{
+  #firstName,#lastName,#email,#tel,#address,#apt{
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #BAC0C4 !important;
@@ -491,7 +491,7 @@ nav{
 }
 @media (min-width:1024px) {
  
-  #firstName,#lastName,#email,#tel,#base{
+  #firstName,#lastName,#email,#tel,#address,#apt{
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #BAC0C4 !important;
@@ -629,7 +629,7 @@ nav{
     line-height: 28px !important;
     padding: 2px !important;
   }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
+  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#address::placeholder,#apt::placeholder,#note::placeholder{
     font-size: 16px !important;
     color: #676f748b !important ;
     font-weight: bold;
@@ -693,7 +693,7 @@ nav{
     font-weight: 500 !important;
   
   }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
+  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#address::placeholder,#apt::placeholder,#note::placeholder{
     font-size: 20px !important;
     color: #676f748b !important ;
     font-weight: bold;
