@@ -29,13 +29,14 @@ export default function BookForm() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTablet, setTablet] = useState(window.innerWidth < 1024);
   // Add these state variables at the beginning of your functional component
+
   const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
   const [selectedBedrooms, setSelectedBedrooms] = useState(0);
   const [selectedBathrooms, setSelectedBathrooms] = useState(1);
   const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [address, setAddress] = useState("");
-  const [apt,setApt] = useState("");
+  const [apt, setApt] = useState("");
   const [price, setPrice] = useState(0);
 
   const {
@@ -45,10 +46,6 @@ export default function BookForm() {
   } = useForm({
     mode: "onTouched",
   });
-
-
-
-
 
   const onSubmit = (data) => console.log(data);
 
@@ -124,11 +121,11 @@ export default function BookForm() {
   const handleFrequencyChange = (event) => {
     setSelectedFrequency(event.target.value);
   };
-  
+
   const handleAddressChange = (event) => {
     setAddress(event.target.value);
   };
-  const handleAptChange = (event) =>{
+  const handleAptChange = (event) => {
     setApt(event.target.value);
   };
   const handleBedroomsChange = (event) => {
@@ -185,43 +182,37 @@ export default function BookForm() {
   };
 
   //payment
-const makePayment = async () => {
-  const stripe = await loadStripe(
-    "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
-  );
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol"
+    );
 
-  const body = {
-    products: [
-      selectedFrequency,
-    selectedBedrooms,
-    selectedBathrooms,
-    selectedSqft,
-    selectedExtras,
-    price
-    ],
-  };
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  const response = await fetch(
-    "http://localhost:7000/api/create-checkout-session",
-    {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
+    const body = [{
+        price:price
+    }];
+    console.log(body)
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(
+      "http://localhost:7000/api/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
+
+    const session = await response.json();
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
     }
-  );
-
-  const session = await response.json();
-
-  const result = stripe.redirectToCheckout({
-    sessionId: session.id,
-  });
-
-  if (result.error) {
-    console.log(result.error);
-  }
-};
+  };
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
@@ -438,7 +429,7 @@ const makePayment = async () => {
                   }}
                   control={control}
                   render={({ field }) => (
-                    <>
+                    <div>
                       <div className="mb-2 block -ml-6">
                         <Label
                           htmlFor="firstName"
@@ -454,12 +445,14 @@ const makePayment = async () => {
                         {...field}
                         placeholder="Ex: James"
                       />
-                    </>
+                    </div>
                   )}
                 />
-               {errors?.FirstName?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.FirstName?.message}</span>
-                )}
+                {errors?.FirstName?.message && 
+        <span className="text-red-500 text-xs ml-0.5 font-medium">
+                    {errors?.FirstName?.message}
+                  </span>
+                }
               </div>
               <div>
                 <Controller
@@ -489,7 +482,9 @@ const makePayment = async () => {
                   )}
                 />
                 {errors?.LastName?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.LastName?.message}</span>
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">
+                    {errors?.LastName?.message}
+                  </span>
                 )}
               </div>
               <div>
@@ -525,7 +520,9 @@ const makePayment = async () => {
                   )}
                 />
                 {errors?.email?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.email?.message}</span>
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">
+                    {errors?.email?.message}
+                  </span>
                 )}
               </div>
               <div>
@@ -545,38 +542,40 @@ const makePayment = async () => {
                 />
               </div>
               <div>
-              <Controller
-              name="tel"
-              control={control}
-              rules={{
-                required: "Phone No is Required",
-                pattern: {
-                  value: /^[0-9+ ]+$/,
-                  message: "Phone No is invaild",
-                },
-              }}
-              render={({ field }) => (
-                <>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="tel"
-                    value="Phone No"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="tel"
-                  type="tel"
-                  sizing="md"
-                  {...field}
-                  error={Boolean(errors?.tel?.message)}
-                  placeholder="Phone No."
-                />
-                </>
+                <Controller
+                  name="tel"
+                  control={control}
+                  rules={{
+                    required: "Phone No. is Required",
+                    pattern: {
+                      value: /^[0-9+ ]+$/,
+                      message: "Phone No is invaild",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <>
+                      <div className="mb-2 block -ml-6">
+                        <Label
+                          htmlFor="tel"
+                          value="Phone No"
+                          className="text-[17px] xxl:text-3xl font-semibold"
+                        />
+                      </div>
+                      <TextInput
+                        id="tel"
+                        type="tel"
+                        sizing="md"
+                        {...field}
+                        error={Boolean(errors?.tel?.message)}
+                        placeholder="Phone No."
+                      />
+                    </>
                   )}
                 />
                 {errors?.tel?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.tel?.message}</span>
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">
+                    {errors?.tel?.message}
+                  </span>
                 )}
               </div>
               <div>
@@ -628,13 +627,14 @@ const makePayment = async () => {
                         sizing="md"
                         {...field}
                         placeholder="Type Address"
-                        onChange={handleAddressChange}
                       />
                     </>
                   )}
                 />
-               {errors?.address?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.address?.message}</span>
+                {errors?.address?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">
+                    {errors?.address?.message}
+                  </span>
                 )}
               </div>
               <div>
@@ -915,9 +915,8 @@ const makePayment = async () => {
                             </td>
                           </tr>
                         )}
-                        {
-                          address &&(
-                            <tr>
+                        {address && (
+                          <tr>
                             <td className="text-sm xxl:text-xl text-[#6c757d]">
                               Location
                             </td>
@@ -927,8 +926,7 @@ const makePayment = async () => {
                               {address}
                             </td>
                           </tr>
-                          )
-                        }
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -1030,9 +1028,8 @@ const makePayment = async () => {
                             </td>
                           </tr>
                         )}
-                        {
-                          address?(
-                            <tr>
+                        {address ? (
+                          <tr>
                             <td className="text-sm xxl:text-xl text-[#6c757d]">
                               Location
                             </td>
@@ -1042,8 +1039,9 @@ const makePayment = async () => {
                               {address}
                             </td>
                           </tr>
-                          ) : ''
-                        }
+                        ) : (
+                          ""
+                        )}
                       </tbody>
                     </table>
                   </div>
