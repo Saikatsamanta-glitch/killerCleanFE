@@ -172,6 +172,7 @@ export default function BookForm() {
         setScheduleErr("");
         setIsScheduled(true);
         console.log("fake response: ", json);
+        console.log(json.scheduled)
       })
       .catch((err) => {
         setScheduleErr(err);
@@ -184,6 +185,7 @@ export default function BookForm() {
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
       <form
+      method="POST"
         action=""
         onSubmit={handleSubmit(onSubmit)}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] w-full z-0 "
@@ -489,13 +491,13 @@ export default function BookForm() {
               <div>
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="email"
+                    htmlFor="secemail"
                     value="Secondary Email Address"
                     className="text-[17px] xxl:text-3xl font-semibold"
                   />
                 </div>
                 <TextInput
-                  id="email"
+                  id="secemail"
                   type="email"
                   sizing="md"
                   className=""
@@ -540,13 +542,13 @@ export default function BookForm() {
               <div>
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="tel"
+                    htmlFor="sectel"
                     value="Secondary Phone No"
                     className="text-[17px] xxl:text-3xl font-semibold"
                   />
                 </div>
                 <TextInput
-                  id="tel"
+                  id="sectel"
                   type="tel"
                   sizing="md"
                   className=""
@@ -568,9 +570,7 @@ export default function BookForm() {
               <Controller
               name="address"
               control={control}
-              rules={{
-                required: "Address is Required",
-              }}
+           
               render={({ field }) => (
                 <>
                 <div className="mb-2 block -ml-6">
@@ -592,26 +592,34 @@ export default function BookForm() {
                 </>
                   )}
                 />
-                {errors?.address?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.address?.message}</span>
-                )}
               </div>
               <div>
+                <div>
+              <Controller
+              name="apt"
+              control={control}
+              render={({ field }) => (
+                <>
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="base"
+                    htmlFor="apt"
                     value="Apt No"
                     className="text-[17px] xxl:text-3xl font-semibold"
                   />
                 </div>
                 <TextInput
-                  id="base"
+                  id="apt"
                   type="text"
                   sizing="md"
+                  {...field}
                   required
-                  className=""
                   placeholder="#"
+                  onChange={handleAptChange}
                 />
+                </>
+                  )}
+                />
+              </div>
               </div>
             </div>
           </div>

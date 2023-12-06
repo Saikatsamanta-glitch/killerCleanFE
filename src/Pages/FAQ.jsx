@@ -41,7 +41,7 @@ export default function FAQ() {
               <AccordionItemHeading className="bg-none">
                 <AccordionItemButton >{item.que}</AccordionItemButton>
               </AccordionItemHeading>
-              <AccordionItemPanel>{item.ans}</AccordionItemPanel>
+              <AccordionItemPanel><p className="mb-2">{item.ans}</p><p>{item.ans2}</p></AccordionItemPanel>
             </AccordionItem>
           ))}
         </Accordion>

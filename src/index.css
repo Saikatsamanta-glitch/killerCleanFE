@@ -212,7 +212,7 @@ select{
   padding-left: 20px !important;
 }
 
-#firstName,#lastName,#email,#tel,#base{
+#firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
@@ -254,7 +254,7 @@ label{
   background-color: rgba(82,97,107,0.6) !important;
 }
 
-#firstName,#lastName,#email,#tel,#base{
+#firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #BAC0C4 !important;
@@ -304,6 +304,9 @@ input::placeholder{
    text-align: left;
    border: none;
    font-size: 14px !important;
+ }
+ .accordion__panel {
+  font-size: 14px !important;
  }
   .btn-secondary {
     --bs-btn-color: #11263c !important;
@@ -357,6 +360,9 @@ input::placeholder{
    text-align: left;
    border: none;
    font-size: 16px !important;
+ }
+ .accordion__panel {
+  font-size: 16px !important;
  }
   [data-testid="flowbite-accordion"]{
     border: 1px solid black !important;
@@ -462,7 +468,7 @@ nav{
 }
 }
 @media (min-width:1024px) and (max-width:1441px) {
-  #firstName,#lastName,#email,#tel,#base{
+  #firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #BAC0C4 !important;
@@ -488,10 +494,13 @@ nav{
    border: none;
    font-size: 20px !important;
  }
+ .accordion__panel {
+  font-size: 20px !important;
+ }
 }
 @media (min-width:1024px) {
  
-  #firstName,#lastName,#email,#tel,#base{
+  #firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #BAC0C4 !important;
@@ -629,7 +638,7 @@ nav{
     line-height: 28px !important;
     padding: 2px !important;
   }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
+  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#secemail::placeholder,#tel::placeholder,#sectel::placeholder,#address::placeholder,#apt::placeholder,#note::placeholder{
     font-size: 16px !important;
     color: #676f748b !important ;
     font-weight: bold;
@@ -693,7 +702,7 @@ nav{
     font-weight: 500 !important;
   
   }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#tel::placeholder,#base::placeholder,#note::placeholder{
+  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#secemail::placeholder,#tel::placeholder,#sectel::placeholder,#address::placeholder,#apt::placeholder,#note::placeholder{
     font-size: 20px !important;
     color: #676f748b !important ;
     font-weight: bold;
@@ -743,7 +752,7 @@ nav{
     padding: 4px 4px !important;
     font-family: "Plus Jakarta Sans", sans-serif !important;
     color: #014584 !important;
-    font-size: 12px !important;
+    font-size: 16px !important;
     line-height: 28px !important;
   }
   nav ul li a{

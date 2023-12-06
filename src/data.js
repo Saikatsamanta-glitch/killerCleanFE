@@ -262,17 +262,20 @@ export const faqs=[
   {
     id:1,
     que:'Do I need to provide supplies or equipment for my scheduled cleaning service?',
-    ans:"No, you do not need to worry about cleaning supplies and equipment. Our cleaners will bring all that is required to complete the job correctly. Also, the rate quoted typically includes cleaning supplies and equipment. No. You are not required to provide any supplies, cleaning products, or a vacuum. The cleaners have all professional-grade products and supplies needed to complete the jobs required.",
+    ans:"No, you do not need to worry about cleaning supplies and equipment. Our cleaners will bring all that is required to complete the job correctly. Also, the rate quoted typically includes cleaning supplies and equipment.",
+    ans2: "No.You are not required to provide any supplies, cleaning products, or a vacuum. The cleaners have all professional-grade products and supplies needed to complete the jobs required."
   },
   {
     id:2,
     que:'What method of payment is accepted, and what are your payment terms?',
-    ans:'We accept all major credit cards, checks, cash, and e-transfers, but payment terms vary depending on the service. For additional information on our payment terms, you can contact our customer service team at 000-000-0000, and we will gladly answer any questions or concerns you may have. We accept credit cards as well as E-transfers. Our system will automatically generate a hold on funds paid via credit card (including Visa debit) the day before your booked services. This is merely a hold and no funds have been removed from your account. The Visa debit cards will look like the money has been removed from your account. We assure you it has not. Your bank is holding it separately for you until the charge is processed after your services have been completed. E-transfers will need to be received by (cleaning company)the day before your appointment.',
+    ans:'We accept all major credit cards, checks, cash, and e-transfers, but payment terms vary depending on the service. For additional information on our payment terms, you can contact our customer service team at 000-000-0000, and we will gladly answer any questions or concerns you may have.',
+    ans2:" We accept credit cards as well as E-transfers. Our system will automatically generate a hold on funds paid via credit card (including Visa debit) the day before your booked services. This is merely a hold and no funds have been removed from your account. The Visa debit cards will look like the money has been removed from your account. We assure you it has not. Your bank is holding it separately for you until the charge is processed after your services have been completed. E-transfers will need to be received by (cleaning company)the day before your appointment."
   },
   {
     id:3,
     que:'Do I need to be at home for the cleaning?',
-    ans:'It’s completely up to you. If you’re not going to be home, make sure you let us know how to access your house.No, as long as you have a way to let us in when you are not home there is no reason for you to have to be there. However, if it makes you feel more comfortable we welcome you to stay and watch what we do. All of our house cleaning employees are trustworthy and friendly, they do have a schedule though so make sure to give them enough space to get their work done.',
+    ans:'It’s completely up to you. If you’re not going to be home, make sure you let us know how to access your house.',
+    ans2:"No, as long as you have a way to let us in when you are not home there is no reason for you to have to be there. However, if it makes you feel more comfortable we welcome you to stay and watch what we do. All of our house cleaning employees are trustworthy and friendly, they do have a schedule though so make sure to give them enough space to get their work done."
   },
   {
     id:4,
@@ -282,26 +285,45 @@ export const faqs=[
   {
     id:5,
     que:'Are your cleaners bonded/insured?',
-    ans:'Yes, all our cleaners are required to have a clear criminal background check and also be bondable. In addition, all of our cleaners are covered with general liability insurance. Absolutely. The cleaners go through a screening process that includes a police background check, drug screens, reference checks, and in-person interviews. We also require significant experience in residential house cleaning to work with us. Our cleaners also are covered by general liability insurance.',
+    ans:'Yes, all our cleaners are required to have a clear criminal background check and also be bondable. In addition, all of our cleaners are covered with general liability insurance. ',
+    ans2:"Absolutely. The cleaners go through a screening process that includes a police background check, drug screens, reference checks, and in-person interviews. We also require significant experience in residential house cleaning to work with us. Our cleaners also are covered by general liability insurance."
   },
   {
     id:6,
     que:'Are you pet friendly?',
-    ans:'We are! However if your pet is unattended when we are entering your home please have them put away or let us know if they are prone to escape or need to be put in a room while bringing in and taking out equipment. Yes, we’re proud to be a pet-friendly company. If your pet is aggressive in any way, we recommend that you leave him or her outside or in a gated area to ensure the safety of our professional housecleaners. If you don’t plan on being home when we arrive, please let us know how to appropriately handle cleaning around your pet.',
+    ans:'We are! However if your pet is unattended when we are entering your home please have them put away or let us know if they are prone to escape or need to be put in a room while bringing in and taking out equipment.',
+    ans2:"Yes, we’re proud to be a pet-friendly company. If your pet is aggressive in any way, we recommend that you leave him or her outside or in a gated area to ensure the safety of our professional housecleaners. If you don’t plan on being home when we arrive, please let us know how to appropriately handle cleaning around your pet."
   },
   {
     id:7,
     que:'What is your cancellation/rescheduling policy?',
-    ans:'We require 2 full business days notice if you need to cancel or change any upcoming appointments. When you provide 2 or more full business days notice, there is no cancellation fee. If you provide less than 2 full business days notice, you will be charged a $__ cancellation fee. If you cancel your appointment the day of, or we cannot gain access into your home, you will be charged 100% of your appointment cost. We require 48 hours notice for reschedule or cancellations. There will be a $__ charge for no notice cancellations and lockouts. If you are sick and it’s your cleaning day, please call our office by 7:30 am. We will do our best to reschedule your cleaning that same week. Please do not have us clean if your family is home with the flu. Remember you are home because you are contagious! Thank you.',
+    ans:'We require 2 full business days notice if you need to cancel or change any upcoming appointments. When you provide 2 or more full business days notice, there is no cancellation fee. If you provide less than 2 full business days notice, you will be charged a $__ cancellation fee. If you cancel your appointment the day of, or we cannot gain access into your home, you will be charged 100% of your appointment cost.',
+    ans2:"We require 48 hours notice for reschedule or cancellations. There will be a $__ charge for no notice cancellations and lockouts. If you are sick and it’s your cleaning day, please call our office by 7:30 am. We will do our best to reschedule your cleaning that same week. Please do not have us clean if your family is home with the flu. Remember you are home because you are contagious! Thank you."
   },
   {
     id:8,
     que:'How many cleaners can I expect?',
-    ans:'We send 1 or 2 cleaners, depending on availability and your needs. Only one cleaner is sent to your home. If you’re on a recurring schedule, we’ll do our best to match you with the same person going forward. Deep Cleanings or larger homes may be scheduled with enough employees to make sure we can do the best job possible in a timely manner.',
+    ans:'We send 1 or 2 cleaners, depending on availability and your needs.',
+    ans2:" Only one cleaner is sent to your home. If you’re on a recurring schedule, we’ll do our best to match you with the same person going forward. Deep Cleanings or larger homes may be scheduled with enough employees to make sure we can do the best job possible in a timely manner."
   },
   {
     id:9,
     que:'What do you not clean?/ What do cleaners not do?',
     ans:'Our professional housecleaning services are designed to keep your home comfortable and clean. We customize services to accommodate your preferences so you never have to worry about paying for a service you don’t need or want.',
+    ans2: <ol className="list-decimal px-6">
+      <li>Clean inside of fireplace</li>
+      <li> Clean toys</li>
+      <li>Pick up clutter</li>
+      <li>Do Laundry</li>
+      <li>Wash dishes</li>
+      <li>Clean carpets</li>
+      <li>Mold: (Some amount of pink/orange mildew, or even darker mold, is common in some homes. Don't worry- the cleaners can clean small amounts of mold. Large amounts of mold in shower areas, on walls, etc. can affect air quality and pose a health safety issue. The cleaners aren't able to clean in rooms that are heavily affected by mold, or in homes with heavy mold infestations.)</li>
+      <li>Weight: (We have a 30 lb. weight limit for safety reasons. Moving smaller items like dining table chairs, small ottomans, etc. to clean under is perfectly ok. If you would like any heavier furniture or appliances cleaned under, you're welcome to move it and the cleaners will be happy to clean under it upon request.)</li>
+      <li>Extensive grease or fire damage</li>
+      <li>Bodily Fluids</li>
+      <li>Pet messes</li>
+      <li>Bug infestations</li>
+      <li>Heights: (There is a limit to a 2 foot or shorter step stool. Safety is of the utmost importance to us. Please keep in mind that in most cases, the tops of standard kitchen cupboards is approximately the maximum limit of height. Some lighting fixtures may also be out of reach.)</li>
+    </ol>
   }
 ]
