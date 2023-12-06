@@ -349,6 +349,58 @@ input::placeholder{
     background-color: white !important;
     border-radius: 4px !important;
   }
+  [data-testid="flowbite-footer-brand"] img {
+    height: 170px !important;
+    margin-left: -20px !important;
+  }
+  footer li a {
+    color: white;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+  }
+  footer li a:hover {
+    text-decoration: none !important;
+  }
+  footer li {
+    margin-right: 10px !important;
+  }[data-testid="flowbite-footer-brand"] a {
+  margin-top: 16px !important;
+}
+[data-testid="flowbite-footer-title"] {
+  text-transform: capitalize !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+}
+[data-testid="footer-groupLink"] li a {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+}
+[data-testid="flowbite-footer-icon"] a svg {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  margin-left: 15px !important;
+}
+
+footer {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: white !important;
+  border-radius: 0 !important;
+}
+
+[data-testid="flowbite-card"] {
+  border: none !important;
+  box-shadow: none !important;
+}
+[aria-label='Pills'] button{
+  padding: 5px !important;
+  background: #3a9dcc !important;
+  color: white !important;
+  font-size: 12px;
+  margin-left: 4px !important;
+}
 }
 @media (min-width:426px) and (max-width:1025px) {
   .accordion__button {
