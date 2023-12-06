@@ -186,43 +186,7 @@ export default function BookForm() {
   };
 
   //payment
-const makePayment = async () => {
-  const stripe = await loadStripe(
-    "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
-  );
 
-  const body = {
-    products: [
-      selectedFrequency,
-    selectedBedrooms,
-    selectedBathrooms,
-    selectedSqft,
-    selectedExtras,
-    price
-    ],
-  };
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  const response = await fetch(
-    "http://localhost:7000/api/create-checkout-session",
-    {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    }
-  );
-
-  const session = await response.json();
-
-  const result = stripe.redirectToCheckout({
-    sessionId: session.id,
-  });
-
-  if (result.error) {
-    console.log(result.error);
-  }
-};
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
@@ -235,7 +199,7 @@ const makePayment = async () => {
         <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
           {/* Frequency section */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Frequency{" "}
             </h1>
             <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:max-lg:flex md:max-lg:flex-col space-y-3">
@@ -289,7 +253,7 @@ const makePayment = async () => {
           </div>
           {/* Service Type section */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Service Type
             </h1>
             <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
@@ -381,7 +345,7 @@ const makePayment = async () => {
           </div>
           {/* Extras section */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Select Extras{" "}
             </h1>
             <div className="grid xxl:grid-cols-6 xl:max-xxl:grid-cols-5 lg:max-xl:grid-cols-4 md:max-lg:grid-cols-3 max-ms:grid-cols-1 max-mm:grid-cols-1 max-ml:grid-cols-1 grid-cols-2 xxl:gap-10 lg:max-xxl:gap-3 max-lg:gap-2">
@@ -428,10 +392,10 @@ const makePayment = async () => {
           </div>
           {/* Customer Details */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Customer Details{" "}
             </h1>
-            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
               <div>
                 <Controller
                   name="FirstName"
@@ -607,13 +571,10 @@ const makePayment = async () => {
                 </Label>
               </div>
             </div>
-            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 my-4">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4 my-4">
               <div>
                 <Controller
                   name="address"
-                  rules={{
-                    required: "Address is Required",
-                  }}
                   control={control}
                   render={({ field }) => (
                     <>
@@ -628,16 +589,14 @@ const makePayment = async () => {
                         id="address"
                         type="text"
                         sizing="md"
-                        {...field}
                         placeholder="Type Address"
                         onChange={handleAddressChange}
+                        value={address}
                       />
                     </>
                   )}
                 />
-               {errors?.address?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.address?.message}</span>
-                )}
+               
               </div>
               <div>
                 <div>
@@ -660,6 +619,7 @@ const makePayment = async () => {
                   {...field}
                   placeholder="#"
                   onChange={handleAptChange}
+                  value={apt}
                 />
                 </>
                   )}
@@ -671,7 +631,7 @@ const makePayment = async () => {
           </div>
           {/* Service Provider */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-6xl font-semibold mb-4">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Select Service Provider
             </h1>
             <div className="">
@@ -686,10 +646,10 @@ const makePayment = async () => {
           </div>
           {/* Key Info */}
           <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-3xl xxl:text-3xl mb-3 font-semibold">
+            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-3xl mb-3 font-semibold">
               Key Information & Job Notes
             </h1>
-            <p className="text-sm xxl:text-2xl text-[#52616b] mb-4">
+            <p className="max-xxl:text-sm xxl:text-2xl text-[#52616b] mb-4">
               You can turn this description off or modify it at anytime.
             </p>
             <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-4">
@@ -731,7 +691,6 @@ const makePayment = async () => {
                 </div>
                 <Textarea
                   id="note"
-                  required
                   rows={5}
                   placeholder="Special Notes and Instructions"
                 />
@@ -754,7 +713,6 @@ const makePayment = async () => {
                 </div>
                 <Textarea
                   id="note"
-                  required
                   rows={6}
                   placeholder="Special Notes Or Instructions"
                 />
@@ -830,7 +788,6 @@ const makePayment = async () => {
           </div>
           <Button
             type="submit"
-            onClick={makePayment}
             className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
           >
             {" "}
@@ -850,9 +807,6 @@ const makePayment = async () => {
                       Booking Summary
                     </h1>
                     <div className="flex flex-col justify-between items-center">
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        ${price}
-                      </h1>
                       <h1 className="text-2xl xxl:text-4xl text-orange-500">
                         ${price}
                       </h1>
@@ -968,7 +922,7 @@ const makePayment = async () => {
             </Accordion>
           </div>
         ) : (
-          <div className="card w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
+          <div className="card fixed  w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
             <Accordion activeIndex={0} className="max-xxl:p-5 xxl:p-10">
               <Accordion.Panel>
                 <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
