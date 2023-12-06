@@ -32,6 +32,8 @@ export default function BookForm() {
   const [selectedBathrooms, setSelectedBathrooms] = useState(1);
   const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
+  const [address, setAddress] = useState("");
+  const [apt,setApt] = useState("");
   const [price, setPrice] = useState(0);
 
   const {
@@ -119,7 +121,13 @@ export default function BookForm() {
   const handleFrequencyChange = (event) => {
     setSelectedFrequency(event.target.value);
   };
-
+  
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  };
+  const handleAptChange = (event) =>{
+    setApt(event.target.value);
+  };
   const handleBedroomsChange = (event) => {
     setSelectedBedrooms(parseInt(event.target.value));
   };
@@ -481,13 +489,13 @@ export default function BookForm() {
               <div>
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="base"
+                    htmlFor="email"
                     value="Secondary Email Address"
                     className="text-[17px] xxl:text-3xl font-semibold"
                   />
                 </div>
                 <TextInput
-                  id="base"
+                  id="email"
                   type="email"
                   sizing="md"
                   className=""
@@ -501,7 +509,7 @@ export default function BookForm() {
               rules={{
                 required: "Phone No is Required",
                 pattern: {
-                  value: /^([0-9])$/,
+                  value: /^[0-9+ ]+$/,
                   message: "Phone No is invaild",
                 },
               }}
@@ -532,13 +540,13 @@ export default function BookForm() {
               <div>
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="base"
+                    htmlFor="tel"
                     value="Secondary Phone No"
                     className="text-[17px] xxl:text-3xl font-semibold"
                   />
                 </div>
                 <TextInput
-                  id="base"
+                  id="tel"
                   type="tel"
                   sizing="md"
                   className=""
@@ -567,17 +575,19 @@ export default function BookForm() {
                 <>
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="base"
+                    htmlFor="address"
                     value="Address"
                     className="text-[17px] xxl:text-3xl font-semibold"
                   />
                 </div>
                 <TextInput
-                  id="base"
+                  id="address"
                   type="text"
                   sizing="md"
                   {...field}
+                  required
                   placeholder="Type Address"
+                  onChange={handleAddressChange}
                 />
                 </>
                   )}
@@ -964,6 +974,20 @@ export default function BookForm() {
                             </td>
                           </tr>
                         )}
+                        {
+                          address?(
+                            <tr>
+                            <td className="text-sm xxl:text-xl text-[#6c757d]">
+                              Location
+                            </td>
+                            <td>:</td>
+                            <td className="text-[#11263c] xxl:text-xl">
+                              {apt}
+                              {address}
+                            </td>
+                          </tr>
+                          ) : ''
+                        }
                       </tbody>
                     </table>
                   </div>
