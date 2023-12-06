@@ -8,6 +8,7 @@ import CleaningChecklist from './Pages/CleaningChecklist'
 import Contact from './Pages/Contact'
 import Book from './Pages/Book'
 import FAQ from './Pages/FAQ'
+import Products from './Components/PaymentForm'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
       <Route path='/contact' element={<Contact />} />
       <Route path='/book' element={<Book />}/>
       <Route path='/faq' element={<FAQ />} />
+      {/* <Route path='/paymentform' element={<Products />}/> */}
     </Routes>
     <CustomFooter/>
     </BrowserRouter>

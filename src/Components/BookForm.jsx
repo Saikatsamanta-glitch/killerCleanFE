@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CFormCheck } from "@coreui/react";
+// import { Link } from "react-router-dom";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Tabs } from "flowbite-react";
 import { Accordion } from "flowbite-react";
@@ -19,6 +20,7 @@ import PopularQuestions from "./PopularQuestions";
 import fakeRequest from "./EmailSender";
 import { useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function BookForm() {
   const [isScheduling, setIsScheduling] = useState(false);
@@ -43,6 +45,7 @@ export default function BookForm() {
   } = useForm({
     mode: "onTouched",
   });
+
 
 
 
@@ -181,6 +184,45 @@ export default function BookForm() {
         setIsScheduling(false);
       });
   };
+
+  //payment
+const makePayment = async () => {
+  const stripe = await loadStripe(
+    "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
+  );
+
+  const body = {
+    products: [
+      selectedFrequency,
+    selectedBedrooms,
+    selectedBathrooms,
+    selectedSqft,
+    selectedExtras,
+    price
+    ],
+  };
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const response = await fetch(
+    "http://localhost:7000/api/create-checkout-session",
+    {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
+    }
+  );
+
+  const session = await response.json();
+
+  const result = stripe.redirectToCheckout({
+    sessionId: session.id,
+  });
+
+  if (result.error) {
+    console.log(result.error);
+  }
+};
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
@@ -567,31 +609,35 @@ export default function BookForm() {
             </div>
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 my-4">
               <div>
-              <Controller
-              name="address"
-              control={control}
-           
-              render={({ field }) => (
-                <>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="address"
-                    value="Address"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="address"
-                  type="text"
-                  sizing="md"
-                  {...field}
-                  required
-                  placeholder="Type Address"
-                  onChange={handleAddressChange}
-                />
-                </>
+                <Controller
+                  name="address"
+                  rules={{
+                    required: "Address is Required",
+                  }}
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <div className="mb-2 block -ml-6">
+                        <Label
+                          htmlFor="address"
+                          value="Address"
+                          className="text-[17px] xxl:text-3xl font-semibold"
+                        />
+                      </div>
+                      <TextInput
+                        id="address"
+                        type="text"
+                        sizing="md"
+                        {...field}
+                        placeholder="Type Address"
+                        onChange={handleAddressChange}
+                      />
+                    </>
                   )}
                 />
+               {errors?.address?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">{errors?.address?.message}</span>
+                )}
               </div>
               <div>
                 <div>
@@ -612,12 +658,12 @@ export default function BookForm() {
                   type="text"
                   sizing="md"
                   {...field}
-                  required
                   placeholder="#"
                   onChange={handleAptChange}
                 />
                 </>
                   )}
+                  onChange={handleAptChange}
                 />
               </div>
               </div>
@@ -784,6 +830,7 @@ export default function BookForm() {
           </div>
           <Button
             type="submit"
+            onClick={makePayment}
             className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
           >
             {" "}
@@ -881,6 +928,20 @@ export default function BookForm() {
                             </td>
                           </tr>
                         )}
+                        {
+                          address &&(
+                            <tr>
+                            <td className="text-sm xxl:text-xl text-[#6c757d]">
+                              Location
+                            </td>
+                            <td>:</td>
+                            <td className="text-[#11263c] xxl:text-xl">
+                              {apt} &nbsp;
+                              {address}
+                            </td>
+                          </tr>
+                          )
+                        }
                       </tbody>
                     </table>
                   </div>

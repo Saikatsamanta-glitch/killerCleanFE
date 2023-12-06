@@ -308,6 +308,7 @@ input::placeholder{
  .accordion__panel {
   font-size: 14px !important;
  }
+ 
   .btn-secondary {
     --bs-btn-color: #11263c !important;
     --bs-btn-bg: #e5ecf2;
