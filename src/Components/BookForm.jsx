@@ -171,6 +171,7 @@ export default function BookForm() {
 
     const body = [
       {
+        
         price: price,
       },
     ];
