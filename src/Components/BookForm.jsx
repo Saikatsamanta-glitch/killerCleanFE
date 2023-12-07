@@ -1,24 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import emailjs from "@emailjs/browser";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { Tabs } from "flowbite-react";
-import { Accordion } from "flowbite-react";
-import {
-  Label,
-  Select,
-  Tooltip,
-  TextInput,
-  Checkbox,
-  Textarea,
-  Button,
-} from "flowbite-react";
+import { Accordion, Tabs, Label,Select,Tooltip,TextInput,Checkbox,Textarea,Button, } from "flowbite-react";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
 import fakeRequest from "./EmailSender";
-import { useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -33,8 +21,6 @@ export default function BookForm() {
   const [selectedBathrooms, setSelectedBathrooms] = useState(1);
   const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
-  const [address, setAddress] = useState("");
-  const [apt, setApt] = useState("");
   const [price, setPrice] = useState(0);
 
   const {
@@ -46,7 +32,6 @@ export default function BookForm() {
   });
 
   const onSubmit = (data) => console.log(data);
-
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
     // Replace this with your actual pricing logic based on selected options
@@ -876,6 +861,7 @@ export default function BookForm() {
           </div>
           <Button
             type="submit"
+            value="Send"
             className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
           >
             {" "}

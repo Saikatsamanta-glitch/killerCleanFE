@@ -1,5 +1,4 @@
 import React from "react";
-// import { Accordion, AccordionTab } from "primereact/accordion";
 import {
   Accordion,
   AccordionItem,
