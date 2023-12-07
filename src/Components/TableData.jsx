@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 const TableData = (props) => {
   return (
     <div className="flex justify-center w-full shadow-lg">
-      <Table striped bordered className=" max-mm:w-[300px]  mm:w-[350px] ml:w-[380px] sm:max-md:w-[400px] md:max-lg:w-[700px] lg:w-[900px] text-center ">
+      <Table striped bordered className=" max-ms:w-[280px] ms:max-mm:w-[300px]  mm:w-[350px] ml:w-[380px] sm:max-md:w-[400px] md:max-lg:w-[700px] lg:w-[900px] text-center ">
         <thead className="items-center text-[13px] lg:text-base">
           <tr>
             <td></td>

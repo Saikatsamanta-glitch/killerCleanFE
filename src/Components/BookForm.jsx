@@ -217,9 +217,7 @@ export default function BookForm() {
       {/* Booking form container */}
       <form
         ref={form}
-        onSubmit={() => {
-          handleSubmit(onSubmit);
-        }}
+        onSubmit={handleSubmit(onSubmit)}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
         <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
@@ -417,7 +415,10 @@ export default function BookForm() {
                       value={v.label}
                       className="peer hidden"
                     />
-                    <label htmlFor={v.label} className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60">
+                    <label
+                      htmlFor={v.label}
+                      className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60"
+                    >
                       <img
                         src={v.img}
                         alt=""
@@ -482,6 +483,7 @@ export default function BookForm() {
                         name="to_name"
                         sizing="md"
                         {...field}
+                        value={field.value}
                         placeholder="Ex: James"
                       />
                     </div>
@@ -515,6 +517,7 @@ export default function BookForm() {
                         sizing="md"
                         required
                         {...field}
+                        value={field.value}
                         placeholder="Ex: Lee"
                       />
                     </>
@@ -552,6 +555,7 @@ export default function BookForm() {
                         type="email"
                         {...field}
                         sizing="md"
+                        value={field.value}
                         name="user_email"
                         error={Boolean(errors?.email?.message)}
                         placeholder="Ex: example@xyz.com"
@@ -606,6 +610,7 @@ export default function BookForm() {
                         type="tel"
                         sizing="md"
                         {...field}
+                        value={field.value}
                         error={Boolean(errors?.tel?.message)}
                         placeholder="Phone No."
                       />
@@ -662,6 +667,7 @@ export default function BookForm() {
                         id="address"
                         type="text"
                         {...field}
+                        value={field.value}
                         sizing="md"
                         placeholder="Type Address"
                         name="address"
@@ -694,6 +700,7 @@ export default function BookForm() {
                           type="text"
                           sizing="md"
                           {...field}
+                          value={field.value}
                           placeholder="#"
                         />
                       </>
@@ -758,10 +765,7 @@ export default function BookForm() {
               </div>
               <div className="flex items-center">
                 <Checkbox id="provider" className="h-6 w-6" />
-                <Label
-                  htmlFor=""
-                  className="-ml-5 xxl:text-3xl max-lg:text-lg"
-                >
+                <Label htmlFor="" className="-ml-5 xxl:text-3xl max-lg:text-lg">
                   Keep Key With Provider
                 </Label>
               </div>
@@ -809,33 +813,31 @@ export default function BookForm() {
           <div className="border-b w-full py-4 lg:p-4">
             <Tabs aria-label="Default Tabs" style="default">
               <Tabs.Item active title="Coupon Code">
-                <form className="grid grid-cols-1 gap-4">
-                  <div>
-                    <div className="mb-2 flex items-center">
-                      <Label
-                        htmlFor="email1"
-                        value="Enter Coupon Code"
-                        className="text-lg -ml-6"
-                      />
-                      <Tooltip
-                        content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
-                        arrow={false}
-                        className="w-48 border bg-white  text-black font-normal text-center "
-                      >
-                        <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
-                      </Tooltip>
-                    </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                      <TextInput
-                        id="base"
-                        type="text"
-                        placeholder="Enter Coupon Code"
-                        required
-                      />
-                      <Button>Apply</Button>
-                    </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="mb-2 flex items-center">
+                    <Label
+                      htmlFor="email1"
+                      value="Enter Coupon Code"
+                      className="text-lg -ml-6"
+                    />
+                    <Tooltip
+                      content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
+                      arrow={false}
+                      className="w-48 border bg-white  text-black font-normal text-center "
+                    >
+                      <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
+                    </Tooltip>
                   </div>
-                </form>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <TextInput
+                      id="base"
+                      type="text"
+                      placeholder="Enter Coupon Code"
+                      required
+                    />
+                    <Button>Apply</Button>
+                  </div>
+                </div>
               </Tabs.Item>
             </Tabs>
           </div>
