@@ -7,7 +7,7 @@ const Success = ({ userInfo, paymentInfo }) => {
 
   useEffect(() => {
     // Function to send email
-    const sendEmail = async () => {
+    const sendEmail = async (data) => {
       try {
         const templateParams = {
           user_name: userInfo.user_name,
@@ -21,10 +21,10 @@ const Success = ({ userInfo, paymentInfo }) => {
 
         // Replace 'your_service_id' and 'your_template_id' with the actual values from EmailJS
         const result = await emailjs.send(
-          'your_service_id',
-          'your_template_id',
+          'service_lrzlb67',
+          'template_0qic7ra',
           templateParams,
-          'your_user_id' // Replace with your user ID from EmailJS
+          'lO680sw9k9xiPwwsB' // Replace with your user ID from EmailJS
         );
 
         console.log(result);
@@ -40,8 +40,8 @@ const Success = ({ userInfo, paymentInfo }) => {
 
     // Redirect to home after another delay
     const redirectTimer = setTimeout(() => {
-      history.push('/home');
-    }, 4000); // Adjust the delay as needed
+      history('/');
+    }, 5000); // Adjust the delay as needed
 
     // Clear timers when the component is unmounted
     return () => {
@@ -51,9 +51,9 @@ const Success = ({ userInfo, paymentInfo }) => {
   }, [userInfo, paymentInfo, history]);
 
   return (
-    <div>
-      <h1 className='text-Success'>Success!</h1>
-      <p>Sending email and redirecting to home in 4 seconds...</p>
+    <div className='h-[185px] flex justify-center items-center '>
+      <h1 className='text-green-700 font-bold text-5xl '>Payment Successful!</h1>
+      
     </div>
   );
 };

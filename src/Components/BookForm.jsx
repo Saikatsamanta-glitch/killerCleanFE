@@ -166,7 +166,7 @@ export default function BookForm() {
   //payment
   const makePayment = async () => {
     const stripe = await loadStripe(
-      "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol"
+      "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
     );
 
     const body = [
@@ -202,7 +202,9 @@ export default function BookForm() {
       {/* Booking form container */}
       <form
         ref={form}
-        onSubmit={() => {
+        onSubmit={(e) => {
+          e.preventDefault();
+          makePayment();
           handleSubmit(onSubmit);
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "

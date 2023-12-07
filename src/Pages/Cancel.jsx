@@ -21,10 +21,10 @@ const Cancel = ({ userInfo, paymentInfo }) => {
 
         // Replace 'your_cancel_service_id' and 'your_cancel_template_id' with the actual values from EmailJS
         const result = await emailjs.send(
-          'your_cancel_service_id',
+          'service_lrzlb67',
           'your_cancel_template_id',
           templateParams,
-          'your_user_id' // Replace with your user ID from EmailJS
+          'lO680sw9k9xiPwwsB' // Replace with your user ID from EmailJS
         );
 
         console.log(result);
@@ -40,8 +40,8 @@ const Cancel = ({ userInfo, paymentInfo }) => {
 
     // Redirect to home after another delay
     const redirectTimer = setTimeout(() => {
-      history.push('/home');
-    }, 4000); // Adjust the delay as needed
+      history('/home');
+    }, 10000); // Adjust the delay as needed
 
     // Clear timers when the component is unmounted
     return () => {
@@ -51,9 +51,8 @@ const Cancel = ({ userInfo, paymentInfo }) => {
   }, [userInfo, paymentInfo, history]);
 
   return (
-    <div>
-      <h1 className='text-Cancel'>Payment Canceled</h1>
-      <p>Sending cancel email and redirecting to home in 4 seconds...</p>
+    <div className='h-[185px] flex justify-center items-center '>
+      <h1 className='text-red-700 font-bold text-5xl'>Payment Cancelled!</h1>
     </div>
   );
 };

@@ -40,8 +40,8 @@ import Success from './Pages/Success'
                       <Route path='/contact' element={<Contact />} />
                       <Route path='/book' element={<Book />} />
                       <Route path='/faq' element={<FAQ />} />
-                      <Route path='/cancel' element={<Cancel />} />
-                      <Route path='/success' element={<Success />} />
+                      <Route path='/Cancel' element={<Cancel />} />
+                      <Route path='/Success' element={<Success />} />
                     </Routes>
                     <CustomFooter />
                   </>
