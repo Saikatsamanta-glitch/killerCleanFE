@@ -29,12 +29,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-button[type='submit'] span{
+button[type="submit"] span {
   font-size: 24px !important;
 }
-button[type='submit']:hover{
+button[type="submit"]:hover {
   background-color: #ced5d8 !important;
 }
+/* frequency */
+
 /* Navbar Stylings */
 
 .fa-brands:hover {
@@ -88,12 +90,12 @@ nav ul li a:hover {
   height: 170px !important;
   /* margin-left: -20px !important; */
 }
-[data-testid="footer-groupLink"] li a{
+[data-testid="footer-groupLink"] li a {
   color: white !important;
   font-weight: 400 !important;
   font-size: 16px !important;
 }
-.footer-text{
+.footer-text {
   font-size: 12px !important;
 }
 footer li a:hover {
@@ -103,54 +105,54 @@ footer li {
   margin-right: 0px !important;
 }
 [data-testid="flowbite-footer-title"] {
-text-transform: capitalize !important;
-color: white !important;
-font-weight: 700 !important;
-font-size: 20px !important;
+  text-transform: capitalize !important;
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
 }
 
 footer {
-font-family: "Plus Jakarta Sans", sans-serif !important;
-color: white !important;
-border-radius: 0 !important;
-z-index: 40 !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: white !important;
+  border-radius: 0 !important;
+  z-index: 40 !important;
 }
 
 [data-testid="flowbite-card"] {
-border: none !important;
-box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 [data-testid="flowbite-footer-brand"] a {
-margin-top: 16px !important;
+  margin-top: 16px !important;
 }
-[data-testid="flowbite-footer-title"]{
-text-transform: capitalize !important;
-color: white !important;
-font-weight: 600 !important;
-font-size: 19px !important;
+[data-testid="flowbite-footer-title"] {
+  text-transform: capitalize !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 19px !important;
 }
 [data-testid="flowbite-footer-icon"] a svg {
-color: white !important;
-font-weight: 600 !important;
-font-size: 20px !important;
-margin-left: 15px !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  margin-left: 15px !important;
 }
 
 footer {
-font-family: "Plus Jakarta Sans", sans-serif !important;
-color: white !important;
-border-radius: 0 !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: white !important;
+  border-radius: 0 !important;
 }
 
 [data-testid="flowbite-card"] {
-border: none !important;
-box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
-[data-testid='flowbite-accordion-content']{
+[data-testid="flowbite-accordion-content"] {
   padding: 0 !important;
 }
 
-[data-testid='flowbite-accordion-heading']{
+[data-testid="flowbite-accordion-heading"] {
   color: #11263c !important;
 }
 .fi-bs-check {
@@ -187,190 +189,235 @@ box-shadow: none !important;
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
-.btn-secondary {
-  --bs-btn-color: #11263c !important;
-  --bs-btn-bg: #e5ecf2;
-  --bs-btn-border-color: #e5ecf2;
-  --bs-btn-hover-color: #11263c;
-  --bs-btn-hover-bg: #e5ecf2;
-  --bs-btn-hover-border-color: #e5ecf2;
-  --bs-btn-focus-shadow-rgb: 130, 138, 145;
-  --bs-btn-active-color: white;
-  --bs-btn-active-bg: #ced5d8;
-  --bs-btn-active-border-color: #ced5d8;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-padding-x: 12px;
-  --bs-btn-padding-y: 8px;
-  --bs-btn-font-family: ;
-  --bs-btn-font-size: 14px;
-  --bs-btn-font-weight: 500;
-  --bs-btn-line-height: 1.5;
-}
-select{
+select {
   padding: 16px !important;
   border-radius: 6px !important;
   padding-left: 20px !important;
 }
 
-#firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
+#firstName,
+#lastName,
+#email,
+#secemail,
+#tel,
+#sectel,
+#address,
+#apt {
   /* width: 350px !important; */
   padding: 15px !important;
-  border: 1px solid #BAC0C4 !important;
+  border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
   padding-left: 40px !important;
 }
-input[type='password']{
+input[type="password"] {
   width: 350px !important;
   padding: 15px !important;
-  border: 1px solid #BAC0C4 !important;
+  border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
   padding-left: 40px !important;
 }
-.btn-light {
-  --bs-btn-bg: white;
-  --bs-btn-border-color:#ced5d8;
-  --bs-btn-hover-bg: rgba(82,97,107,0.6) !important;
-  --bs-btn-hover-border-color: #c6c7c8;
-  --bs-btn-focus-shadow-rgb: 211,212,213;
-  --bs-btn-active-color: #000;
-  --bs-btn-active-bg: rgba(82,97,107,0.6);
-  --bs-btn-active-border-color: #babbbc;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: #f8f9fa;
-  --bs-btn-disabled-border-color: #f8f9fa;
-}
-label{
+
+label {
   padding-left: 1.75rem !important;
   padding-right: 1.75rem !important;
 }
-.form-group label{
+.form-group label {
   padding-left: 0 !important;
 }
-.btn-light:hover img{
-  opacity: 30% !important;
-}
-.btn-light:hover{
-  background-color: rgba(82,97,107,0.6) !important;
-}
 
-#firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
+#firstName,
+#lastName,
+#email,
+#secemail,
+#tel,
+#sectel,
+#address,
+#apt {
   /* width: 350px !important; */
   padding: 15px !important;
-  border: 1px solid #BAC0C4 !important;
+  border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
   padding-left: 40px !important;
 }
-#emailid,#passward{
+#emailid,
+#passward {
   width: 350px !important;
   padding: 15px !important;
-  border: 1px solid #BAC0C4 !important;
+  border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
   padding-left: 40px !important;
- 
 }
-input::placeholder{
+input::placeholder {
   font-size: small !important;
   color: #676f748b !important ;
   font-weight: bold;
 }
 
-
-[aria-label='Pills'] button{
+[aria-label="Pills"] button {
   padding: 6px !important;
   background: #3a9dcc !important;
   color: white !important;
 }
 
-.fOFptH{
+.fOFptH {
   color: black !important;
 }
 
-.jQMQWL{
+.jQMQWL {
   width: 100% !important;
   height: auto !important;
 }
 
-
 /* Responsive */
 
-@media (max-width:426px) {
+@media (max-width: 426px) {
   .accordion__button {
-    background-color: transparent !important; 
-   color: #014584 !important;
-   cursor: pointer;
-   padding: 18px;
-   width: 100%;
-   text-align: left;
-   border: none;
-   font-size: 14px !important;
- }
- .accordion__panel {
-  font-size: 14px !important;
- }
- 
-  .btn-secondary {
-    --bs-btn-color: #11263c !important;
-    --bs-btn-bg: #e5ecf2;
-    --bs-btn-border-color: #e5ecf2;
-    --bs-btn-hover-color: #11263c;
-    --bs-btn-hover-bg: #e5ecf2;
-    --bs-btn-hover-border-color: #e5ecf2;
-    --bs-btn-focus-shadow-rgb: 130, 138, 145;
-    --bs-btn-active-color: white;
-    --bs-btn-active-bg: #ced5d8;
-    --bs-btn-active-border-color: #ced5d8;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-padding-x: 12px;
-    --bs-btn-padding-y: 10px;
-    --bs-btn-font-family: ;
-    --bs-btn-font-size: 18px;
-    --bs-btn-font-weight: 500;
-    --bs-btn-line-height: 1.5;
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 14px !important;
   }
-  .btn-light {
-    --bs-btn-padding-x: 52px !important;
-    --bs-btn-padding-y: 16px !important;
+  .accordion__panel {
+    font-size: 14px !important;
+  }
+  .popular {
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 14px !important;
+  }
+  .popular::before {
+    display: inline-block;
+    content: "";
+    height: 8px;
+    width:8px;
+    margin-right: 12px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(-45deg);
+  }
+  .extras {
     width: 150px !important;
     height: 100px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
   }
-  nav{
+  nav {
     padding: 0 12px !important;
   }
-  [data-testid='flowbite-accordion'] button{
+  [data-testid="flowbite-accordion"] button {
     padding: 4px !important;
     background-color: white !important;
     border-radius: 4px !important;
   }
-  [data-testid='flowbite-accordion']{
+  [data-testid="flowbite-accordion"] {
     background-color: white !important;
     border-radius: 4px !important;
   }
+  [data-testid="flowbite-footer-brand"] img {
+    height: 170px !important;
+    margin-left: -20px !important;
+  }
+  footer li a {
+    color: white;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+  }
+  footer li a:hover {
+    text-decoration: none !important;
+  }
+  footer li {
+    margin-right: 10px !important;
+  }
+  [data-testid="flowbite-footer-brand"] a {
+    margin-top: 16px !important;
+  }
+  [data-testid="flowbite-footer-title"] {
+    text-transform: capitalize !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+  }
+  [data-testid="footer-groupLink"] li a {
+    color: white !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+  }
+  [data-testid="flowbite-footer-icon"] a svg {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    margin-left: 15px !important;
+  }
+
+  footer {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: white !important;
+    border-radius: 0 !important;
+  }
+
+  [data-testid="flowbite-card"] {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  [aria-label="Pills"] button {
+    padding: 5px !important;
+    background: #3a9dcc !important;
+    color: white !important;
+    font-size: 12px;
+    margin-left: 4px !important;
+  }
 }
-@media (min-width:426px) and (max-width:1025px) {
+@media (min-width: 426px) and (max-width: 1025px) {
   .accordion__button {
-    background-color: transparent !important; 
-   color: #014584 !important;
-   cursor: pointer;
-   padding: 18px;
-   width: 100%;
-   text-align: left;
-   border: none;
-   font-size: 16px !important;
- }
- .accordion__panel {
-  font-size: 16px !important;
- }
-  [data-testid="flowbite-accordion"] button{
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 16px !important;
+  }
+  .accordion__panel {
+    font-size: 16px !important;
+  }
+  .popular {
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 16px !important;
+  }
+  .popular::before {
+    display: inline-block;
+    content: "";
+    height: 8px;
+    width:8px;
+    margin-right: 12px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(-45deg);
+  }
+  [data-testid="flowbite-accordion"] button {
     border: none !important;
     background-color: white !important;
     border-radius: 4px !important;
     padding: 0px !important;
   }
-  [aria-label='Pills'] button{
+  [aria-label="Pills"] button {
     padding: 12px !important;
     background: #3a9dcc !important;
     color: white !important;
@@ -389,90 +436,98 @@ input::placeholder{
   }
   footer li {
     margin-right: 10px !important;
-  }[data-testid="flowbite-footer-brand"] a {
-  margin-top: 16px !important;
-}
-[data-testid="flowbite-footer-title"] {
-  text-transform: capitalize !important;
-  color: white !important;
-  font-weight: 600 !important;
-  font-size: 18px !important;
-}
-[data-testid="flowbite-footer-icon"] a svg {
-  color: white !important;
-  font-weight: 600 !important;
-  font-size: 20px !important;
-  margin-left: 15px !important;
-}
+  }
+  [data-testid="flowbite-footer-brand"] a {
+    margin-top: 16px !important;
+  }
+  [data-testid="flowbite-footer-title"] {
+    text-transform: capitalize !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+  }
+  [data-testid="flowbite-footer-icon"] a svg {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    margin-left: 15px !important;
+  }
 
-footer {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  color: white !important;
-  border-radius: 0 !important;
-}
+  footer {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: white !important;
+    border-radius: 0 !important;
+  }
 
-[data-testid="flowbite-card"] {
-  border: none !important;
-  box-shadow: none !important;
-}
-[data-testid="flowbite-footer-brand"] a {
-  margin-top: 16px !important;
-}
-[data-testid="flowbite-footer-title"] {
-  text-transform: capitalize !important;
-  color: white !important;
-  font-weight: 600 !important;
-  font-size: 18px !important;
-}
-[data-testid="flowbite-footer-icon"] a svg {
-  color: white !important;
-  font-weight: 600 !important;
-  font-size: 20px !important;
-  margin-left: 15px !important;
-}
+  [data-testid="flowbite-card"] {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  [data-testid="flowbite-footer-brand"] a {
+    margin-top: 16px !important;
+  }
+  [data-testid="flowbite-footer-title"] {
+    text-transform: capitalize !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+  }
+  [data-testid="flowbite-footer-icon"] a svg {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    margin-left: 15px !important;
+  }
 
-footer {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  color: white !important;
-  border-radius: 0 !important;
-}
+  footer {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    color: white !important;
+    border-radius: 0 !important;
+  }
 
-[data-testid="flowbite-card"] {
-  border: none !important;
-  box-shadow: none !important;
+  [data-testid="flowbite-card"] {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .book {
+    background: #3a9dcc !important;
+    border-radius: 0 !important;
+    padding: 6px 15px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+    outline: none !important;
+    color: white !important;
+    border: none !important;
+  }
+  .book:hover {
+    transform: scale(0.8);
+  }
+  .book span {
+    color: white;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    padding: 2px !important;
+  }
+  nav {
+    padding: 0 12px !important;
+  }
 }
-.book {
-  background: #3a9dcc !important;
-  border-radius: 0 !important;
-  padding: 6px 15px !important;
-  text-decoration: none !important;
-  transition: all 0.3s ease-in-out;
-  outline: none !important;
-  color: white !important;
-  border: none !important;
-}
-.book:hover {
-  transform: scale(0.8);
-}
-.book span {
-  color: white;
-  font-size: 18px !important;
-  line-height: 28px !important;
-  padding: 2px !important;
-}
-nav{
-  padding: 0 12px !important;
-}
-}
-@media (min-width:1024px) and (max-width:1441px) {
-  #firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
+@media (min-width: 1024px) and (max-width: 1441px) {
+  #firstName,
+  #lastName,
+  #email,
+  #secemail,
+  #tel,
+  #sectel,
+  #address,
+  #apt {
     /* width: 350px !important; */
     padding: 15px !important;
-    border: 1px solid #BAC0C4 !important;
+    border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
   }
-  .btn-light {
+  .extras {
     --bs-btn-padding-x: 22px !important;
     --bs-btn-padding-y: 16px !important;
     width: 110px !important;
@@ -482,29 +537,55 @@ nav{
     align-items: center !important;
   }
   .accordion__button {
-    background-color: transparent !important; 
-   color: #014584 !important;
-   cursor: pointer;
-   padding: 14px;
-   width: 100%;
-   text-align: left;
-   border: none;
-   font-size: 20px !important;
- }
- .accordion__panel {
-  font-size: 20px !important;
- }
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 14px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 20px !important;
+  }
+  .popular {
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 16px !important;
+  }
+  .popular::before {
+    display: inline-block;
+    content: "";
+    height: 8px;
+    width: 8px;
+    margin-right: 12px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(-45deg);
+  }
+  .accordion__panel {
+    font-size: 20px !important;
+  }
 }
-@media (min-width:1024px) {
- 
-  #firstName,#lastName,#email,#secemail,#tel,#sectel,#address,#apt{
+@media (min-width: 1024px) {
+  #firstName,
+  #lastName,
+  #email,
+  #secemail,
+  #tel,
+  #sectel,
+  #address,
+  #apt {
     /* width: 350px !important; */
     padding: 15px !important;
-    border: 1px solid #BAC0C4 !important;
+    border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
   }
- 
+
   nav {
     background-color: #f3fafc !important;
     padding: 0 12px !important;
@@ -523,7 +604,7 @@ nav{
     color: #61b1d6 !important;
     border-bottom: #61b1d6 1.5px solid;
   }
-  
+
   .book {
     background: #3a9dcc !important;
     border-radius: 0 !important;
@@ -544,7 +625,7 @@ nav{
     line-height: 28px !important;
     padding: 2px !important;
   }
-  [data-testid="footer-groupLink"] li a{
+  [data-testid="footer-groupLink"] li a {
     color: white !important;
     font-weight: 400 !important;
     font-size: 16px !important;
@@ -554,31 +635,31 @@ nav{
     font-weight: 400 !important;
     font-size: 15px !important;
   }
-  [data-testid='flowbite-accordion'] button{
+  [data-testid="flowbite-accordion"] button {
     padding: 6px !important;
     background-color: white !important;
     margin-bottom: 10px !important;
   }
 }
-@media (min-width:1025px) and (max-width:2560px) {
-  [aria-label='Pills'] button{
+@media (min-width: 1025px) and (max-width: 2560px) {
+  [aria-label="Pills"] button {
     padding: 12px !important;
     background: #3a9dcc !important;
     color: white !important;
   }
- 
+
   .nav-header {
     font-family: "Figtree", sans-serif !important;
   }
 
-  [data-testid="footer-groupLink"] li a{
+  [data-testid="footer-groupLink"] li a {
     color: white !important;
     font-weight: 400 !important;
     font-size: 18px !important;
   }
 }
-@media (min-width:1440px) and (max-width:2561px) {
-  .btn-light {
+@media (min-width: 1440px) and (max-width: 2561px) {
+  .extras {
     --bs-btn-padding-x: 22px !important;
     --bs-btn-padding-y: 16px !important;
     width: 130px !important;
@@ -588,15 +669,35 @@ nav{
     align-items: center !important;
   }
   .accordion__button {
-    background-color: transparent !important; 
-   color: #014584 !important;
-   cursor: pointer;
-   padding: 18px;
-   width: 100%;
-   text-align: left;
-   border: none;
-   font-size: 20px !important;
- }
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 20px !important;
+  }
+  .popular {
+    background-color: transparent !important;
+    color: #014584 !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 16px !important;
+  }
+  .popular::before {
+    display: inline-block;
+    content: "";
+    height: 10px;
+    width:10px;
+    margin-right: 12px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(-45deg);
+  }
   nav {
     background-color: #f3fafc !important;
     padding: 0 80px !important;
@@ -615,7 +716,7 @@ nav{
     color: #61b1d6 !important;
     border-bottom: #61b1d6 1.5px solid;
   }
-  
+
   .book {
     background: #3a9dcc !important;
     border-radius: 0 !important;
@@ -635,14 +736,21 @@ nav{
     line-height: 28px !important;
     padding: 2px !important;
   }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#secemail::placeholder,#tel::placeholder,#sectel::placeholder,#address::placeholder,#apt::placeholder,#note::placeholder{
+  #firstName::placeholder,
+  #lastName::placeholder,
+  #email::placeholder,
+  #secemail::placeholder,
+  #tel::placeholder,
+  #sectel::placeholder,
+  #address::placeholder,
+  #apt::placeholder,
+  #note::placeholder {
     font-size: 16px !important;
     color: #676f748b !important ;
     font-weight: bold;
-  }  
+  }
 }
-@media (min-width:2560px) {
-
+@media (min-width: 2560px) {
   nav ul li a {
     padding: 12px 15px !important;
     font-family: "Plus Jakarta Sans", sans-serif !important;
@@ -657,7 +765,7 @@ nav{
     color: #61b1d6 !important;
     border-bottom: #61b1d6 1.5px solid;
   }
-  
+
   .book {
     background: #3a9dcc !important;
     border-radius: 0 !important;
@@ -678,38 +786,44 @@ nav{
     line-height: 28px !important;
     padding: 2px !important;
   }
-  
 
-  [aria-label='Pills'] button{
+  [aria-label="Pills"] button {
     padding: 20px !important;
     background: #3a9dcc !important;
     color: white !important;
   }
-  #emailid,#passward{
+  #emailid,
+  #passward {
     width: 700px !important;
     padding: 15px !important;
-    border: 1px solid #BAC0C4 !important;
+    border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
-   
   }
-  input::placeholder{
+  input::placeholder {
     font-size: medium !important;
     color: #676f748b !important ;
     font-weight: 500 !important;
-  
   }
-  #firstName::placeholder,#lastName::placeholder,#email::placeholder,#secemail::placeholder,#tel::placeholder,#sectel::placeholder,#address::placeholder,#apt::placeholder,#note::placeholder{
+  #firstName::placeholder,
+  #lastName::placeholder,
+  #email::placeholder,
+  #secemail::placeholder,
+  #tel::placeholder,
+  #sectel::placeholder,
+  #address::placeholder,
+  #apt::placeholder,
+  #note::placeholder {
     font-size: 20px !important;
     color: #676f748b !important ;
     font-weight: bold;
-  }  
+  }
   footer li a {
     color: white;
     font-weight: 400 !important;
     font-size: 24px !important;
   }
-  [data-testid="footer-groupLink"] li a{
+  [data-testid="footer-groupLink"] li a {
     color: white !important;
     font-weight: 400 !important;
     font-size: 24px !important;
@@ -726,20 +840,19 @@ nav{
   }
 }
 
-@media  (min-width: 768px) and (max-width:1024px) {
-  #emailid,#passward{
+@media (min-width: 768px) and (max-width: 1024px) {
+  #emailid,
+  #passward {
     width: 350px !important;
     padding: 15px !important;
-    border: 1px solid #BAC0C4 !important;
+    border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
-   
   }
-  input::placeholder{
+  input::placeholder {
     font-size: medium !important;
     color: #676f748b !important ;
     font-weight: 500 !important;
-  
   }
   nav {
     background-color: #f3fafc !important;
@@ -752,14 +865,14 @@ nav{
     font-size: 16px !important;
     line-height: 28px !important;
   }
-  nav ul li a{
+  nav ul li a {
     margin-left: 4px !important;
   }
   nav ul li a:hover {
     color: #61b1d6 !important;
     border-bottom: #61b1d6 1.5px solid;
   }
-  
+
   .book {
     background: #3a9dcc !important;
     border-radius: 0 !important;
@@ -780,84 +893,63 @@ nav{
     line-height: 28px !important;
   }
 }
-@media (min-width:1025px) and (max-width:1440px){
-  #emailid,#passward{
+@media (min-width: 1025px) and (max-width: 1440px) {
+  #emailid,
+  #passward {
     width: 500px !important;
     padding: 15px !important;
-    border: 1px solid #BAC0C4 !important;
+    border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
-   
   }
-  input::placeholder{
+  input::placeholder {
     font-size: medium !important;
     color: #676f748b !important ;
     font-weight: 500 !important;
-  
   }
 }
-@media  (min-width: 1441px) and (max-width:2560px) {
-  #emailid,#passward{
+@media (min-width: 1441px) and (max-width: 2560px) {
+  #emailid,
+  #passward {
     width: 500px !important;
     padding: 15px !important;
-    border: 1px solid #BAC0C4 !important;
+    border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
     padding-left: 40px !important;
-   
   }
-  input::placeholder{
+  input::placeholder {
     font-weight: 500 !important;
     font-size: small !important;
     color: #676f748b !important ;
   }
 
-
-.fi-ss-angle-down,.fi-ss-angle-right{
-  font-weight: bold;
-}
-.table {
-  --bs-table-color-type: initial;
-  --bs-table-bg-type: initial;
-  --bs-table-color-state: initial;
-  --bs-table-bg-state: initial;
-  --bs-table-color: var(--bs-emphasis-color);
-  --bs-table-bg: var(--bs-body-bg);
-  --bs-table-border-color: black!important;
-  --bs-table-accent-bg: transparent;
-  --bs-table-striped-color: black !important;
-  --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05);
-  --bs-table-active-color: var(--bs-emphasis-color);
-  --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
-  --bs-table-hover-color: var(--bs-emphasis-color);
-  --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
-  width: 100%;
-  margin-bottom: 1rem;
-  vertical-align: top;
-  border-color: rgb(164, 161, 161) !important;
-}
-
-}
-@media (min-width:768px) and (max-width:1023px) {
-  .btn-secondary {
-    --bs-btn-color: #11263c !important;
-    --bs-btn-bg: #e5ecf2;
-    --bs-btn-border-color: #e5ecf2;
-    --bs-btn-hover-color: #11263c;
-    --bs-btn-hover-bg: #e5ecf2;
-    --bs-btn-hover-border-color: #e5ecf2;
-    --bs-btn-focus-shadow-rgb: 130, 138, 145;
-    --bs-btn-active-color: white;
-    --bs-btn-active-bg: #ced5d8;
-    --bs-btn-active-border-color: #ced5d8;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-padding-x: 12px;
-    --bs-btn-padding-y: 12px;
-    --bs-btn-font-family: ;
-    --bs-btn-font-size: 20px;
-    --bs-btn-font-weight: 500;
-    --bs-btn-line-height: 1.5;
+  .fi-ss-angle-down,
+  .fi-ss-angle-right {
+    font-weight: bold;
   }
-  .btn-light{
+  .table {
+    --bs-table-color-type: initial;
+    --bs-table-bg-type: initial;
+    --bs-table-color-state: initial;
+    --bs-table-bg-state: initial;
+    --bs-table-color: var(--bs-emphasis-color);
+    --bs-table-bg: var(--bs-body-bg);
+    --bs-table-border-color: black !important;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: black !important;
+    --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05);
+    --bs-table-active-color: var(--bs-emphasis-color);
+    --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
+    --bs-table-hover-color: var(--bs-emphasis-color);
+    --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: rgb(164, 161, 161) !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .extras {
     --bs-btn-padding-x: 52px !important;
     --bs-btn-padding-y: 16px !important;
     width: 180px !important;

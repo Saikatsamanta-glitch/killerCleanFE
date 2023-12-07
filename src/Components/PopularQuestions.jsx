@@ -1,17 +1,27 @@
 import React from 'react'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
 import { popularQuestions } from '../data'
-import { Accordion, AccordionTab } from 'primereact/accordion'
 export default function PopularQuestions() {
   return (
     <div className="card max-xxl:px-2 w-[290px] mm:w-[340px] md:max-lg:w-[630px] lg:max-xxl:w-[350px] xxl:max-w-[500px] max-xxl:py-2 xxl:p-10">
-          <h1 className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">Popular Questions</h1>
-          <Accordion multiple className='w-full '>
-            {popularQuestions.map((q) => (
-              <AccordionTab key={q.id} header={q.ques} className="mb-4 xxl:text-xl">
-                <p className="m-0 xxl:text-xl">{q.ans}</p>
-              </AccordionTab>
-            ))}
-          </Accordion>
+          <h1 className="mb-3 font-bold text-lg xxl:text-3xl text-[#11263c]">Popular Questions</h1>
+          <Accordion allowZeroExpanded allowMultipleExpanded  className="w-full text-justify max-lg:p-2 lg:px-0 lg:py-3">
+          {popularQuestions.map((item) => (
+            <AccordionItem key={item.id}>
+              <AccordionItemHeading className="bg-none">
+                <AccordionItemButton className='popular'>{item.ques}</AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel><p className="mb-2 max-md:text-sm md:text-base">{item.ans}</p></AccordionItemPanel>
+            </AccordionItem>
+          ))}
+        </Accordion>
     </div>
   )
 }

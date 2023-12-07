@@ -22,7 +22,7 @@ const tab = {
 };
 const CleaningChecklist = () => {
   return (
-    <div className=" sm:px-32 px-2 mt-10 ">
+    <div className=" sm:px-32 px-2 mt-10 w-screen">
       <h1 className="md:max-xxl:text-[42px] text-[32px] text-[#014584] font-semibold text-center mb-4">
         Cleaning Checklist
       </h1>
