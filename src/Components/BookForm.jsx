@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { CFormCheck } from "@coreui/react";
 // import { Link } from "react-router-dom";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Tabs } from "flowbite-react";
 import { Accordion } from "flowbite-react";
@@ -27,8 +26,6 @@ export default function BookForm() {
   const [isScheduling, setIsScheduling] = useState(false);
   const [isScheduled, setIsScheduled] = useState(false);
   const [scheduleErr, setScheduleErr] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isTablet, setTablet] = useState(window.innerWidth < 1024);
   // Add these state variables at the beginning of your functional component
 
   const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
@@ -123,9 +120,6 @@ export default function BookForm() {
     setSelectedFrequency(event.target.value);
   };
 
-  const handleAptChange = (event) => {
-    setApt(event.target.value);
-  };
   const handleBedroomsChange = (event) => {
     setSelectedBedrooms(parseInt(event.target.value));
   };
@@ -146,22 +140,6 @@ export default function BookForm() {
         : [...prevExtras, extra]
     );
   };
-  // mobile and tablet view
-  useEffect(() => {
-    // Update isMobile when the window is resized
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setTablet(window.innerWidth < 1024);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const handleScheduled = (date) => {
     setIsScheduling(true);
     setScheduleErr("");
@@ -170,7 +148,7 @@ export default function BookForm() {
         setScheduleErr("");
         setIsScheduled(true);
         console.log("fake response: ", json);
-        console.log(json.scheduled)
+        console.log(json.scheduled);
       })
       .catch((err) => {
         setScheduleErr(err);
@@ -179,16 +157,25 @@ export default function BookForm() {
         setIsScheduling(false);
       });
   };
-//email sending function
-const form = useRef();
+  //email sending function
+  const form = useRef();
 
   const sendEmail = () => {
-    emailjs.sendForm('service_lrzlb67', 'template_0qic7ra', form.current, 'lO680sw9k9xiPwwsB')
-      .then((result) => {
+    emailjs
+      .sendForm(
+        "service_lrzlb67",
+        "template_0qic7ra",
+        form.current,
+        "lO680sw9k9xiPwwsB"
+      )
+      .then(
+        (result) => {
           console.log(result.text);
-      }, (error) => {
+        },
+        (error) => {
           console.log(error.text);
-      });
+        }
+      );
   };
 
   //payment
@@ -197,10 +184,12 @@ const form = useRef();
       "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol"
     );
 
-    const body = [{
-        price:price
-    }];
-    console.log(body)
+    const body = [
+      {
+        price: price,
+      },
+    ];
+    console.log(body);
     const headers = {
       "Content-Type": "application/json",
     };
@@ -228,12 +217,9 @@ const form = useRef();
       {/* Booking form container */}
       <form
         ref={form}
-        onSubmit={
-         ()=>{
+        onSubmit={() => {
           handleSubmit(onSubmit);
-          sendEmail();
-         }
-        }
+        }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
         <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
@@ -242,53 +228,78 @@ const form = useRef();
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Frequency{" "}
             </h1>
-            <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:max-lg:flex md:max-lg:flex-col space-y-3">
+            <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:flex lg:flex-wrap md:items-center md:max-lg:flex-col max-lg:space-y-3">
               {/* Radio buttons for frequency */}
-              <CFormCheck
-                button={{ color: "secondary" }}
-                type="radio"
-                name="frequency"
-                id="option1"
-                autoComplete="off"
-                label="One-time"
-                value="One-time"
-                checked={selectedFrequency === "One-time"}
-                onChange={handleFrequencyChange}
-              />
-              <CFormCheck
-                button={{ color: "secondary" }}
-                type="radio"
-                name="frequency"
-                id="option2"
-                autoComplete="off"
-                label="Weekly"
-                value="Weekly"
-                checked={selectedFrequency === "Weekly"}
-                onChange={handleFrequencyChange}
-                defaultChecked
-              />
-              <CFormCheck
-                button={{ color: "secondary" }}
-                type="radio"
-                name="frequency"
-                id="option3"
-                autoComplete="off"
-                label="Every other week"
-                value="Every other week"
-                checked={selectedFrequency === "Every other week"}
-                onChange={handleFrequencyChange}
-              />
-              <CFormCheck
-                button={{ color: "secondary" }}
-                type="radio"
-                name="frequency"
-                id="option4"
-                autoComplete="off"
-                label="Every 4 weeks"
-                value="Every 4 weeks"
-                checked={selectedFrequency === "Every 4 weeks"}
-                onChange={handleFrequencyChange}
-              />
+
+              <div className="max-lg:w-full flex justify-center items-center">
+                <input
+                  value={"One-time"}
+                  checked={selectedFrequency === "One-time"}
+                  onChange={handleFrequencyChange}
+                  type="radio"
+                  name="frequency"
+                  id="onetime"
+                  className="hidden peer"
+                />
+                <label
+                  htmlFor="onetime"
+                  className="p-2 bg-[#e5ecf2] w-full text-[#11263c] cursor-pointer rounded-lg text-center peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                >
+                  One-time
+                </label>
+              </div>
+              <div className="max-lg:w-full flex justify-center items-center">
+                <input
+                  type="radio"
+                  defaultChecked
+                  name="frequency"
+                  id="weekly"
+                  value={"Weekly"}
+                  className="hidden peer"
+                  checked={selectedFrequency === "Weekly"}
+                  onChange={handleFrequencyChange}
+                />
+                <label
+                  htmlFor="weekly"
+                  className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                >
+                  Weekly
+                </label>
+              </div>
+              <div className="max-lg:w-full flex justify-center items-center">
+                <input
+                  type="radio"
+                  name="frequency"
+                  id="everyother"
+                  value={"Every other week"}
+                  className="hidden peer"
+                  checked={selectedFrequency === "Every other week"}
+                  onChange={handleFrequencyChange}
+                />
+                <label
+                  htmlFor="everyother"
+                  className="p-2 bg-[#e5ecf2] cursor-pointer text-[#11263c]  rounded-lg w-full text-center peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                >
+                  Every other week
+                </label>
+              </div>
+              <div className="max-lg:w-full flex justify-center items-center">
+                <input
+                  type="radio"
+                  name="frequency"
+                  id="every4week"
+                  value={"Every 4 weeks"}
+                  className="hidden peer"
+                  checked={selectedFrequency === "Every 4 weeks"}
+                  onChange={handleFrequencyChange}
+                />
+                <label
+                  htmlFor="every4week"
+                  className="p-2 bg-[#e5ecf2] rounded-lg text-center text-[#11263c] cursor-pointer w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                >
+                  Every 4 weeks
+                </label>
+              </div>
             </div>
           </div>
           {/* Service Type section */}
@@ -382,7 +393,6 @@ const form = useRef();
                   <option>5500 - 5999 Sq Ft</option>
                 </Select>
               </div>
-              
             </div>
           </div>
           {/* Extras section */}
@@ -392,24 +402,35 @@ const form = useRef();
             </h1>
             <div className="grid xxl:grid-cols-6 xl:max-xxl:grid-cols-5 lg:max-xl:grid-cols-4 md:max-lg:grid-cols-3 max-ms:grid-cols-1 max-mm:grid-cols-1 max-ml:grid-cols-1 grid-cols-2 xxl:gap-10 lg:max-xxl:gap-3 max-lg:gap-2">
               {/* Checkboxes for extras */}
-              {selectExtras.map((v, index) => (
+              {selectExtras.map((v) => (
                 <div className="flex flex-col items-center">
-                  <CFormCheck
+                  <div
                     key={v.id}
-                    button={{ color: "light" }}
-                    id={v.label}
-                    autoComplete="off"
-                    label={
+                    onChange={handleExtrasChange}
+                    checked={selectedExtras.includes(v.label)}
+                    className="border flex items-center justify-center  rounded-md border-[#ced5d8] peer"
+                  >
+                    <input
+                      type="checkbox"
+                      name={v.label}
+                      id={v.label}
+                      value={v.label}
+                      className="peer hidden"
+                    />
+                    <label htmlFor={v.label} className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60">
                       <img
                         src={v.img}
                         alt=""
-                        className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 "
+                        className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 peer-checked:bg-[#52616b] peer-checked:bg-opacity-60"
                       />
-                    }
-                    value={v.label}
-                    onChange={handleExtrasChange}
-                    checked={selectedExtras.includes(v.label)}
-                  />
+                    </label>
+                    {/* <TextInput
+                      type="checkbox"
+                      className="btn btn-light"
+                      id={v.label}
+                      autoComplete="off"
+                    /> */}
+                  </div>
                   <div className="flex items-center ">
                     <Label
                       htmlFor={v.label}
@@ -466,11 +487,11 @@ const form = useRef();
                     </div>
                   )}
                 />
-                {errors?.FirstName?.message && 
-        <span className="text-red-500 text-xs ml-0.5 font-medium">
+                {errors?.FirstName?.message && (
+                  <span className="text-red-500 text-xs ml-0.5 font-medium">
                     {errors?.FirstName?.message}
                   </span>
-                }
+                )}
               </div>
               <div>
                 <Controller
@@ -656,31 +677,29 @@ const form = useRef();
               </div>
               <div>
                 <div>
-              <Controller
-              name="apt"
-              control={control}
-              render={({ field }) => (
-                <>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="apt"
-                    value="Apt No"
-                    className="text-[17px] xxl:text-3xl font-semibold"
+                  <Controller
+                    name="apt"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <div className="mb-2 block -ml-6">
+                          <Label
+                            htmlFor="apt"
+                            value="Apt No"
+                            className="text-[17px] xxl:text-3xl font-semibold"
+                          />
+                        </div>
+                        <TextInput
+                          id="apt"
+                          type="text"
+                          sizing="md"
+                          {...field}
+                          placeholder="#"
+                        />
+                      </>
+                    )}
                   />
                 </div>
-                <TextInput
-                  id="apt"
-                  type="text"
-                  sizing="md"
-                  {...field}
-                  placeholder="#"
-                 
-                />
-                </>
-                  )}
-                 
-                />
-              </div>
               </div>
             </div>
           </div>
@@ -696,7 +715,6 @@ const form = useRef();
                 isDone={isScheduled}
                 err={scheduleErr}
                 onConfirm={handleScheduled}
-
               />
             </div>
           </div>
@@ -709,27 +727,39 @@ const form = useRef();
               You can turn this description off or modify it at anytime.
             </p>
             <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-4">
-              <CFormCheck
-                button={{ color: "secondary" }}
-                type="radio"
-                name="keyinfo"
-                id="athome"
-                autoComplete="off"
-                label="Someone Will Be At Home"
-                defaultChecked
-              />
-              <CFormCheck
-                button={{ color: "secondary" }}
-                type="radio"
-                name="keyinfo"
-                id="hidekeys"
-                autoComplete="off"
-                label="I Will Hide The Keys"
-              />
+              <div className="max-lg:w-full flex justify-center items-center">
+                <input
+                  type="radio"
+                  defaultChecked
+                  name="key"
+                  id="keyinfo"
+                  className="hidden peer"
+                />
+                <label
+                  htmlFor="keyinfo"
+                  className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                >
+                  Someone Will Be At Home
+                </label>
+              </div>
+              <div className="max-lg:w-full flex justify-center items-center">
+                <input
+                  type="radio"
+                  name="key"
+                  id="provider"
+                  className="hidden peer"
+                />
+                <label
+                  htmlFor="provider"
+                  className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                >
+                  I Will Hide The Keys
+                </label>
+              </div>
               <div className="flex items-center">
                 <Checkbox id="provider" className="h-6 w-6" />
                 <Label
-                  htmlFor="provider"
+                  htmlFor=""
                   className="-ml-5 xxl:text-3xl max-lg:text-lg"
                 >
                   Keep Key With Provider
@@ -853,116 +883,114 @@ const form = useRef();
       </form>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
-        
-          <div className="card max-lg:fixed lg:sticky lg:top-[150px] max-lg:bottom-2 max-lg:left-0 max-lg:right-0 max-lg:mx-auto  z-10 w-[95%] lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
-            <Accordion activeIndex={0} className="max-xxl:p-2 xxl:p-10">
-              <Accordion.Panel>
-                <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
-                  <div className="flex items-center justify-between">
+        <div className="card max-lg:fixed lg:sticky lg:top-[150px] max-lg:bottom-2 max-lg:left-0 max-lg:right-0 max-lg:mx-auto  z-10 w-[95%] lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
+          <Accordion activeIndex={0} className="max-xxl:p-2 xxl:p-10">
+            <Accordion.Panel>
+              <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
+                <div className="flex items-center justify-between">
                   Booking Summary
                   <div className="flex flex-col max-lg:block lg:hidden justify-between items-center">
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        ${price}
-                      </h1>
-                    </div>
+                    <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                      ${price}
+                    </h1>
                   </div>
-                </Accordion.Title>
-                <Accordion.Content>
-                  <div className="border-y">
-                    <table className="text-base max-xxl:border-spacing-4 xxl:border-spacing-8 border-separate">
-                      <tbody>
+                </div>
+              </Accordion.Title>
+              <Accordion.Content>
+                <div className="border-y">
+                  <table className="text-base max-xxl:border-spacing-4 xxl:border-spacing-8 border-separate">
+                    <tbody>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Industry
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          Home Cleaning
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Service
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          Flat Rate Service
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Frequency
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          {selectedFrequency}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Bedrooms
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          {selectedBedrooms}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Bathrooms
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          {selectedBathrooms}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Sq Ft
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          {selectedSqft}
+                        </td>
+                      </tr>
+                      {selectedExtras.length > 0 && (
                         <tr>
                           <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Industry
+                            Extras
                           </td>
                           <td>:</td>
                           <td className="text-[#11263c] xxl:text-xl">
-                            Home Cleaning
+                            {selectedExtras.join(", ")}
                           </td>
                         </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Service
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            Flat Rate Service
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Frequency
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedFrequency}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Bedrooms
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedBedrooms}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Bathrooms
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedBathrooms}
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-sm xxl:text-xl text-[#6c757d]">
-                            Sq Ft
-                          </td>
-                          <td>:</td>
-                          <td className="text-[#11263c] xxl:text-xl">
-                            {selectedSqft}
-                          </td>
-                        </tr>
-                        {selectedExtras.length > 0 && (
-                          <tr>
-                            <td className="text-sm xxl:text-xl text-[#6c757d]">
-                              Extras
-                            </td>
-                            <td>:</td>
-                            <td className="text-[#11263c] xxl:text-xl">
-                              {selectedExtras.join(", ")}
-                            </td>
-                          </tr>
-                        )}
-                       
-                      </tbody>
-                    </table>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="p-2 mt-2 mb-2">
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-lg xxl:text-xl text-[#6c757d]">
+                      Total Before Tax
+                    </h1>
+                    <h1 className="text-lg xxl:text-xl text-[#6c757d]">
+                      ${price}
+                    </h1>
                   </div>
-                  <div className="p-2 mt-2 mb-2">
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                        Total Before Tax
-                      </h1>
-                      <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                        ${price}
-                      </h1>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        TOTAL
-                      </h1>
-                      <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                        ${price}
-                      </h1>
-                    </div>
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                      TOTAL
+                    </h1>
+                    <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                      ${price}
+                    </h1>
                   </div>
-                </Accordion.Content>
-              </Accordion.Panel>
-            </Accordion>
-          </div>
-        
+                </div>
+              </Accordion.Content>
+            </Accordion.Panel>
+          </Accordion>
+        </div>
+
         <PopularQuestions />
       </div>
     </div>
