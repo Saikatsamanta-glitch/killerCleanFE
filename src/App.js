@@ -8,7 +8,6 @@ import CleaningChecklist from './Pages/CleaningChecklist'
 import Contact from './Pages/Contact'
 import Book from './Pages/Book'
 import FAQ from './Pages/FAQ'
-import Products from './Components/PaymentForm'
 import Cancel from './Pages/Cancel'
 import Success from './Pages/Success'
 

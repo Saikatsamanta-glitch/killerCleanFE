@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CFormCheck } from "@coreui/react";
-// import { Link } from "react-router-dom";
 import emailjs from '@emailjs/browser';
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Tabs } from "flowbite-react";
@@ -844,6 +843,7 @@ const form = useRef();
           </div>
           <Button
             type="submit"
+            value="Send"
             className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
           >
             {" "}

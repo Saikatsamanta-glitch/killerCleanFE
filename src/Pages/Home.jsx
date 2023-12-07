@@ -1,7 +1,7 @@
 import React from "react";
-import OurServices from "../Components/OurServices";
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
+import OurServices from "../Components/OurServices";
 import Tired from "../Components/Tired";
 import Welcome from "../Components/Welcome";
 import Testimonials from "../Components/Testimonials";
