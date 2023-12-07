@@ -143,25 +143,25 @@ export default function BookForm() {
       });
   };
   //email sending function
-  // const form = useRef();
+  const form = useRef();
 
-  // const sendEmail = () => {
-  //   emailjs
-  //     .sendForm(
-  //       "service_lrzlb67",
-  //       "template_0qic7ra",
-  //       form.current,
-  //       "lO680sw9k9xiPwwsB"
-  //     )
-  //     .then(
-  //       (result) => {
-  //         console.log(result.text);
-  //       },
-  //       (error) => {
-  //         console.log(error.text);
-  //       }
-  //     );
-  // };
+  const sendEmail = () => {
+    emailjs
+      .sendForm(
+        "service_lrzlb67",
+        "template_0qic7ra",
+        form.current,
+        "lO680sw9k9xiPwwsB"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   //payment
   const makePayment = async () => {
@@ -404,10 +404,7 @@ export default function BookForm() {
                       value={v.label}
                       className="peer hidden"
                     />
-                    <label
-                      htmlFor={v.label}
-                      className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60"
-                    >
+                    <label htmlFor={v.label} className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60">
                       <img
                         src={v.img}
                         alt=""
@@ -505,7 +502,6 @@ export default function BookForm() {
                         sizing="md"
                         required
                         {...field}
-
                         placeholder="Ex: Lee"
                       />
                     </>
@@ -543,7 +539,6 @@ export default function BookForm() {
                         type="email"
                         {...field}
                         sizing="md"
-                   
                         name="user_email"
                         error={Boolean(errors?.email?.message)}
                         placeholder="Ex: example@xyz.com"
@@ -598,7 +593,6 @@ export default function BookForm() {
                         type="tel"
                         sizing="md"
                         {...field}
-                   
                         error={Boolean(errors?.tel?.message)}
                         placeholder="Phone No."
                       />
@@ -655,7 +649,6 @@ export default function BookForm() {
                         id="address"
                         type="text"
                         {...field}
-                   
                         sizing="md"
                         placeholder="Type Address"
                         name="address"
@@ -688,7 +681,6 @@ export default function BookForm() {
                           type="text"
                           sizing="md"
                           {...field}
-                     
                           placeholder="#"
                         />
                       </>
@@ -753,7 +745,10 @@ export default function BookForm() {
               </div>
               <div className="flex items-center">
                 <Checkbox id="provider" className="h-6 w-6" />
-                <Label htmlFor="" className="-ml-5 xxl:text-3xl max-lg:text-lg">
+                <Label
+                  htmlFor=""
+                  className="-ml-5 xxl:text-3xl max-lg:text-lg"
+                >
                   Keep Key With Provider
                 </Label>
               </div>
@@ -801,31 +796,33 @@ export default function BookForm() {
           <div className="border-b w-full py-4 lg:p-4">
             <Tabs aria-label="Default Tabs" style="default">
               <Tabs.Item active title="Coupon Code">
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="mb-2 flex items-center">
-                    <Label
-                      htmlFor="email1"
-                      value="Enter Coupon Code"
-                      className="text-lg -ml-6"
-                    />
-                    <Tooltip
-                      content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
-                      arrow={false}
-                      className="w-48 border bg-white  text-black font-normal text-center "
-                    >
-                      <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
-                    </Tooltip>
+                <form className="grid grid-cols-1 gap-4">
+                  <div>
+                    <div className="mb-2 flex items-center">
+                      <Label
+                        htmlFor="email1"
+                        value="Enter Coupon Code"
+                        className="text-lg -ml-6"
+                      />
+                      <Tooltip
+                        content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
+                        arrow={false}
+                        className="w-48 border bg-white  text-black font-normal text-center "
+                      >
+                        <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
+                      </Tooltip>
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      <TextInput
+                        id="base"
+                        type="text"
+                        placeholder="Enter Coupon Code"
+                        required
+                      />
+                      <Button>Apply</Button>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <TextInput
-                      id="base"
-                      type="text"
-                      placeholder="Enter Coupon Code"
-                      required
-                    />
-                    <Button>Apply</Button>
-                  </div>
-                </div>
+                </form>
               </Tabs.Item>
             </Tabs>
           </div>
