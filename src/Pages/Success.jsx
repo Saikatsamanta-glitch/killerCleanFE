@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import emailjs from 'emailjs-com';
+import { useNavigate } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 const Success = ({ userInfo, paymentInfo }) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     // Function to send email
