@@ -143,25 +143,25 @@ export default function BookForm() {
       });
   };
   //email sending function
-  const form = useRef();
+  // const form = useRef();
 
-  const sendEmail = () => {
-    emailjs
-      .sendForm(
-        "service_lrzlb67",
-        "template_0qic7ra",
-        form.current,
-        "lO680sw9k9xiPwwsB"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
+  // const sendEmail = () => {
+  //   emailjs
+  //     .sendForm(
+  //       "service_lrzlb67",
+  //       "template_0qic7ra",
+  //       form.current,
+  //       "lO680sw9k9xiPwwsB"
+  //     )
+  //     .then(
+  //       (result) => {
+  //         console.log(result.text);
+  //       },
+  //       (error) => {
+  //         console.log(error.text);
+  //       }
+  //     );
+  // };
 
   //payment
   const makePayment = async () => {
@@ -201,7 +201,6 @@ export default function BookForm() {
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
       <form
-        ref={form}
         onSubmit={handleSubmit(onSubmit)}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
@@ -468,7 +467,6 @@ export default function BookForm() {
                         name="to_name"
                         sizing="md"
                         {...field}
-                        value={field.value}
                         placeholder="Ex: James"
                       />
                     </div>
@@ -502,7 +500,7 @@ export default function BookForm() {
                         sizing="md"
                         required
                         {...field}
-                        value={field.value}
+
                         placeholder="Ex: Lee"
                       />
                     </>
@@ -540,7 +538,7 @@ export default function BookForm() {
                         type="email"
                         {...field}
                         sizing="md"
-                        value={field.value}
+                   
                         name="user_email"
                         error={Boolean(errors?.email?.message)}
                         placeholder="Ex: example@xyz.com"
@@ -595,7 +593,7 @@ export default function BookForm() {
                         type="tel"
                         sizing="md"
                         {...field}
-                        value={field.value}
+                   
                         error={Boolean(errors?.tel?.message)}
                         placeholder="Phone No."
                       />
@@ -652,7 +650,7 @@ export default function BookForm() {
                         id="address"
                         type="text"
                         {...field}
-                        value={field.value}
+                   
                         sizing="md"
                         placeholder="Type Address"
                         name="address"
@@ -685,7 +683,7 @@ export default function BookForm() {
                           type="text"
                           sizing="md"
                           {...field}
-                          value={field.value}
+                     
                           placeholder="#"
                         />
                       </>
