@@ -251,7 +251,7 @@ export default function BookForm() {
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
-          // makePayment();
+          makePayment();
           handleFormSubmit();
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
