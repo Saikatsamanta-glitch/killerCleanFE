@@ -202,7 +202,8 @@ select {
 #tel,
 #sectel,
 #address,
-#apt {
+#apt,
+#coupon {
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
@@ -232,7 +233,8 @@ label {
 #tel,
 #sectel,
 #address,
-#apt {
+#apt,
+#coupon {
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
@@ -520,7 +522,8 @@ input::placeholder {
   #tel,
   #sectel,
   #address,
-  #apt {
+  #apt,
+  #coupon {
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
@@ -578,7 +581,8 @@ input::placeholder {
   #tel,
   #sectel,
   #address,
-  #apt {
+  #apt,
+  #coupon {
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
@@ -744,7 +748,9 @@ input::placeholder {
   #sectel::placeholder,
   #address::placeholder,
   #apt::placeholder,
-  #note::placeholder {
+  #note::placeholder,
+  #special::placeholder, 
+  #coupon::placeholder  {
     font-size: 16px !important;
     color: #676f748b !important ;
     font-weight: bold;
@@ -813,7 +819,9 @@ input::placeholder {
   #sectel::placeholder,
   #address::placeholder,
   #apt::placeholder,
-  #note::placeholder {
+  #note::placeholder,
+  #special::placeholder, 
+  #coupon::placeholder  {
     font-size: 20px !important;
     color: #676f748b !important ;
     font-weight: bold;

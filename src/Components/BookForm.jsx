@@ -43,6 +43,9 @@ export default function BookForm() {
     address: "",
     apt: "",
     sendReminders: false,
+    note:"",
+    special:"",
+    coupon:""
   });
 
   const handleChange = (field, value) => {
@@ -217,7 +220,12 @@ export default function BookForm() {
 
     const body = [
       {
-        
+        Name:formData.FirstName + " " + formData.LastName,
+        Frequency:selectedFrequency,
+        Bathrooms:selectedBathrooms,
+        Bedrooms:selectedBedrooms,
+        Sqft:selectedSqft,
+        Extras:selectedExtras,
         price: price,
       },
     ];
@@ -564,6 +572,7 @@ export default function BookForm() {
                   sizing="md"
                   className=""
                   placeholder="Ex: example@xyz.com"
+                  onChange={(e) => handleChange("secemail", e.target.value)}
                 />
               </div>
               <div>
@@ -596,12 +605,13 @@ export default function BookForm() {
                   sizing="md"
                   className=""
                   placeholder="Phone No."
+                  onChange={(e) => handleChange("sectel", e.target.value)}
                 />
               </div>
               <div className="flex items-center">
-                <Checkbox id="check" className="h-6 w-6" />
+                <Checkbox id="sendReminders" className="h-6 w-6"   />
                 <Label
-                  htmlFor="check"
+                  htmlFor="sendReminders"
                   className="-ml-5 xxl:text-3xl  max-lg:text-lg"
                 >
                   Send me reminders about my booking via text message
@@ -700,8 +710,8 @@ export default function BookForm() {
                 </label>
               </div>
               <div className="flex items-center">
-                <Checkbox id="provider" className="h-6 w-6" />
-                <Label htmlFor="" className="-ml-5 xxl:text-3xl max-lg:text-lg">
+                <Checkbox id="provider" className="h-6 w-6"  />
+                <Label htmlFor="provider" className="-ml-5 xxl:text-3xl max-lg:text-lg">
                   Keep Key With Provider
                 </Label>
               </div>
@@ -719,6 +729,7 @@ export default function BookForm() {
                   id="note"
                   rows={5}
                   placeholder="Special Notes and Instructions"
+                  onChange={(e) => handleChange("note", e.target.value)}
                 />
               </div>
             </div>
@@ -732,15 +743,16 @@ export default function BookForm() {
               <div className="w-full">
                 <div className="mb-2 block -ml-6">
                   <Label
-                    htmlFor="note"
+                    htmlFor="special"
                     value="Would You Like To Add Any Notes?"
                     className="lg:text-[17px] max-lg:text-lg xxl:text-2xl font-semibold"
                   />
                 </div>
                 <Textarea
-                  id="note"
+                  id="special"
                   rows={6}
                   placeholder="Special Notes Or Instructions"
+                  onChange={(e) => handleChange("special", e.target.value)}
                 />
               </div>
             </div>
@@ -752,7 +764,7 @@ export default function BookForm() {
                 <div className="grid grid-cols-1 gap-4">
                   <div className="mb-2 flex items-center">
                     <Label
-                      htmlFor="email1"
+                      htmlFor="coupon"
                       value="Enter Coupon Code"
                       className="text-lg -ml-6"
                     />
@@ -766,9 +778,10 @@ export default function BookForm() {
                   </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <TextInput
-                      id="base"
+                      id="coupon"
                       type="text"
                       placeholder="Enter Coupon Code"
+                      onChange={(e) => handleChange("coupon", e.target.value)}
                     />
                     <Button>Apply</Button>
                   </div>

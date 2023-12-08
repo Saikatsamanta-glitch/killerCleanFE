@@ -53,7 +53,6 @@ const Success = ({ userInfo, paymentInfo }) => {
   return (
     <div className='h-[185px] flex justify-center items-center '>
       <h1 className='text-green-700 font-bold text-5xl '>Payment Successful!</h1>
-      <h1>{userInfo}</h1>
     </div>
   );
 };

@@ -16,8 +16,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
                 price_data: {
                         currency: process.env.currency,
                         product_data: {
-                               name:"static",
-                               description:"description",
+                               name: product.Name,
+                               description:product.Frequency,
                         },
                         unit_amount: product.price * 100,
                 },
