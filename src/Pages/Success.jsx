@@ -18,7 +18,7 @@ const Success = ({ userInfo, paymentInfo }) => {
           purchased_service: paymentInfo.purchased_service,
           total_amount: paymentInfo.total_amount,
         };
-
+        console.log(templateParams)
         // Replace 'your_service_id' and 'your_template_id' with the actual values from EmailJS
         const result = await emailjs.send(
           'service_lrzlb67',
@@ -53,7 +53,7 @@ const Success = ({ userInfo, paymentInfo }) => {
   return (
     <div className='h-[185px] flex justify-center items-center '>
       <h1 className='text-green-700 font-bold text-5xl '>Payment Successful!</h1>
-      
+      <h1>{userInfo}</h1>
     </div>
   );
 };

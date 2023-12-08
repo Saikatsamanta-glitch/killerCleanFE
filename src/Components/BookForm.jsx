@@ -1,7 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import emailjs from "@emailjs/browser";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { Accordion, Tabs, Label,Select,Tooltip,TextInput,Checkbox,Textarea,Button, } from "flowbite-react";
+import {
+  Accordion,
+  Tabs,
+  Label,
+  Select,
+  Tooltip,
+  TextInput,
+  Checkbox,
+  Textarea,
+  Button,
+} from "flowbite-react";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { selectExtras } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
@@ -9,7 +19,8 @@ import PopularQuestions from "./PopularQuestions";
 import fakeRequest from "./EmailSender";
 import { useForm, Controller } from "react-hook-form";
 import { loadStripe } from "@stripe/stripe-js";
-
+import { useNavigate } from "react-router-dom";
+import Success from "../Pages/Success";
 export default function BookForm() {
   const [isScheduling, setIsScheduling] = useState(false);
   const [isScheduled, setIsScheduled] = useState(false);
@@ -22,16 +33,27 @@ export default function BookForm() {
   const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [price, setPrice] = useState(0);
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    mode: "onTouched",
+  const [formData, setFormData] = useState({
+    FirstName: "",
+    LastName: "",
+    email: "",
+    secemail: "",
+    tel: "",
+    sectel: "",
+    address: "",
+    apt: "",
+    sendReminders: false,
   });
 
-  const onSubmit = (data) => console.log(data);
+  const handleChange = (field, value) => {
+    setFormData({
+      ...formData,
+      [field]: value,
+    });
+    
+  };
+ 
+  
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
     // Replace this with your actual pricing logic based on selected options
@@ -142,6 +164,30 @@ export default function BookForm() {
         setIsScheduling(false);
       });
   };
+
+  const handleFormSubmit = () => {
+    // Your form submission logic here...
+
+    // Assuming you set userInfo and paymentInfo based on form data
+    const userInfo = {
+      user_name: formData.FirstName + ' ' + formData.LastName,
+      emailid: formData.email,
+      address: formData.address,
+      // ... other properties
+    };
+
+    const paymentInfo = {
+      date_and_time: {handleScheduled}, // Replace with actual data
+      service_type: 'Home Cleaning', // Replace with actual data
+      purchased_service: 'Flat Rate Service', // Replace with actual data
+      total_amount: price, // Replace with actual data
+    };
+
+    console.log(formData);
+
+    // Render the Success component and pass userInfo and paymentInfo as props
+    return <Success userInfo={userInfo} paymentInfo={paymentInfo} />;
+  };
   //email sending function
   const form = useRef();
 
@@ -204,8 +250,8 @@ export default function BookForm() {
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
-          makePayment();
-          handleSubmit(onSubmit);
+          // makePayment();
+          handleFormSubmit();
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
@@ -404,7 +450,10 @@ export default function BookForm() {
                       value={v.label}
                       className="peer hidden"
                     />
-                    <label htmlFor={v.label} className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60">
+                    <label
+                      htmlFor={v.label}
+                      className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60"
+                    >
                       <img
                         src={v.img}
                         alt=""
@@ -447,110 +496,58 @@ export default function BookForm() {
             </h1>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
               <div>
-                <Controller
-                  name="FirstName"
-                  rules={{
-                    required: "First Name is Required",
-                  }}
-                  control={control}
-                  render={({ field }) => (
-                    <div>
-                      <div className="mb-2 block -ml-6">
-                        <Label
-                          htmlFor="firstName"
-                          value="First Name"
-                          className="text-[17px] xxl:text-3xl font-semibold"
-                        />
-                      </div>
-                      <TextInput
-                        id="firstName"
-                        type="text"
-                        required
-                        name="to_name"
-                        sizing="md"
-                        {...field}
-                        placeholder="Ex: James"
-                      />
-                    </div>
-                  )}
-                />
-                {errors?.FirstName?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">
-                    {errors?.FirstName?.message}
-                  </span>
-                )}
+                <div>
+                  <div className="mb-2 block -ml-6">
+                    <Label
+                      htmlFor="firstName"
+                      value="First Name"
+                      className="text-[17px] xxl:text-3xl font-semibold"
+                    />
+                  </div>
+                  <TextInput
+                    id="firstName"
+                    type="text"
+                    required
+                    name="to_name"
+                    sizing="md"
+                    placeholder="Ex: James"
+                    onChange={(e) => handleChange("FirstName", e.target.value)}
+                  />
+                </div>
               </div>
               <div>
-                <Controller
-                  name="LastName"
-                  rules={{
-                    required: "Last Name is Required",
-                  }}
-                  control={control}
-                  render={({ field }) => (
-                    <>
-                      <div className="mb-2 block -ml-6">
-                        <Label
-                          htmlFor="lastName"
-                          value="Last Name"
-                          className="text-[17px] xxl:text-3xl font-semibold"
-                        />
-                      </div>
-                      <TextInput
-                        id="lastName"
-                        type="text"
-                        sizing="md"
-                        required
-                        {...field}
-                        placeholder="Ex: Lee"
-                      />
-                    </>
-                  )}
+                <div className="mb-2 block -ml-6">
+                  <Label
+                    htmlFor="lastName"
+                    value="Last Name"
+                    className="text-[17px] xxl:text-3xl font-semibold"
+                  />
+                </div>
+                <TextInput
+                  id="lastName"
+                  type="text"
+                  sizing="md"
+                  required
+                  placeholder="Ex: Lee"
+                  onChange={(e) => handleChange("LastName", e.target.value)}
                 />
-                {errors?.LastName?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">
-                    {errors?.LastName?.message}
-                  </span>
-                )}
               </div>
               <div>
-                <Controller
-                  name="email"
-                  control={control}
-                  rules={{
-                    required: "Email ID is Required",
-                    pattern: {
-                      value:
-                        /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
-                      message: "Email ID is invaild",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <>
-                      <div className="mb-2 block -ml-6">
-                        <Label
-                          htmlFor="email"
-                          value="Email Address"
-                          className="text-[17px] xxl:text-3xl font-semibold"
-                        />
-                      </div>
-                      <TextInput
-                        id="email"
-                        type="email"
-                        {...field}
-                        sizing="md"
-                        name="user_email"
-                        error={Boolean(errors?.email?.message)}
-                        placeholder="Ex: example@xyz.com"
-                      />
-                    </>
-                  )}
+                <div className="mb-2 block -ml-6">
+                  <Label
+                    htmlFor="email"
+                    value="Email Address"
+                    className="text-[17px] xxl:text-3xl font-semibold"
+                  />
+                </div>
+                <TextInput
+                  id="email"
+                  type="email"
+                  sizing="md"
+                  name="user_email"
+                  placeholder="Ex: example@xyz.com"
+                  onChange={(e) => handleChange("email", e.target.value)}
                 />
-                {errors?.email?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">
-                    {errors?.email?.message}
-                  </span>
-                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -569,41 +566,20 @@ export default function BookForm() {
                 />
               </div>
               <div>
-                <Controller
-                  name="tel"
-                  control={control}
-                  rules={{
-                    required: "Phone No. is Required",
-                    pattern: {
-                      value: /^[0-9+ ]+$/,
-                      message: "Phone No. is invaild",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <>
-                      <div className="mb-2 block -ml-6">
-                        <Label
-                          htmlFor="tel"
-                          value="Phone No"
-                          className="text-[17px] xxl:text-3xl font-semibold"
-                        />
-                      </div>
-                      <TextInput
-                        id="tel"
-                        type="tel"
-                        sizing="md"
-                        {...field}
-                        error={Boolean(errors?.tel?.message)}
-                        placeholder="Phone No."
-                      />
-                    </>
-                  )}
+                <div className="mb-2 block -ml-6">
+                  <Label
+                    htmlFor="tel"
+                    value="Phone No"
+                    className="text-[17px] xxl:text-3xl font-semibold"
+                  />
+                </div>
+                <TextInput
+                  id="tel"
+                  type="tel"
+                  sizing="md"
+                  placeholder="Phone No."
+                  onChange={(e) => handleChange("tel", e.target.value)}
                 />
-                {errors?.tel?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">
-                    {errors?.tel?.message}
-                  </span>
-                )}
               </div>
               <div>
                 <div className="mb-2 block -ml-6">
@@ -633,58 +609,37 @@ export default function BookForm() {
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-4 my-4">
               <div>
-                <Controller
+                <div className="mb-2 block -ml-6">
+                  <Label
+                    htmlFor="address"
+                    value="Address"
+                    className="text-[17px] xxl:text-3xl font-semibold"
+                  />
+                </div>
+                <TextInput
+                  id="address"
+                  type="text"
+                  sizing="md"
+                  placeholder="Type Address"
                   name="address"
-                  control={control}
-                  render={({ field }) => (
-                    <>
-                      <div className="mb-2 block -ml-6">
-                        <Label
-                          htmlFor="address"
-                          value="Address"
-                          className="text-[17px] xxl:text-3xl font-semibold"
-                        />
-                      </div>
-                      <TextInput
-                        id="address"
-                        type="text"
-                        {...field}
-                        sizing="md"
-                        placeholder="Type Address"
-                        name="address"
-                      />
-                    </>
-                  )}
+                  onChange={(e) => handleChange("address", e.target.value)}
                 />
-                {errors?.address?.message && (
-                  <span className="text-red-500 text-xs ml-0.5 font-medium">
-                    {errors?.address?.message}
-                  </span>
-                )}
               </div>
               <div>
                 <div>
-                  <Controller
-                    name="apt"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <div className="mb-2 block -ml-6">
-                          <Label
-                            htmlFor="apt"
-                            value="Apt No"
-                            className="text-[17px] xxl:text-3xl font-semibold"
-                          />
-                        </div>
-                        <TextInput
-                          id="apt"
-                          type="text"
-                          sizing="md"
-                          {...field}
-                          placeholder="#"
-                        />
-                      </>
-                    )}
+                  <div className="mb-2 block -ml-6">
+                    <Label
+                      htmlFor="apt"
+                      value="Apt No"
+                      className="text-[17px] xxl:text-3xl font-semibold"
+                    />
+                  </div>
+                  <TextInput
+                    id="apt"
+                    type="text"
+                    sizing="md"
+                    placeholder="#"
+                    onChange={(e) => handleChange("apt", e.target.value)}
                   />
                 </div>
               </div>
@@ -745,10 +700,7 @@ export default function BookForm() {
               </div>
               <div className="flex items-center">
                 <Checkbox id="provider" className="h-6 w-6" />
-                <Label
-                  htmlFor=""
-                  className="-ml-5 xxl:text-3xl max-lg:text-lg"
-                >
+                <Label htmlFor="" className="-ml-5 xxl:text-3xl max-lg:text-lg">
                   Keep Key With Provider
                 </Label>
               </div>
@@ -796,33 +748,30 @@ export default function BookForm() {
           <div className="border-b w-full py-4 lg:p-4">
             <Tabs aria-label="Default Tabs" style="default">
               <Tabs.Item active title="Coupon Code">
-                <form className="grid grid-cols-1 gap-4">
-                  <div>
-                    <div className="mb-2 flex items-center">
-                      <Label
-                        htmlFor="email1"
-                        value="Enter Coupon Code"
-                        className="text-lg -ml-6"
-                      />
-                      <Tooltip
-                        content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
-                        arrow={false}
-                        className="w-48 border bg-white  text-black font-normal text-center "
-                      >
-                        <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
-                      </Tooltip>
-                    </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                      <TextInput
-                        id="base"
-                        type="text"
-                        placeholder="Enter Coupon Code"
-                        required
-                      />
-                      <Button>Apply</Button>
-                    </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="mb-2 flex items-center">
+                    <Label
+                      htmlFor="email1"
+                      value="Enter Coupon Code"
+                      className="text-lg -ml-6"
+                    />
+                    <Tooltip
+                      content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
+                      arrow={false}
+                      className="w-48 border bg-white  text-black font-normal text-center "
+                    >
+                      <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
+                    </Tooltip>
                   </div>
-                </form>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <TextInput
+                      id="base"
+                      type="text"
+                      placeholder="Enter Coupon Code"
+                    />
+                    <Button>Apply</Button>
+                  </div>
+                </div>
               </Tabs.Item>
             </Tabs>
           </div>
@@ -872,7 +821,7 @@ export default function BookForm() {
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
         <div className="card max-lg:fixed lg:sticky lg:top-[150px] max-lg:bottom-2 max-lg:left-0 max-lg:right-0 max-lg:mx-auto  z-10 w-[95%] lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
-          <Accordion activeIndex={0} className="max-xxl:p-2 xxl:p-10">
+          <Accordion className="max-xxl:p-2 xxl:p-10">
             <Accordion.Panel>
               <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
                 <div className="flex items-center justify-between">
@@ -981,6 +930,7 @@ export default function BookForm() {
 
         <PopularQuestions />
       </div>
+      <p>FirstName:{formData.FirstName}</p>
     </div>
   );
 }
