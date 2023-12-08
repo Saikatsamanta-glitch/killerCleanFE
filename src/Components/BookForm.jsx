@@ -234,7 +234,7 @@ export default function BookForm() {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      "https://killer-clean.onrender.com/",
+      "http://localhost:7000/api/create-checkout-session",
       {
         method: "POST",
         headers: headers,

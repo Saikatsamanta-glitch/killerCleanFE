@@ -9,7 +9,7 @@ app.use(cors());
 app.get('/',(req,res)=>{
         res.json({"message":"pong.."})
 })
-app.post("https://killer-clean.onrender.com/", async (req, res) => {
+app.post("/api/create-checkout-session", async (req, res) => {
         const products = req.body;
         
         const lineItems = products.map((product) => ({
@@ -17,6 +17,7 @@ app.post("https://killer-clean.onrender.com/", async (req, res) => {
                         currency: process.env.currency,
                         product_data: {
                                name: product.Name,
+
                                description:product.Frequency,
                         },
                         unit_amount: product.price * 100,
