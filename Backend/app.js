@@ -9,7 +9,7 @@ app.use(cors());
 app.get('/',(req,res)=>{
         res.json({"message":"pong.."})
 })
-app.post("/api/create-checkout-session", async (req, res) => {
+app.post("https://killer-clean.onrender.com/", async (req, res) => {
         const products = req.body;
         
         const lineItems = products.map((product) => ({
