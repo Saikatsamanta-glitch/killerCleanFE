@@ -95,7 +95,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Cancel"
+              path="/cancel"
               element={
                 <>
                   <Nav />
@@ -105,7 +105,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Success"
+              path="/success"
               element={
                 <>
                   <Nav />
