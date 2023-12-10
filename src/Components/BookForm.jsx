@@ -450,7 +450,7 @@ export default function BookForm() {
                     key={v.id}
                     onChange={handleExtrasChange}
                     checked={selectedExtras.includes(v.label)}
-                    className="border flex items-center justify-center  rounded-md border-[#ced5d8] peer"
+                    className="border flex items-center justify-center  rounded-md border-[#ced5d8] overflow-hidden peer"
                   >
                     <input
                       type="checkbox"
@@ -461,12 +461,12 @@ export default function BookForm() {
                     />
                     <label
                       htmlFor={v.label}
-                      className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60"
+                      className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60 "
                     >
                       <img
                         src={v.img}
                         alt=""
-                        className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16 peer-checked:bg-[#52616b] peer-checked:bg-opacity-60"
+                        className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16  md:max-lg:w-16 xxl:h-16 xxl:w-16 peer-checked:bg-[#52616b] peer-checked:bg-opacity-60"
                       />
                     </label>
                     {/* <TextInput
@@ -834,11 +834,11 @@ export default function BookForm() {
       </form>
       {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
-        <div className="card max-lg:fixed lg:sticky lg:top-[150px] max-lg:bottom-2 max-lg:left-0 max-lg:right-0 max-lg:mx-auto  z-10 w-[95%] lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
-          <Accordion className="max-xxl:p-2 xxl:p-10">
-            <Accordion.Panel>
-              <Accordion.Title className="mb-6 font-bold text-lg xxl:text-3xl text-[#11263c]">
-                <div className="flex items-center justify-between">
+        <div className="card z-10  max-lg:w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
+          <Accordion className="max-xxl:p-2 xxl:p-10 w-full">
+            <Accordion.Panel className="w-full">
+              <Accordion.Title className="mb-6 font-bold w-full text-lg xxl:text-3xl text-[#11263c]">
+                <div className="flex items-center w-full justify-between">
                   Booking Summary
                   <div className="flex flex-col max-lg:block lg:hidden justify-between items-center">
                     <h1 className="text-2xl xxl:text-4xl text-orange-500">
@@ -944,7 +944,6 @@ export default function BookForm() {
 
         <PopularQuestions />
       </div>
-      <p>FirstName:{formData.FirstName}</p>
     </div>
   );
 }

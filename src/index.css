@@ -93,7 +93,6 @@ nav ul li a:hover {
 [data-testid="footer-groupLink"] li a {
   color: white !important;
   font-weight: 400 !important;
-  font-size: 16px !important;
 }
 .footer-text {
   font-size: 12px !important;
@@ -418,6 +417,7 @@ input::placeholder {
     background-color: white !important;
     border-radius: 4px !important;
     padding: 0px !important;
+    margin-bottom: 10px !important;
   }
   [aria-label="Pills"] button {
     padding: 12px !important;
