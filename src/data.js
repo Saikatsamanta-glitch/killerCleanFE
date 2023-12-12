@@ -162,7 +162,7 @@ export const bookservices=[
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/bk-form-chat.png',
     desc:'Fast email response & friendly customer service.'
   }
-]
+];
 
 export const selectExtras=[
   {
@@ -223,7 +223,7 @@ export const selectExtras=[
     label:'Dishes',
     tooltip:'Do a load of dishes.'
   },
-]
+];
 
 export const popularQuestions=[
   {
@@ -256,7 +256,7 @@ export const popularQuestions=[
     ques:'Why do I have to enter a zipcode?',
     ans:'You must enter a zip code in order for us to determine the pricing based on your area.'
   },
-]
+];
 
 export const faqs=[
   {
@@ -326,4 +326,33 @@ export const faqs=[
       <li>Heights: (There is a limit to a 2 foot or shorter step stool. Safety is of the utmost importance to us. Please keep in mind that in most cases, the tops of standard kitchen cupboards is approximately the maximum limit of height. Some lighting fixtures may also be out of reach.)</li>
     </ol>
   }
-]
+];
+
+export const frequencyData = [
+  { value: "One-time", label: "One-time" },
+  { value: "Weekly", label: "Weekly" },
+  { value: "Every other week", label: "Every other week" },
+  { value: "Every 4 weeks", label: "Every 4 weeks" },
+];
+
+export const serviceTypeData = [
+  { id: 'bedrooms', label: 'Bedrooms', options: ['0', '1', '2', '3', '4', '5'] },
+  { id: 'bathrooms', label: 'Bathrooms', options: ['1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5'] },
+  { id: 'sqft', label: 'Sq Ft', options: [
+    '1 - 999 Sq Ft', '1000 - 1499 Sq Ft', '1500 - 1999 Sq Ft', '2000 - 2499 Sq Ft',
+    '2500 - 2999 Sq Ft', '3000 - 3499 Sq Ft', '3500 - 3999 Sq Ft', '4000 - 4499 Sq Ft',
+    '4500 - 4999 Sq Ft', '5000 - 5499 Sq Ft', '5500 - 5999 Sq Ft'
+  ] },
+];
+
+export const customerDetailsData = [
+  { id: 'firstName', label: 'First Name', type: 'text', placeholder: 'Ex: James' },
+  { id: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Ex: Lee' },
+  { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Ex: example@xyz.com' },
+  { id: 'secemail', label: 'Secondary Email Address', type: 'email', placeholder: 'Ex: example@xyz.com' },
+  { id: 'tel', label: 'Phone No', type: 'tel', placeholder: 'Phone No.' },
+  { id: 'sectel', label: 'Secondary Phone No', type: 'tel', placeholder: 'Phone No.' },
+  { id: 'sendReminders', label: 'Send me reminders about my booking via text message', type: 'checkbox' },
+  { id: 'address', label: 'Address', type: 'text', placeholder: 'Type Address' },
+  { id: 'apt', label: 'Apt No', type: 'text', placeholder: '#' },
+];

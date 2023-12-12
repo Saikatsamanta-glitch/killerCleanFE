@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import FormDataContext from '../FormDataContext';
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import {
   Accordion,
   Tabs,
   Label,
-  Select,
   Tooltip,
   TextInput,
   Checkbox,
@@ -13,50 +12,37 @@ import {
   Button,
 } from "flowbite-react";
 import { FaRegCalendarDays } from "react-icons/fa6";
-import { selectExtras } from "../data";
+import {
+  frequencyData,
+  serviceTypeData,
+  selectExtras,
+  customerDetailsData,
+} from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
 import fakeRequest from "./EmailSender";
-import { useForm, Controller } from "react-hook-form";
 import { loadStripe } from "@stripe/stripe-js";
-import { useNavigate } from "react-router-dom";
-import Success from "../Pages/Success";
 export default function BookForm() {
   const [isScheduling, setIsScheduling] = useState(false);
   const [isScheduled, setIsScheduled] = useState(false);
   const [scheduleErr, setScheduleErr] = useState("");
   // Add these state variables at the beginning of your functional component
-
   const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
   const [selectedBedrooms, setSelectedBedrooms] = useState(0);
   const [selectedBathrooms, setSelectedBathrooms] = useState(1);
   const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
+  const [selectedKey, setSelectedKey] = useState("keyinfo"); // State for radio buttons
+  const [keepKeyChecked, setKeepKeyChecked] = useState(false); // State for checkbox
+  const [scheduledDateTime, setScheduledDateTime] = useState("");
   const [price, setPrice] = useState(0);
-  const [formData, setFormData] = useState({
-    FirstName: "",
-    LastName: "",
-    email: "",
-    secemail: "",
-    tel: "",
-    sectel: "",
-    address: "",
-    apt: "",
-    sendReminders: false,
-    note:"",
-    special:"",
-    coupon:""
-  });
-
+  const [formData, setFormData] = useState({});
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
       [field]: value,
     });
-    
   };
- 
-  
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
     // Replace this with your actual pricing logic based on selected options
@@ -119,12 +105,10 @@ export default function BookForm() {
     selectedSqft,
     selectedExtras,
   ]);
-
   // Update the price whenever the selected options change
   useEffect(() => {
     calculatePrice();
   }, [calculatePrice]);
-
   // Update the state when user makes selections
   const handleFrequencyChange = (event) => {
     setSelectedFrequency(event.target.value);
@@ -150,15 +134,31 @@ export default function BookForm() {
         : [...prevExtras, extra]
     );
   };
-  const handleScheduled = (date) => {
+
+  const handleRadioChange = (event) => {
+    setSelectedKey(event.target.id);
+    // You can also call handleChange or perform any other actions here
+  };
+
+  const handleCheckboxChange = (event) => {
+    setKeepKeyChecked(event.target.checked);
+    // You can also call handleChange or perform any other actions here
+  };
+
+  const handleScheduled = (dateTime) => {
+    console.log("scheduled: ", dateTime);
+
     setIsScheduling(true);
     setScheduleErr("");
-    fakeRequest(date)
+
+    // Perform your scheduling logic with the selected 'date' and 'time'
+    fakeRequest(dateTime)
       .then((json) => {
         setScheduleErr("");
         setIsScheduled(true);
+        setScheduledDateTime(dateTime);
         console.log("fake response: ", json);
-        console.log(json.scheduled);
+        console.log("Selected Date: ", dateTime);
       })
       .catch((err) => {
         setScheduleErr(err);
@@ -169,64 +169,29 @@ export default function BookForm() {
   };
 
   const handleFormSubmit = () => {
-    // Your form submission logic here...
-
-    // Assuming you set userInfo and paymentInfo based on form data
-    const userInfo = {
-      user_name: formData.FirstName + ' ' + formData.LastName,
-      emailid: formData.email,
-      address: formData.address,
-      // ... other properties
-    };
-
-    const paymentInfo = {
-      date_and_time: {handleScheduled}, // Replace with actual data
-      service_type: 'Home Cleaning', // Replace with actual data
-      purchased_service: 'Flat Rate Service', // Replace with actual data
-      total_amount: price, // Replace with actual data
-    };
-
     console.log(formData);
-
-    // Render the Success component and pass userInfo and paymentInfo as props
-    return <Success userInfo={userInfo} paymentInfo={paymentInfo} />;
   };
-  //email sending function
-  const form = useRef();
-
-  const sendEmail = () => {
-    emailjs
-      .sendForm(
-        "service_lrzlb67",
-        "template_0qic7ra",
-        form.current,
-        "lO680sw9k9xiPwwsB"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   //payment
   const makePayment = async () => {
     const stripe = await loadStripe(
       "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
     );
 
+    if (!formData.email) {
+      console.error("Email address is empty. Cannot send confirmation email.");
+      return;
+    }
+
     const body = [
       {
-        Name:formData.FirstName + " " + formData.LastName,
-        Frequency:selectedFrequency,
-        Bathrooms:selectedBathrooms,
-        Bedrooms:selectedBedrooms,
-        Sqft:selectedSqft,
-        Extras:selectedExtras,
+        Name: formData.firstName + " " + formData.lastName,
+        Frequency: selectedFrequency,
+        Bathrooms: selectedBathrooms,
+        Bedrooms: selectedBedrooms,
+        Sqft: selectedSqft,
+        Extras: selectedExtras,
         price: price,
+        Email: formData.email,
       },
     ];
     console.log(body);
@@ -253,10 +218,10 @@ export default function BookForm() {
     }
   };
   return (
-    <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
+    <FormDataContext.Provider value={{ formData, setFormData }}>
+      <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
       <form
-        ref={form}
         onSubmit={(e) => {
           e.preventDefault();
           makePayment();
@@ -273,75 +238,28 @@ export default function BookForm() {
             <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:flex lg:flex-wrap md:items-center md:max-lg:flex-col max-lg:space-y-3">
               {/* Radio buttons for frequency */}
 
-              <div className="max-lg:w-full flex justify-center items-center">
-                <input
-                  value={"One-time"}
-                  checked={selectedFrequency === "One-time"}
-                  onChange={handleFrequencyChange}
-                  type="radio"
-                  name="frequency"
-                  id="onetime"
-                  className="hidden peer"
-                />
-                <label
-                  htmlFor="onetime"
-                  className="p-2 bg-[#e5ecf2] w-full text-[#11263c] cursor-pointer rounded-lg text-center peer-checked:text-white peer-checked:bg-[#ced5d8]"
+              {frequencyData.map((frequency) => (
+                <div
+                  key={frequency.value}
+                  className="max-lg:w-full flex justify-center items-center"
                 >
-                  One-time
-                </label>
-              </div>
-              <div className="max-lg:w-full flex justify-center items-center">
-                <input
-                  type="radio"
-                  defaultChecked
-                  name="frequency"
-                  id="weekly"
-                  value={"Weekly"}
-                  className="hidden peer"
-                  checked={selectedFrequency === "Weekly"}
-                  onChange={handleFrequencyChange}
-                />
-                <label
-                  htmlFor="weekly"
-                  className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
-                >
-                  Weekly
-                </label>
-              </div>
-              <div className="max-lg:w-full flex justify-center items-center">
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="everyother"
-                  value={"Every other week"}
-                  className="hidden peer"
-                  checked={selectedFrequency === "Every other week"}
-                  onChange={handleFrequencyChange}
-                />
-                <label
-                  htmlFor="everyother"
-                  className="p-2 bg-[#e5ecf2] cursor-pointer text-[#11263c]  rounded-lg w-full text-center peer-checked:text-white peer-checked:bg-[#ced5d8]"
-                >
-                  Every other week
-                </label>
-              </div>
-              <div className="max-lg:w-full flex justify-center items-center">
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="every4week"
-                  value={"Every 4 weeks"}
-                  className="hidden peer"
-                  checked={selectedFrequency === "Every 4 weeks"}
-                  onChange={handleFrequencyChange}
-                />
-                <label
-                  htmlFor="every4week"
-                  className="p-2 bg-[#e5ecf2] rounded-lg text-center text-[#11263c] cursor-pointer w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
-                >
-                  Every 4 weeks
-                </label>
-              </div>
+                  <input
+                    type="radio"
+                    name="frequency"
+                    id={frequency.value}
+                    value={frequency.value}
+                    className="hidden peer"
+                    checked={selectedFrequency === frequency.value}
+                    onChange={handleFrequencyChange}
+                  />
+                  <label
+                    htmlFor={frequency.value}
+                    className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
+                  >
+                    {frequency.label}
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
           {/* Service Type section */}
@@ -350,91 +268,44 @@ export default function BookForm() {
               Service Type
             </h1>
             <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
-              {/* Bedrooms dropdown */}
-
-              <div className="flex flex-col justify-center">
-                <div className="mb-2 block">
-                  <Label
-                    htmlFor="bedrooms"
-                    value="Bedrooms"
-                    className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
-                  />
-                </div>
-                <Select
-                  id="bedrooms"
-                  required
-                  className="max-md:w-full xl:w-[320px] xxl:w-full"
-                  value={selectedBedrooms}
-                  onChange={handleBedroomsChange}
+              {serviceTypeData.map((serviceType) => (
+                <div
+                  key={serviceType.id}
+                  className="flex flex-col items-start justify-center"
                 >
-                  <option>0</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Select>
-              </div>
-              <div className="flex flex-col items-start justify-center">
-                <div className="mb-2 block">
-                  <Label
-                    htmlFor="bathrooms"
-                    value="Bathrooms"
-                    className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
-                  />
+                  <div className="mb-2 block">
+                    <label
+                      htmlFor={serviceType.id}
+                      className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
+                    >
+                      {serviceType.label}
+                    </label>
+                  </div>
+                  <select
+                    id={serviceType.id}
+                    required
+                    className="w-full xl:w-[320px] xxl:w-full"
+                    value={
+                      serviceType.id === "bedrooms"
+                        ? selectedBedrooms
+                        : serviceType.id === "bathrooms"
+                        ? selectedBathrooms
+                        : selectedSqft
+                    }
+                    onChange={
+                      serviceType.id === "bedrooms"
+                        ? handleBedroomsChange
+                        : serviceType.id === "bathrooms"
+                        ? handleBathroomsChange
+                        : handleSqftChange
+                    }
+                  >
+                    {serviceType.options.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
                 </div>
-                <Select
-                  id="bathrooms"
-                  required
-                  className="w-full xl:w-[320px] xxl:w-full"
-                  value={selectedBathrooms}
-                  onChange={handleBathroomsChange}
-                >
-                  <option>1</option>
-                  <option>1.5</option>
-                  <option>2</option>
-                  <option>2.5</option>
-                  <option>3</option>
-                  <option>3.5</option>
-                  <option>4</option>
-                  <option>4.5</option>
-                  <option>5</option>
-                  <option>5.5</option>
-                  <option>6</option>
-                  <option>6.5</option>
-                  <option>7</option>
-                  <option>7.5</option>
-                </Select>
-              </div>
-              {/* Sq Ft dropdown */}
-              <div className="flex flex-col items-start justify-center">
-                <div className="mb-2 block">
-                  <Label
-                    htmlFor="sqft"
-                    value="Sq Ft"
-                    className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
-                  />
-                </div>
-                <Select
-                  id="sqft"
-                  required
-                  className="w-full xl:w-[320px] xxl:w-full"
-                  value={selectedSqft}
-                  onChange={handleSqftChange}
-                >
-                  <option>1 - 999 Sq Ft</option>
-                  <option>1000 - 1499 Sq Ft</option>
-                  <option>1500 - 1999 Sq Ft</option>
-                  <option>2000 - 2499 Sq Ft</option>
-                  <option>2500 - 2999 Sq Ft</option>
-                  <option>3000 - 3499 Sq Ft</option>
-                  <option>3500 - 3999 Sq Ft</option>
-                  <option>4000 - 4499 Sq Ft</option>
-                  <option>4500 - 4999 Sq Ft</option>
-                  <option>5000 - 5499 Sq Ft</option>
-                  <option>5500 - 5999 Sq Ft</option>
-                </Select>
-              </div>
+              ))}
             </div>
           </div>
           {/* Extras section */}
@@ -503,157 +374,63 @@ export default function BookForm() {
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Customer Details{" "}
             </h1>
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-              <div>
-                <div>
-                  <div className="mb-2 block -ml-6">
-                    <Label
-                      htmlFor="firstName"
-                      value="First Name"
-                      className="text-[17px] xxl:text-3xl font-semibold"
-                    />
-                  </div>
-                  <TextInput
-                    id="firstName"
-                    type="text"
-                    required
-                    name="to_name"
-                    sizing="md"
-                    placeholder="Ex: James"
-                    onChange={(e) => handleChange("FirstName", e.target.value)}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="lastName"
-                    value="Last Name"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="lastName"
-                  type="text"
-                  sizing="md"
-                  required
-                  placeholder="Ex: Lee"
-                  onChange={(e) => handleChange("LastName", e.target.value)}
-                />
-              </div>
-              <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="email"
-                    value="Email Address"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="email"
-                  type="email"
-                  sizing="md"
-                  name="user_email"
-                  placeholder="Ex: example@xyz.com"
-                  onChange={(e) => handleChange("email", e.target.value)}
-                />
-              </div>
-              <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="secemail"
-                    value="Secondary Email Address"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="secemail"
-                  type="email"
-                  sizing="md"
-                  className=""
-                  placeholder="Ex: example@xyz.com"
-                  onChange={(e) => handleChange("secemail", e.target.value)}
-                />
-              </div>
-              <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="tel"
-                    value="Phone No"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="tel"
-                  type="tel"
-                  sizing="md"
-                  placeholder="Phone No."
-                  onChange={(e) => handleChange("tel", e.target.value)}
-                />
-              </div>
-              <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="sectel"
-                    value="Secondary Phone No"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="sectel"
-                  type="tel"
-                  sizing="md"
-                  className=""
-                  placeholder="Phone No."
-                  onChange={(e) => handleChange("sectel", e.target.value)}
-                />
-              </div>
-              <div className="flex items-center">
-                <Checkbox id="sendReminders" className="h-6 w-6"   />
-                <Label
-                  htmlFor="sendReminders"
-                  className="-ml-5 xxl:text-3xl  max-lg:text-lg"
+            <div className="grid max-md:grid-cols-1 md:grid-cols-2 gap-4">
+              {customerDetailsData.map((detail) => (
+                <div
+                  key={detail.id}
+                  className={
+                    detail.type === "checkbox"
+                      ? "md:col-span-2"
+                      : "grid max-md:grid-cols-1 gap-4"
+                  }
                 >
-                  Send me reminders about my booking via text message
-                </Label>
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-4 my-4">
-              <div>
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="address"
-                    value="Address"
-                    className="text-[17px] xxl:text-3xl font-semibold"
-                  />
-                </div>
-                <TextInput
-                  id="address"
-                  type="text"
-                  sizing="md"
-                  placeholder="Type Address"
-                  name="address"
-                  onChange={(e) => handleChange("address", e.target.value)}
-                />
-              </div>
-              <div>
-                <div>
                   <div className="mb-2 block -ml-6">
-                    <Label
-                      htmlFor="apt"
-                      value="Apt No"
-                      className="text-[17px] xxl:text-3xl font-semibold"
-                    />
+                    {detail.type !== "checkbox" && (
+                      <Label
+                        htmlFor={detail.id}
+                        value={detail.label}
+                        className={`text-[17px] xxl:text-3xl font-semibold ${
+                          detail.type === "checkbox"
+                            ? "-ml-5 xxl:text-3xl max-lg:text-lg"
+                            : ""
+                        }`}
+                      />
+                    )}
                   </div>
-                  <TextInput
-                    id="apt"
-                    type="text"
-                    sizing="md"
-                    placeholder="#"
-                    onChange={(e) => handleChange("apt", e.target.value)}
-                  />
+                  {detail.type === "checkbox" ? (
+                    <div className="flex items-center">
+                      <input
+                        id={detail.id}
+                        type={detail.type}
+                        className="h-6 w-6 rounded"
+                        onChange={(e) =>
+                          handleChange(detail.id, e.target.checked)
+                        }
+                      />
+                      {detail.label && (
+                        <label
+                          htmlFor={detail.id}
+                          className="-ml-5 xxl:text-3xl max-lg:text-lg font-medium"
+                        >
+                          {detail.label}
+                        </label>
+                      )}
+                    </div>
+                  ) : (
+                    <TextInput
+                      id={detail.id}
+                      type={detail.type}
+                      sizing="md"
+                      required={
+                        detail.id !== "secemail" && detail.id !== "sectel"
+                      }
+                      placeholder={detail.placeholder}
+                      onChange={(e) => handleChange(detail.id, e.target.value)}
+                      className="mb-2"
+                    />
+                  )}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
           {/* Service Provider */}
@@ -687,6 +464,7 @@ export default function BookForm() {
                   name="key"
                   id="keyinfo"
                   className="hidden peer"
+                  onChange={handleRadioChange}
                 />
                 <label
                   htmlFor="keyinfo"
@@ -701,6 +479,7 @@ export default function BookForm() {
                   name="key"
                   id="provider"
                   className="hidden peer"
+                  onChange={handleRadioChange}
                 />
                 <label
                   htmlFor="provider"
@@ -710,8 +489,15 @@ export default function BookForm() {
                 </label>
               </div>
               <div className="flex items-center">
-                <Checkbox id="provider" className="h-6 w-6"  />
-                <Label htmlFor="provider" className="-ml-5 xxl:text-3xl max-lg:text-lg">
+                <Checkbox
+                  id="provider"
+                  className="h-6 w-6"
+                  onChange={handleCheckboxChange}
+                />
+                <Label
+                  htmlFor="provider"
+                  className="-ml-5 xxl:text-3xl max-lg:text-lg"
+                >
                   Keep Key With Provider
                 </Label>
               </div>
@@ -827,12 +613,11 @@ export default function BookForm() {
             value="Send"
             className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
           >
-            {" "}
-            <FaRegCalendarDays className="mr-2" /> Save Booking{" "}
+            <FaRegCalendarDays className="mr-2" /> Save Booking
           </Button>
         </div>
       </form>
-      {/* Booking Summary and Questions */}
+     {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
         <div className="card z-10  max-lg:w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
           <Accordion className="max-xxl:p-2 xxl:p-10 w-full">
@@ -941,9 +726,11 @@ export default function BookForm() {
             </Accordion.Panel>
           </Accordion>
         </div>
-
         <PopularQuestions />
+        {/* <p>Scheduled Date and Time: {scheduledDateTime.toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</p> */}
       </div>
     </div>
+    </FormDataContext.Provider>
+    
   );
 }
