@@ -1,25 +1,23 @@
-import React, { useEffect,useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import FormDataContext from "../FormDataContext";
+import React, { useEffect } from "react";
+import { useNavigate,useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 const Success = () => {
-  const history = useNavigate();
-  const { formData, setFormData } = useContext(FormDataContext);
-  useEffect(() => {
-    console.log("Props in Success component:", formData);
+  const storedFormData = localStorage.getItem('formData');
+  const frequency= localStorage.getItem('selectedFrequency');
+  const bedrooms=  localStorage.getItem('selectedBedrooms');
+  const bathrooms=  localStorage.getItem('selectedBathrooms');
+  const sqft=  localStorage.getItem('selectedSqft');
+  const extras=  localStorage.getItem('selectedExtras');
+  const time=  localStorage.getItem('scheduledDateTime');
+  const price=  localStorage.getItem('price');
+  const formData = storedFormData ? JSON.parse(storedFormData) : {};
 
-    const formDataToSend = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      selectedFrequency: formData.selectedFrequency,
-      selectedBathrooms: formData.selectedBathrooms,
-      selectedBedrooms: formData.selectedBedrooms,
-      selectedExtras: formData.selectedExtras,
-      selectedSqft: formData.selectedSqft,
-      scheduledDateTime: formData.scheduledDateTime,
-      price: formData.price,
-    };
+  // Access formData properties as needed
+  const { firstName, lastName, email,/* ...other form properties */ } = formData;
+  const history = useNavigate();
+  useEffect(() => {
+    console.log("Props in Success component:");
+
     // Function to send email
     const sendEmail = () => {
       emailjs
@@ -28,18 +26,18 @@ const Success = () => {
           "template_vg72bqo",
           {
             from_name: "Killer Clean",
-            to_name: formDataToSend.firstName+' '+formDataToSend.lastName,
-            user_email: formDataToSend.email,
-            selectedFrequency: formDataToSend.selectedFrequency,
-            selectedBathrooms: formDataToSend.selectedBathrooms,
-            selectedBedrooms: formDataToSend.selectedBedrooms,
-            selectedExtras: formDataToSend.selectedExtras,
-            selectedSqft: formDataToSend.selectedSqft,
-            scheduledDateTime: formDataToSend.scheduledDateTime,
-            price: formDataToSend.price,
+            to_name: firstName+' '+lastName,
+            user_email: email,
+            selectedFrequency: frequency,
+            selectedBathrooms: bathrooms,
+            selectedBedrooms: bedrooms,
+            selectedExtras: extras,
+            selectedSqft: sqft,
+            scheduledDateTime: time,
+            price: price,
             // other template variables
           },
-          "YL2DYLIDJGvGP1qwG"
+          "CidetvyEOA_jCWCZs"
         )
         .then(
           (response) => {
@@ -63,51 +61,51 @@ const Success = () => {
 
     // Clear timers when the component is unmounted
     return () => {
-      clearTimeout(emailTimer);
-      clearTimeout(redirectTimer);
+      // clearTimeout(emailTimer);
+      // clearTimeout(redirectTimer);
     };
   }, [
     history,
-    formData,
+    formData
   ]);
-
+console.log(formData);
   return (
-    <div className="text-center h-[200px] flex items-center justify-center flex-col">
+    <div className="text-center flex items-center justify-center flex-col">
       <h2 className="text-3xl font-bold mb-4 text-green-500">
         Booking Successful!
       </h2>
       <div className="mb-4">
         <p>
-          Thank you, {formData.firstName+' '+formData.lastName}! Your booking has been confirmed. An email
-          with the details has been sent to {formData.email}.
+          Thank you, {firstName+' '+lastName}! Your booking has been confirmed. An email
+          with the details has been sent to {email}.
         </p>
       </div>
-      {/* <div className="mb-4">
+      <div className="mb-4">
         <p>
           <strong>Booking Details:</strong>
         </p>
         <p>
-          Frequency: {formData.selectedFrequency}
+          Frequency: {frequency}
           <br />
-          Bathrooms: {formData.selectedBathrooms}
+          Bathrooms: {bathrooms}
           <br />
-          Bedrooms: {formData.selectedBedrooms}
+          Bedrooms: {bedrooms}
           <br />
-          Extras: {formData.selectedExtras}
+          Extras: {extras}
           <br />
-          Sq Ft: {formData.selectedSqft}
+          Sq Ft: {sqft}
           <br />
           Scheduled Date and Time:{" "}
-          {new Date(formData.scheduledDateTime).toLocaleString("en-US", {
+          {new Date(time).toLocaleString("en-US", {
             dateStyle: "full",
             timeStyle: "short",
           })}
           <br />
-          Total Price: ${formData.price}
+          Total Price: ${price}
         </p>
-      </div> */}
+      </div>
       <p className="text-gray-600">
-        A confirmation email has been sent to {formData.email}.
+        A confirmation email has been sent to {email}.
       </p>
     </div>
   );

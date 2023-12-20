@@ -17,7 +17,7 @@ export default function CustomFooter() {
                 href="/"
                 src={logo}
                 alt="Killer CLean Logo"
-                className="sm:-mt-4 "
+                className="sm:-mt-4 md:-ml-0"
               />
               <div className="flex items-center justify-center list-none mb-3">
                 <Footer.Link>
@@ -54,9 +54,9 @@ export default function CustomFooter() {
             <div>
               <Footer.Title title="Contact" />
               <Footer.LinkGroup col className="space-y-2">
-                <Footer.Link href="tel:1234567890">123-456-7890</Footer.Link>
+                <Footer.Link href="tel:1234567890">951-877-5077</Footer.Link>
                 <Footer.Link href="mailto:support@killerclean.com">
-                  support@killerclean.com
+                killercleanllc@gmail.com
                 </Footer.Link>
                 <Footer.Link href="#">Mon-Sunday, 24 hours</Footer.Link>
               </Footer.LinkGroup>

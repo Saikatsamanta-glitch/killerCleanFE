@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
-import FormDataContext from '../FormDataContext';
+import React, { useState, useEffect, useCallback } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import {
   Accordion,
@@ -17,6 +16,7 @@ import {
   serviceTypeData,
   selectExtras,
   customerDetailsData,
+  pricingConfig,
 } from "../data";
 import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
@@ -27,16 +27,18 @@ export default function BookForm() {
   const [isScheduled, setIsScheduled] = useState(false);
   const [scheduleErr, setScheduleErr] = useState("");
   // Add these state variables at the beginning of your functional component
-  const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
-  const [selectedBedrooms, setSelectedBedrooms] = useState(0);
-  const [selectedBathrooms, setSelectedBathrooms] = useState(1);
-  const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
+  const [selectedFrequency, setSelectedFrequency] = useState("");
+  const [selectedBedrooms, setSelectedBedrooms] = useState();
+  const [selectedBathrooms, setSelectedBathrooms] = useState();
+  const [selectedSqft, setSelectedSqft] = useState("");
   const [selectedExtras, setSelectedExtras] = useState([]);
-  const [selectedKey, setSelectedKey] = useState("keyinfo"); // State for radio buttons
+  const [selectedKey, setSelectedKey] = useState(""); // State for radio buttons
   const [keepKeyChecked, setKeepKeyChecked] = useState(false); // State for checkbox
   const [scheduledDateTime, setScheduledDateTime] = useState("");
   const [price, setPrice] = useState(0);
+  const [taxAmount,setTaxAmount]=useState(0);
   const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
@@ -45,59 +47,21 @@ export default function BookForm() {
   };
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
-    // Replace this with your actual pricing logic based on selected options
-    const basePrice = 50; // Replace with your base price
-    let freqPrice;
-    if (selectedFrequency === "One-time") {
-      freqPrice = 40;
-    } else if (selectedFrequency === "Weekly") {
-      freqPrice = 30;
-    } else if (selectedFrequency === "Every other week") {
-      freqPrice = 25;
-    } else if (selectedFrequency === "Every 4 weeks") {
-      freqPrice = 20;
-    } else {
-      freqPrice = 0;
-    }
-    const bedroomsPrice = selectedBedrooms * 10; // Replace with your bedrooms pricing logic
-    const bathroomsPrice = selectedBathrooms * 5; // Replace with your bathrooms pricing logic
-    let sqftPrice;
-    if (selectedSqft === "1 - 999 Sq Ft") {
-      sqftPrice = 8;
-    } else if (selectedSqft === "1000 - 1499 Sq Ft") {
-      sqftPrice = 16;
-    } else if (selectedSqft === "1500 - 1999 Sq Ft") {
-      sqftPrice = 24;
-    } else if (selectedSqft === "2000 - 2499 Sq Ft") {
-      sqftPrice = 32;
-    } else if (selectedSqft === "2500 - 2999 Sq Ft") {
-      sqftPrice = 40;
-    } else if (selectedSqft === "3000 - 3499 Sq Ft") {
-      sqftPrice = 48;
-    } else if (selectedSqft === "3500 - 3999 Sq Ft") {
-      sqftPrice = 56;
-    } else if (selectedSqft === "4000 - 4499 Sq Ft") {
-      sqftPrice = 72;
-    } else if (selectedSqft === "4500 - 4999 Sq Ft") {
-      sqftPrice = 80;
-    } else if (selectedSqft === "5000 - 5499 Sq Ft") {
-      sqftPrice = 88;
-    } else if (selectedSqft === "5500 - 5999 Sq Ft") {
-      sqftPrice = 96;
-    } else {
-      sqftPrice = 0;
-    } // Replace with your sqft pricing logic
-    const extrasPrice = selectedExtras.length * 5; // Replace with your extras pricing logic
+    const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
+    const bedroomsPrice = selectedBedrooms * pricingConfig.bedrooms;
+    const bathroomsPrice = selectedBathrooms * pricingConfig.bathrooms;
+    const sqftPrice = pricingConfig.sqft[selectedSqft] || 0;
+    const extrasPrice = selectedExtras.length * pricingConfig.extras;
 
-    const totalPrice =
-      basePrice +
-      freqPrice +
-      bedroomsPrice +
-      bathroomsPrice +
-      sqftPrice +
-      extrasPrice;
+    const subtotal =
+      freqPrice + bedroomsPrice + bathroomsPrice + sqftPrice + extrasPrice;
 
+    // Assuming taxRate is your tax rate (e.g., 10%)
+    const taxRate = 0.1;
+    const taxAmount = subtotal * taxRate;
+    const totalPrice = subtotal + taxAmount;
     setPrice(totalPrice);
+    setTaxAmount(taxAmount);
   }, [
     selectedFrequency,
     selectedBedrooms,
@@ -105,6 +69,7 @@ export default function BookForm() {
     selectedSqft,
     selectedExtras,
   ]);
+
   // Update the price whenever the selected options change
   useEffect(() => {
     calculatePrice();
@@ -170,18 +135,40 @@ export default function BookForm() {
 
   const handleFormSubmit = () => {
     console.log(formData);
+    localStorage.setItem("formData", JSON.stringify(formData));
+    localStorage.setItem("selectedFrequency", selectedFrequency);
+    localStorage.setItem("selectedBedrooms", selectedBedrooms);
+    localStorage.setItem("selectedBathrooms", selectedBathrooms);
+    localStorage.setItem("selectedSqft", selectedSqft);
+    localStorage.setItem("selectedExtras", selectedExtras);
+    localStorage.setItem("scheduledDateTime", scheduledDateTime);
+    localStorage.setItem("price", price);
+     // Basic validation: Check if required fields are empty
+     const newErrors = {};
+     customerDetailsData.forEach((detail) => {
+       if (detail.required && !formData[detail.id]) {
+         newErrors[detail.id] = `${detail.label || 'Field'} is required.`;
+       }
+     });
+ 
+     // Display errors if any
+     if (Object.keys(newErrors).length > 0) {
+       setErrors(newErrors);
+       alert('Please fill in all required fields.');
+       return;
+     }
+ 
+     // Continue with your submission logic if all required fields are filled
+     // ...
+ 
+     // Clear errors after successful submission
+     setErrors({});
   };
   //payment
   const makePayment = async () => {
     const stripe = await loadStripe(
       "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
     );
-
-    if (!formData.email) {
-      console.error("Email address is empty. Cannot send confirmation email.");
-      return;
-    }
-
     const body = [
       {
         Name: formData.firstName + " " + formData.lastName,
@@ -206,9 +193,7 @@ export default function BookForm() {
         body: JSON.stringify(body),
       }
     );
-
     const session = await response.json();
-
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
     });
@@ -218,13 +203,12 @@ export default function BookForm() {
     }
   };
   return (
-    <FormDataContext.Provider value={{ formData, setFormData }}>
-      <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
+    <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          makePayment();
+          // makePayment();
           handleFormSubmit();
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
@@ -347,7 +331,7 @@ export default function BookForm() {
                       autoComplete="off"
                     /> */}
                   </div>
-                  <div className="flex items-center ">
+                  <div className="flex items-center">
                     <Label
                       htmlFor={v.label}
                       value={v.label}
@@ -364,6 +348,9 @@ export default function BookForm() {
                     ) : (
                       ""
                     )}
+                  </div>
+                  <div className="text-xs text-center xxl:text-2xl font-medium">
+                    ({v.price})
                   </div>
                 </div>
               ))}
@@ -417,6 +404,7 @@ export default function BookForm() {
                       )}
                     </div>
                   ) : (
+                    <>
                     <TextInput
                       id={detail.id}
                       type={detail.type}
@@ -428,6 +416,10 @@ export default function BookForm() {
                       onChange={(e) => handleChange(detail.id, e.target.value)}
                       className="mb-2"
                     />
+                    {errors[detail.id] && (
+                      <p className="text-red-500">{errors[detail.id]}</p>
+                    )}
+                    </>
                   )}
                 </div>
               ))}
@@ -617,7 +609,7 @@ export default function BookForm() {
           </Button>
         </div>
       </form>
-     {/* Booking Summary and Questions */}
+      {/* Booking Summary and Questions */}
       <div className="flex flex-col items-center">
         <div className="card z-10  max-lg:w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
           <Accordion className="max-xxl:p-2 xxl:p-10 w-full">
@@ -627,7 +619,7 @@ export default function BookForm() {
                   Booking Summary
                   <div className="flex flex-col max-lg:block lg:hidden justify-between items-center">
                     <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price}
+                      ${price.toFixed(2)}
                     </h1>
                   </div>
                 </div>
@@ -710,7 +702,15 @@ export default function BookForm() {
                       Total Before Tax
                     </h1>
                     <h1 className="text-lg xxl:text-xl text-[#6c757d]">
-                      ${price}
+                      ${price.toFixed(2) - taxAmount.toFixed(2)}
+                    </h1>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-lg xxl:text-xl text-[#6c757d]">
+                      Tax (10%)
+                    </h1>
+                    <h1 className="text-lg xxl:text-xl text-[#6c757d]">
+                      ${taxAmount.toFixed(2)}
                     </h1>
                   </div>
                   <div className="flex justify-between items-center">
@@ -718,7 +718,7 @@ export default function BookForm() {
                       TOTAL
                     </h1>
                     <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price}
+                      ${price.toFixed(2)}
                     </h1>
                   </div>
                 </div>
@@ -730,7 +730,5 @@ export default function BookForm() {
         {/* <p>Scheduled Date and Time: {scheduledDateTime.toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</p> */}
       </div>
     </div>
-    </FormDataContext.Provider>
-    
   );
 }

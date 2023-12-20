@@ -12,7 +12,6 @@ export default function Book() {
           <p className="lg:text-[15px] text-sm xxl:text-2xl font-medium text-center text-[#52616b] ">
             Enter your information below to secure your appointment! Once your
             booking is confirmed a notification will be sent to your email.
-            (<span className="italic">This is a demo booking form</span>).
           </p>
         </div>
         <div>

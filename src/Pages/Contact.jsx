@@ -22,7 +22,7 @@ const Contact = () => {
         <p className="text-[14px] text-[#52616b] md:max-xxl:px-20 xl:max-xxl:text-[15px]">
           You can fill out this form and we will give you a custom quote with
           more detailed information. If you need to call us please reach out to
-          us at <span className="text-gray-500 font-semibold"> 123-456-7890.</span>
+          us at <span className="text-gray-500 font-semibold"> 951-877-5077.</span>
         </p>
       </div>
 
@@ -58,9 +58,10 @@ const Contact = () => {
               <h3 className="font-bold">What Are You Looking For?</h3>
               <div className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
                 <select className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
+                  <option value="select option">Select</option>
+                  <option value="option1">Cancel the booking</option>
+                  <option value="option2">Reschedule the booking</option>
+                  <option value="option3">Change the booking</option>
                 </select>
               </div>
             </div>

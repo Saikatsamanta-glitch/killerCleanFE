@@ -44,13 +44,13 @@ export default function Nav() {
           <Link to={"tel:1234567890"} className="no-underline">
             <i className="fa-solid fa-phone text-[#61B1D6] mr-3"></i>
             <span className="text-white mr-16 text-[15px] font-semibold">
-              123-456-7890
+            951-877-5077
             </span>
           </Link>
           <Link to={"mailto:support@killerclean.com"} className="no-underline">
             <i className="fa-solid fa-envelope text-[#61B1D6] mr-3"></i>
             <span className="text-white text-[15px] tracking-wide font-semibold">
-              support@killerclean.com
+            killercleanllc@gmail.com
             </span>
           </Link>
         </div>

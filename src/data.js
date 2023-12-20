@@ -48,18 +48,18 @@ export const ourservices = [
 export const testimonials =[
   {
     id:1,
-    name:'Blanza G.',
-    desc:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia iure, temporibus sapiente quia consequuntur ex ullam cupiditate aliquid. Repellat, error adipisci. '
+    name:'Natalie Meadows',
+    desc:'These ladies were extremely professional and worked very hard to get the house spotless. We had a move out cleaning service. The price was excellent. I shopped around, and for the services they provided for a move out cleaning, this was the best price.'
   },
   {
     id:2,
-    name:'Joseline P.',
-    desc:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia iure, temporibus sapiente quia consequuntur ex ullam cupiditate aliquid. Repellat, error adipisci. '
+    name:'Sharon Clark',
+    desc:'I’m extremely happy that I found this company. The staff are fantastic at making my house look great and are always very personable. And my dog looks forward to their visit each week too, lol. Thank you for being a reliable company in an unreliable world!'
   },
   {
     id:3,
-    name:'Gary T.',
-    desc:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia iure, temporibus sapiente quia consequuntur ex ullam cupiditate aliquid. Repellat, error adipisci. '
+    name:'Suesan White',
+    desc:'Starting service with them was super easy. I felt like the price is affordable. The cleaner was very nice. The company took my feedback professionally- this is very important to me.'
   },
 ];
 
@@ -169,58 +169,69 @@ export const selectExtras=[
     id:1,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/broom.png',
     label:'Deep Cleaning',
+    price:'$20'
   },
   {
     id:2,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/box.png',
     label:'Move In Out',
+    price:'$20'
   },
   {
     id:3,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/bathroom-cabinet.png',
     label:'Interior Cabinets',
+    price:'$20'
   },
   {
     id:4,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/window.png',
     label:'Interior Windows',
+    price:'$20'
   },
   {
     id:5,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/jalousie.png',
     label:'Wet Wipe Window Blinds',
+    price:'$20'
   },
   {
     id:6,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/refrigerator.png',
     label:'Inside Fridge',
+    price:'$20'
   },
   {
     id:7,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/oven.png',
     label:'Inside Oven',
+    price:'$20'
   },
   {
     id:8,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/green.png',
     label:'Green Cleaning',
+    price:'$20'
   },
   {
     id:9,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/closet.png',
     label:'Organization',
+    price:'$20',
     tooltip:'If you wish a certain area organized, like your drawers or closet, please select this option. For $30 you get 30 minutes of organization. This can always be adjusted after the cleaning is over.'
   },
   {
     id:10,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/fashion.png',
     label:'Laundry & Folding',
+    price:'$20',
     tooltip:'Select this option if you wish to have a load of laundry done and folded. The laundry equipment must be inside the unit.'
   },
   {
     id:11,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/washing-plate.png',
     label:'Dishes',
+    price:'$20',
     tooltip:'Do a load of dishes.'
   },
 ];
@@ -356,3 +367,27 @@ export const customerDetailsData = [
   { id: 'address', label: 'Address', type: 'text', placeholder: 'Type Address' },
   { id: 'apt', label: 'Apt No', type: 'text', placeholder: '#' },
 ];
+export const pricingConfig = {
+  frequency: {
+    "One-time": 40,
+    "Weekly": 30,
+    "Every other week": 25,
+    "Every 4 weeks": 20,
+  },
+  bedrooms: 10,
+  bathrooms: 5,
+  sqft: {
+    "1 - 999 Sq Ft": 8,
+    "1000 - 1499 Sq Ft": 16,
+    "1500 - 1999 Sq Ft": 24,
+    "2000 - 2499 Sq Ft": 32,
+    "2500 - 2999 Sq Ft": 40,
+    "3000 - 3499 Sq Ft": 48,
+    "3500 - 3999 Sq Ft": 56,
+    "4000 - 4499 Sq Ft": 72,
+    "4500 - 4999 Sq Ft": 80,
+    "5000 - 5499 Sq Ft": 88,
+    "5500 - 5999 Sq Ft": 96,
+  },
+  extras: 20,
+};
