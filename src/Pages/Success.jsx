@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 const Success = () => {
-  const storedFormData = localStorage.getItem('formData');
-  const frequency= localStorage.getItem('selectedFrequency');
-  const bedrooms=  localStorage.getItem('selectedBedrooms');
-  const bathrooms=  localStorage.getItem('selectedBathrooms');
-  const sqft=  localStorage.getItem('selectedSqft');
-  const extras=  localStorage.getItem('selectedExtras');
-  const time=  localStorage.getItem('scheduledDateTime');
-  const price=  localStorage.getItem('price');
+  const storedFormData = localStorage.getItem("formData");
+  const frequency = localStorage.getItem("selectedFrequency");
+  const bedrooms = localStorage.getItem("selectedBedrooms");
+  const bathrooms = localStorage.getItem("selectedBathrooms");
+  const sqft = localStorage.getItem("selectedSqft");
+  const extras = localStorage.getItem("selectedExtras");
+  const date = localStorage.getItem("selectedDate");
+  const time = localStorage.getItem("selectedTime");
+  const price = localStorage.getItem("price");
   const formData = storedFormData ? JSON.parse(storedFormData) : {};
 
   // Access formData properties as needed
-  const { firstName, lastName, email,/* ...other form properties */ } = formData;
+  const { firstName, lastName, email /* ...other form properties */ } =
+    formData;
   const history = useNavigate();
   useEffect(() => {
     console.log("Props in Success component:");
@@ -26,14 +28,14 @@ const Success = () => {
           "template_vg72bqo",
           {
             from_name: "Killer Clean",
-            to_name: firstName+' '+lastName,
+            to_name: firstName + " " + lastName,
             user_email: email,
             selectedFrequency: frequency,
             selectedBathrooms: bathrooms,
             selectedBedrooms: bedrooms,
             selectedExtras: extras,
             selectedSqft: sqft,
-            scheduledDateTime: time,
+            scheduledDateTime: new Date(date).toLocaleDateString('en-US', { dateStyle: 'full' }) +" "+ "at"  +' ' + time,
             price: price,
             // other template variables
           },
@@ -48,7 +50,7 @@ const Success = () => {
           }
         );
     };
-    
+
     // Send email after a delay
     const emailTimer = setTimeout(() => {
       sendEmail();
@@ -64,11 +66,8 @@ const Success = () => {
       // clearTimeout(emailTimer);
       // clearTimeout(redirectTimer);
     };
-  }, [
-    history,
-    formData
-  ]);
-console.log(formData);
+  }, [history, formData]);
+  console.log(formData);
   return (
     <div className="text-center flex items-center justify-center flex-col">
       <h2 className="text-3xl font-bold mb-4 text-green-500">
@@ -76,8 +75,8 @@ console.log(formData);
       </h2>
       <div className="mb-4">
         <p>
-          Thank you, {firstName+' '+lastName}! Your booking has been confirmed. An email
-          with the details has been sent to {email}.
+          Thank you, {firstName + " " + lastName}! Your booking has been
+          confirmed. An email with the details has been sent to {email}.
         </p>
       </div>
       <div className="mb-4">
@@ -96,10 +95,7 @@ console.log(formData);
           Sq Ft: {sqft}
           <br />
           Scheduled Date and Time:{" "}
-          {new Date(time).toLocaleString("en-US", {
-            dateStyle: "full",
-            timeStyle: "short",
-          })}
+          {`${new Date(date).toLocaleDateString('en-US', { dateStyle: 'full' })} ${time}`}
           <br />
           Total Price: ${price}
         </p>

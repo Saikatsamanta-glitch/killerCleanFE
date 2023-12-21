@@ -357,16 +357,17 @@ export const serviceTypeData = [
 ];
 
 export const customerDetailsData = [
-  { id: 'firstName', label: 'First Name', type: 'text', placeholder: 'Ex: James' },
-  { id: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Ex: Lee' },
-  { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Ex: example@xyz.com' },
+  { id: 'firstName', label: 'First Name', type: 'text', placeholder: 'Ex: James', required: true },
+  { id: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Ex: Lee', required: true },
+  { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Ex: example@xyz.com', required: true },
   { id: 'secemail', label: 'Secondary Email Address', type: 'email', placeholder: 'Ex: example@xyz.com' },
-  { id: 'tel', label: 'Phone No', type: 'tel', placeholder: 'Phone No.' },
+  { id: 'tel', label: 'Phone No', type: 'tel', placeholder: 'Phone No.', required: true },
   { id: 'sectel', label: 'Secondary Phone No', type: 'tel', placeholder: 'Phone No.' },
   { id: 'sendReminders', label: 'Send me reminders about my booking via text message', type: 'checkbox' },
-  { id: 'address', label: 'Address', type: 'text', placeholder: 'Type Address' },
+  { id: 'address', label: 'Address', type: 'text', placeholder: 'Type Address' ,required: true},
   { id: 'apt', label: 'Apt No', type: 'text', placeholder: '#' },
 ];
+
 export const pricingConfig = {
   frequency: {
     "One-time": 40,
@@ -391,3 +392,10 @@ export const pricingConfig = {
   },
   extras: 20,
 };
+
+export const slots = [
+  '08:00',
+  '10:00',
+  '12:00',
+  '15:00'
+];

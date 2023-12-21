@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   Accordion,
   Tabs,
@@ -17,16 +19,11 @@ import {
   selectExtras,
   customerDetailsData,
   pricingConfig,
+  slots,
 } from "../data";
-import DayTimePicker from "@mooncake-dev/react-day-time-picker";
 import PopularQuestions from "./PopularQuestions";
-import fakeRequest from "./EmailSender";
 import { loadStripe } from "@stripe/stripe-js";
 export default function BookForm() {
-  const [isScheduling, setIsScheduling] = useState(false);
-  const [isScheduled, setIsScheduled] = useState(false);
-  const [scheduleErr, setScheduleErr] = useState("");
-  // Add these state variables at the beginning of your functional component
   const [selectedFrequency, setSelectedFrequency] = useState("");
   const [selectedBedrooms, setSelectedBedrooms] = useState();
   const [selectedBathrooms, setSelectedBathrooms] = useState();
@@ -34,11 +31,15 @@ export default function BookForm() {
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedKey, setSelectedKey] = useState(""); // State for radio buttons
   const [keepKeyChecked, setKeepKeyChecked] = useState(false); // State for checkbox
-  const [scheduledDateTime, setScheduledDateTime] = useState("");
   const [price, setPrice] = useState(0);
-  const [taxAmount,setTaxAmount]=useState(0);
+  const [taxAmount, setTaxAmount] = useState(0);
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [showDatePicker, setShowDatePicker] = useState(true);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showSelectedDateTime, setShowSelectedDateTime] = useState(true); // New state variable
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
@@ -109,30 +110,16 @@ export default function BookForm() {
     setKeepKeyChecked(event.target.checked);
     // You can also call handleChange or perform any other actions here
   };
-
-  const handleScheduled = (dateTime) => {
-    console.log("scheduled: ", dateTime);
-
-    setIsScheduling(true);
-    setScheduleErr("");
-
-    // Perform your scheduling logic with the selected 'date' and 'time'
-    fakeRequest(dateTime)
-      .then((json) => {
-        setScheduleErr("");
-        setIsScheduled(true);
-        setScheduledDateTime(dateTime);
-        console.log("fake response: ", json);
-        console.log("Selected Date: ", dateTime);
-      })
-      .catch((err) => {
-        setScheduleErr(err);
-      })
-      .finally(() => {
-        setIsScheduling(false);
-      });
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setShowDatePicker(false);
+    setShowTimePicker(true);
   };
-
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+    setShowDatePicker(false);
+    setShowTimePicker(false);
+  };
   const handleFormSubmit = () => {
     console.log(formData);
     localStorage.setItem("formData", JSON.stringify(formData));
@@ -141,28 +128,9 @@ export default function BookForm() {
     localStorage.setItem("selectedBathrooms", selectedBathrooms);
     localStorage.setItem("selectedSqft", selectedSqft);
     localStorage.setItem("selectedExtras", selectedExtras);
-    localStorage.setItem("scheduledDateTime", scheduledDateTime);
+    localStorage.setItem('selectedDate',selectedDate);
+    localStorage.setItem('selectedTime',selectedTime);
     localStorage.setItem("price", price);
-     // Basic validation: Check if required fields are empty
-     const newErrors = {};
-     customerDetailsData.forEach((detail) => {
-       if (detail.required && !formData[detail.id]) {
-         newErrors[detail.id] = `${detail.label || 'Field'} is required.`;
-       }
-     });
- 
-     // Display errors if any
-     if (Object.keys(newErrors).length > 0) {
-       setErrors(newErrors);
-       alert('Please fill in all required fields.');
-       return;
-     }
- 
-     // Continue with your submission logic if all required fields are filled
-     // ...
- 
-     // Clear errors after successful submission
-     setErrors({});
   };
   //payment
   const makePayment = async () => {
@@ -208,7 +176,7 @@ export default function BookForm() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          // makePayment();
+          makePayment();
           handleFormSubmit();
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
@@ -405,20 +373,24 @@ export default function BookForm() {
                     </div>
                   ) : (
                     <>
-                    <TextInput
-                      id={detail.id}
-                      type={detail.type}
-                      sizing="md"
-                      required={
-                        detail.id !== "secemail" && detail.id !== "sectel"
-                      }
-                      placeholder={detail.placeholder}
-                      onChange={(e) => handleChange(detail.id, e.target.value)}
-                      className="mb-2"
-                    />
-                    {errors[detail.id] && (
-                      <p className="text-red-500">{errors[detail.id]}</p>
-                    )}
+                      <TextInput
+                        id={detail.id}
+                        type={detail.type}
+                        sizing="md"
+                        required={
+                          detail.id !== "secemail" &&
+                          detail.id !== "sectel" &&
+                          detail.id !== "apt"
+                        }
+                        placeholder={detail.placeholder}
+                        onChange={(e) =>
+                          handleChange(detail.id, e.target.value)
+                        }
+                        className="mb-2"
+                      />
+                      {errors[detail.id] && (
+                        <p className="text-red-500">{errors[detail.id]}</p>
+                      )}
                     </>
                   )}
                 </div>
@@ -430,14 +402,84 @@ export default function BookForm() {
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Select Service Provider
             </h1>
-            <div className="">
-              <DayTimePicker
-                timeSlotSizeMinutes={60}
-                isLoading={isScheduling}
-                isDone={isScheduled}
-                err={scheduleErr}
-                onConfirm={handleScheduled}
-              />
+            <div>
+              {showDatePicker && (
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  dateFormat="EEE MMM d yyyy"
+                  isClearable
+                  inline
+                  minDate={new Date()}
+                  className="w-full"
+                />
+              )}
+
+              {showTimePicker && (
+                // Replace this with your time picker component
+                <div className="flex flex-col">
+                  <label className="font-medium text-lg mb-6">
+                    Select Time:
+                  </label>
+                  {/* Your time picker component goes here */}
+                  {/* Example: */}
+                  <div className="flex flex-col items-center w-full">
+                    <div className="flex flex-wrap items-center w-full justify-around mb-6">
+                      {slots.map((time) => (
+                        <Button
+                          outline
+                          key={time}
+                          selected={selectedTime}
+                          onChange={handleTimeChange}
+                          onClick={() => handleTimeChange(time)}
+                          className="text-black"
+                        >
+                          {time}
+                        </Button>
+                      ))}
+                    </div>
+                    <Button
+                      onClick={() => {
+                        setShowDatePicker(true);
+                        setShowTimePicker(false);
+                      }}
+                      outline
+                      className="w-32"
+                    >
+                      Go Back
+                    </Button>
+                  </div>
+                </div>
+              )}
+              {selectedDate && selectedTime && (
+                <div className="flex  items-center">
+                  <div className="mb-4 flex items-center">
+                    <label className="font-medium">Selected Date:</label>
+                    <DatePicker
+                      selected={selectedDate}
+                      onChange={(date)=>{setSelectedDate(date)}}
+                      dateFormat="EEE MMM d yyyy"
+                      isClearable
+                      minDate={new Date()}
+                      className="w-48"
+                    />
+                  </div>
+                  <div className="mb-4 flex items-center">
+                    <label className="font-medium">Selected Time:</label>
+                    <select
+                      value={selectedTime}
+                      onChange={(e) => setSelectedTime(e.target.value)}
+                      className="w-48"
+                    >
+                      {slots.map((time) => (
+                        <option key={time} value={time}>
+                          {time}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           {/* Key Info */}
