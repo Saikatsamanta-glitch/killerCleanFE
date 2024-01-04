@@ -138,8 +138,7 @@ nav ul li a:hover {
 
 /* Footer Stylings */
 [data-testid="flowbite-footer-brand"] img {
-  height: 170px !important;
-  /* margin-left: -20px !important; */
+  height: 250px !important;
 }
 [data-testid="footer-groupLink"] li a {
   color: white !important;
@@ -382,7 +381,7 @@ input::placeholder {
     align-items: center;
   }
   [data-testid="flowbite-footer-brand"] img {
-    height: 170px !important;
+    height: 200px !important;
     margin-left: -20px !important;
   }
   footer li a {
@@ -535,7 +534,7 @@ input::placeholder {
     color: white !important;
   }
   [data-testid="flowbite-footer-brand"] img {
-    height: 170px !important;
+    height: 200px !important;
     margin-left: -20px !important;
   }
   footer li a {
@@ -953,7 +952,7 @@ input::placeholder {
     font-size: 32px !important;
   }
   [data-testid="flowbite-footer-brand"] img {
-    height: 250px !important;
+    height: 200px !important;
     /* margin-left: -20px !important; */
   }
 }
