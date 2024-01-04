@@ -24,9 +24,9 @@ import {
 import PopularQuestions from "./PopularQuestions";
 import { loadStripe } from "@stripe/stripe-js";
 export default function BookForm() {
-  const [selectedFrequency, setSelectedFrequency] = useState("");
-  const [selectedBedrooms, setSelectedBedrooms] = useState();
-  const [selectedBathrooms, setSelectedBathrooms] = useState();
+  const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
+  const [selectedBedrooms, setSelectedBedrooms] = useState(0);
+  const [selectedBathrooms, setSelectedBathrooms] = useState(1);
   const [selectedSqft, setSelectedSqft] = useState("");
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedKey, setSelectedKey] = useState(""); // State for radio buttons
@@ -39,12 +39,15 @@ export default function BookForm() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(true);
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [showSelectedDateTime, setShowSelectedDateTime] = useState(true); // New state variable
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
       [field]: value,
     });
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: undefined,
+    }));
   };
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
@@ -121,6 +124,25 @@ export default function BookForm() {
     setShowTimePicker(false);
   };
   const handleFormSubmit = () => {
+    console.log("first")
+    let newErrors = {};
+
+    // Perform validation
+    customerDetailsData.forEach((detail) => {
+      if (detail.required && !formData[detail.id]) {
+        newErrors[detail.id] = `${detail.label} is required`;
+      }
+    });
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // If there are errors, display an alert
+    if (Object.keys(newErrors).length > 0) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     console.log(formData);
     localStorage.setItem("formData", JSON.stringify(formData));
     localStorage.setItem("selectedFrequency", selectedFrequency);
@@ -128,8 +150,8 @@ export default function BookForm() {
     localStorage.setItem("selectedBathrooms", selectedBathrooms);
     localStorage.setItem("selectedSqft", selectedSqft);
     localStorage.setItem("selectedExtras", selectedExtras);
-    localStorage.setItem('selectedDate',selectedDate);
-    localStorage.setItem('selectedTime',selectedTime);
+    localStorage.setItem("selectedDate", selectedDate);
+    localStorage.setItem("selectedTime", selectedTime);
     localStorage.setItem("price", price);
   };
   //payment
@@ -176,8 +198,8 @@ export default function BookForm() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          makePayment();
           handleFormSubmit();
+          makePayment();
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
@@ -417,7 +439,7 @@ export default function BookForm() {
 
               {showTimePicker && (
                 // Replace this with your time picker component
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <label className="font-medium text-lg mb-6">
                     Select Time:
                   </label>
@@ -432,7 +454,7 @@ export default function BookForm() {
                           selected={selectedTime}
                           onChange={handleTimeChange}
                           onClick={() => handleTimeChange(time)}
-                          className="text-black"
+                          className="text-black mb-2 "
                         >
                           {time}
                         </Button>
@@ -452,12 +474,14 @@ export default function BookForm() {
                 </div>
               )}
               {selectedDate && selectedTime && (
-                <div className="flex  items-center">
+                <div className="flex items-center w-full max-md:flex-col ">
                   <div className="mb-4 flex items-center">
                     <label className="font-medium">Selected Date:</label>
                     <DatePicker
                       selected={selectedDate}
-                      onChange={(date)=>{setSelectedDate(date)}}
+                      onChange={(date) => {
+                        setSelectedDate(date);
+                      }}
                       dateFormat="EEE MMM d yyyy"
                       isClearable
                       minDate={new Date()}
@@ -656,15 +680,11 @@ export default function BookForm() {
         <div className="card z-10  max-lg:w-full lg:max-xxl:w-[350px] xxl:w-[500px] mb-16">
           <Accordion className="max-xxl:p-2 xxl:p-10 w-full">
             <Accordion.Panel className="w-full">
-              <Accordion.Title className="mb-6 font-bold w-full text-lg xxl:text-3xl text-[#11263c]">
-                <div className="flex items-center w-full justify-between">
-                  Booking Summary
-                  <div className="flex flex-col max-lg:block lg:hidden justify-between items-center">
-                    <h1 className="text-2xl xxl:text-4xl text-orange-500">
-                      ${price.toFixed(2)}
-                    </h1>
-                  </div>
-                </div>
+              <Accordion.Title className="mb-6 font-bold w-full flex justify-between items-center text-lg xxl:text-3xl text-[#11263c]">
+                Booking Summary
+                <h1 className="text-2xl xxl:text-4xl text-orange-500">
+                  ${price.toFixed(2)}
+                </h1>
               </Accordion.Title>
               <Accordion.Content>
                 <div className="border-y">

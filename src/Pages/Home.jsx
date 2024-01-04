@@ -32,7 +32,7 @@ export default function Home() {
           <h1 className="text-[40px] sm:text-[44px] xxl:text-6xl font-medium text-center text-white z-20 mb-4">
             Reclaim your Saturdays!
           </h1>
-          <p className="text-base sm:text-[17px] xxl:text-xl leading-7 mb-4 z-50 text-center text-white">
+          <p className="text-base sm:text-[17px] xxl:text-xl leading-7 mb-4 z-20 text-center text-white">
             Let's make your space shine together! Schedule with Killer Clean
             today and let the magic happen!
           </p>

@@ -5,7 +5,7 @@ import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { Link } from "react-router-dom";
 export default function CustomFooter() {
   return (
-    <Footer container className="bg-[#014584] px-0 relative  w-screen">
+    <Footer container className="bg-[#014584] px-0 relative w-screen">
       <div className="w-full">
         <div
           className=" w-full max-md:px-2 flex flex-col
@@ -20,7 +20,7 @@ export default function CustomFooter() {
                 className="sm:-mt-4 md:-ml-0"
               />
               <div className="flex items-center justify-center list-none mb-3">
-                <Footer.Link>
+                <Footer.Link href="https://www.facebook.com/profile.php?id=61553403698498" target="_blank">
                   <BsFacebook className="text-white text-lg xxl:text-2xl sm:mr-5 mr-3" />
                 </Footer.Link>
                 <Footer.Link>
