@@ -157,7 +157,7 @@ export default function BookForm() {
   //payment
   const makePayment = async () => {
     const stripe = await loadStripe(
-      "pk_test_51OIAq6SGk6cdvSycHkpLOA6g5w3c9Ln6FBItdoYY5Gueuw31sOTE412a1BwdPSDbKG27rn5ibQOKOPw7F7bRV08Y00UYsFxfNJ"
+      "pk_live_51OB8RyA2dcJCHvz14zYzvwFYSvnbt222V0OttLJZSfwG0UgrfFdgF7LwsF5X4H42xlcy3jTjnZI23EL3SneYQpk700hVvfroBJ"
     );
     const body = [
       {
