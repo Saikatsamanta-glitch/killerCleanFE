@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState, useEffect, useCallback } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Accordion, Tabs, Label,Select,Tooltip,TextInput,Checkbox,Textarea,Button, } from "flowbite-react";
 import { FaRegCalendarDays } from "react-icons/fa6";
@@ -22,7 +21,7 @@ export default function BookForm() {
   const [selectedSqft, setSelectedSqft] = useState("1 - 999 Sq Ft");
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [price, setPrice] = useState(0);
-
+  
   const {
     control,
     handleSubmit,
@@ -142,26 +141,6 @@ export default function BookForm() {
         setIsScheduling(false);
       });
   };
-  //email sending function
-  const form = useRef();
-
-  const sendEmail = () => {
-    emailjs
-      .sendForm(
-        "service_lrzlb67",
-        "template_0qic7ra",
-        form.current,
-        "lO680sw9k9xiPwwsB"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
 
   //payment
   const makePayment = async () => {
@@ -202,11 +181,11 @@ export default function BookForm() {
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
       <form
-        ref={form}
         onSubmit={(e) => {
           e.preventDefault();
           makePayment();
           handleSubmit(onSubmit);
+          handleSend();
         }}
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
