@@ -11,7 +11,7 @@ const ImageCard = () => {
         <div className="flex flex-wrap  justify-center md:max-lg:">
         {servicesInfo.map((service) => (
           <div key={service.id} className="max-w-[400px] px-2 py-4 md:w-[300px] ">
-            <img className="  " src={service.img} alt="" />
+            <img className="h-[200px] w-full" src={service.img} alt="" />
             <h5 className="sm:max-xxl:text-2xl text-xl font-semibold mt-4 text-[#014584] text-center sm:max-xxl:text-current">
               {service.title}
             </h5>

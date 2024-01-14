@@ -35,8 +35,59 @@ button[type="submit"] span {
 button[type="submit"]:hover {
   background-color: #ced5d8 !important;
 }
-/* frequency */
-
+/* date-time*/
+.react-datepicker__navigation-icon::before {
+  height: 15px !important;
+  width: 15px !important;
+}
+.react-datepicker {
+  font-size: 1.2rem;
+  width: 100% !important;
+}
+.react-datepicker__month-container {
+  width: 100%;
+}
+.react-datepicker__navigation {
+  height: 60px !important;
+  width: 50px !important;
+}
+.react-datepicker__current-month {
+  font-size: 1.2rem !important;
+}
+.react-datepicker__header {
+  padding: 20px 0 10px 0;
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+.react-datepicker__current-month {
+  margin: 10px 0 !important;
+}
+.react-datepicker__day-names {
+  margin-bottom: -10px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  margin-left: 25px;
+  margin-right: 0.4rem;
+  font-size: 14px !important;
+}
+.react-datepicker__week {
+  white-space: nowrap;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  margin-left: 20px;
+  font-size: 14px;
+}
+.react-datepicker__day:disabled{
+  color: gray !important;
+}
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 2.5rem !important;
+  line-height: 3.0 !important;
+  text-align: center;
+  margin: 0.166rem;
+}
 /* Navbar Stylings */
 
 .fa-brands:hover {
@@ -87,13 +138,11 @@ nav ul li a:hover {
 
 /* Footer Stylings */
 [data-testid="flowbite-footer-brand"] img {
-  height: 170px !important;
-  /* margin-left: -20px !important; */
+  height: 250px !important;
 }
 [data-testid="footer-groupLink"] li a {
   color: white !important;
   font-weight: 400 !important;
-  font-size: 16px !important;
 }
 .footer-text {
   font-size: 12px !important;
@@ -202,7 +251,8 @@ select {
 #tel,
 #sectel,
 #address,
-#apt {
+#apt,
+#coupon {
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
@@ -232,7 +282,8 @@ label {
 #tel,
 #sectel,
 #address,
-#apt {
+#apt,
+#coupon {
   /* width: 350px !important; */
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
@@ -298,7 +349,7 @@ input::placeholder {
     display: inline-block;
     content: "";
     height: 8px;
-    width:8px;
+    width: 8px;
     margin-right: 12px;
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
@@ -318,13 +369,19 @@ input::placeholder {
     padding: 4px !important;
     background-color: white !important;
     border-radius: 4px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   [data-testid="flowbite-accordion"] {
     background-color: white !important;
     border-radius: 4px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   [data-testid="flowbite-footer-brand"] img {
-    height: 170px !important;
+    height: 200px !important;
     margin-left: -20px !important;
   }
   footer li a {
@@ -376,6 +433,59 @@ input::placeholder {
     font-size: 12px;
     margin-left: 4px !important;
   }
+  /* date-time*/
+.react-datepicker__navigation-icon::before {
+  height: 15px !important;
+  width: 15px !important;
+}
+.react-datepicker {
+  font-size: 1.2rem;
+  width: 100% !important;
+}
+.react-datepicker__month-container {
+  width: 100% !important;
+}
+.react-datepicker__navigation {
+  height: 60px !important;
+  width: 50px !important;
+}
+.react-datepicker__current-month {
+  font-size: 1.2rem !important;
+}
+.react-datepicker__header {
+  padding: 20px 0 10px 0;
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+.react-datepicker__current-month {
+  margin: 5px 0 !important;
+}
+.react-datepicker__day-names {
+  margin-bottom: -10px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  margin-left: 5px !important;
+  margin-right: 0.4rem;
+  font-size: 14px !important;
+}
+.react-datepicker__week {
+  white-space: nowrap;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  margin-left: 0px;
+  font-size: 14px;
+}
+.react-datepicker__day:disabled{
+  color: gray !important;
+}
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 2.5rem !important;
+  line-height: 3.0 !important;
+  text-align: center;
+  margin: 0.166rem;
+}
 }
 @media (min-width: 426px) and (max-width: 1025px) {
   .accordion__button {
@@ -405,7 +515,7 @@ input::placeholder {
     display: inline-block;
     content: "";
     height: 8px;
-    width:8px;
+    width: 8px;
     margin-right: 12px;
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
@@ -416,6 +526,7 @@ input::placeholder {
     background-color: white !important;
     border-radius: 4px !important;
     padding: 0px !important;
+    margin-bottom: 10px !important;
   }
   [aria-label="Pills"] button {
     padding: 12px !important;
@@ -423,7 +534,7 @@ input::placeholder {
     color: white !important;
   }
   [data-testid="flowbite-footer-brand"] img {
-    height: 170px !important;
+    height: 200px !important;
     margin-left: -20px !important;
   }
   footer li a {
@@ -520,7 +631,8 @@ input::placeholder {
   #tel,
   #sectel,
   #address,
-  #apt {
+  #apt,
+  #coupon {
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
@@ -578,7 +690,8 @@ input::placeholder {
   #tel,
   #sectel,
   #address,
-  #apt {
+  #apt,
+  #coupon {
     /* width: 350px !important; */
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
@@ -692,7 +805,7 @@ input::placeholder {
     display: inline-block;
     content: "";
     height: 10px;
-    width:10px;
+    width: 10px;
     margin-right: 12px;
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
@@ -744,7 +857,9 @@ input::placeholder {
   #sectel::placeholder,
   #address::placeholder,
   #apt::placeholder,
-  #note::placeholder {
+  #note::placeholder,
+  #special::placeholder,
+  #coupon::placeholder {
     font-size: 16px !important;
     color: #676f748b !important ;
     font-weight: bold;
@@ -813,7 +928,9 @@ input::placeholder {
   #sectel::placeholder,
   #address::placeholder,
   #apt::placeholder,
-  #note::placeholder {
+  #note::placeholder,
+  #special::placeholder,
+  #coupon::placeholder {
     font-size: 20px !important;
     color: #676f748b !important ;
     font-weight: bold;
@@ -835,7 +952,7 @@ input::placeholder {
     font-size: 32px !important;
   }
   [data-testid="flowbite-footer-brand"] img {
-    height: 250px !important;
+    height: 200px !important;
     /* margin-left: -20px !important; */
   }
 }
@@ -957,5 +1074,15 @@ input::placeholder {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+  }
+}
+@media (min-width:320px) and (max-width:425px) {
+  .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    color: #000;
+    display: inline-block;
+    width: 1.5rem !important;
+    line-height: 3.0 !important;
+    text-align: center;
+    margin: 0.166rem;
   }
 }

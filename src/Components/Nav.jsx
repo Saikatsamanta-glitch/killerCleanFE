@@ -44,18 +44,18 @@ export default function Nav() {
           <Link to={"tel:1234567890"} className="no-underline">
             <i className="fa-solid fa-phone text-[#61B1D6] mr-3"></i>
             <span className="text-white mr-16 text-[15px] font-semibold">
-              123-456-7890
+            951-877-5077
             </span>
           </Link>
           <Link to={"mailto:support@killerclean.com"} className="no-underline">
             <i className="fa-solid fa-envelope text-[#61B1D6] mr-3"></i>
             <span className="text-white text-[15px] tracking-wide font-semibold">
-              support@killerclean.com
+            killercleanllc@gmail.com
             </span>
           </Link>
         </div>
         <div className=" flex items-center text-[24px]">
-          <Link className="no-underline text-white">
+          <Link className="no-underline text-white" to={'https://www.facebook.com/profile.php?id=61553403698498'}>
             <i className="fa-brands fa-facebook mr-6 hover:animate-pulse "></i>
           </Link>
           <Link className="no-underline text-white">
@@ -66,7 +66,7 @@ export default function Nav() {
 
       <Navbar fluid className={`sm:max-lg:px-0 px-20 left-0 top-0 ${isSticky ? "fixed" : ""} bg-[#F3FAFC] w-full z-50`}>
         <Navbar.Brand href="/">
-          <img src={logo} className="h-32 sm:h-36 max-lg:mt-0 " alt="Killer CLean Logo" />
+          <img src={logo} className="h-40 sm:max-lg:h-[200px] lg:h-[235px] max-lg:mt-0 " alt="Killer CLean Logo" />
         </Navbar.Brand>
         <Navbar.Toggle/>
         <Navbar.Collapse>

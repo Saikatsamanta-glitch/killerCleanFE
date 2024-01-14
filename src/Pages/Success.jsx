@@ -1,36 +1,54 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import emailjs from '@emailjs/browser';
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import emailjs from "@emailjs/browser";
+const Success = () => {
+  const storedFormData = localStorage.getItem("formData");
+  const frequency = localStorage.getItem("selectedFrequency");
+  const bedrooms = localStorage.getItem("selectedBedrooms");
+  const bathrooms = localStorage.getItem("selectedBathrooms");
+  const sqft = localStorage.getItem("selectedSqft");
+  const extras = localStorage.getItem("selectedExtras");
+  const date = localStorage.getItem("selectedDate");
+  const time = localStorage.getItem("selectedTime");
+  const price = localStorage.getItem("price");
+  const formData = storedFormData ? JSON.parse(storedFormData) : {};
 
-const Success = ({ userInfo, paymentInfo }) => {
+  // Access formData properties as needed
+  const { firstName, lastName, email /* ...other form properties */ } =
+    formData;
   const history = useNavigate();
-
   useEffect(() => {
+    console.log("Props in Success component:");
+
     // Function to send email
-    const sendEmail = async (data) => {
-      try {
-        const templateParams = {
-          user_name: userInfo.user_name,
-          emailid: userInfo.emailid,
-          address: userInfo.address,
-          date_and_time: paymentInfo.date_and_time,
-          service_type: paymentInfo.service_type,
-          purchased_service: paymentInfo.purchased_service,
-          total_amount: paymentInfo.total_amount,
-        };
-
-        // Replace 'your_service_id' and 'your_template_id' with the actual values from EmailJS
-        const result = await emailjs.send(
-          'service_lrzlb67',
-          'template_0qic7ra',
-          templateParams,
-          'lO680sw9k9xiPwwsB' // Replace with your user ID from EmailJS
+    const sendEmail = () => {
+      emailjs
+        .send(
+          "service_8gev85f",
+          "template_vg72bqo",
+          {
+            from_name: "Killer Clean",
+            to_name: firstName + " " + lastName,
+            user_email: email,
+            selectedFrequency: frequency,
+            selectedBathrooms: bathrooms,
+            selectedBedrooms: bedrooms,
+            selectedExtras: extras,
+            selectedSqft: sqft,
+            scheduledDateTime: new Date(date).toLocaleDateString('en-US', { dateStyle: 'full' }) +" "+ "at"  +' ' + time,
+            price: price,
+            // other template variables
+          },
+          "CidetvyEOA_jCWCZs"
+        )
+        .then(
+          (response) => {
+            console.log("Email sent successfully:", response);
+          },
+          (error) => {
+            console.error("Email sending failed:", error);
+          }
         );
-
-        console.log(result);
-      } catch (error) {
-        console.error('Error sending email:', error);
-      }
     };
 
     // Send email after a delay
@@ -40,20 +58,51 @@ const Success = ({ userInfo, paymentInfo }) => {
 
     // Redirect to home after another delay
     const redirectTimer = setTimeout(() => {
-      history('/');
-    }, 5000); // Adjust the delay as needed
+      history("/");
+    }, 10000); // Adjust the delay as needed
 
     // Clear timers when the component is unmounted
     return () => {
-      clearTimeout(emailTimer);
-      clearTimeout(redirectTimer);
+      // clearTimeout(emailTimer);
+      // clearTimeout(redirectTimer);
     };
-  }, [userInfo, paymentInfo, history]);
-
+  }, [history, formData]);
+  console.log(formData);
   return (
-    <div className='h-[185px] flex justify-center items-center '>
-      <h1 className='text-green-700 font-bold text-5xl '>Payment Successful!</h1>
-      
+    <div className="text-center flex items-center justify-center flex-col">
+      <h2 className="text-3xl font-bold mb-4 text-green-500">
+        Booking Successful!
+      </h2>
+      <div className="mb-4">
+        <p>
+          Thank you, {firstName + " " + lastName}! Your booking has been
+          confirmed. An email with the details has been sent to {email}.
+        </p>
+      </div>
+      <div className="mb-4">
+        <p>
+          <strong>Booking Details:</strong>
+        </p>
+        <p>
+          Frequency: {frequency}
+          <br />
+          Bathrooms: {bathrooms}
+          <br />
+          Bedrooms: {bedrooms}
+          <br />
+          Extras: {extras}
+          <br />
+          Sq Ft: {sqft}
+          <br />
+          Scheduled Date and Time:{" "}
+          {`${new Date(date).toLocaleDateString('en-US', { dateStyle: 'full' })} ${time}`}
+          <br />
+          Total Price: ${price}
+        </p>
+      </div>
+      <p className="text-gray-600">
+        A confirmation email has been sent to {email}.
+      </p>
     </div>
   );
 };
