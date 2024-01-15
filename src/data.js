@@ -169,7 +169,7 @@ export const selectExtras=[
     id:1,
     img:'https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/broom.png',
     label:'Deep Cleaning',
-    price:'$20'
+    price:'$50'
   },
   {
     id:2,
@@ -347,8 +347,8 @@ export const frequencyData = [
 ];
 
 export const serviceTypeData = [
-  { id: 'bedrooms', label: 'Bedrooms', options: ['0', '1', '2', '3', '4', '5'] },
-  { id: 'bathrooms', label: 'Bathrooms', options: ['1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5'] },
+  { id: 'bedrooms', label: 'Bedrooms', options: ['1', '2', '3', '4', '5'] },
+  { id: 'bathrooms', label: 'Bathrooms', options: ['1', '2', '3', '4', '5'] },
   { id: 'sqft', label: 'Sq Ft', options: [
     '1 - 999 Sq Ft', '1000 - 1499 Sq Ft', '1500 - 1999 Sq Ft', '2000 - 2499 Sq Ft',
     '2500 - 2999 Sq Ft', '3000 - 3499 Sq Ft', '3500 - 3999 Sq Ft', '4000 - 4499 Sq Ft',
@@ -374,6 +374,24 @@ export const pricingConfig = {
     "Weekly": 30,
     "Every other week": 25,
     "Every 4 weeks": 20,
+  },
+  standard: {
+    bedrooms: ["1", "2", "3", "4", "5", "6"],
+    1: { 1: 160, 2: 180 },
+    2: { 1: 180, 2: 200, 3: 220 },
+    3: { 1: 200, 2: 220, 3: 240, 4: 260 },
+    4: { 1: 230, 2: 230, 3: 260, 4: 290, 5: 310 },
+    5: { 1: 250, 2: 250, 3: 270, 4: 300, 5: 330 },
+    6: { 1: 280, 2: 280, 3: 280, 4: 310, 5: 350 },
+  },
+  deep: {
+    bedrooms: ["1", "2", "3", "4", "5", "6"],
+    1: { 1: 190, 2: 250 },
+    2: { 1: 220, 2: 280, 3: 320 },
+    3: { 1: 250, 2: 310, 3: 340, 4: 380 },
+    4: { 1: 300, 2: 300, 3: 370, 4: 390, 5: 410 },
+    5: { 1: 310, 2: 310, 3: 380, 4: 410, 5: 430 },
+    6: { 1: 370, 2: 370, 3: 370, 4: 440, 5: 490 },
   },
   bedrooms: 10,
   bathrooms: 5,

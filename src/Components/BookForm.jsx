@@ -23,6 +23,7 @@ import {
 } from "../data";
 import PopularQuestions from "./PopularQuestions";
 import { loadStripe } from "@stripe/stripe-js";
+
 export default function BookForm() {
   const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
   const [selectedBedrooms, setSelectedBedrooms] = useState(0);
@@ -39,6 +40,13 @@ export default function BookForm() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(true);
   const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const [bedroomValue, setBedroomValue] = useState("");
+  const [bathroomValue, setBathroomValue] = useState("");
+  const [totalCost, setTotalCost] = useState(null);
+  const [pricingStandard, setPricingStandard] = useState("standard");
+  const [availableBathrooms, setAvailableBathrooms] = useState(["1", "2"]);
+
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
@@ -49,6 +57,24 @@ export default function BookForm() {
       [field]: undefined,
     }));
   };
+
+  useEffect(() => {
+    // Update available bathrooms based on selected bedrooms
+    updateAvailableBathrooms();
+  }, [bedroomValue, pricingStandard]);
+
+  const updateAvailableBathrooms = () => {
+    const selectedPricing = pricingConfig[pricingStandard];
+    const bedrooms = parseInt(bedroomValue);
+
+    if (selectedPricing && selectedPricing[bedrooms]) {
+      const bathrooms = Object.keys(selectedPricing[bedrooms]);
+      setAvailableBathrooms(bathrooms);
+    } else {
+      setAvailableBathrooms([]);
+    }
+  };
+
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
     const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
@@ -56,6 +82,20 @@ export default function BookForm() {
     const bathroomsPrice = selectedBathrooms * pricingConfig.bathrooms;
     const sqftPrice = pricingConfig.sqft[selectedSqft] || 0;
     const extrasPrice = selectedExtras.length * pricingConfig.extras;
+
+    const selectedPricing = pricingConfig[pricingStandard];
+    const bedrooms = parseInt(bedroomValue);
+    const bathrooms = parseInt(bathroomValue);
+
+    if (
+      selectedPricing &&
+      selectedPricing[bedrooms] &&
+      selectedPricing[bedrooms][bathrooms]
+    ) {
+      setTotalCost(selectedPricing[bedrooms][bathrooms]);
+    } else {
+      setTotalCost(null);
+    }
 
     const subtotal =
       freqPrice + bedroomsPrice + bathroomsPrice + sqftPrice + extrasPrice;
@@ -78,7 +118,32 @@ export default function BookForm() {
   useEffect(() => {
     calculatePrice();
   }, [calculatePrice]);
+
   // Update the state when user makes selections
+
+  const handleBedroomChange = (event) => {
+    setBedroomValue(event.target.value);
+  };
+
+  const handleBathroomChange = (event) => {
+    setBathroomValue(event.target.value);
+    
+  };
+
+  const handleStandardClick = () => {
+    setPricingStandard("standard");
+  };
+
+  const handleDeepClick = () => {
+    setPricingStandard("deep");
+  };
+
+  useEffect(() => {
+    // Calculate and set the total cost whenever the pricing standard changes
+    calculateTotalCost();
+  }, [pricingStandard, bedroomValue, bathroomValue]);
+
+
   const handleFrequencyChange = (event) => {
     setSelectedFrequency(event.target.value);
   };
@@ -192,6 +257,8 @@ export default function BookForm() {
       console.log(result.error);
     }
   };
+  
+
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
@@ -241,6 +308,10 @@ export default function BookForm() {
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Service Type
             </h1>
+            <div className="pl-2  space-x-5 rounded-2xl">
+              <button className="w-20 h-10 bg-gray-300" onClick={handleStandardClick}>Standard</button>
+              <button className="w-20 h-10 bg-gray-300" onClick={handleDeepClick}>Deep</button>
+            </div>
             <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
               {serviceTypeData.map((serviceType) => (
                 <div
