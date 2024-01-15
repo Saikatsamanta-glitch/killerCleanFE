@@ -361,7 +361,7 @@ export default function BookForm() {
             <div className="grid xxl:grid-cols-6 xl:max-xxl:grid-cols-5 lg:max-xl:grid-cols-4 md:max-lg:grid-cols-3 max-ms:grid-cols-1 max-mm:grid-cols-1 max-ml:grid-cols-1 grid-cols-2 xxl:gap-10 lg:max-xxl:gap-3 max-lg:gap-2">
               {/* Checkboxes for extras */}
               {selectExtras.map((v) => (
-                <div className="flex flex-col items-center">
+                <div key={v} className="flex flex-col items-center">
                   <div
                     key={v.id}
                     onChange={handleExtrasChange}
