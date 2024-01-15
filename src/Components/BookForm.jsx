@@ -73,7 +73,7 @@ export default function BookForm() {
     selectedSqft,
     selectedExtras,
   ]);
-
+useEffect(()=>{window.scrollTo(0, 0)},[])
   // Update the price whenever the selected options change
   useEffect(() => {
     calculatePrice();
@@ -157,7 +157,7 @@ export default function BookForm() {
   //payment
   const makePayment = async () => {
     const stripe = await loadStripe(
-      "pk_live_51OB8RyA2dcJCHvz14zYzvwFYSvnbt222V0OttLJZSfwG0UgrfFdgF7LwsF5X4H42xlcy3jTjnZI23EL3SneYQpk700hVvfroBJ"
+      process.env.PK_STRIPE || 'pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol'
     );
     const body = [
       {
@@ -176,7 +176,7 @@ export default function BookForm() {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      "http://localhost:7000/api/create-checkout-session",
+      "https://killerclean.onrender.com/api/create-checkout-session",
       {
         method: "POST",
         headers: headers,
@@ -290,7 +290,7 @@ export default function BookForm() {
             <div className="grid xxl:grid-cols-6 xl:max-xxl:grid-cols-5 lg:max-xl:grid-cols-4 md:max-lg:grid-cols-3 max-ms:grid-cols-1 max-mm:grid-cols-1 max-ml:grid-cols-1 grid-cols-2 xxl:gap-10 lg:max-xxl:gap-3 max-lg:gap-2">
               {/* Checkboxes for extras */}
               {selectExtras.map((v) => (
-                <div className="flex flex-col items-center">
+                <div key={v} className="flex flex-col items-center">
                   <div
                     key={v.id}
                     onChange={handleExtrasChange}
