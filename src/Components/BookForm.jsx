@@ -41,11 +41,11 @@ export default function BookForm() {
   const [showDatePicker, setShowDatePicker] = useState(true);
   const [showTimePicker, setShowTimePicker] = useState(false);
 
-  const [bedroomValue, setBedroomValue] = useState("");
-  const [bathroomValue, setBathroomValue] = useState("");
-  const [totalCost, setTotalCost] = useState(null);
-  const [pricingStandard, setPricingStandard] = useState("standard");
-  const [availableBathrooms, setAvailableBathrooms] = useState(["1", "2"]);
+  // const [bedroomValue, setBedroomValue] = useState("");
+  // const [bathroomValue, setBathroomValue] = useState("");
+  // const [totalCost, setTotalCost] = useState(null);
+  // const [pricingStandard, setPricingStandard] = useState("standard");
+  // const [availableBathrooms, setAvailableBathrooms] = useState(["1", "2"]);
 
   const handleChange = (field, value) => {
     setFormData({
@@ -58,22 +58,22 @@ export default function BookForm() {
     }));
   };
 
-  useEffect(() => {
-    // Update available bathrooms based on selected bedrooms
-    updateAvailableBathrooms();
-  }, [bedroomValue, pricingStandard]);
+  // useEffect(() => {
+  //   // Update available bathrooms based on selected bedrooms
+  //   updateAvailableBathrooms();
+  // }, [bedroomValue, pricingStandard]);
 
-  const updateAvailableBathrooms = () => {
-    const selectedPricing = pricingConfig[pricingStandard];
-    const bedrooms = parseInt(bedroomValue);
+  // const updateAvailableBathrooms = () => {
+  //   const selectedPricing = pricingConfig[pricingStandard];
+  //   const bedrooms = parseInt(bedroomValue);
 
-    if (selectedPricing && selectedPricing[bedrooms]) {
-      const bathrooms = Object.keys(selectedPricing[bedrooms]);
-      setAvailableBathrooms(bathrooms);
-    } else {
-      setAvailableBathrooms([]);
-    }
-  };
+  //   if (selectedPricing && selectedPricing[bedrooms]) {
+  //     const bathrooms = Object.keys(selectedPricing[bedrooms]);
+  //     setAvailableBathrooms(bathrooms);
+  //   } else {
+  //     setAvailableBathrooms([]);
+  //   }
+  // };
 
   // Define your pricing logic
   const calculatePrice = useCallback(() => {
