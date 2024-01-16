@@ -1,36 +1,16 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  Accordion,
-  Tabs,
-  Label,
-  Tooltip,
-  TextInput,
-  Checkbox,
-  Textarea,
-  Button,
-} from "flowbite-react";
+import {Accordion,Tabs,Label,Tooltip,TextInput,Checkbox,Textarea,Button,} from "flowbite-react";
 import { FaRegCalendarDays } from "react-icons/fa6";
-import {
-  frequencyData,
-  serviceTypeData,
-  selectExtras,
-  customerDetailsData,
-  pricingConfig,
-  slots,
-} from "../data";
+import {frequencyData,selectExtras,customerDetailsData,pricingConfig,slots,} from "../data";
 import PopularQuestions from "./PopularQuestions";
 import { loadStripe } from "@stripe/stripe-js";
+
 export default function BookForm() {
   const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
-  const [selectedBedrooms, setSelectedBedrooms] = useState(0);
-  const [selectedBathrooms, setSelectedBathrooms] = useState(1);
-  const [selectedSqft, setSelectedSqft] = useState("");
   const [selectedExtras, setSelectedExtras] = useState([]);
-  const [selectedKey, setSelectedKey] = useState(""); // State for radio buttons
-  const [keepKeyChecked, setKeepKeyChecked] = useState(false); // State for checkbox
   const [price, setPrice] = useState(0);
   const [taxAmount, setTaxAmount] = useState(0);
   const [formData, setFormData] = useState({});
@@ -39,6 +19,11 @@ export default function BookForm() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(true);
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [bedroomValue, setBedroomValue] = useState("");
+  const [bathroomValue, setBathroomValue] = useState("");
+  const [availableBathrooms, setAvailableBathrooms] = useState(["1", "2"]);
+  const [pricingStandard, setPricingStandard] = useState("standard");
+
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
@@ -49,50 +34,53 @@ export default function BookForm() {
       [field]: undefined,
     }));
   };
-  // Define your pricing logic
-  const calculatePrice = useCallback(() => {
-    const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
-    const bedroomsPrice = selectedBedrooms * pricingConfig.bedrooms;
-    const bathroomsPrice = selectedBathrooms * pricingConfig.bathrooms;
-    const sqftPrice = pricingConfig.sqft[selectedSqft] || 0;
-    const extrasPrice = selectedExtras.length * pricingConfig.extras;
 
-    const subtotal =
-      freqPrice + bedroomsPrice + bathroomsPrice + sqftPrice + extrasPrice;
-
-    // Assuming taxRate is your tax rate (e.g., 10%)
-    const taxRate = 0.1;
-    const taxAmount = subtotal * taxRate;
-    const totalPrice = subtotal + taxAmount;
-    setPrice(totalPrice);
-    setTaxAmount(taxAmount);
-  }, [
-    selectedFrequency,
-    selectedBedrooms,
-    selectedBathrooms,
-    selectedSqft,
-    selectedExtras,
-  ]);
-useEffect(()=>{window.scrollTo(0, 0)},[])
-  // Update the price whenever the selected options change
   useEffect(() => {
-    calculatePrice();
-  }, [calculatePrice]);
-  // Update the state when user makes selections
-  const handleFrequencyChange = (event) => {
-    setSelectedFrequency(event.target.value);
+    // Update available bathrooms based on selected bedrooms
+    updateAvailableBathrooms();
+  }, [bedroomValue, pricingStandard]);
+
+  const updateAvailableBathrooms = () => {
+    const selectedPricing = pricingConfig[pricingStandard];
+    const bedrooms = parseInt(bedroomValue);
+    if (selectedPricing && selectedPricing[bedrooms]) {
+        const bathrooms = Object.keys(selectedPricing[bedrooms]);
+        setAvailableBathrooms(bathrooms);
+    } else {
+        setAvailableBathrooms([]);
+    }
+};
+
+
+useEffect(() => {
+        const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
+        const selectedPricing = pricingConfig[pricingStandard];
+        const bedrooms = parseInt(bedroomValue, 10) || 0;
+        const bathrooms = parseInt(bathroomValue, 10) || 0;
+        const extrasPrice = selectedExtras.length * pricingConfig.extras;
+        const memoizedRooms = selectedPricing?.[bedrooms]?.[bathrooms] || 0;
+        const subtotal = freqPrice + extrasPrice + memoizedRooms;
+        const taxAmount = subtotal * 0.1;
+        const totalPrice = subtotal + taxAmount;
+        setPrice(totalPrice);
+        setTaxAmount(taxAmount);
+}, [selectedFrequency, pricingStandard, bedroomValue, bathroomValue, selectedExtras]);
+      
+
+  const handleBedroomChange = (event) => {
+    setBedroomValue(event.target.value);
+  };
+  
+  const handleBathroomChange = (event) => {
+    setBathroomValue(event.target.value);
   };
 
-  const handleBedroomsChange = (event) => {
-    setSelectedBedrooms(parseInt(event.target.value));
+  const handleStandardClick = () => {
+    setPricingStandard("standard");
   };
 
-  const handleBathroomsChange = (event) => {
-    setSelectedBathrooms(parseInt(event.target.value));
-  };
-
-  const handleSqftChange = (event) => {
-    setSelectedSqft(event.target.value);
+  const handleDeepClick = () => {
+    setPricingStandard("deep");
   };
 
   const handleExtrasChange = (event) => {
@@ -104,15 +92,6 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
     );
   };
 
-  const handleRadioChange = (event) => {
-    setSelectedKey(event.target.id);
-    // You can also call handleChange or perform any other actions here
-  };
-
-  const handleCheckboxChange = (event) => {
-    setKeepKeyChecked(event.target.checked);
-    // You can also call handleChange or perform any other actions here
-  };
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setShowDatePicker(false);
@@ -124,54 +103,44 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
     setShowTimePicker(false);
   };
   const handleFormSubmit = () => {
-    console.log("first")
     let newErrors = {};
-
     // Perform validation
     customerDetailsData.forEach((detail) => {
       if (detail.required && !formData[detail.id]) {
         newErrors[detail.id] = `${detail.label} is required`;
       }
     });
-
     // Update errors state
     setErrors(newErrors);
-
     // If there are errors, display an alert
     if (Object.keys(newErrors).length > 0) {
       alert("Please fill in all required fields.");
       return;
     }
-
-    console.log(formData);
     localStorage.setItem("formData", JSON.stringify(formData));
     localStorage.setItem("selectedFrequency", selectedFrequency);
-    localStorage.setItem("selectedBedrooms", selectedBedrooms);
-    localStorage.setItem("selectedBathrooms", selectedBathrooms);
-    localStorage.setItem("selectedSqft", selectedSqft);
+    localStorage.setItem("bedromvalues", bedroomValue);
+    localStorage.setItem("bathroomvalues", bathroomValue);
     localStorage.setItem("selectedExtras", selectedExtras);
     localStorage.setItem("selectedDate", selectedDate);
     localStorage.setItem("selectedTime", selectedTime);
     localStorage.setItem("price", price);
   };
   //payment
+  console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE);
   const makePayment = async () => {
-    const stripe = await loadStripe(
-      process.env.PK_STRIPE || 'pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol'
-    );
+    const stripe = await loadStripe( "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol");
     const body = [
       {
         Name: formData.firstName + " " + formData.lastName,
         Frequency: selectedFrequency,
-        Bathrooms: selectedBathrooms,
-        Bedrooms: selectedBedrooms,
-        Sqft: selectedSqft,
+        bedrooms:bedroomValue,
+        bathrooms: bathroomValue,
         Extras: selectedExtras,
         price: price,
         Email: formData.email,
       },
     ];
-    console.log(body);
     const headers = {
       "Content-Type": "application/json",
     };
@@ -184,14 +153,11 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
       }
     );
     const session = await response.json();
-    const result = stripe.redirectToCheckout({
+    stripe.redirectToCheckout({
       sessionId: session.id,
     });
-
-    if (result.error) {
-      console.log(result.error);
-    }
   };
+
   return (
     <div className="flex flex-col lg:flex-row items-center py-14 lg:items-start justify-evenly px-2 lg:px-10 w-full">
       {/* Booking form container */}
@@ -204,7 +170,6 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
         className=" xl:max-xxl:w-[800px] xxl:w-[1500px]  lg:max-xl:w-[570px] max-lg:w-full z-0 "
       >
         <div className=" w-full bg-white border  p-4 rounded-lg mb-5">
-          {/* Frequency section */}
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Frequency{" "}
@@ -224,7 +189,7 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
                     value={frequency.value}
                     className="hidden peer"
                     checked={selectedFrequency === frequency.value}
-                    onChange={handleFrequencyChange}
+                    onChange={(event) => {setSelectedFrequency(event.target.value)}}
                   />
                   <label
                     htmlFor={frequency.value}
@@ -236,51 +201,43 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
               ))}
             </div>
           </div>
-          {/* Service Type section */}
-          <div className="border-b w-full py-4 lg:p-4">
+          <div>
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Service Type
             </h1>
-            <div className="grid lg:grid-cols-2 grid-cols-1 lg:max-xl:gap-x-5 xxl:gap-x-8  gap-y-8">
-              {serviceTypeData.map((serviceType) => (
-                <div
-                  key={serviceType.id}
-                  className="flex flex-col items-start justify-center"
-                >
-                  <div className="mb-2 block">
-                    <label
-                      htmlFor={serviceType.id}
-                      className="lg:text-base text-xl xxl:text-3xl font-semibold -ml-6"
-                    >
-                      {serviceType.label}
-                    </label>
-                  </div>
-                  <select
-                    id={serviceType.id}
-                    required
-                    className="w-full xl:w-[320px] xxl:w-full"
-                    value={
-                      serviceType.id === "bedrooms"
-                        ? selectedBedrooms
-                        : serviceType.id === "bathrooms"
-                        ? selectedBathrooms
-                        : selectedSqft
-                    }
-                    onChange={
-                      serviceType.id === "bedrooms"
-                        ? handleBedroomsChange
-                        : serviceType.id === "bathrooms"
-                        ? handleBathroomsChange
-                        : handleSqftChange
-                    }
-                  >
-                    {serviceType.options.map((option) => (
-                      <option key={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-              ))}
+            <div className="pl-2  space-x-5 rounded-2xl">
+              <button
+                className="w-20 h-10 bg-gray-300"
+                onClick={handleStandardClick}
+              >
+                Standard
+              </button>
+              <button
+                className="w-20 h-10 bg-gray-300"
+                onClick={handleDeepClick}
+              >
+                Deep
+              </button>
             </div>
+            <label>Bedroom:<select value={bedroomValue} onChange={handleBedroomChange}>
+                <option value="">Select Bedroom</option>
+                {pricingConfig[pricingStandard]?.bedrooms.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <br />
+            <label>Bathroom:<select value={bathroomValue} onChange={handleBathroomChange}>
+                <option value="">Select Bathroom</option>
+                {availableBathrooms.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
           {/* Extras section */}
           <div className="border-b w-full py-4 lg:p-4">
@@ -506,78 +463,7 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
               )}
             </div>
           </div>
-          {/* Key Info */}
-          <div className="border-b w-full py-4 lg:p-4">
-            <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-3xl mb-3 font-semibold">
-              Key Information & Job Notes
-            </h1>
-            <p className="max-xxl:text-sm xxl:text-2xl text-[#52616b] mb-4">
-              You can turn this description off or modify it at anytime.
-            </p>
-            <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-4">
-              <div className="max-lg:w-full flex justify-center items-center">
-                <input
-                  type="radio"
-                  defaultChecked
-                  name="key"
-                  id="keyinfo"
-                  className="hidden peer"
-                  onChange={handleRadioChange}
-                />
-                <label
-                  htmlFor="keyinfo"
-                  className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
-                >
-                  Someone Will Be At Home
-                </label>
-              </div>
-              <div className="max-lg:w-full flex justify-center items-center">
-                <input
-                  type="radio"
-                  name="key"
-                  id="provider"
-                  className="hidden peer"
-                  onChange={handleRadioChange}
-                />
-                <label
-                  htmlFor="provider"
-                  className="p-2 cursor-pointer text-center text-[#11263c]  bg-[#e5ecf2] rounded-lg w-full peer-checked:text-white peer-checked:bg-[#ced5d8]"
-                >
-                  I Will Hide The Keys
-                </label>
-              </div>
-              <div className="flex items-center">
-                <Checkbox
-                  id="provider"
-                  className="h-6 w-6"
-                  onChange={handleCheckboxChange}
-                />
-                <Label
-                  htmlFor="provider"
-                  className="-ml-5 xxl:text-3xl max-lg:text-lg"
-                >
-                  Keep Key With Provider
-                </Label>
-              </div>
-            </div>
-            <div className="my-4">
-              <div className="w-full">
-                <div className="mb-2 block -ml-6">
-                  <Label
-                    htmlFor="note"
-                    value="Customer Note For Provider"
-                    className="lg:text-[17px] max-lg:text-lg xxl:text-2xl font-semibold"
-                  />
-                </div>
-                <Textarea
-                  id="note"
-                  rows={5}
-                  placeholder="Special Notes and Instructions"
-                  onChange={(e) => handleChange("note", e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
+
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-3xl font-semibold mb-4">
               Special Notes Or Instructions
@@ -723,7 +609,7 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
                         </td>
                         <td>:</td>
                         <td className="text-[#11263c] xxl:text-xl">
-                          {selectedBedrooms}
+                          {bedroomValue}
                         </td>
                       </tr>
                       <tr>
@@ -732,7 +618,7 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
                         </td>
                         <td>:</td>
                         <td className="text-[#11263c] xxl:text-xl">
-                          {selectedBathrooms}
+                          {bathroomValue}
                         </td>
                       </tr>
                       <tr>
@@ -741,7 +627,7 @@ useEffect(()=>{window.scrollTo(0, 0)},[])
                         </td>
                         <td>:</td>
                         <td className="text-[#11263c] xxl:text-xl">
-                          {selectedSqft}
+                          {/* {selectedSqft} */}
                         </td>
                       </tr>
                       {selectedExtras.length > 0 && (

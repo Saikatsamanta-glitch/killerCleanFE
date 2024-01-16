@@ -36,9 +36,6 @@ const Contact = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Access your form data in the formData state
-    console.log(formData);
-    // Add logic to submit the form data
   };
 
   const handleClick = (index) => {
