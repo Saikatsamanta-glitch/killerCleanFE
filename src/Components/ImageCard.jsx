@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { servicesInfo } from "../data";
 import { Link } from "react-router-dom";
 const ImageCard = () => {

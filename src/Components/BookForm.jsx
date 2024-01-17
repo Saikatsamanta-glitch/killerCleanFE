@@ -4,7 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   Accordion,
-  Tabs,
   Label,
   Tooltip,
   TextInput,
@@ -85,6 +84,7 @@ export default function BookForm() {
     bedroomValue,
     bathroomValue,
     selectedExtras,
+    updateAvailableBathrooms
   ]);
 
   const handleBedroomChange = (event) => {

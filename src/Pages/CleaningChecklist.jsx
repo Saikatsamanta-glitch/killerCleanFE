@@ -30,7 +30,6 @@ const CleaningChecklist = () => {
         <div className="flex flex-row justify-evenly items-center  pt-7">
           <Tabs
             aria-label="Pills"
-            style="pills"
             className="flex items-center justify-center"
             theme={tab}
           >
