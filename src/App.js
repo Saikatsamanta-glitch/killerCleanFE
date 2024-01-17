@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import Preloader from "./Components/Preloader";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CustomFooter from "./Components/CustomFooter";
 import Nav from "./Components/Nav";
@@ -14,113 +12,23 @@ import Success from "./Pages/Success";
 import NotFound from "./Pages/NotFound";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    // Simulate fetching data (replace with your actual data fetching logic)
-    const fetchData = async () => {
-      // Simulate a delay (replace with actual data fetching logic)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Set the fetched data
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-  return (
-    <BrowserRouter>
-      {loading ? (
-        <Preloader />
-      ) : (
-        <>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Nav />
-                  <Home />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/services"
-              element={
-                <>
-                  <Nav />
-                  <Services />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/cleaningchecklist"
-              element={
-                <>
-                  <Nav />
-                  <CleaningChecklist />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <>
-                  <Nav />
-                  <Contact />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/book"
-              element={
-                <>
-                  <Nav />
-                  <Book />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/faq"
-              element={
-                <>
-                  <Nav />
-                  <FAQ />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/cancel"
-              element={
-                <>
-                  <Nav />
-                  <Cancel />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route
-              path="/success"
-              element={
-                <>
-                  <Nav />
-                  <Success />
-                  <CustomFooter />
-                </>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-  
-        </>
-      )}
-    </BrowserRouter>
-  );
+        return (
+                <BrowserRouter>
+                        <Nav />
+                        <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/services" element={<Services />} />
+                                <Route path="/cleaningchecklist" element={<CleaningChecklist />} />
+                                <Route path="/contact" element={<Contact />} />
+                                <Route path="/book" element={<Book />} />
+                                <Route path="/faq" element={<FAQ />} />
+                                <Route path="/cancel" element={<Cancel />} />
+                                <Route path="/success" element={<Success />} />
+                                <Route path="*" element={<NotFound />} />
+                        </Routes>
+                        <CustomFooter />
+                </BrowserRouter>
+        );
 };
 
 export default App;
