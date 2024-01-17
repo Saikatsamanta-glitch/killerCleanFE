@@ -25,6 +25,12 @@ export const Contact = () => {
       <input type="date" name='schedule_date'/>
       <label>Time</label>
       <input type="time" name='schedule_time'/>
+      <label>Address</label>
+      <input type="text" name='address'/>
+      <label>Appartment</label>
+      <input type="text" name='user_apt'/>
+      <label>Contact_Number</label>
+      <input type="number" name='tel'/>
       <input type="submit" value="Send" />
     </form>
   );

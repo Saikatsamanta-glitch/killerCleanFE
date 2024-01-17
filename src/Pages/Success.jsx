@@ -14,7 +14,7 @@ const Success = () => {
   const formData = storedFormData ? JSON.parse(storedFormData) : {};
 
   // Access formData properties as needed
-  const { firstName, lastName, email /* ...other form properties */ } =
+  const { firstName, lastName, email , address , tel, sectel, apt/* ...other form properties */ } =
     formData;
   const history = useNavigate();
   useEffect(() => {
@@ -30,6 +30,10 @@ const Success = () => {
             from_name: "Killer Clean",
             to_name: firstName + " " + lastName,
             user_email: email,
+            user_address: address,
+            user_apt: apt,
+            contact_number1: tel,
+            contact_number2: sectel,
             selectedFrequency: frequency,
             selectedBathrooms: bathrooms,
             selectedBedrooms: bedrooms,

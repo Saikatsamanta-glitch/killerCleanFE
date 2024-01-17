@@ -2,9 +2,24 @@ import React, { useState, useEffect } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {Accordion,Tabs,Label,Tooltip,TextInput,Checkbox,Textarea,Button,} from "flowbite-react";
+import {
+  Accordion,
+  Tabs,
+  Label,
+  Tooltip,
+  TextInput,
+  Checkbox,
+  Textarea,
+  Button,
+} from "flowbite-react";
 import { FaRegCalendarDays } from "react-icons/fa6";
-import {frequencyData,selectExtras,customerDetailsData,pricingConfig,slots,} from "../data";
+import {
+  frequencyData,
+  selectExtras,
+  customerDetailsData,
+  pricingConfig,
+  slots,
+} from "../data";
 import PopularQuestions from "./PopularQuestions";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -23,6 +38,7 @@ export default function BookForm() {
   const [bathroomValue, setBathroomValue] = useState("");
   const [availableBathrooms, setAvailableBathrooms] = useState(["1", "2"]);
   const [pricingStandard, setPricingStandard] = useState("standard");
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = (field, value) => {
     setFormData({
@@ -36,41 +52,45 @@ export default function BookForm() {
   };
 
   useEffect(() => {
-    // Update available bathrooms based on selected bedrooms
-    updateAvailableBathrooms();
-  }, [bedroomValue, pricingStandard]);
+    window.scrollTo(0, 0);
+  }, []);
 
   const updateAvailableBathrooms = () => {
     const selectedPricing = pricingConfig[pricingStandard];
     const bedrooms = parseInt(bedroomValue);
     if (selectedPricing && selectedPricing[bedrooms]) {
-        const bathrooms = Object.keys(selectedPricing[bedrooms]);
-        setAvailableBathrooms(bathrooms);
+      const bathrooms = Object.keys(selectedPricing[bedrooms]);
+      setAvailableBathrooms(bathrooms);
     } else {
-        setAvailableBathrooms([]);
+      setAvailableBathrooms([]);
     }
-};
+  };
 
-
-useEffect(() => {
-        const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
-        const selectedPricing = pricingConfig[pricingStandard];
-        const bedrooms = parseInt(bedroomValue, 10) || 0;
-        const bathrooms = parseInt(bathroomValue, 10) || 0;
-        const extrasPrice = selectedExtras.length * pricingConfig.extras;
-        const memoizedRooms = selectedPricing?.[bedrooms]?.[bathrooms] || 0;
-        const subtotal = freqPrice + extrasPrice + memoizedRooms;
-        const taxAmount = subtotal * 0.1;
-        const totalPrice = subtotal + taxAmount;
-        setPrice(totalPrice);
-        setTaxAmount(taxAmount);
-}, [selectedFrequency, pricingStandard, bedroomValue, bathroomValue, selectedExtras]);
-      
+  useEffect(() => {
+    const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
+    const selectedPricing = pricingConfig[pricingStandard];
+    const bedrooms = parseInt(bedroomValue, 10) || 0;
+    const bathrooms = parseInt(bathroomValue, 10) || 0;
+    const extrasPrice = selectedExtras.length * pricingConfig.extras;
+    const memoizedRooms = selectedPricing?.[bedrooms]?.[bathrooms] || 0;
+    const subtotal = freqPrice + extrasPrice + memoizedRooms;
+    const taxAmount = subtotal * 0.1;
+    const totalPrice = subtotal + taxAmount;
+    setPrice(totalPrice);
+    setTaxAmount(taxAmount);
+    updateAvailableBathrooms();
+  }, [
+    selectedFrequency,
+    pricingStandard,
+    bedroomValue,
+    bathroomValue,
+    selectedExtras,
+  ]);
 
   const handleBedroomChange = (event) => {
     setBedroomValue(event.target.value);
   };
-  
+
   const handleBathroomChange = (event) => {
     setBathroomValue(event.target.value);
   };
@@ -92,6 +112,9 @@ useEffect(() => {
     );
   };
 
+  const toggleSubmitButton = () => {
+    setIsChecked(!isChecked);
+  };
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setShowDatePicker(false);
@@ -127,18 +150,23 @@ useEffect(() => {
     localStorage.setItem("price", price);
   };
   //payment
-  console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE);
+  // console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE);
   const makePayment = async () => {
-    const stripe = await loadStripe( "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol");
+    const stripe = await loadStripe(
+      "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol"
+    );
     const body = [
       {
         Name: formData.firstName + " " + formData.lastName,
         Frequency: selectedFrequency,
-        bedrooms:bedroomValue,
+        bedrooms: bedroomValue,
         bathrooms: bathroomValue,
         Extras: selectedExtras,
         price: price,
         Email: formData.email,
+        Address: formData.address,
+        Contact_Number1: formData.tel,
+        Contact_Number2: formData.sectel,
       },
     ];
     const headers = {
@@ -174,7 +202,7 @@ useEffect(() => {
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Frequency{" "}
             </h1>
-            <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:flex lg:flex-wrap md:items-center md:max-lg:flex-col max-lg:space-y-3">
+            <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:ml-0 max-sm:flex max-sm:flex-col md:flex lg:flex-wrap md:items-center md:max-lg:flex-col max-lg:space-y-3">
               {/* Radio buttons for frequency */}
 
               {frequencyData.map((frequency) => (
@@ -189,7 +217,9 @@ useEffect(() => {
                     value={frequency.value}
                     className="hidden peer"
                     checked={selectedFrequency === frequency.value}
-                    onChange={(event) => {setSelectedFrequency(event.target.value)}}
+                    onChange={(event) => {
+                      setSelectedFrequency(event.target.value);
+                    }}
                   />
                   <label
                     htmlFor={frequency.value}
@@ -201,43 +231,67 @@ useEffect(() => {
               ))}
             </div>
           </div>
-          <div>
+          <div className="border-b w-full  lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
-              Service Type
+              Service Type{" "}
             </h1>
-            <div className="pl-2  space-x-5 rounded-2xl">
+            <div className="space-x-8 rounded-2xl max-sm:flex justify-center">
               <button
-                className="w-20 h-10 bg-gray-300"
+                type="button"
+                className={`w-20 h-10 rounded-md ${
+                  pricingStandard === "standard"
+                    ? "bg-sky-400 text-white"
+                    : "bg-[#E5ECF2] "
+                }`}
                 onClick={handleStandardClick}
               >
                 Standard
               </button>
               <button
-                className="w-20 h-10 bg-gray-300"
+                type="button"
+                className={`w-20 h-10 rounded-md ${
+                  pricingStandard === "deep"
+                    ? "bg-sky-400 text-white"
+                    : "bg-[#E5ECF2]"
+                }`}
                 onClick={handleDeepClick}
               >
                 Deep
               </button>
             </div>
-            <label>Bedroom:<select value={bedroomValue} onChange={handleBedroomChange}>
-                <option value="">Select Bedroom</option>
-                {pricingConfig[pricingStandard]?.bedrooms.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <br />
-            <label>Bathroom:<select value={bathroomValue} onChange={handleBathroomChange}>
-                <option value="">Select Bathroom</option>
-                {availableBathrooms.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="max-md:space-y-5 lg:space-y-5 m-2">
+              <label className="text-[17px] xxl:text-3xl font-semibold ">
+                Bedroom:
+                <select
+                  className="w-44 ml-3 border-[#ced5d8] "
+                  value={bedroomValue}
+                  onChange={handleBedroomChange}
+                >
+                  <option value="">Select Bedroom</option>
+                  {pricingConfig[pricingStandard]?.bedrooms.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="text-[17px] xxl:text-3xl font-semibold">
+                Bathroom:
+                <select
+                  className="w-44 ml-3 border-[#ced5d8] "
+                  value={bathroomValue}
+                  onChange={handleBathroomChange}
+                >
+                  <option value="">Select Bathroom</option>
+                  {availableBathrooms.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
           </div>
           {/* Extras section */}
           <div className="border-b w-full py-4 lg:p-4">
@@ -356,11 +410,7 @@ useEffect(() => {
                         id={detail.id}
                         type={detail.type}
                         sizing="md"
-                        required={
-                          detail.id !== "secemail" &&
-                          detail.id !== "sectel" &&
-                          detail.id !== "apt"
-                        }
+                        required={detail.id !== "sectel"}
                         placeholder={detail.placeholder}
                         onChange={(e) =>
                           handleChange(detail.id, e.target.value)
@@ -379,7 +429,7 @@ useEffect(() => {
           {/* Service Provider */}
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
-              Select Service Provider
+              Choose Service Date
             </h1>
             <div>
               {showDatePicker && (
@@ -487,43 +537,16 @@ useEffect(() => {
               </div>
             </div>
           </div>
-          {/* Coupon Code */}
-          <div className="border-b w-full py-4 lg:p-4">
-            <Tabs aria-label="Default Tabs" style="default">
-              <Tabs.Item active title="Coupon Code">
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="mb-2 flex items-center">
-                    <Label
-                      htmlFor="coupon"
-                      value="Enter Coupon Code"
-                      className="text-lg -ml-6"
-                    />
-                    <Tooltip
-                      content="Please enter in your coupon code before adding in any gift card or referral credits. If you do not place in the coupon code first and apply a gift card or referral credit, you will be forced to reinput the gift card and/or referral credits."
-                      arrow={false}
-                      className="w-48 border bg-white  text-black font-normal text-center "
-                    >
-                      <IoMdInformationCircleOutline className="-ml-4 xxl:text-xl" />
-                    </Tooltip>
-                  </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <TextInput
-                      id="coupon"
-                      type="text"
-                      placeholder="Enter Coupon Code"
-                      onChange={(e) => handleChange("coupon", e.target.value)}
-                    />
-                    <Button>Apply</Button>
-                  </div>
-                </div>
-              </Tabs.Item>
-            </Tabs>
-          </div>
+      
         </div>
         {/* Payment */}
         <div className="flex flex-col items-start mb-4">
           <div className="flex items-center mb-4">
-            <Checkbox id="agree" className="h-6 w-6" />
+            <Checkbox
+              id="agree"
+              className="h-6 w-6"
+              onChange={toggleSubmitButton}
+            />
             <Label
               htmlFor="agree"
               className="-ml-5 xxl:text-5xl text-[#52616b] font-normal max-xxl:text-lg"
@@ -554,8 +577,16 @@ useEffect(() => {
           </div>
           <Button
             type="submit"
+            id="submitBtn"
             value="Send"
-            className="w-full p-2 bg-[#ced5d8] border-[#ced5d8] hover:bg-transparent"
+            disabled={!isChecked}
+            style={{
+              cursor: isChecked ? "pointer" : "not-allowed",
+              backgroundColor: isChecked ? "#155E75" : "#ccc",
+              border: "none",
+              color: isChecked ? "white" : "#666",
+            }}
+            className="w-full p-2 bg-[#ced5d8] border-[#ced5d8]"
           >
             <FaRegCalendarDays className="mr-2" /> Save Booking
           </Button>

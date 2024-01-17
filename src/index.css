@@ -32,9 +32,9 @@ code {
 button[type="submit"] span {
   font-size: 24px !important;
 }
-button[type="submit"]:hover {
+/* button[type="submit"]:hover {
   background-color: #ced5d8 !important;
-}
+} */
 /* date-time*/
 .react-datepicker__navigation-icon::before {
   height: 15px !important;
