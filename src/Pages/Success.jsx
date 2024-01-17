@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 const Success = () => {
   const storedFormData = localStorage.getItem("formData");
@@ -56,12 +56,12 @@ const Success = () => {
     };
 
     // Send email after a delay
-    const emailTimer = setTimeout(() => {
+    setTimeout(() => {
       sendEmail();
     }, 2000); // Adjust the delay as needed
 
     // Redirect to home after another delay
-    const redirectTimer = setTimeout(() => {
+    setTimeout(() => {
       history("/");
     }, 10000); // Adjust the delay as needed
 

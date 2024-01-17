@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import Table from "react-bootstrap/Table";
 // import { BathroomCleaningData } from "../data";
@@ -14,7 +15,7 @@ const TableData = (props) => {
           </tr>
         </thead>
         <tbody className="items-center text-sm lg:text-base">
-          {props.data.map((taskData, index) => (
+          {props?.data?.map((taskData) => (
             <tr key={taskData.id}>
               <td>{taskData.task}</td>
               <td>

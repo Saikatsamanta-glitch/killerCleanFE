@@ -33,8 +33,8 @@ export default function Home() {
             Reclaim your Saturdays!
           </h1>
           <p className="text-base sm:text-[17px] xxl:text-xl leading-7 mb-4 z-20 text-center text-white">
-            Let's make your space shine together! Schedule with Killer Clean
-            today and let the magic happen!
+            {`Let's make your space shine together! Schedule with Killer Clean
+            today and let the magic happen!`}
           </p>
           <Button
             as={Link}

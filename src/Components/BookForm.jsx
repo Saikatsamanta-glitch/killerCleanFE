@@ -302,36 +302,31 @@ export default function BookForm() {
               {/* Checkboxes for extras */}
               {selectExtras.map((v) => (
                 <div key={v} className="flex flex-col items-center">
-                  <div
-                    key={v.id}
-                    onChange={handleExtrasChange}
-                    checked={selectedExtras.includes(v.label)}
-                    className="border flex items-center justify-center  rounded-md border-[#ced5d8] overflow-hidden peer"
-                  >
-                    <input
-                      type="checkbox"
-                      name={v.label}
-                      id={v.label}
-                      value={v.label}
-                      className="peer hidden"
-                    />
-                    <label
-                      htmlFor={v.label}
-                      className=" extras peer-checked:bg-[#52616b] p-2 peer-checked:bg-opacity-60 "
-                    >
-                      <img
-                        src={v.img}
-                        alt=""
-                        className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16  md:max-lg:w-16 xxl:h-16 xxl:w-16 peer-checked:bg-[#52616b] peer-checked:bg-opacity-60"
-                      />
-                    </label>
-                    {/* <TextInput
-                      type="checkbox"
-                      className="btn btn-light"
-                      id={v.label}
-                      autoComplete="off"
-                    /> */}
-                  </div>
+                <div
+                key={v.id}
+                className={`border flex items-center justify-center rounded-md border-[#ced5d8] overflow-hidden ${selectedExtras.includes(v.label) ? 'peer-checked:bg-[#52616b] peer-checked:bg-opacity-60' : ''}`}
+              >
+                <input
+                  type="checkbox"
+                  name={v.label}
+                  id={v.label}
+                  value={v.label}
+                  checked={selectedExtras.includes(v.label)}
+                  onChange={handleExtrasChange}
+                  className="peer hidden"
+                />
+                <label
+                  htmlFor={v.label}
+                  className="extras p-2"
+                >
+                  <img
+                    src={v.img}
+                    alt=""
+                    className="h-12 w-12 max-sm:h-16 max-sm:w-16 md:max-lg:h-16 md:max-lg:w-16 xxl:h-16 xxl:w-16"
+                  />
+                </label>
+              </div>
+              
                   <div className="flex items-center">
                     <Label
                       htmlFor={v.label}

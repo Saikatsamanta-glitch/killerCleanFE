@@ -8,7 +8,7 @@ export default function OurServices() {
           Our professional services
         </h1>
         <p className="md:w-[60%] text-[#014584] xxl:w-[70%] text-[17px] xxl:text-3xl max-md:text-center md:text-left leading-7 sm:max-md:px-10">
-        We’re proud to provide safe and reliable professional-grade cleaning supplies and products. Each of our teams of Killer Clean has been professionally trained to deliver high quality house cleaning services. We offer multiple cleaning packages that are designed to meet the demands of any home owner. Whether you need your house cleaning services on a regular basis or just one time, we have a cleaning option that's right for you. A comprehensive description of each cleaning package is below.
+       { `We’re proud to provide safe and reliable professional-grade cleaning supplies and products. Each of our teams of Killer Clean has been professionally trained to deliver high quality house cleaning services. We offer multiple cleaning packages that are designed to meet the demands of any home owner. Whether you need your house cleaning services on a regular basis or just one time, we have a cleaning option that's right for you. A comprehensive description of each cleaning package is below.`}
         </p>
       </div>
       <div className="flex flex-col md:flex-row md:my-12 my-3 items-center w-full justify-evenly">

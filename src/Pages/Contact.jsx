@@ -94,7 +94,7 @@ const Contact = () => {
                 What Are You Looking For?
               </label>
               <div className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
-                <select onChange={(e)=>handleChange()} className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
+                <select onChange={()=>handleChange()} className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
                   <option value="select option">Select</option>
                   <option value="option1">Cancel the booking</option>
                   <option value="option2">Reschedule the booking</option>

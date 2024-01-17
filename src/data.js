@@ -1,3 +1,4 @@
+import React from 'react';
 export const servicesInfo = [
         {
           id: 1,
@@ -625,30 +626,30 @@ export const servicesInfo = [
               <li>Wash dishes</li>
               <li>Clean carpets</li>
               <li>
-                Mold: (Some amount of pink/orange mildew, or even darker mold, is
+                {`Mold: (Some amount of pink/orange mildew, or even darker mold, is
                 common in some homes. Don't worry- the cleaners can clean small
                 amounts of mold. Large amounts of mold in shower areas, on walls, etc.
                 can affect air quality and pose a health safety issue. The cleaners
                 aren't able to clean in rooms that are heavily affected by mold, or in
-                homes with heavy mold infestations.)
+                homes with heavy mold infestations.)`}
               </li>
               <li>
-                Weight: (We have a 30 lb. weight limit for safety reasons. Moving
+                {`Weight: (We have a 30 lb. weight limit for safety reasons. Moving
                 smaller items like dining table chairs, small ottomans, etc. to clean
                 under is perfectly ok. If you would like any heavier furniture or
                 appliances cleaned under, you're welcome to move it and the cleaners
-                will be happy to clean under it upon request.)
+                will be happy to clean under it upon request.)`}
               </li>
               <li>Extensive grease or fire damage</li>
               <li>Bodily Fluids</li>
               <li>Pet messes</li>
               <li>Bug infestations</li>
               <li>
-                Heights: (There is a limit to a 2 foot or shorter step stool. Safety
+                {`Heights: (There is a limit to a 2 foot or shorter step stool. Safety
                 is of the utmost importance to us. Please keep in mind that in most
                 cases, the tops of standard kitchen cupboards is approximately the
                 maximum limit of height. Some lighting fixtures may also be out of
-                reach.)
+                reach.)`}
               </li>
             </ol>
           ),

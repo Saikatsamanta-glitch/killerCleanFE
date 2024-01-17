@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CustomFooter from "./Components/CustomFooter";
 import Nav from "./Components/Nav";

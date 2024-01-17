@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Navbar } from "flowbite-react";
 import logo from "../Images/logo.png";
 import { useState, useEffect } from "react";
@@ -76,7 +77,7 @@ export default function Nav() {
             Cleaning Checklist
           </Navbar.Link>
           <Navbar.Link as={Link} to={"/contact"}>Contact</Navbar.Link>
-          <Navbar.Link as={Link} to={"/faq"}>FAQ'S</Navbar.Link>
+          <Navbar.Link as={Link} to={"/faq"}>{`FAQ'S`}</Navbar.Link>
           {isMobile ? (
             <Navbar.Link as={Link} to={"/book"}>Book Online</Navbar.Link>
           ) : (
