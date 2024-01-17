@@ -458,18 +458,18 @@ export const bookservices = [
 ];
 
 export const selectExtras = [
-  {
-    id: 1,
-    img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/broom.png",
-    label: "Deep Cleaning",
-    price: "$20",
-  },
-  {
-    id: 2,
-    img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/box.png",
-    label: "Move In Out",
-    price: "$20",
-  },
+  // {
+  //   id: 1,
+  //   img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/broom.png",
+  //   label: "Deep Cleaning",
+  //   price: "$20",
+  // },
+  // {
+  //   id: 2,
+  //   img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/box.png",
+  //   label: "Move In Out",
+  //   price: "$20",
+  // },
   {
     id: 3,
     img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/bathroom-cabinet.png",
@@ -704,12 +704,7 @@ export const customerDetailsData = [
     placeholder: "Ex: example@xyz.com",
     required: true,
   },
-  {
-    id: "secemail",
-    label: "Secondary Email Address",
-    type: "email",
-    placeholder: "Ex: example@xyz.com",
-  },
+
   {
     id: "tel",
     label: "Phone No",
@@ -730,7 +725,12 @@ export const customerDetailsData = [
     placeholder: "Type Address",
     required: true,
   },
-  { id: "apt", label: "Apt No", type: "text", placeholder: "#" },
+  { 
+    id: "apt", 
+    label: "Apt No", 
+    type: "text", 
+    placeholder: "Appartment/House",
+    required: true,},
 ];
 
 export const pricingConfig = {

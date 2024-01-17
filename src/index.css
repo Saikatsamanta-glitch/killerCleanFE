@@ -257,14 +257,14 @@ select {
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
-  padding-left: 40px !important;
+  padding-left: 20px !important;
 }
 input[type="password"] {
   width: 350px !important;
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
-  padding-left: 40px !important;
+  padding-left: 20px !important;
 }
 
 label {
@@ -288,7 +288,7 @@ label {
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
-  padding-left: 40px !important;
+  padding-left: 20px !important;
 }
 #emailid,
 #passward {
@@ -296,7 +296,7 @@ label {
   padding: 15px !important;
   border: 1px solid #bac0c4 !important;
   border-radius: 4px !important;
-  padding-left: 40px !important;
+  padding-left: 20px !important;
 }
 input::placeholder {
   font-size: small !important;
@@ -637,7 +637,7 @@ input::placeholder {
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
-    padding-left: 40px !important;
+    padding-left: 20px !important;
   }
   .extras {
     --bs-btn-padding-x: 22px !important;
@@ -696,7 +696,7 @@ input::placeholder {
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
-    padding-left: 40px !important;
+    padding-left: 20px !important;
   }
 
   nav {
@@ -913,7 +913,7 @@ input::placeholder {
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
-    padding-left: 40px !important;
+    padding-left: 20px !important;
   }
   input::placeholder {
     font-size: medium !important;
@@ -964,7 +964,7 @@ input::placeholder {
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
-    padding-left: 40px !important;
+    padding-left: 20px !important;
   }
   input::placeholder {
     font-size: medium !important;
@@ -1017,7 +1017,7 @@ input::placeholder {
     padding: 15px !important;
     border: 1px solid #bac0c4 !important;
     border-radius: 4px !important;
-    padding-left: 40px !important;
+    padding-left: 20px !important;
   }
   input::placeholder {
     font-size: medium !important;

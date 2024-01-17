@@ -127,7 +127,7 @@ useEffect(() => {
     localStorage.setItem("price", price);
   };
   //payment
-  console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE);
+  // console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE);
   const makePayment = async () => {
     const stripe = await loadStripe( "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol");
     const body = [
@@ -139,6 +139,10 @@ useEffect(() => {
         Extras: selectedExtras,
         price: price,
         Email: formData.email,
+        Address: formData.address,
+        apt: formData.apt,
+        Contact_Number1: formData.tel,
+        Contact_Number2: formData.sectel,
       },
     ];
     const headers = {
@@ -174,7 +178,7 @@ useEffect(() => {
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
               Frequency{" "}
             </h1>
-            <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:-ml-3 max-sm:flex max-sm:flex-col md:flex lg:flex-wrap md:items-center md:max-lg:flex-col max-lg:space-y-3">
+            <div className="xl:space-x-3 lg:space-x-4 lg:-ml-4 xl:ml-0 max-sm:flex max-sm:flex-col md:flex lg:flex-wrap md:items-center md:max-lg:flex-col max-lg:space-y-3">
               {/* Radio buttons for frequency */}
 
               {frequencyData.map((frequency) => (
@@ -201,25 +205,18 @@ useEffect(() => {
               ))}
             </div>
           </div>
-          <div>
+          <div className="border-b w-full  lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
-              Service Type
+              Service Type{" "}
             </h1>
-            <div className="pl-2  space-x-5 rounded-2xl">
-              <button
-                className="w-20 h-10 bg-gray-300"
-                onClick={handleStandardClick}
-              >
-                Standard
-              </button>
-              <button
-                className="w-20 h-10 bg-gray-300"
-                onClick={handleDeepClick}
-              >
-                Deep
-              </button>
+            <div className="space-x-8 rounded-2xl max-sm:flex justify-center">
+              <button type="button" className={`w-20 h-10 rounded-md ${pricingStandard === "standard" ? "bg-sky-400 text-white" : "bg-[#E5ECF2] "}`}
+                onClick={handleStandardClick}>Standard</button>
+              <button  type="button" className={`w-20 h-10 rounded-md ${pricingStandard === "deep" ? "bg-sky-400 text-white" : "bg-[#E5ECF2]"}`}
+                onClick={handleDeepClick}>Deep</button>
             </div>
-            <label>Bedroom:<select value={bedroomValue} onChange={handleBedroomChange}>
+            <div className="max-md:space-y-5 lg:space-y-5 m-2">
+            <label className="text-[17px] xxl:text-3xl font-semibold ">Bedroom:<select className="w-44 ml-3 border-[#ced5d8] " value={bedroomValue} onChange={handleBedroomChange}>
                 <option value="">Select Bedroom</option>
                 {pricingConfig[pricingStandard]?.bedrooms.map((option) => (
                   <option key={option} value={option}>
@@ -228,8 +225,8 @@ useEffect(() => {
                 ))}
               </select>
             </label>
-            <br />
-            <label>Bathroom:<select value={bathroomValue} onChange={handleBathroomChange}>
+            
+            <label  className="text-[17px] xxl:text-3xl font-semibold">Bathroom:<select className="w-44 ml-3 border-[#ced5d8] " value={bathroomValue} onChange={handleBathroomChange}>
                 <option value="">Select Bathroom</option>
                 {availableBathrooms.map((option) => (
                   <option key={option} value={option}>
@@ -238,6 +235,7 @@ useEffect(() => {
                 ))}
               </select>
             </label>
+            </div>
           </div>
           {/* Extras section */}
           <div className="border-b w-full py-4 lg:p-4">
@@ -357,7 +355,6 @@ useEffect(() => {
                         type={detail.type}
                         sizing="md"
                         required={
-                          detail.id !== "secemail" &&
                           detail.id !== "sectel" &&
                           detail.id !== "apt"
                         }
@@ -379,7 +376,7 @@ useEffect(() => {
           {/* Service Provider */}
           <div className="border-b w-full py-4 lg:p-4">
             <h1 className="text-[#11263c] max-xxl:text-2xl xxl:text-6xl font-semibold mb-4">
-              Select Service Provider
+              Choose Service Date
             </h1>
             <div>
               {showDatePicker && (
