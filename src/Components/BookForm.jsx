@@ -84,7 +84,6 @@ export default function BookForm() {
     bedroomValue,
     bathroomValue,
     selectedExtras,
-    updateAvailableBathrooms
   ]);
 
   const handleBedroomChange = (event) => {
