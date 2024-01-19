@@ -1,7 +1,6 @@
-import React from 'react';
 import { Button, Navbar } from "flowbite-react";
 import logo from "../Images/logo.png";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
@@ -42,7 +41,7 @@ export default function Nav() {
     <div className="w-screen">
       <div className="nav-header h-[55px] hidden bg-[#014584]  md:flex  items-center w-full lg:px-24 px-10 justify-between ">
         <div className="flex items-center">
-          <Link to={"tel:1234567890"} className="no-underline">
+          <Link to={"tel:951-877-5077"} className="no-underline">
             <i className="fa-solid fa-phone text-[#61B1D6] mr-3"></i>
             <span className="text-white mr-16 text-[15px] font-semibold">
             951-877-5077

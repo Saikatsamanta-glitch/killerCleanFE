@@ -149,11 +149,8 @@ export default function BookForm() {
     localStorage.setItem("price", price);
   };
   //payment
-  // console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE);
   const makePayment = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51JuieFSBsceWQO10Z6CPtqodHeO5xiUWcaWjxgbBmcyjIJmvfHe1NrvXjgyAzkjoiiuJLw65gsGmu8pFehjlxIXo00EsFRruol"
-    );
+    const stripe = await loadStripe(console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE));
     const body = [
       {
         Name: formData.firstName + " " + formData.lastName,
@@ -259,13 +256,7 @@ export default function BookForm() {
               </button>
             </div>
             <div className="max-md:space-y-5 lg:space-y-5 m-2">
-              <label className="text-[17px] xxl:text-3xl font-semibold ">
-                Bedroom:
-                <select
-                  className="w-44 ml-3 border-[#ced5d8] "
-                  value={bedroomValue}
-                  onChange={handleBedroomChange}
-                >
+              <label className="text-[17px] xxl:text-3xl font-semibold ">Bedroom:<select className="w-44 ml-3 border-[#ced5d8] " value={bedroomValue} onChange={handleBedroomChange}>
                   <option value="">Select Bedroom</option>
                   {pricingConfig[pricingStandard]?.bedrooms.map((option) => (
                     <option key={option} value={option}>
@@ -275,13 +266,7 @@ export default function BookForm() {
                 </select>
               </label>
 
-              <label className="text-[17px] xxl:text-3xl font-semibold">
-                Bathroom:
-                <select
-                  className="w-44 ml-3 border-[#ced5d8] "
-                  value={bathroomValue}
-                  onChange={handleBathroomChange}
-                >
+              <label className="text-[17px] xxl:text-3xl font-semibold">Bathroom:<select className="w-44 ml-3 border-[#ced5d8] " value={bathroomValue} onChange={handleBathroomChange}>
                   <option value="">Select Bathroom</option>
                   {availableBathrooms.map((option) => (
                     <option key={option} value={option}>
@@ -303,7 +288,7 @@ export default function BookForm() {
                 <div key={v} className="flex flex-col items-center">
                 <div
                 key={v.id}
-                className={`border flex items-center justify-center rounded-md border-[#ced5d8] overflow-hidden ${selectedExtras.includes(v.label) ? 'peer-checked:bg-[#52616b] peer-checked:bg-opacity-60' : ''}`}
+                className={`border flex items-center justify-center rounded-md border-[#ced5d8] overflow-hidden ${selectedExtras.includes(v.label) ? 'bg-[#52616b] peer-checked:bg-opacity-60' : ''}`}
               >
                 <input
                   type="checkbox"
@@ -441,7 +426,7 @@ export default function BookForm() {
               {showTimePicker && (
                 // Replace this with your time picker component
                 <div className="flex flex-col w-full">
-                  <label className="font-medium text-lg mb-6">
+                  <label htmlFor="selectTime" className="font-medium text-lg mb-6">
                     Select Time:
                   </label>
                   {/* Your time picker component goes here */}
@@ -477,7 +462,7 @@ export default function BookForm() {
               {selectedDate && selectedTime && (
                 <div className="flex items-center w-full max-md:flex-col ">
                   <div className="mb-4 flex items-center">
-                    <label className="font-medium">Selected Date:</label>
+                    <label htmlFor="selectedDate" className="font-medium">Selected Date:</label>
                     <DatePicker
                       selected={selectedDate}
                       onChange={(date) => {
@@ -490,7 +475,7 @@ export default function BookForm() {
                     />
                   </div>
                   <div className="mb-4 flex items-center">
-                    <label className="font-medium">Selected Time:</label>
+                    <label htmlFor="selectedTime" className="font-medium">Selected Time:</label>
                     <select
                       value={selectedTime}
                       onChange={(e) => setSelectedTime(e.target.value)}
@@ -652,7 +637,7 @@ export default function BookForm() {
                         </td>
                         <td>:</td>
                         <td className="text-[#11263c] xxl:text-xl">
-                          {/* {selectedSqft} */}
+                          
                         </td>
                       </tr>
                       {selectedExtras.length > 0 && (
