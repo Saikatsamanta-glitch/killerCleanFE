@@ -47,10 +47,10 @@ export default function Nav() {
             951-877-5077
             </span>
           </Link>
-          <Link to={"mailto:support@killerclean.com"} className="no-underline">
+          <Link to={"mailto:willc76@me.com"} className="no-underline">
             <i className="fa-solid fa-envelope text-[#61B1D6] mr-3"></i>
             <span className="text-white text-[15px] tracking-wide font-semibold">
-            killercleanllc@gmail.com
+            killercleanservices@gmail.com
             </span>
           </Link>
         </div>

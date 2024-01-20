@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import emailjs from '@emailjs/browser';
+
+
 
 const inputs = [
-  { id: "name", label: "Name", placeholder: "joe", type: "text" },
+  { 
+    id: "name", 
+    label: "Name", 
+    placeholder: "joe", 
+    type: "text" 
+  },
   {
     id: "phn",
     label: "Phone Number",
@@ -38,6 +46,35 @@ const Contact = () => {
     e.preventDefault();
   };
 
+  localStorage.setItem("formData", JSON.stringify(formData));
+
+  const templateParams = {
+    // Define your EmailJS template parameters here
+    // For example:
+    subject: "Contact Form Submission",
+    name: formData.name,
+    phoneNumber: formData.phn,
+    email: formData.email,
+    message:formData.msg,
+    // Add other form fields as needed
+  };
+
+  emailjs
+      .send(
+        "service_lrzlb67",
+        "template_0aggqif",
+        templateParams,
+        "lO680sw9k9xiPwwsB"
+      )
+      .then(
+        (response) => {
+          console.log("EmailJS Success:", response);
+        },
+        (error) => {
+          console.error("EmailJS Error:", error);
+        }
+      );
+
   const handleClick = (index) => {
     setOpenItem((prevOpenItem) => (prevOpenItem === index ? null : index));
   };
@@ -57,8 +94,7 @@ const Contact = () => {
         <p className="text-[14px] text-[#52616b] md:max-xxl:px-20 xl:max-xxl:text-[15px]">
           You can fill out this form and we will give you a custom quote with
           more detailed information. If you need to call us please reach out to
-          us at &nbsp;
-          <a href="tel:+19518775077">
+          us at &nbsp;<a href="tel:+19518775077">
             <span className="text-gray-500 font-semibold">
               +1 &nbsp; 951-877-5077.
             </span>
@@ -90,7 +126,7 @@ const Contact = () => {
               </div>
             ))}
             <div>
-              <label className="font-bold -ml-6">
+              <label htmlFor="lookingFor" className="font-bold -ml-6">
                 What Are You Looking For?
               </label>
               <div className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
@@ -105,28 +141,17 @@ const Contact = () => {
             <div>
               <h3 className="font-bold">Have you tried our services before?</h3>
               <label className="mt-2 mb-4">
-                <input
-                  className="-ml-7 md:max-xxl:-ml-7 mr-2 h-6 w-6 border-gray-300"
-                  type="radio"
-                  name="triedServices"
-                  value="yes"
-                />
-                Yes
+              <input className="-ml-7 md:max-xxl:-ml-7 mr-2 h-6 w-6 border-gray-300" type="radio" name="triedServices" value="yes"/>Yes
               </label>
               <label>
-                <input
-                  className="ml-2 mr-2 h-6 w-6 border-gray-300"
-                  type="radio"
-                  name="triedServices"
-                  value="no"
-                />
-                No
+                <input className="ml-2 mr-2 h-6 w-6 border-gray-300" type="radio" name="triedServices" value="no"/>No
               </label>
             </div>
 
             <div>
-              <label className="font-bold -ml-6">Additional Notes?</label>
+              <label htmlFor="message" className="font-bold -ml-6">Additional Notes?</label>
               <textarea
+                id="msg"
                 className="mt-2 mb-4 w-full rounded-md border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
                 rows="4"
                 placeholder="Please provide anything extra here."
@@ -192,11 +217,7 @@ const Contact = () => {
                 </button>
                 {openItem === index && (
                   <p className="ml-3 mt-2 text-gray-400 text-sm">
-                    {index === 0
-                      ? "You can submit your request and we will be in touch within 48 hours."
-                      : index === 1
-                      ? "To get pricing you can use the 'Book Now' option on the site instead."
-                      : "You can find that from the 'Book Now' form on this website."}
+                    {index === 0 ? "You can submit your request and we will be in touch within 48 hours." : index === 1 ? "To get pricing you can use the 'Book Now' option on the site instead." : "You can find that from the 'Book Now' form on this website."}
                   </p>
                 )}
               </div>

@@ -11,6 +11,7 @@ import FAQ from "./Pages/FAQ";
 import Cancel from "./Pages/Cancel";
 import Success from "./Pages/Success";
 import NotFound from "./Pages/NotFound";
+import Phone from './Components/Phone';
 
 const App = () => {
         return (
@@ -27,6 +28,7 @@ const App = () => {
                                 <Route path="/success" element={<Success />} />
                                 <Route path="*" element={<NotFound />} />
                         </Routes>
+                        <Phone />
                         <CustomFooter />
                 </BrowserRouter>
         );

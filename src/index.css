@@ -9,6 +9,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&display=swap");
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css");
 @import url("https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-straight/css/uicons-bold-straight.css");
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-thin-straight/css/uicons-thin-straight.css');
+
+
 * {
   margin: 0px;
   padding: 0px;
@@ -33,7 +36,7 @@ button[type="submit"] span {
   font-size: 24px !important;
 }
 /* button[type="submit"]:hover {
-  background-color: #ced5d8 !important;
+  background-color: #11263c !important;
 } */
 /* date-time*/
 .react-datepicker__navigation-icon::before {
@@ -318,6 +321,8 @@ input::placeholder {
   width: 100% !important;
   height: auto !important;
 }
+
+
 
 /* Responsive */
 
