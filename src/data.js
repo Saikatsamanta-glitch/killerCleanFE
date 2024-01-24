@@ -459,18 +459,6 @@ export const servicesInfo = [
       ];
       
       export const selectExtras = [
-        // {
-        //   id: 1,
-        //   img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/broom.png",
-        //   label: "Deep Cleaning",
-        //   price: "$20",
-        // },
-        // {
-        //   id: 2,
-        //   img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/box.png",
-        //   label: "Move In Out",
-        //   price: "$20",
-        // },
         {
           id: 3,
           img: "https://dp3d2hb4975es.cloudfront.net/assets/images/industryImages/home_cleaning/extras/bathroom-cabinet.png",
@@ -656,33 +644,6 @@ export const servicesInfo = [
         },
       ];
       
-      export const frequencyData = [
-        { value: "One-time", label: "One-time" },
-        { value: "Weekly", label: "Weekly" },
-        { value: "Every other week", label: "Every other week" },
-        { value: "Every 4 weeks", label: "Every 4 weeks" },
-      ];
-      
-      export const serviceTypeData = [
-        {
-          id: "sqft",
-          label: "Sq Ft",
-          options: [
-            "1 - 999 Sq Ft",
-            "1000 - 1499 Sq Ft",
-            "1500 - 1999 Sq Ft",
-            "2000 - 2499 Sq Ft",
-            "2500 - 2999 Sq Ft",
-            "3000 - 3499 Sq Ft",
-            "3500 - 3999 Sq Ft",
-            "4000 - 4499 Sq Ft",
-            "4500 - 4999 Sq Ft",
-            "5000 - 5499 Sq Ft",
-            "5500 - 5999 Sq Ft",
-          ],
-        },
-      ];
-      
       export const customerDetailsData = [
         {
           id: "firstName",
@@ -728,43 +689,50 @@ export const servicesInfo = [
         },
       ];
       
+      export const frequencyData = [
+        { value: "Onetime", label: "Onetime", totalService:"One Time Service"},
+        { value: "Weekly", label: "Weekly", totalService:"One Time Service In Week"},
+        { value: "Every Other Week", label: "Every Other Week", totalService:"Two Time Service In Month"},
+        { value: "Every 4 Weeks", label: "Every 4 Weeks", totalService:"Four Time Service In Month" },
+      ];
+
+
       export const pricingConfig = {
         frequency: {
-          "One-time": 40,
-          Weekly: 30,
-          "Every other week": 25,
-          "Every 4 weeks": 20,
+          Onetime: 40,
+          "Weekly": 30,
+          "Every Other Week": 25,
+          "Every 4 Weeks": 20,
+        },
+        subvalue:{
+          Onetime: 1,
+          "Weekly": 1,
+          "Every Other Week": 2,
+          "Every 4 Weeks": 4,
+        },
+        totalService: {
+          Onetime: "One Time Service",
+          "Weekly": "One Time Service In Week",
+          "Every Other Week": "Two Time Service In Month",
+          "Every 4 Weeks": "Four Time Service In Month",
         },
         standard: {
           bedrooms: ["1", "2", "3", "4", "5", "6"],
-          1: { 1: 160, 2: 180 },
-          2: { 1: 180, 2: 200, 3: 220 },
-          3: { 1: 200, 2: 220, 3: 240, 4: 260 },
-          4: { 1: 230, 2: 230, 3: 260, 4: 290, 5: 310 },
-          5: { 1: 250, 2: 250, 3: 270, 4: 300, 5: 330 },
-          6: { 1: 280, 2: 280, 3: 280, 4: 310, 5: 350 },
+          1: { 1: 120, 2: 140 },
+          2: { 1: 140, 2: 160, 3: 180 },
+          3: { 1: 160, 2: 180, 3: 200, 4: 220 },
+          4: { 1: 190, 2: 190, 3: 220, 4: 250, 5: 270 },
+          5: { 1: 210, 2: 210, 3: 230, 4: 260, 5: 290 },
+          6: { 1: 240, 2: 240, 3: 240, 4: 270, 5: 310 },
         },
         deep: {
           bedrooms: ["1", "2", "3", "4", "5", "6"],
-          1: { 1: 190, 2: 250 },
-          2: { 1: 220, 2: 280, 3: 320 },
-          3: { 1: 250, 2: 310, 3: 340, 4: 380 },
-          4: { 1: 300, 2: 300, 3: 370, 4: 390, 5: 410 },
-          5: { 1: 310, 2: 310, 3: 380, 4: 410, 5: 430 },
-          6: { 1: 370, 2: 370, 3: 370, 4: 440, 5: 490 },
-        },
-        sqft: {
-          "1 - 999 Sq Ft": 8,
-          "1000 - 1499 Sq Ft": 16,
-          "1500 - 1999 Sq Ft": 24,
-          "2000 - 2499 Sq Ft": 32,
-          "2500 - 2999 Sq Ft": 40,
-          "3000 - 3499 Sq Ft": 48,
-          "3500 - 3999 Sq Ft": 56,
-          "4000 - 4499 Sq Ft": 72,
-          "4500 - 4999 Sq Ft": 80,
-          "5000 - 5499 Sq Ft": 88,
-          "5500 - 5999 Sq Ft": 96,
+          1: { 1: 150, 2: 210 },
+          2: { 1: 180, 2: 240, 3: 280 },
+          3: { 1: 210, 2: 270, 3: 300, 4: 340 },
+          4: { 1: 260, 2: 260, 3: 330, 4: 350, 5: 370 },
+          5: { 1: 270, 2: 270, 3: 340, 4: 370, 5: 390 },
+          6: { 1: 330, 2: 330, 3: 330, 4: 400, 5: 450 },
         },
         extras: 40  ,
       };

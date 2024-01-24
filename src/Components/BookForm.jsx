@@ -23,7 +23,7 @@ import PopularQuestions from "./PopularQuestions";
 import { loadStripe } from "@stripe/stripe-js";
 
 export default function BookForm() {
-  const [selectedFrequency, setSelectedFrequency] = useState("Weekly");
+  const [selectedFrequency, setSelectedFrequency] = useState("Onetime");
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [price, setPrice] = useState(0);
   const [taxAmount, setTaxAmount] = useState(0);
@@ -38,6 +38,8 @@ export default function BookForm() {
   const [availableBathrooms, setAvailableBathrooms] = useState(["1", "2"]);
   const [pricingStandard, setPricingStandard] = useState("standard");
   const [isChecked, setIsChecked] = useState(false);
+  const [totalServiceInfo, setTotalServiceInfo] = useState("");
+  const [subTotal, setSubTotal] = useState(0);
 
   const handleChange = (field, value) => {
     setFormData({
@@ -64,6 +66,7 @@ export default function BookForm() {
       setAvailableBathrooms([]);
     }
   };
+  
 
   useEffect(() => {
     const freqPrice = pricingConfig.frequency[selectedFrequency] || 0;
@@ -71,11 +74,20 @@ export default function BookForm() {
     const bedrooms = parseInt(bedroomValue, 10) || 0;
     const bathrooms = parseInt(bathroomValue, 10) || 0;
     const extrasPrice = selectedExtras.length * pricingConfig.extras;
-    const memoizedRooms = selectedPricing?.[bedrooms]?.[bathrooms] || 0;
-    const subtotal = freqPrice + extrasPrice + memoizedRooms;
+    const memorizedRooms = selectedPricing?.[bedrooms]?.[bathrooms] || 0;
+    const subtotal = freqPrice + extrasPrice + memorizedRooms;
     const taxAmount = subtotal * 0.1;
-    const totalPrice = subtotal + taxAmount;
+     
+    const totalService = pricingConfig.totalService[selectedFrequency] || 1;
+    const totalServiceInfo = totalService;
+
+    const subvalue = pricingConfig.subvalue[selectedFrequency] || 1;
+    const finaltotal = subtotal * subvalue; 
+
+    const totalPrice = finaltotal + taxAmount;   
+    setSubTotal(subtotal);
     setPrice(totalPrice);
+    setTotalServiceInfo(totalServiceInfo);
     setTaxAmount(taxAmount);
     updateAvailableBathrooms();
   }, [
@@ -615,6 +627,15 @@ export default function BookForm() {
                       </tr>
                       <tr>
                         <td className="text-sm xxl:text-xl text-[#6c757d]">
+                          Total Services
+                        </td>
+                        <td>:</td>
+                        <td className="text-[#11263c] xxl:text-xl">
+                          {totalServiceInfo}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-sm xxl:text-xl text-[#6c757d]">
                           Bedrooms
                         </td>
                         <td>:</td>
@@ -633,11 +654,11 @@ export default function BookForm() {
                       </tr>
                       <tr>
                         <td className="text-sm xxl:text-xl text-[#6c757d]">
-                          Sq Ft
+                          Cost
                         </td>
                         <td>:</td>
-                        <td className="text-[#11263c] xxl:text-xl">
-                          
+                        <td className="text-[#11263c] xxl:text-xl font-bold">
+                        ${subTotal.toFixed(2)}
                         </td>
                       </tr>
                       {selectedExtras.length > 0 && (

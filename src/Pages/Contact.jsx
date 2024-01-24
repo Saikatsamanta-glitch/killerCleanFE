@@ -33,7 +33,13 @@ const checkboxData = [
 
 const Contact = () => {
   const [openItem, setOpenItem] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ 
+    name: "",
+    phn: "",
+    email: "",
+    message: "",
+    triedServices: "",
+});
 
   const handleChange = (field,value) => {
     setFormData({
@@ -44,9 +50,13 @@ const Contact = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.name || !formData.phn || !formData.email || !formData.message) {
+      alert("Please fill in all required fields.");
+      return;
+    }
   };
 
-  localStorage.setItem("formData", JSON.stringify(formData));
 
   const templateParams = {
     // Define your EmailJS template parameters here
@@ -75,6 +85,7 @@ const Contact = () => {
         }
       );
 
+    
   const handleClick = (index) => {
     setOpenItem((prevOpenItem) => (prevOpenItem === index ? null : index));
   };
@@ -104,7 +115,7 @@ const Contact = () => {
 
       <div className="flex flex-col sm:max-md:flex-col lg:max-xxl:flex-row justify-center mt-16 lg:max-xxl:gap-1 lg:max-xxl:px-12 md:max-lg:mx-5">
         <div className="mb-10">
-          <form
+          <form name="form"
             onSubmit={handleFormSubmit}
             className=" lg:max-xl:w-[550px] lg:max-xxl:w-[850px]  bg-white rounded-lg max-sm:px-5 md:max-xxl:px-10 py-10 md:max-xxl:flex md:max-xxl:flex-col shadow-md mx-4 "
           >
@@ -114,7 +125,7 @@ const Contact = () => {
 
             {inputs.map((input) => (
               <div key={input.id}>
-                <label className="font-bold -ml-6">{input.label}</label>
+                <label className="font-bold -ml-6" >{input.label}</label>
                 <input
                   className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
                   type={input.type}
@@ -126,7 +137,7 @@ const Contact = () => {
               </div>
             ))}
             <div>
-              <label htmlFor="lookingFor" className="font-bold -ml-6">
+              <label className="font-bold -ml-6">
                 What Are You Looking For?
               </label>
               <div className="mt-2 mb-4 w-full h-14 rounded-md  border-gray-300 placeholder:text-gray-300 placeholder:text-sm">
@@ -141,20 +152,35 @@ const Contact = () => {
             <div>
               <h3 className="font-bold">Have you tried our services before?</h3>
               <label className="mt-2 mb-4">
-              <input className="-ml-7 md:max-xxl:-ml-7 mr-2 h-6 w-6 border-gray-300" type="radio" name="triedServices" value="yes"/>Yes
+                <input
+                  className="-ml-7 md:max-xxl:-ml-7 mr-2 h-6 w-6 border-gray-300"
+                  type="radio"
+                  name="triedServices"
+                  value="yes"
+                  onChange={(e) => handleChange("triedServices", e.target.value)}
+                />
+                Yes
               </label>
               <label>
-                <input className="ml-2 mr-2 h-6 w-6 border-gray-300" type="radio" name="triedServices" value="no"/>No
+                <input
+                  className="ml-2 mr-2 h-6 w-6 border-gray-300"
+                  type="radio"
+                  name="triedServices"
+                  value="no"
+                  onChange={(e) => handleChange("triedServices", e.target.value)}
+                />
+                No
               </label>
             </div>
 
             <div>
-              <label htmlFor="message" className="font-bold -ml-6">Additional Notes?</label>
+              <label className="font-bold -ml-6">Additional Notes?</label>
               <textarea
                 id="msg"
                 className="mt-2 mb-4 w-full rounded-md border-gray-300 placeholder:text-gray-300 placeholder:text-sm"
                 rows="4"
                 placeholder="Please provide anything extra here."
+                
               ></textarea>
             </div>
             <hr className="my-2" />
@@ -217,7 +243,11 @@ const Contact = () => {
                 </button>
                 {openItem === index && (
                   <p className="ml-3 mt-2 text-gray-400 text-sm">
-                    {index === 0 ? "You can submit your request and we will be in touch within 48 hours." : index === 1 ? "To get pricing you can use the 'Book Now' option on the site instead." : "You can find that from the 'Book Now' form on this website."}
+                    {index === 0
+                      ? "You can submit your request and we will be in touch within 48 hours."
+                      : index === 1
+                      ? "To get pricing you can use the 'Book Now' option on the site instead."
+                      : "You can find that from the 'Book Now' form on this website."}
                   </p>
                 )}
               </div>
