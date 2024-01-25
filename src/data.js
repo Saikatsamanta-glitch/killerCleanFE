@@ -592,8 +592,8 @@ export const servicesInfo = [
         {
           id: 7,
           que: "What is your cancellation/rescheduling policy?",
-          ans: "We require 2 full business days notice if you need to cancel or change any upcoming appointments. When you provide 2 or more full business days notice, there is no cancellation fee. If you provide less than 2 full business days notice, you will be charged a $__ cancellation fee. If you cancel your appointment the day of, or we cannot gain access into your home, you will be charged 100% of your appointment cost.",
-          ans2: "We require 48 hours notice for reschedule or cancellations. There will be a $__ charge for no notice cancellations and lockouts. If you are sick and it’s your cleaning day, please call our office by 7:30 am. We will do our best to reschedule your cleaning that same week. Please do not have us clean if your family is home with the flu. Remember you are home because you are contagious! Thank you.",
+          ans: "We require 2 full business days notice if you need to cancel or change any upcoming appointments. When you provide 2 or more full business days notice, there is no cancellation fee. If you provide less than 2 full business days notice, you will be charged a $50 cancellation fee. If you cancel your appointment the day of, or we cannot gain access into your home, you will be charged 100% of your appointment cost.",
+          ans2: "We require 48 hours notice for reschedule or cancellations. There will be a $50 charge for no notice cancellations and lockouts. If you are sick and it’s your cleaning day, please call our office by 7:30 am. We will do our best to reschedule your cleaning that same week. Please do not have us clean if your family is home with the flu. Remember you are home because you are contagious! Thank you.",
         },
         {
           id: 8,

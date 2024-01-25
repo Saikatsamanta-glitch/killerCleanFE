@@ -55,10 +55,10 @@ export default function Nav() {
           </Link>
         </div>
         <div className=" flex items-center text-[24px]">
-          <Link className="no-underline text-white" to={'https://www.facebook.com/profile.php?id=61553403698498'}>
+          <Link className="no-underline text-white" to={'https://www.facebook.com/profile.php?id=61553403698498'} target="_blank">
             <i className="fa-brands fa-facebook mr-6 hover:animate-pulse "></i>
           </Link>
-          <Link className="no-underline text-white">
+          <Link className="no-underline text-white" to={"https://www.instagram.com/killercleanservices?igsh=MXh5Zjc1MDM3b3I0MA%3D%3D&utm_source=qr"} target="_blank">
             <i className="fa-brands fa-instagram hover:animate-pulse"></i>
           </Link>
         </div>

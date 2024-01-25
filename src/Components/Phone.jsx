@@ -7,7 +7,7 @@ const Phone = () => {
   };
 
   return (
-    <div style={{ position: 'fixed', right: '10px', bottom: '50%', margin: '20px', transform: 'translateY(50%)' }}>
+    <div style={{ position: 'fixed', right: '10px', bottom: '40px', margin: '20px', transform: 'translateY(50%)', zIndex:100 }}>
       <button    onClick={handlephone}>
       <img src={call} alt="call" style={{ width: '40px', height: '40px' }} />
       </button>
