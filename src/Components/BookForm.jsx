@@ -162,7 +162,7 @@ export default function BookForm() {
   };
   //payment
   const makePayment = async () => {
-    const stripe = await loadStripe(console.log("PKSTRIPE",process.env.REACT_APP_PK_STRIPE));
+    const stripe = await loadStripe("pk_live_51OB8RyA2dcJCHvz14zYzvwFYSvnbt222V0OttLJZSfwG0UgrfFdgF7LwsF5X4H42xlcy3jTjnZI23EL3SneYQpk700hVvfroBJ");
     const body = [
       {
         Name: formData.firstName + " " + formData.lastName,

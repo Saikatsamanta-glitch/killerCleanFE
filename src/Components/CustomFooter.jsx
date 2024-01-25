@@ -23,7 +23,7 @@ export default function CustomFooter() {
                 <Footer.Link href="https://www.facebook.com/profile.php?id=61553403698498" target="_blank">
                   <BsFacebook className="text-white text-lg xxl:text-2xl sm:mr-5 mr-3" />
                 </Footer.Link>
-                <Footer.Link>
+                <Footer.Link href="https://www.instagram.com/killercleanservices?igsh=MXh5Zjc1MDM3b3I0MA%3D%3D&utm_source=qr" target="_blank">
                   <BsInstagram className="text-white text-lg xxl:text-2xl" />
                 </Footer.Link>
               </div>
