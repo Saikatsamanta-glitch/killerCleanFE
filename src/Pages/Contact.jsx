@@ -106,8 +106,9 @@ const Contact = () => {
           You can fill out this form and we will give you a custom quote with
           more detailed information. If you need to call us please reach out to
           us at &nbsp;<a href="tel:+19518775077">
+          <br/>
             <span className="text-gray-500 font-semibold">
-              +1 &nbsp; 951-877-5077.
+              +1&nbsp; 951-877-5077.
             </span>
           </a>
         </p>

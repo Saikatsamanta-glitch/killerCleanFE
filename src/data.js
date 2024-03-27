@@ -557,13 +557,13 @@ export const servicesInfo = [
         {
           id: 1,
           que: "Do I need to provide supplies or equipment for my scheduled cleaning service?",
-          ans: "No, you do not need to worry about cleaning supplies and equipment. Our cleaners will bring all that is required to complete the job correctly. Also, the rate quoted typically includes cleaning supplies and equipment.",
-          ans2: "No.You are not required to provide any supplies, cleaning products, or a vacuum. The cleaners have all professional-grade products and supplies needed to complete the jobs required.",
+          ans: "No, You do not need to worry about cleaning supplies and equipment. Our cleaners will bring all that is required to complete the job correctly. Also, the rate quoted typically includes cleaning supplies and equipment.",
+          ans2: "No, You are not required to provide any supplies, cleaning products, or a vacuum. The cleaners have all professional-grade products and supplies needed to complete the jobs required.",
         },
         {
           id: 2,
           que: "What method of payment is accepted, and what are your payment terms?",
-          ans: "We accept all major credit cards, checks, cash, and e-transfers, but payment terms vary depending on the service. For additional information on our payment terms, you can contact our customer service team at 000-000-0000, and we will gladly answer any questions or concerns you may have.",
+          ans: "We accept all major credit cards, checks, cash, and e-transfers, but payment terms vary depending on the service. For additional information on our payment terms, you can contact our customer service team at +1 951-877-5077, and we will gladly answer any questions or concerns you may have.",
           ans2: " We accept credit cards as well as E-transfers. Our system will automatically generate a hold on funds paid via credit card (including Visa debit) the day before your booked services. This is merely a hold and no funds have been removed from your account. The Visa debit cards will look like the money has been removed from your account. We assure you it has not. Your bank is holding it separately for you until the charge is processed after your services have been completed. E-transfers will need to be received by (cleaning company)the day before your appointment.",
         },
         {
