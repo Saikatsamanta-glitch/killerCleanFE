@@ -6,23 +6,23 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   // const [isSticky, setIsSticky] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      // Check if the user has scrolled past the first div
-      const scrollPosition = window.scrollY;
-      const firstDivHeight = document.querySelector(".nav-header").clientHeight;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     // Check if the user has scrolled past the first div
+  //     const scrollPosition = window.scrollY;
+  //     const firstDivHeight = document.querySelector(".nav-header").clientHeight;
 
-      // setIsSticky(scrollPosition > firstDivHeight);
-    };
+  //     // setIsSticky(scrollPosition > firstDivHeight);
+  //   };
 
-    // Attach the event listener when the component mounts
-    window.addEventListener("scroll", handleScroll);
+  //   // Attach the event listener when the component mounts
+  //   window.addEventListener("scroll", handleScroll);
 
-    // Detach the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   // Detach the event listener when the component unmounts
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
   useEffect(() => {
     // Update isMobile when the window is resized
     const handleResize = () => {
