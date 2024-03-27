@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 
 export default function Nav() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isSticky, setIsSticky] = useState(false);
+  // const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       // Check if the user has scrolled past the first div
       const scrollPosition = window.scrollY;
       const firstDivHeight = document.querySelector(".nav-header").clientHeight;
 
-      setIsSticky(scrollPosition > firstDivHeight);
+      // setIsSticky(scrollPosition > firstDivHeight);
     };
 
     // Attach the event listener when the component mounts
@@ -64,7 +64,7 @@ export default function Nav() {
         </div>
       </div>
 
-      <Navbar fluid className={`sm:max-lg:px-0 px-20 left-0 top-0 ${isSticky ? "fixed" : ""} bg-[#F3FAFC] w-full z-50`}>
+      <Navbar fluid className={`sm:max-lg:px-0 px-20 left-0 top-0  bg-[#F3FAFC] w-full z-50`}>
         <Navbar.Brand href="/">
           <img src={logo} className="h-24 sm:max-lg:h-[200px] lg:h-[150px] max-lg:mt-0 " alt="Killer CLean Logo" />
         </Navbar.Brand>
