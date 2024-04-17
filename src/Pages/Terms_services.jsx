@@ -305,7 +305,7 @@ export default function Termsservices() {
             prevent a lockout fee.
           </p>
           <p>
-            <span className="font-bold">Keys:</span> Cactus Clean referral
+            <span className="font-bold">Keys:</span> Killer Clean referral
             Agency is not responsible for any damages or theft if the client
             leaves a key in an unsecured location. We shall return all customer
             keys within 48 hours or the next business day upon termination or
@@ -382,7 +382,7 @@ export default function Termsservices() {
           <h2 className="text-2xl font-bold mb-4">XVIII. Non-Solicitation</h2>
           <p>
             You acknowledge and agree not to solicit any employee, agent,
-            independent contractor, or affiliate of Cactus Clean referral Agency
+            independent contractor, or affiliate of Killer Clean referral Agency
             during the term of this Agreement and for a period of one year after
             its termination or expiration.
           </p>
