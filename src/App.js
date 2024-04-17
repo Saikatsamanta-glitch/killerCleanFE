@@ -12,6 +12,7 @@ import Cancel from "./Pages/Cancel";
 import Success from "./Pages/Success";
 import NotFound from "./Pages/NotFound";
 import Phone from './Components/Phone';
+import Termsservices from './Pages/Terms_services';
 
 const App = () => {
         return (
@@ -26,6 +27,7 @@ const App = () => {
                                 <Route path="/faq" element={<FAQ />} />
                                 <Route path="/cancel" element={<Cancel />} />
                                 <Route path="/success" element={<Success />} />
+                                <Route path="/terms_policy" element={<Termsservices />} />
                                 <Route path="*" element={<NotFound />} />
                         </Routes>
                         <Phone />

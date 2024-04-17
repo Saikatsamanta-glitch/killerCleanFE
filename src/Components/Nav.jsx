@@ -19,7 +19,7 @@ export default function Nav() {
   }, []);
   return (
 
-    <div className="w-screen">
+    <div className="w-full overflow-x-hidden">
       <div className="nav-header h-[55px] hidden bg-[#014584]  md:flex  items-center w-full lg:px-24 px-10 justify-between ">
         <div className="flex items-center">
           <Link to={"tel:951-877-5077"} className="no-underline">

@@ -9,7 +9,7 @@ import Work from "../Components/Work";
 import Ready from "../Components/Ready";
 export default function Home() {
   return (
-    <div className="w-screen relative">
+    <div className="w-full overflow-x-hidden">
       <Welcome />
       <Tired />
       <OurServices />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   Label,
@@ -542,13 +543,13 @@ export default function BookForm() {
               htmlFor="agree"
               className="-ml-5 xxl:text-5xl text-[#52616b] font-normal max-xxl:text-lg"
             >
-              I affirm that I have read and agree to the Terms of Service and
-              Privacy Policy.
+              I affirm that I have read and agree to the Terms of Service and Privacy Policy .
             </Label>
           </div>
           <p className="mb-4 text-[#52616b]">
             By entering any information, you affirm you have read and agree to
-            the Terms of Service and Privacy Policy.
+            the <Link to='/terms_policy#termsofservice' className="text-blue-400">Terms of Service</Link> and 
+            <Link to='/terms_policy' className="text-blue-400"> Privacy Policy</Link>.
           </p>
           <div className="flex items-center mb-4">
             <span className="text-[#52616b]">
