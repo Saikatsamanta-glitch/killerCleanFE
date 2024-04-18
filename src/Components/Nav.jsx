@@ -31,7 +31,7 @@ export default function Nav() {
           <Link to={"mailto:willc76@me.com"} className="no-underline">
             <i className="fa-solid fa-envelope text-[#61B1D6] mr-3"></i>
             <span className="text-white text-[15px] tracking-wide font-semibold">
-            killercleanservices@gmail.com
+   killercleanllc@gmail.com
             </span>
           </Link>
         </div>

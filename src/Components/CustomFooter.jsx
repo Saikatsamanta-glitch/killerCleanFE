@@ -56,7 +56,7 @@ export default function CustomFooter() {
               <Footer.LinkGroup col className="space-y-2">
                 <Footer.Link href="tel:951-877-5077">951-877-5077</Footer.Link>
                 <Footer.Link href="mailto:willc76@me.com">
-                killercleanservices@gmail.com
+       killercleanllc@gmail.com
                 </Footer.Link>
                 <Footer.Link href="#">Mon-Sunday, 24 hours</Footer.Link>
               </Footer.LinkGroup>
